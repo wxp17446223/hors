@@ -1,0 +1,13 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3307/hors?serverTimezone=UTC
+
+mybatis:
+  mapper-locations: classpath:cn/hors/mapper/sqlmap/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
