@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+</head>
+<body>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle"></i>新增账号</button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
+    <table class="layui-hide" id="table_data" lay-filter="table_filter"></table>
+
+    <script data-th-inline="javascript">
+        layui.use(["table","layer"],function() {
+            // let table=layui.table;
+            let {table,layer} = layui; //解构操作
+
+            table.render({
+                id:'table_reload',
+                elem:'#table_data',
+                url:/*[[@{/account}]]*/'/data/account.json',
+                cellMinWidth: 80,
+                toolbar: '#toolbarDemo', //开启头部工具栏，并为其绑定左侧模板
+                cols:[
+                    [
+                        {field:'id', width:80, title: 'ID', sort: true}
+                        ,{field:'account', width:80, title: '账号'}
+                        ,{field:'password', title: '密码'}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                    ]
+                ]
+            });
+            //监听头工具栏事件
+            //事件名：toolbar
+            //过滤器:table_filter
+            table.on('toolbar(table_filter)', function(e){
+                if(e.event=='add'){
+                    layer.open({
+                        type: 2,
+                        area: ['350px', '250px'],
+                        fixed: false, //不固定
+                        maxmin: false,
+                        content: /*[[@{account/edit}]]*/'test/iframe.html'
+                    });
+                }
+            });
+
+            // 监听行工具栏事件
+            table.on("tool(table_filter)",function (e) {
+               switch (e.event){
+                   case "edit":
+                       layer.open({
+                           type: 2,
+                           area: ['350px', '250px'],
+                           fixed: false, //不固定
+                           maxmin: false,
+                           content: '[(@{account/edit})]/'+e.data.id
+                       });
+                       break;
+                   case "del":
+                       console.log("点击了删除按钮:"+e.data);
+
+               }
+            });
+        });
+    </script>
+</body>
+</html>
