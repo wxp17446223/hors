@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.DepartmentsMapper">
+    <resultMap id="BASIC_RESULT_MAP" type="cn.hors.bean.Departments">
+        <id property="departId" column="depart_id"/>
+        <result property="departName" column="depart_name"/>
+        <result property="introduce" column="introduce"/>
+        <result property="date" column="date"/>
+        <result property="DId" column="d_id"/>
+    </resultMap>
+    
+<sql id="Base_Column_List">
+    depart_id,depart_name,introduce,`date`,d_id
+</sql>
+
+<sql id="BASIC_WHERE">
+    <if test="departId != null">
+        and depart_id = #{departId}
+    </if>
+    <if test="departName != null and departName != ''">
+        and depart_name = #{departName}
+    </if>
+    <if test="introduce != null and introduce != ''">
+        and introduce = #{introduce}
+    </if>
+    <if test="date != null">
+        and date=#{date}
+    </if>
+    <if test="dId != null">
+        and d_id = #{dId}
+    </if>
+</sql>
+
+<select id="findById" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments where depart_id = #{departId}
+</select>
+
+<select id="findAll" parameterType="cn.hors.bean.Departments" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments
+    <where>
+        <include refid="BASIC_WHERE"></include>
+    </where>
+</select>
+
+</mapper>
