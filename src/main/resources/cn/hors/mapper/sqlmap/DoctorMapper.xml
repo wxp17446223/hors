@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.DoctorMapper">
+     <resultMap id="BASIC_RESULT_MAP" type="cn.hors.bean.Doctor">
+        <id property="doctorId" column="doctor_id"/>
+        <result property="jobNumber" column="job_number"/>
+        <result property="departId" column="depart_id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="picture" column="picture"/>
+        <result property="birth" column="birth"/>
+        <result property="workExperience" column="work_experience"/>
+        <result property="phone" column="phone"/>
+        <result property="adept" column="adept"/>
+        <result property="introduce" column="introduce"/>
+     </resultMap>
+<sql id="Base_Column_List">
+doctor_id,job_number,depart_id,`name`,sex,picture,birth,work_experience,phone,adept,introduce
+</sql>
+
+<sql id="BASIC_WHERE">
+    <if test="doctorId != null">
+        and doctor_id = #{doctorId}
+    </if>
+     <if test="jobNumber!=null">
+        and job_number = #{jobNumber}
+    </if>
+    <if test="departId!=null">
+        and depart_id = #{departId}
+    </if>
+    <if test="name!=null and name !=''">
+        and `name` = #{name}
+    </if>
+    <if test="sex!=null">
+        and sex = #{sex}
+    </if>
+    <if test="picture!=null and picture!=''">
+        and picture = #{picture}
+    </if>
+    <if test="birth != null">
+        and birth = #{birth}
+    </if>
+    <if test="workExperience!=null and workExperience!=''">
+        and work_experience = #{workExperience}
+    </if>
+    <if test="phone != null and phone != ''">
+        and phone = #{phone}
+    </if>
+    <if test="adept!=null and adept!=''">
+        and adept = #{adept}
+    </if>
+    <if test="introduce!=null and introduce!=''">
+        and introduce = #{introduce}
+    </if>
+</sql>
+
+<select id="findById" parameterType="integer" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from doctor where doctor_id=#{doctorId}
+</select>
+
+<select id="findAll" parameterType="cn.hors.bean.Doctor" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from doctor
+    <where>
+        <include refid="BASIC_WHERE"></include>
+    </where>
+</select>
+
+</mapper>
