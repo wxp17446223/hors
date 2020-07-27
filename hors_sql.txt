@@ -2,8 +2,8 @@ create table account
 (
     account_id int auto_increment comment '管理员id'
         primary key,
-    account    varchar(32) not null comment '登录账号',
-    password   varchar(16) not null comment '登录密码'
+    account    varchar(32) null comment '登录账号',
+    password   varchar(16) null comment '登录密码'
 )
     comment '管理员表';
 
@@ -17,30 +17,30 @@ create table `account-role-mapping`
 
 create table departments
 (
-    depart_id   int auto_increment comment '科室ID  主键'
+    depart_id   int auto_increment
         primary key,
-    depart_name varchar(125)                        not null comment '科室名字',
-    introduce   varchar(1024)                       not null comment '科室介绍',
-    date        timestamp default CURRENT_TIMESTAMP null comment '成立日期'
+    depart_name varchar(125)   null comment '科室名字',
+    introduce   varchar(1024)  null comment '科室介绍',
+    date        date           null comment '成立日期',
+    d_id        int default -1 null comment '父科室ID默认-1 为最高级科室'
 )
-    comment '科室表
-';
+    comment '科室表';
 
 create table doctor
 (
     doctor_id       int auto_increment comment '医生ID'
         primary key,
-    job_number      int           not null comment '医生工号',
-    opc_id          int           not null comment '所在门诊ID',
-    name            varchar(125)  not null comment '医生姓名',
-    sex             varchar(2)    not null comment '性别',
-    picture         varchar(125)  not null comment '医生照片',
-    birth           date          not null comment '出生日期',
-    position        varchar(12)   not null comment '医生职位',
-    work_experience varchar(24)   not null comment '工作经验',
-    phone           varchar(32)   not null comment '联系方式',
-    adept           varchar(125)  not null comment '擅长',
-    introduce       varchar(1024) not null comment '医生介绍',
+    job_number      int           null comment '医生工号',
+    opc_id          int           null comment '所在门诊ID',
+    name            varchar(125)  null comment '医生姓名',
+    sex             int default 0 null comment '性别',
+    picture         varchar(125)  null comment '医生照片',
+    birth           date          null comment '出生日期',
+    position        varchar(12)   null comment '医生职位',
+    work_experience varchar(24)   null comment '工作经验',
+    phone           varchar(32)   null comment '联系方式',
+    adept           varchar(125)  null comment '擅长',
+    introduce       varchar(1024) null comment '医生介绍',
     constraint doctor_job_number_uindex
         unique (job_number)
 )
@@ -51,23 +51,22 @@ create table feedback
     back_id    int auto_increment comment '反馈id'
         primary key,
     user_id    int          null comment '用户ID',
-    doctor_id  int          not null comment '医生ID',
+    doctor_id  int          null comment '医生ID',
     content    varchar(255) not null comment '反馈内容',
-    back_time  date         not null comment '反馈时间',
-    reply      varchar(255) not null comment '管理回复',
-    reply_time date         not null comment '回复时间'
+    back_time  date         null comment '反馈时间',
+    reply      varchar(255) null comment '管理回复',
+    reply_time date         null comment '回复时间'
 )
     comment '反馈留言表:对医生的评论反馈  对医院的评论反馈 投诉';
 
 create table news
 (
-    new_id       int auto_increment comment '新闻id'
+    new_id    int auto_increment comment '新闻id'
         primary key,
-    title        varchar(56)   not null comment '新闻标题',
-    news_picture varchar(255)  not null comment '新闻图片',
-    content      varchar(2048) not null comment '新闻内容',
-    news_date    date          not null comment '新闻日期',
-    source       varchar(32)   not null comment 'source'
+    title     varchar(56) null comment '新闻标题',
+    content   mediumtext  null comment '新闻内容',
+    news_date date        null comment '新闻日期',
+    source    varchar(32) null comment '新闻来源'
 )
     comment '新闻信息表';
 
@@ -75,35 +74,54 @@ create table `order`
 (
     order_id   int auto_increment comment '预约id'
         primary key,
-    user_id    int         not null comment '预约用户id',
-    t_id       int         not null comment '预约了的时段id',
-    addtime    date        not null comment '下单时间',
-    user_phone varchar(32) not null comment '联系电话',
-    status     int         not null comment '处理状态：0处理中 1预约成功',
-    reply      varchar(32) null comment '医生回复',
-    cost       varchar(32) not null comment '预约费用',
-    doctor_id  int         not null comment '预约的医生ID'
+    user_id    int           null comment '预约用户id',
+    t_id       int           null comment '预约了的时段id',
+    addtime    date          null comment '下单时间',
+    user_phone varchar(32)   null comment '联系电话',
+    status     int default 0 null comment '处理状态：0处理中 1预约成功',
+    reply      varchar(32)   null comment '医生回复',
+    cost       varchar(32)   null comment '预约费用',
+    doctor_id  int           null comment '预约的医生ID'
 )
     comment '预约表:记录用户预约的情况';
 
-create table outpatient
+create table resource
 (
-    opc_id    int auto_increment comment '门诊ID'
+    resource_id int auto_increment
         primary key,
-    opc_name  varchar(125) null comment '门诊名字',
-    depart_id int          null comment '科室ID'
+    name        varchar(32)   null comment '资源名称',
+    url         varchar(32)   null comment '资源路径',
+    a_id        int           null comment '父资源id，如果id资源为-1，则为顶级节点(没有父节点)',
+    authority   varchar(10)   null comment 'c d u r增删改查权限',
+    type        int default 1 null comment '0功能 1菜单'
 )
-    comment '门诊表';
+    comment '资源表';
+
+create table role
+(
+    role_id   int auto_increment
+        primary key,
+    role_name varchar(32) null comment '身份名称',
+    number    varchar(32) null comment '身份编号'
+)
+    comment '身份表';
+
+create table `role-resource-mapping`
+(
+    role_id     int null comment '身份id',
+    resource_id int null comment '资源id'
+)
+    comment '身份-资源联系表';
 
 create table timeline
 (
     t_id       int auto_increment comment '排班ID'
         primary key,
     doctor_id  int           null comment '医生ID',
-    date       date          not null comment '日期',
-    quota      int           not null comment '允许预约的人数',
+    date       date          null comment '日期',
+    quota      int           null comment '允许预约的人数',
     start_time date          not null comment '时段开始',
-    end_time   date          not null comment '时段结束',
+    end_time   date          null comment '时段结束',
     status     int default 1 not null comment '该时段是否允许预约
 0 否 1允许'
 )
@@ -113,15 +131,14 @@ create table userinfo
 (
     user_id       int auto_increment comment '用户id'
         primary key,
-    username      varchar(32) not null comment '用户名',
-    password      varchar(16) not null comment '密码',
-    sex           varchar(2)  not null comment '性别',
-    birth         date        not null comment '出生日期',
-    picture       varchar(32) not null comment '用户照片',
-    phone         varchar(32) not null comment '联系电话',
-    email         varchar(32) not null comment '邮箱',
-    address       varchar(56) null comment '家庭住址',
-    register_time date        not null comment '注册时间'
+    account_id    int          null comment '关联账号ID',
+    sex           int          null comment '性别',
+    birth         date         null comment '出生日期',
+    picture       varchar(32)  null comment '用户照片',
+    phone         varchar(15)  null comment '联系电话',
+    email         varchar(32)  null comment '邮箱',
+    address       varchar(255) null comment '家庭住址',
+    register_time date         null comment '注册时间'
 )
     comment '用户表';
 
