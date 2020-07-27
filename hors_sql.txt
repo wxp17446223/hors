@@ -1,0 +1,127 @@
+create table account
+(
+    account_id int auto_increment comment '管理员id'
+        primary key,
+    account    varchar(32) not null comment '登录账号',
+    password   varchar(16) not null comment '登录密码'
+)
+    comment '管理员表';
+
+create table `account-role-mapping`
+(
+    account_id int not null comment '管理员id'
+        primary key,
+    role_id    int not null comment '身份ID'
+)
+    comment '管理员-身份联系表';
+
+create table departments
+(
+    depart_id   int auto_increment comment '科室ID  主键'
+        primary key,
+    depart_name varchar(125)                        not null comment '科室名字',
+    introduce   varchar(1024)                       not null comment '科室介绍',
+    date        timestamp default CURRENT_TIMESTAMP null comment '成立日期'
+)
+    comment '科室表
+';
+
+create table doctor
+(
+    doctor_id       int auto_increment comment '医生ID'
+        primary key,
+    job_number      int           not null comment '医生工号',
+    opc_id          int           not null comment '所在门诊ID',
+    name            varchar(125)  not null comment '医生姓名',
+    sex             varchar(2)    not null comment '性别',
+    picture         varchar(125)  not null comment '医生照片',
+    birth           date          not null comment '出生日期',
+    position        varchar(12)   not null comment '医生职位',
+    work_experience varchar(24)   not null comment '工作经验',
+    phone           varchar(32)   not null comment '联系方式',
+    adept           varchar(125)  not null comment '擅长',
+    introduce       varchar(1024) not null comment '医生介绍',
+    constraint doctor_job_number_uindex
+        unique (job_number)
+)
+    comment '医生表';
+
+create table feedback
+(
+    back_id    int auto_increment comment '反馈id'
+        primary key,
+    user_id    int          null comment '用户ID',
+    doctor_id  int          not null comment '医生ID',
+    content    varchar(255) not null comment '反馈内容',
+    back_time  date         not null comment '反馈时间',
+    reply      varchar(255) not null comment '管理回复',
+    reply_time date         not null comment '回复时间'
+)
+    comment '反馈留言表:对医生的评论反馈  对医院的评论反馈 投诉';
+
+create table news
+(
+    new_id       int auto_increment comment '新闻id'
+        primary key,
+    title        varchar(56)   not null comment '新闻标题',
+    news_picture varchar(255)  not null comment '新闻图片',
+    content      varchar(2048) not null comment '新闻内容',
+    news_date    date          not null comment '新闻日期',
+    source       varchar(32)   not null comment 'source'
+)
+    comment '新闻信息表';
+
+create table `order`
+(
+    order_id   int auto_increment comment '预约id'
+        primary key,
+    user_id    int         not null comment '预约用户id',
+    t_id       int         not null comment '预约了的时段id',
+    addtime    date        not null comment '下单时间',
+    user_phone varchar(32) not null comment '联系电话',
+    status     int         not null comment '处理状态：0处理中 1预约成功',
+    reply      varchar(32) null comment '医生回复',
+    cost       varchar(32) not null comment '预约费用',
+    doctor_id  int         not null comment '预约的医生ID'
+)
+    comment '预约表:记录用户预约的情况';
+
+create table outpatient
+(
+    opc_id    int auto_increment comment '门诊ID'
+        primary key,
+    opc_name  varchar(125) null comment '门诊名字',
+    depart_id int          null comment '科室ID'
+)
+    comment '门诊表';
+
+create table timeline
+(
+    t_id       int auto_increment comment '排班ID'
+        primary key,
+    doctor_id  int           null comment '医生ID',
+    date       date          not null comment '日期',
+    quota      int           not null comment '允许预约的人数',
+    start_time date          not null comment '时段开始',
+    end_time   date          not null comment '时段结束',
+    status     int default 1 not null comment '该时段是否允许预约
+0 否 1允许'
+)
+    comment '医生排班表';
+
+create table userinfo
+(
+    user_id       int auto_increment comment '用户id'
+        primary key,
+    username      varchar(32) not null comment '用户名',
+    password      varchar(16) not null comment '密码',
+    sex           varchar(2)  not null comment '性别',
+    birth         date        not null comment '出生日期',
+    picture       varchar(32) not null comment '用户照片',
+    phone         varchar(32) not null comment '联系电话',
+    email         varchar(32) not null comment '邮箱',
+    address       varchar(56) null comment '家庭住址',
+    register_time date        not null comment '注册时间'
+)
+    comment '用户表';
+
