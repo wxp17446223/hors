@@ -17,4 +17,9 @@ public class DepartController {
         model.addAttribute("departments", departmentsService.findAll(departments));
         return "keshi";
     }
+//    @GetMapping("/keshi")
+//    public String findAllDoctor(Model model,Integer id){
+//        model.addAttribute("departments", departmentsService.findById(id));
+//        return "keshi";
+//    }
 }
