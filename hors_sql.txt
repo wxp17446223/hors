@@ -31,7 +31,7 @@ create table doctor
     doctor_id       int auto_increment comment '医生ID'
         primary key,
     job_number      int           null comment '医生工号',
-    opc_id          int           null comment '所在门诊ID',
+    depart_id       int           null comment '所在科室ID',
     name            varchar(125)  null comment '医生姓名',
     sex             int default 0 null comment '性别',
     picture         varchar(125)  null comment '医生照片',

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
     <meta name="renderer" content="webkit"/>
@@ -889,70 +889,13 @@
         <div class="title01">专家介绍</div>
         <div class="Expert">
             <ul>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
+                <li data-th-each="doctor:${doctors}" data-th-object="${doctor}"><a href="ys.html" target="_blank"><img data-th-src="*{picture}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
                                                            width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
+                        href="ys.html" target="_blank" title="医生" class="ATitle" data-th-text="*{name}">医生</a><h4 data-th-text="*{position}">主任医师，科主任</h4>
+                    <p data-th-text="*{introduce}">医院标题呼吸内科科主任……</p>
                     <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
                                                                                    target="_blank">预约</a></div>
                 </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-                <li><a href="ys.html" target="_blank"><img data-th-src="@{/hors/uploadfiles/thumb/201603221527067.png}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
-                        href="ys.html" target="_blank" title="医生" class="ATitle">医生</a><h4>主任医师，科主任</h4>
-                    <p>医院标题呼吸内科科主任……</p>
-                    <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
-                                                                                   target="_blank">预约</a></div>
-                </li>
-
             </ul>
             <div class="clear"></div>
         </div>

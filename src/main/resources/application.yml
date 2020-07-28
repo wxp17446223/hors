@@ -3,11 +3,17 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
+    username: hors
+    password: 123456
     url: jdbc:mysql://localhost:3307/hors?serverTimezone=UTC
 
 mybatis:
   mapper-locations: classpath:cn/hors/mapper/sqlmap/*.xml
+  type-aliases-package: cn.hors.bean
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
+    cn.hors: trace

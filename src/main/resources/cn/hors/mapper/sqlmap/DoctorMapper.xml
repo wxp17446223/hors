@@ -13,6 +13,7 @@
         <result property="phone" column="phone"/>
         <result property="adept" column="adept"/>
         <result property="introduce" column="introduce"/>
+
      </resultMap>
 <sql id="Base_Column_List">
 doctor_id,job_number,depart_id,`name`,sex,picture,birth,work_experience,phone,adept,introduce
