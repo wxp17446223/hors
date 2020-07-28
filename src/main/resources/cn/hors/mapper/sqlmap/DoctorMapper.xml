@@ -9,13 +9,14 @@
         <result property="sex" column="sex"/>
         <result property="picture" column="picture"/>
         <result property="birth" column="birth"/>
+        <result property="position" column="position"/>
         <result property="workExperience" column="work_experience"/>
         <result property="phone" column="phone"/>
         <result property="adept" column="adept"/>
         <result property="introduce" column="introduce"/>
      </resultMap>
 <sql id="Base_Column_List">
-doctor_id,job_number,depart_id,`name`,sex,picture,birth,work_experience,phone,adept,introduce
+doctor_id,job_number,depart_id,`name`,sex,picture,birth,position,work_experience,phone,adept,introduce
 </sql>
 
 <sql id="BASIC_WHERE">
@@ -39,6 +40,9 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,work_experience,phone,ad
     </if>
     <if test="birth != null">
         and birth = #{birth}
+    </if>
+     <if test="position != null">
+        and `position` = #{position}
     </if>
     <if test="workExperience!=null and workExperience!=''">
         and work_experience = #{workExperience}
