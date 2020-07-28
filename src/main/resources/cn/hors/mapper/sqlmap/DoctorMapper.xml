@@ -16,7 +16,7 @@
         <result property="introduce" column="introduce"/>
      </resultMap>
 <sql id="Base_Column_List">
-doctor_id,job_number,depart_id,`name`,sex,picture,birth,position,work_experience,phone,adept,introduce
+doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experience,phone,adept,introduce
 </sql>
 
 <sql id="BASIC_WHERE">
