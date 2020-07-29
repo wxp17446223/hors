@@ -16,57 +16,14 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </select>
+    <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="112fdc02-6a5f-4cf0-9202-5a9f5153263c" name="默认的" comment="罗和福7.29晚上">
-      <change beforePath="$PROJECT_DIR$/hors.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hors.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/hors/css/secondary.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/hors/css/secondary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/HorsApplication.class" beforeDir="false" />
+    <list default="true" id="241f9357-df27-442e-8700-5962e709b493" name="默认的" comment="tjh第三天">
       <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Account.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Departments$DepartmentsBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Departments.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Doctor$DoctorBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Doctor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Order.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/bean/Userinfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/controller/DepartController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/controller/DoctorController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/controller/HorsController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/AccountMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/DepartmentsMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/DoctorMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/OrderMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/UserinfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/sqlmap/DepartmentsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/hors/mapper/sqlmap/DepartmentsMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/mapper/sqlmap/DoctorMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/cn/hors/mapper/sqlmap/DoctorMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/AccountService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/DepartmentsService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/DoctorService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/OrderService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/UserinfoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/impl/AccountServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/impl/DepartmentsServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/impl/DoctorServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/impl/OrderServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/service/impl/UserinfoServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/sqlmap/mapperxml/AccountMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/cn/hors/sqlmap/mapperxml/UserinfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/hors/css/secondary.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/hors/css/secondary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/keshi.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/keshi.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/keshiys.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/keshiys.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user.html" beforeDir="false" />
     </list>
-    <list id="8d3357d2-c32f-4517-bea4-e90ce841d3bd" name="Revert &quot;添加了DoctorController、DepartController 编写了doctor、department这两个类的基本查找&quot;" comment="Revert &quot;添加了DoctorController、DepartController 编写了doctor、department这两个类的基本查找&quot;&#10;&#10;This reverts commit dbec439f" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -125,7 +82,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1fBbDE1MebktQzjO2QAWlJuqtPf" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="新增" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
