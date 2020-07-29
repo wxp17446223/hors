@@ -1,11 +1,6 @@
 package cn.hors.service;
 
-import cn.hors.bean.Doctor;
 import cn.hors.bean.Userinfo;
-
-import javax.jws.soap.SOAPBinding;
-import java.util.List;
-
 public interface UserinfoService{
 
 
@@ -21,5 +16,5 @@ public interface UserinfoService{
 
     int updateByPrimaryKey(Userinfo record);
 
-    List<Userinfo> findAll(Userinfo userinfo);
+    Userinfo findById(Integer accountId);
 }

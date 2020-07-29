@@ -6,6 +6,8 @@
     <!--@Table userinfo-->
     <id column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity_id" jdbcType="INTEGER" property="identityId" />
     <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="birth" jdbcType="DATE" property="birth" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -16,7 +18,8 @@
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    user_id, account_id, sex, birth, picture, phone, email, address, register_time
+    user_id, account_id, `name`, identity_id, sex, birth, picture, phone, email, address, 
+    register_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -32,12 +35,14 @@
   </delete>
   <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into userinfo (account_id, sex, birth, 
-      picture, phone, email, 
-      address, register_time)
-    values (#{accountId,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{birth,jdbcType=DATE}, 
-      #{picture,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE})
+    insert into userinfo (account_id, `name`, identity_id, 
+      sex, birth, picture, phone, 
+      email, address, register_time
+      )
+    values (#{accountId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{identityId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{birth,jdbcType=DATE}, #{picture,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -45,6 +50,12 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="accountId != null">
         account_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="identityId != null">
+        identity_id,
       </if>
       <if test="sex != null">
         sex,
@@ -71,6 +82,12 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="accountId != null">
         #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        #{identityId,jdbcType=INTEGER},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=INTEGER},
@@ -102,6 +119,12 @@
       <if test="accountId != null">
         account_id = #{accountId,jdbcType=INTEGER},
       </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        identity_id = #{identityId,jdbcType=INTEGER},
+      </if>
       <if test="sex != null">
         sex = #{sex,jdbcType=INTEGER},
       </if>
@@ -130,6 +153,8 @@
     <!--@mbg.generated-->
     update userinfo
     set account_id = #{accountId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      identity_id = #{identityId,jdbcType=INTEGER},
       sex = #{sex,jdbcType=INTEGER},
       birth = #{birth,jdbcType=DATE},
       picture = #{picture,jdbcType=VARCHAR},
@@ -139,8 +164,8 @@
       register_time = #{registerTime,jdbcType=DATE}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
-    <select id="findAll"  parameterType="cn.hors.bean.Userinfo" resultMap="BaseResultMap">
-        select  <include refid="Base_Column_List"></include>
-        from userinfo
+    <select id="findById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from userinfo where account_id = #{accountId,jdbcType=INTEGER}
     </select>
 </mapper>

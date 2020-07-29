@@ -2,8 +2,6 @@ package cn.hors.mapper;
 
 import cn.hors.bean.Userinfo;
 
-import java.util.List;
-
 public interface UserinfoMapper {
     int deleteByPrimaryKey(Integer userId);
 
@@ -17,5 +15,5 @@ public interface UserinfoMapper {
 
     int updateByPrimaryKey(Userinfo record);
 
-    List<Userinfo> findAll(Userinfo userinfo);
+    Userinfo findById(Integer accountId);
 }
