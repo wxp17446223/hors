@@ -10,7 +10,7 @@
         <association property="parent" javaType="cn.hors.bean.Departments" select="findEntityById" column="d_id"/>
         <collection property="children" ofType="cn.hors.bean.Departments" column="{dId=depart_id}" select="findAll"/>
         <collection property="doctors" ofType="cn.hors.bean.Doctor"
-        column="depart_id" select="cn.hors.mapper.DoctorMapper.findById"/>
+        column="depart_id" select="cn.hors.mapper.DoctorMapper.findAllByDepartId"/>
     </resultMap>
     
 <sql id="Base_Column_List">
@@ -53,6 +53,15 @@
     <where>
         <include refid="BASIC_WHERE"></include>
     </where>
+</select>
+<select id="findAllByDid" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments where d_id = #{dId}
+</select>
+
+<select id="findAllByDepartId" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments where depart_id = #{departId}
 </select>
 
 </mapper>

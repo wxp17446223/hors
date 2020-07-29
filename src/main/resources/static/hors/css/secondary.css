@@ -1,5 +1,5 @@
 /*��ҳ���ò���*/
-nav .quickMenuBase{ width:185px;background:url(../images/Yellowline.jpg) repeat-x; color:#fff; font-size:16px;}
+nav .quickMenuBase{ width:185px;background:url(../images/Yellowline.jpg) repeat-x; color: #ffffff; font-size:16px;}
 nav .quickMenus{ display:none;}
 nav .quickMenu03{ width:159px;height:100%; position:relative; background:url(../images/ico_024.jpg) right center no-repeat;}
 nav .quickMenu03 img{ position:absolute; top:15px; left:25px;}
