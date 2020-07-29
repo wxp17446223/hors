@@ -87,4 +87,9 @@
         <include refid="Base_Where"></include>
     </where>
   </select>
+  <select id="findByDoctorId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from timeline
+        where doctor_id=#{doctorId,jdbcType=INTEGER}
+  </select>
 </mapper>

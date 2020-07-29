@@ -14,6 +14,10 @@
         <result property="phone" column="phone"/>
         <result property="adept" column="adept"/>
         <result property="introduce" column="introduce"/>
+        <association property="department" javaType="cn.hors.bean.Departments" column="depart_id"
+         select="cn.hors.mapper.DepartmentsMapper.findEntityById"/>
+        <collection property="timelineList" ofType="cn.hors.bean.Timeline"
+        column="doctor_id" select="cn.hors.mapper.TimelineMapper.findByDoctorId"/>
      </resultMap>
 <sql id="Base_Column_List">
 doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experience,phone,adept,introduce

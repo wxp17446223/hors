@@ -1,6 +1,8 @@
 package cn.hors.bean;
 
 import java.util.Date;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -73,8 +75,13 @@ public class Doctor {
     * 医生介绍
     */
     private String introduce;
-
-
-
+    /**
+     * 医生的排班信息
+     */
+    private List<Timeline> timelineList;
+    /**
+     * 医生所在的科室信息
+     */
+    private Departments department;
 
 }
