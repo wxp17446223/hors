@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import cn.hors.bean.Userinfo;
 import cn.hors.mapper.UserinfoMapper;
 import cn.hors.service.UserinfoService;
+
+import java.util.List;
+
 @Service
 public class UserinfoServiceImpl implements UserinfoService{
 
@@ -39,6 +42,11 @@ public class UserinfoServiceImpl implements UserinfoService{
     @Override
     public int updateByPrimaryKey(Userinfo record) {
         return userinfoMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Userinfo> findAll(Userinfo userinfo) {
+        return userinfoMapper.findAll(userinfo);
     }
 
 }
