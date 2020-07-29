@@ -34,7 +34,12 @@ public interface DepartmentsMapper {
      */
     Departments findAllByDepartId(Integer departId);
 
-
+    /**
+     * 通过科室Id查询科室信息 返回的是esultType
+     * @param departId
+     * @return
+     */
+    Departments findEntityById(Integer departId);
 
 
 }
