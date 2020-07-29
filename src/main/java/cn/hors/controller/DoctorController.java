@@ -14,7 +14,7 @@ public class DoctorController {
 
     @Resource
     private DoctorService doctorService;
-    @GetMapping("/")
+    @GetMapping("/doctor")
     public String findAllDoctor(Model model,Doctor doctor){
         model.addAttribute("doctors", doctorService.findAll(doctor));
         return "keshiys";

@@ -11,3 +11,8 @@ mybatis:
   mapper-locations: classpath:cn/hors/mapper/sqlmap/*.xml
   configuration:
     map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info
+    cn.hors: trace

@@ -889,8 +889,8 @@
         <div class="title01">专家介绍</div>
         <div class="Expert">
             <ul>
-                <li data-th-each="doctor:${doctors}" data-th-object="${doctor}"><a href="ys.html" target="_blank"><img data-th-src="*{picture}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
-                                                           width="120" height="162" title="医生" alt="医生"></a><a
+                <li data-th-each="ys:${keshiys.doctors}" data-th-object="${ys}"><a href="ys.html" target="_blank"><img data-th-src="*{picture}" src="../static/hors/uploadfiles/thumb/201603221527067.png" class="load"
+                                                           width="120" height="162" data-th-title="*{name}" alt="医生"></a><a
                         href="ys.html" target="_blank" title="医生" class="ATitle" data-th-text="*{name}">医生</a><h4 data-th-text="*{position}">主任医师，科主任</h4>
                     <p data-th-text="*{introduce}">医院标题呼吸内科科主任……</p>
                     <div><a class="coffee" target="_blank" href="ys.html">详细</a><a class="green" href="#"
