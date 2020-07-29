@@ -16,4 +16,5 @@ public interface AccountService{
 
     int updateByPrimaryKey(Account record);
 
+    Account login(String account, String password);
 }

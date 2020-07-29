@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
     * 管理员表
     */
@@ -25,4 +27,6 @@ public class Account {
     * 登录密码
     */
     private String password;
+
+    private Userinfo userinfo;
 }
