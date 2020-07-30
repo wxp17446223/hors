@@ -23,6 +23,16 @@ public class Userinfo {
     private Integer accountId;
 
     /**
+    * 用户名称
+    */
+    private String name;
+
+    /**
+    * 身份证号
+    */
+    private Integer identityId;
+
+    /**
     * 性别
     */
     private Integer sex;
