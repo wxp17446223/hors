@@ -38,17 +38,18 @@
                 <li><a href="news.html">人才招聘</a></li><li><a href="Office-71.html">人事管理</a></li>
                 <li><a href="History.html">网上院史馆</a></li><li><a href="Message.html">在线留言</a></li>
                 <li><a href="javascript:;" onClick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
+                <li><a href="login.html" style=" position:relative;left: 650px;z-index: 1;"><font style="color:red;">登录/注册</font></a></li>
                 <li>
-                    <dl class="collapsible_menu" style="position:relative;left: 700px;z-index: 1;">
+                    <dl class="collapsible_menu" style="position:relative;left: 600px;z-index: 1; display: none" >
                         <dt>
                             <span name="account_id" hidden="hidden">${account.account_id}</span>
-                            <span name="account">1001</span>
+                            <span name="userName" >111</span>
                             <span class="red dn" id="noticeDot-1"></span>
                             <i></i>
                         </dt>
                         <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user}" href="javascript:;">个人中心</a></dd>
                         <dd style="display:none;background-color:#ffffff"><a href="accountBind.html">帐号设置</a></dd>
-                        <dd class="logout" style="display:none;background-color:#ffffff"><a href="logon.html" rel="nofollow">退出</a></dd>
+                        <dd class="logout" style="display:none;background-color:#ffffff"><a href="login.html" rel="nofollow">退出</a></dd>
                     </dl>
                 </li>
             </ul>

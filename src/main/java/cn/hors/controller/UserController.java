@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,18 +23,33 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
+    /**
+     * 个人中心转跳
+     */
+
     @Resource
     private UserinfoService userservice;
+    @Resource
+    private ServletContext application;
 
-//    @GetMapping
-//    public String home(ModelMap model,Integer id){
-//        List<Userinfo> users= (List<Userinfo>) userservice.findById(id);
-//        model.addAttribute("users",users);
-//        return "index";
-//    }
+    /**
+     * 获得个人数据
+     * @param model
+     * @param id 账号id
+     * @return
+     */
     @GetMapping
-    public String home(ModelMap model,String name){
-        model.addAttribute("name",name);
+    public String home(ModelMap model, HttpSession session,Integer id ){
+        id=1;
+//        Userinfo users=userservice.findById(id);
+//        model.addAttribute("users",users);
+        model.addAttribute("name","request value");
+        session.setAttribute("name","session value");
+        application.setAttribute("name","application value");
         return "/user/index";
+    }
+
+    public String save(){
+        return null;
     }
 }
