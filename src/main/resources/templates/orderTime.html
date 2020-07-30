@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>预约时间段</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" data-th-href="@{/hors/css/normalize.css}" href="../static/hors/css/normalize.css" type="text/css"/>
+    <link rel="stylesheet" data-th-href="@{/hors/css/secondary.css}" href="../static/hors/css/secondary.css" type="text/css"/>
+    <!--[if lt IE 9]>
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Respond.min.js}"
+            src="../static/hors/js/Kunyi.Respond.min.js"></script><![endif]-->
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/KunyiHTML5.min.js}"
+            src="../static/hors/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
+            src="../static/hors/js/Kunyilibrary.js"></script>
+    <!--    导入layui-->
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+</head>
+<body>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
+        src="../static/hors/js/Kunyi.Init.js"></script>
+<header>
+    <div class="topHidden"></div>
+    <div class="toolBase">
+        <div class="BaseMark">
+            <ul>
+                <li class="first"><a href="SiteMap.html">站点地图</a></li>
+                <li><a href="Complain.html">院长(信访)信箱</a></li>
+                <li><a href="https://61.163.73.190/por/login_psw.csp" target="_blank">内部OA</a></li>
+                <li><a href="OfficeNewsList-71-12.html">人才招聘</a></li>
+                <li><a href="Office-71.html">人事管理</a></li>
+                <li><a href="History.html">网上院史馆</a></li>
+                <li><a href="Message.html">在线留言</a></li>
+                <li><a href="javascript:;" onclick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
+            </ul>
+            <div class="language">选择语言</div>
+            <div class="langBtn animated"><i class="flag"></i>中文<i class="downBtn"></i>
+                <a href="javasript:;"><img data-th-src="@{/hors/images/ico_003.png}" src="../static/hors/images/ico_003.png" class="animated" width="13" height="13"/>English</a>
+            </div>
+        </div>
+    </div>
+    <div class="BaseMark logoBase"><a href="Index.html">
+        <img data-th-src="@{/hors/images/logo.jpg}" src="../static/hors/images/logo.jpg" class="load" width="227"
+                                                             height="47"/>
+    </a>
+        <div class="searchBase">
+            <div class="itemBase">
+                <div class="divType" data-state="0">全站内容</div>
+                <ul>
+                    <li data-id="1">全站内容</li>
+                    <li data-id="2">医生查找</li>
+                    <li data-id="3">新闻动态</li>
+                </ul>
+            </div>
+            <form method="get" action="Search.html" onsubmit="return Kunyi.CheckSearchForm()">
+                <input type="hidden" id="Type" name="Type" value="1"/>
+                <input type="text" name="SearchWords" placeholder="请输入您要查找内容的关键字" value="" autocomplete="off"
+                       onfocus="Kunyi.cls(event)" onblur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
+                <input type="submit" value="搜索" class="boxsub animated"/>
+            </form>
+        </div>
+    </div>
+</header>
+<form class="layui-form" action="">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">输入框</label>
+        <div class="layui-input-inline">
+            <input type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码框</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">辅助文字</div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">开关</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="switch" lay-skin="switch">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">单选框</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" value="男" title="男">
+            <input type="radio" name="sex" value="女" title="女" checked>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Common.js}" src="../static/hors/js/Kunyi.Common.js"></script>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Secondary.js}" src="../static/hors/js/Kunyi.Secondary.js"></script>
+</body>
+</html>
