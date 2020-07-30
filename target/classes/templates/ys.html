@@ -873,9 +873,9 @@
 
 <section class="BaseMark">
     <div class="bread">您所在的位置<span><a href="index.html">首页</a>><a href="ArticleList-54.html">就诊指南</a> > <a
-            href="DepartmentNav.html">科室导航</a> > <a href="Office-11.html">呼吸内科</a> > 医生</span></div>
+            href="DepartmentNav.html">科室导航</a> > <a href="Office-11.html" data-th-text="${doctor.department.departName}">呼吸内科</a> > 医生</span></div>
     <div class="doctorLeft">
-        <img data-th-src="@{/hors/pic/2.jpg}" src="../static/hors/pic/2.jpg" id="DThumb" class="DThumb" width="112" height="150"
+        <img data-th-src="${doctor.picture}" src="../static/hors/pic/2.jpg" id="DThumb" class="DThumb" width="112" height="150"
              alt="医生"/>
         <h3 id="H3Name" data-th-text="${doctor.name}">医生2</h3>
         <h4 id="H4Position" data-th-text="${doctor.position}">主任医师，科主任</h4>

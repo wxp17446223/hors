@@ -35,7 +35,7 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/timeline","/timeline/{doctorId}"})
-    public String findDoctorByID(Model model,@PathVariable Integer doctorId){
+    public String findDoctorByID(Model model,@RequestParam Integer doctorId){
         Doctor doctor = doctorService.findById(doctorId);
         System.out.println("doctor = " + doctor.getTimelineList());
         model.addAttribute("doctor", doctor);
@@ -49,4 +49,5 @@ public class DoctorController {
         model.addAttribute("doctor", doctor);
         return "orderTime";
     }
+
 }
