@@ -1147,7 +1147,7 @@
                     }
                     if (quota>0){
                         console.log(doctorId);
-                        doctor_order+="<td><a data-th-href='@{/doctor/order(doctorId=${doctorId})}' href='/doctor/order?doctorId='+doctorId  >可预约"+quota+"</a></td>";
+                        doctor_order+="<td><a data-th-href='@{/doctor/order(doctorId=${doctor.doctorId})}' href='/doctor/order?doctorId=[[${doctor.doctorId}]]&line=0&date="+fun_date(k).day+"'   >可预约"+quota+"</a></td>";
                     }else {
                         doctor_order+="<td></td>";
                     }
@@ -1170,7 +1170,7 @@
                     }
                     if (quota>0){
                         console.log(doctorId);
-                        doctor_order+="<td><a data-th-href='@{/doctor/order(doctorId=${doctor.doctorId})}' href='/doctor/order?doctorId='doctorId >可预约"+quota+"</a></td>";
+                        doctor_order+="<td><a data-th-href='@{/doctor/order(doctorId=${doctor.doctorId})}' href='/doctor/order?doctorId=[[${doctor.doctorId}]]&line=1&date="+fun_date(k).day+"' >可预约"+quota+"</a></td>";
                     }else {
                         doctor_order+="<td></td>";
                     }

@@ -1,17 +1,16 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Doctor;
+import cn.hors.bean.Order;
 import cn.hors.bean.Timeline;
 import cn.hors.service.DoctorService;
 import cn.hors.service.TimelineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/doctor")
@@ -43,11 +42,29 @@ public class DoctorController {
     }
 
     @GetMapping({"/order","/order/{doctorId}"})
-    public String order(Model model,@PathVariable Integer doctorId){
+    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
         Doctor doctor = doctorService.findById(doctorId);
-        System.out.println("doctor = " + doctor.getTimelineList());
         model.addAttribute("doctor", doctor);
-        return "orderTime";
+        model.addAttribute("date", date);
+        List<Timeline> timelines = timelineService.findByDoctorIdAndDate(doctorId, date);
+        model.addAttribute("timelines", timelines);
+        if (line.equals("0")||line==0){
+            return "orderUpTime";
+        }
+        return "orderDownTime";
     }
+    @PostMapping({"/order"})
+    public String order(Model model,@RequestParam Integer tId,@RequestParam Integer doctorId){
+        System.out.println("tId = " + tId);
+        System.out.println("doctorId = " + doctorId);
+        Doctor doctor = doctorService.findById(doctorId);
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("tId", tId);
+        return "orderInfo";
+    }
+    @PostMapping({"/orderInfo"})
+    public String order(Order order){
 
+        return "orderInfo";
+    }
 }
