@@ -1,6 +1,7 @@
 package cn.hors.bean;
 
 import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Timeline {
     /**
     * 日期
     */
+//    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     private Date date;
 
     /**

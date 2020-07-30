@@ -35,9 +35,16 @@ public interface TimelineMapper {
     List<Timeline> findAll(Timeline timeline);
 
     /**
-     * 通过ID查询排班信息
+     * 通过排班ID查询排班信息
      * @param id 排班ID
      * @return
      */
     Timeline findById(Integer id);
+
+    /**
+     * 通过医生Id 查到该医生的所有排班信息
+     * @param doctorId
+     * @return
+     */
+    List<Timeline> findByDoctorId(Integer doctorId);
 }

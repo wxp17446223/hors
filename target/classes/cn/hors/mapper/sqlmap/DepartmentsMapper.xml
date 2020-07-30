@@ -6,7 +6,11 @@
         <result property="departName" column="depart_name"/>
         <result property="introduce" column="introduce"/>
         <result property="date" column="date"/>
-        <result property="DId" column="d_id"/>
+        <result property="dId" column="d_id"/>
+        <association property="parent" javaType="cn.hors.bean.Departments" select="findEntityById" column="d_id"/>
+        <collection property="children" ofType="cn.hors.bean.Departments" column="{dId=depart_id}" select="findAll"/>
+        <collection property="doctors" ofType="cn.hors.bean.Doctor"
+        column="depart_id" select="cn.hors.mapper.DoctorMapper.findAllByDepartId"/>
     </resultMap>
     
 <sql id="Base_Column_List">
@@ -24,12 +28,19 @@
         and introduce = #{introduce}
     </if>
     <if test="date != null">
-        and date=#{date}
+        and `date`=#{date}
     </if>
     <if test="dId != null">
         and d_id = #{dId}
     </if>
 </sql>
+
+<select id="findEntityById" parameterType="integer" resultType="cn.hors.bean.Departments">
+        select
+            <include refid="Base_Column_List">
+            </include>
+            from departments where depart_id=#{departId}
+    </select>
 
 <select id="findById" resultMap="BASIC_RESULT_MAP">
     select <include refid="Base_Column_List"></include>
@@ -42,6 +53,15 @@
     <where>
         <include refid="BASIC_WHERE"></include>
     </where>
+</select>
+<select id="findAllByDid" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments where d_id = #{dId}
+</select>
+
+<select id="findAllByDepartId" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments where depart_id = #{departId}
 </select>
 
 </mapper>

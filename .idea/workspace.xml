@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="112fdc02-6a5f-4cf0-9202-5a9f5153263c" name="默认的" comment="9.18最全版本" />
+    <list id="8d3357d2-c32f-4517-bea4-e90ce841d3bd" name="Revert &quot;添加了DoctorController、DepartController 编写了doctor、department这两个类的基本查找&quot;" comment="Revert &quot;添加了DoctorController、DepartController 编写了doctor、department这两个类的基本查找&quot;&#10;&#10;This reverts commit dbec439f" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="ONTO" value="refs/remotes/origin/master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/1910wxp/-.git" />
+      </set>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="userSettingsFile" value="D:\BigSoft\Maven\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="downloadAnnotationsAutomatically" value="true" />
+        <option name="downloadDocsAutomatically" value="true" />
+        <option name="downloadSourcesAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1fBbDE1MebktQzjO2QAWlJuqtPf" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ChangesTree.GroupingKeys" value="module&#10;directory" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="database.data.extractors.current.id" value="SQL Inserts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sql脚本测试数据" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/main/resources/static/hors/css/secondary.css" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\IDEA-program\Hors\src\main\resources\templates" />
+      <recent name="E:\IDEA-program\Hors\src\main\resources\static\hors\uploadfiles\thumb" />
+      <recent name="E:\IDEA-program\Hors\src\main\resources\static\hors" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="HorsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="hors" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.hors.HorsApplication" />
+      <option name="HIDE_BANNER" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SshConsoleOptionsProvider">
+    <option name="myEncoding" value="UTF-8" />
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="112fdc02-6a5f-4cf0-9202-5a9f5153263c" name="默认的" comment="" />
+      <created>1595694311336</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595694311336</updated>
+      <workItem from="1595694321186" duration="1373000" />
+      <workItem from="1595695738417" duration="223000" />
+      <workItem from="1595743505111" duration="1662000" />
+      <workItem from="1595765801907" duration="7087000" />
+      <workItem from="1595830363682" duration="7816000" />
+      <workItem from="1595838256294" duration="14975000" />
+      <workItem from="1595859156402" duration="3124000" />
+      <workItem from="1595915672893" duration="3146000" />
+      <workItem from="1595918881927" duration="4870000" />
+      <workItem from="1595923823600" duration="48075000" />
+      <workItem from="1596027437959" duration="4146000" />
+    </task>
+    <task id="LOCAL-00001" summary="基本框架">
+      <created>1595694843723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595694843723</updated>
+    </task>
+    <task id="LOCAL-00002" summary="基本框架">
+      <created>1595695916570</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1595695916570</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改了一些映射">
+      <created>1595745374618</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1595745374618</updated>
+    </task>
+    <task id="LOCAL-00004" summary="删除了servletInitial类和创建类除权限以外的表格">
+      <created>1595770933019</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1595770933019</updated>
+    </task>
+    <task id="LOCAL-00005" summary="删除了servletInitial类和创建类除权限以外的表格">
+      <created>1595839711066</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1595839711066</updated>
+    </task>
+    <task id="LOCAL-00006" summary="加了keshiys、keshi、html">
+      <created>1595839851640</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595839851640</updated>
+    </task>
+    <task id="LOCAL-00007" summary="加了keshiys、keshi、html">
+      <created>1595840062082</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595840062082</updated>
+    </task>
+    <task id="LOCAL-00008" summary="添加了DoctorController、DepartController&#10;编写了doctor、department这两个类的基本查找">
+      <created>1595862211436</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1595862211436</updated>
+    </task>
+    <task id="LOCAL-00009" summary="添加了DoctorController、DepartController&#10;编写了doctor、department这两个类的基本查找">
+      <created>1595862324967</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1595862324967</updated>
+    </task>
+    <task id="LOCAL-00010" summary="wxp">
+      <created>1595931481534</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1595931481534</updated>
+    </task>
+    <task id="LOCAL-00011" summary="测试">
+      <created>1595932820698</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1595932820698</updated>
+    </task>
+    <task id="LOCAL-00012" summary="测试2">
+      <created>1595932880894</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1595932880894</updated>
+    </task>
+    <task id="LOCAL-00013" summary="罗和福7.29晚上">
+      <created>1596022760247</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1596022760247</updated>
+    </task>
+    <task id="LOCAL-00014" summary="更行数据库表">
+      <created>1596025197580</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1596025197580</updated>
+    </task>
+    <task id="LOCAL-00015" summary="9.18最全版本">
+      <created>1596071980945</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1596071980945</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="基本框架" />
+    <MESSAGE value="修改了一些映射" />
+    <MESSAGE value="删除了servletInitial类和创建类除权限以外的表格" />
+    <MESSAGE value="加了keshiys、keshi、html" />
+    <MESSAGE value="添加了DoctorController、DepartController&#10;编写了doctor、department这两个类的基本查找" />
+    <MESSAGE value="wxp" />
+    <MESSAGE value="测试" />
+    <MESSAGE value="测试2" />
+    <MESSAGE value="罗和福7.29晚上" />
+    <MESSAGE value="更行数据库表" />
+    <MESSAGE value="9.18最全版本" />
+    <option name="LAST_COMMIT_MESSAGE" value="9.18最全版本" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="651" y="274" key="#Notifications" timestamp="1595839820678">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="651" y="274" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1595839820678" />
+    <state x="363" y="254" key="#SQL_方言" timestamp="1595925299702">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="363" y="254" key="#SQL_方言/0.0.1536.824@0.0.1536.824" timestamp="1595925299702" />
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596071123413">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1596071123413" />
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser" timestamp="1596022147415">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="574" y="118" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1596022147415" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595836335974">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1595836335974" />
+    <state x="654" y="274" key="#通知" timestamp="1596024717714">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="654" y="274" key="#通知/0.0.1536.824@0.0.1536.824" timestamp="1596024717714" />
+    <state x="187" y="0" key="CommitChangelistDialog2" timestamp="1595918163242">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="187" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1595918163242" />
+    <state x="449" y="167" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1596024409483">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="167" key="DUMP_DIALOG_DIMENSION_KEY/0.0.1536.824@0.0.1536.824" timestamp="1596024409483" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1596024570467">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1596024570467" />
+    <state x="549" y="153" key="FileChooserDialogImpl" timestamp="1596024948253">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596024948253" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.1.center" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.1.left" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state width="1493" height="210" key="GridCell.Tab.1.right" timestamp="1596071915390">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1596071915390" />
+    <state x="404" y="173" key="MultipleFileMergeDialog" timestamp="1596072080170">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="404" y="173" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1596072080170" />
+    <state x="349" y="227" key="Registry" timestamp="1595837660704">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="227" key="Registry/0.0.1536.824@0.0.1536.824" timestamp="1595837660704" />
+    <state x="594" y="114" key="RollbackChangesDialog" timestamp="1595918049302">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="594" y="114" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1595918049302" />
+    <state x="270" y="57" key="SettingsEditor" timestamp="1596024712873">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596024712873" />
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1596071988097">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1596071988097" />
+    <state x="554" y="146" key="VcsDiffUtil.ChangesDialog" timestamp="1595918814572">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="554" y="146" key="VcsDiffUtil.ChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1595918814572" />
+    <state x="638" y="279" width="334" height="265" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1" timestamp="1595840312842">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="638" y="279" width="334" height="265" key="com.intellij.database.actions.DdlActions$DeleteProvider2$1/0.0.1536.824@0.0.1536.824" timestamp="1595840312842" />
+    <state x="594" y="84" width="515" height="656" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1595992150625">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="594" y="84" width="515" height="656" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1536.824@0.0.1536.824" timestamp="1595992150625" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1595918675061">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1595918675061" />
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1595948237396">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="93" y="93" width="1350" height="638" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1595948237396" />
+    <state x="582" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596024669539">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="582" y="325" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1596024669539" />
+    <state x="588" y="124" key="git4idea.branch.GitSmartOperationDialog" timestamp="1595918777976">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="588" y="124" key="git4idea.branch.GitSmartOperationDialog/0.0.1536.824@0.0.1536.824" timestamp="1595918777976" />
+    <state x="602" y="199" key="git4idea.merge.GitMergeDialog" timestamp="1596023604090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="602" y="199" key="git4idea.merge.GitMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1596023604090" />
+    <state x="511" y="199" key="git4idea.merge.GitPullDialog" timestamp="1596024858962">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="511" y="199" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1596024858962" />
+    <state x="563" y="273" key="git4idea.rebase.GitRebaseDialog" timestamp="1596024794275">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="563" y="273" key="git4idea.rebase.GitRebaseDialog/0.0.1536.824@0.0.1536.824" timestamp="1596024794275" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1596019034496">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1596019034496" />
+  </component>
+</project>

@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 
 @Controller
+@RequestMapping("/doctor")
 public class DoctorController {
 
     @Resource
@@ -33,10 +35,19 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/timeline","/timeline/{doctorId}"})
-    public String findDoctorByID(Model model,@PathVariable Integer doctorId){
+    public String findDoctorByID(Model model,@RequestParam Integer doctorId){
         Doctor doctor = doctorService.findById(doctorId);
-        System.out.println("doctor = " + doctor);
+        System.out.println("doctor = " + doctor.getTimelineList());
         model.addAttribute("doctor", doctor);
         return "ys";
     }
+
+    @GetMapping({"/order","/order/{doctorId}"})
+    public String order(Model model,@PathVariable Integer doctorId){
+        Doctor doctor = doctorService.findById(doctorId);
+        System.out.println("doctor = " + doctor.getTimelineList());
+        model.addAttribute("doctor", doctor);
+        return "orderTime";
+    }
+
 }

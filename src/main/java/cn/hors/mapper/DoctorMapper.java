@@ -9,4 +9,5 @@ public interface DoctorMapper {
 
     List<Doctor> findAll(Doctor doctor);
 
+    List<Doctor> findAllByDepartId(Integer departId);
 }

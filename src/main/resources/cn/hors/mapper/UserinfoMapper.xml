@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.UserinfoMapper">
+  <resultMap id="BaseResultMap" type="cn.hors.bean.Userinfo">
+    <!--@mbg.generated-->
+    <!--@Table userinfo-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="identity_id" jdbcType="INTEGER" property="identityId" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="birth" jdbcType="DATE" property="birth" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="register_time" jdbcType="DATE" property="registerTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    user_id, account_id, `name`, identity_id, sex, birth, picture, phone, email, address, 
+    register_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from userinfo
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into userinfo (account_id, `name`, identity_id, 
+      sex, birth, picture, phone, 
+      email, address, register_time
+      )
+    values (#{accountId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{identityId,jdbcType=INTEGER}, 
+      #{sex,jdbcType=INTEGER}, #{birth,jdbcType=DATE}, #{picture,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="identityId != null">
+        identity_id,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="registerTime != null">
+        register_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        #{identityId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        #{registerTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.hors.bean.Userinfo">
+    <!--@mbg.generated-->
+    update userinfo
+    <set>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="identityId != null">
+        identity_id = #{identityId,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null">
+        register_time = #{registerTime,jdbcType=DATE},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.hors.bean.Userinfo">
+    <!--@mbg.generated-->
+    update userinfo
+    set account_id = #{accountId,jdbcType=INTEGER},
+      `name` = #{name,jdbcType=VARCHAR},
+      identity_id = #{identityId,jdbcType=INTEGER},
+      sex = #{sex,jdbcType=INTEGER},
+      birth = #{birth,jdbcType=DATE},
+      picture = #{picture,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      register_time = #{registerTime,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+    <select id="findById" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from userinfo where account_id = #{accountId,jdbcType=INTEGER}
+    </select>
+</mapper>

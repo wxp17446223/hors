@@ -41,4 +41,10 @@ public class UserinfoServiceImpl implements UserinfoService{
         return userinfoMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public Userinfo findById(Integer accountId) {
+        return userinfoMapper.findById(accountId);
+    }
+
+
 }

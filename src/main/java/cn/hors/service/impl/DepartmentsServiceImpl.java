@@ -15,12 +15,22 @@ public class DepartmentsServiceImpl implements DepartmentsService{
     private DepartmentsMapper departmentsMapper;
 
     @Override
-    public Departments findById(Integer id) {
-        return departmentsMapper.findById(id);
+    public Departments findById(Integer departId) {
+        return departmentsMapper.findById(departId);
+    }
+
+    @Override
+    public List<Departments> findAllByDid(Integer d_id) {
+        return departmentsMapper.findAllByDid(d_id);
     }
 
     @Override
     public List<Departments> findAll(Departments departments) {
         return departmentsMapper.findAll(departments);
+    }
+
+    @Override
+    public Departments findAllByDepartId(Integer departId) {
+        return departmentsMapper.findAllByDepartId(departId);
     }
 }

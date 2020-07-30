@@ -41,4 +41,10 @@ public interface TimelineService{
      * @return
      */
     Timeline findById(Integer id);
+    /**
+     * 通过医生Id 查到该医生的所有排班信息
+     * @param doctorId
+     * @return
+     */
+    List<Timeline> findByDoctorId(Integer doctorId);
 }

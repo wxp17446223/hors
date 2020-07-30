@@ -16,4 +16,5 @@ public interface UserinfoService{
 
     int updateByPrimaryKey(Userinfo record);
 
+    Userinfo findById(Integer accountId);
 }
