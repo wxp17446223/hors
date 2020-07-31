@@ -6,15 +6,16 @@ public interface UserinfoService{
 
     int deleteByPrimaryKey(Integer userId);
 
-    int insert(Userinfo record);
+    boolean insert(Userinfo record);
 
     int insertSelective(Userinfo record);
 
     Userinfo selectByPrimaryKey(Integer userId);
 
-    int updateByPrimaryKeySelective(Userinfo record);
 
-    int updateByPrimaryKey(Userinfo record);
+    Userinfo findById(Integer userId);
 
-    Userinfo findById(Integer accountId);
+    boolean update(Userinfo user);
+
+    Userinfo findByAccId(Integer accountId);
 }

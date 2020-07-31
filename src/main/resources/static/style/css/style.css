@@ -242,7 +242,7 @@ ul.hot_pos i{width: 12px;height: 14px;position:absolute;background:url(img/hot.p
 .hc_tag .searchlist_expectCity > span.top{right:20px; top:-19px;}
 .citymore_arrow{position:absolute;right:0;top:10px;}
 /* .wp_cl{margin-top:-33px !important;*margin:0 0 10px -10px !important;} */
-/*logon.html*/
+/*register.html*/
 /*#login_bg{ background:#019875 url(img/bgwall.png) center 100px no-repeat;overflow:hidden;}*/
 #login_bg{ background:#019875  center 100px no-repeat;overflow:hidden;}
 .login_wrapper{ width:640px; margin:0 auto;color:#777;font-size:16px;padding-top:110px;}

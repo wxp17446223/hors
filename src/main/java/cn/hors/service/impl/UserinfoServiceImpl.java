@@ -17,8 +17,8 @@ public class UserinfoServiceImpl implements UserinfoService{
     }
 
     @Override
-    public int insert(Userinfo record) {
-        return userinfoMapper.insert(record);
+    public boolean insert(Userinfo record) {
+        return userinfoMapper.insert(record)>0;
     }
 
     @Override
@@ -31,19 +31,20 @@ public class UserinfoServiceImpl implements UserinfoService{
         return userinfoMapper.selectByPrimaryKey(userId);
     }
 
-    @Override
-    public int updateByPrimaryKeySelective(Userinfo record) {
-        return userinfoMapper.updateByPrimaryKeySelective(record);
-    }
-
-    @Override
-    public int updateByPrimaryKey(Userinfo record) {
-        return userinfoMapper.updateByPrimaryKey(record);
-    }
 
     @Override
     public Userinfo findById(Integer accountId) {
         return userinfoMapper.findById(accountId);
+    }
+
+    @Override
+    public boolean update(Userinfo user) {
+        return userinfoMapper.update(user)>0;
+    }
+
+    @Override
+    public Userinfo findByAccId(Integer accountId) {
+        return userinfoMapper.findByAccId(accountId);
     }
 
 
