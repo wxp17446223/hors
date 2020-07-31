@@ -96,6 +96,10 @@
     select <include refid="Base_Column_List"></include>
     from timeline
     where doctor_id=#{doctorId,jdbcType=INTEGER} and date=#{date} and status=1
-
   </select>
+  <update id="updateQuota" parameterType="integer">
+    update timeline
+    set quota=(quota-1)
+    where t_id=#{tId,jdbcType=INTEGER}
+  </update>
 </mapper>

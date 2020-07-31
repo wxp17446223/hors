@@ -48,4 +48,9 @@ public class TimelineServiceImpl implements TimelineService{
     public List<Timeline> findByDoctorIdAndDate(Integer doctorId, String date) {
         return timelineMapper.findByDoctorIdAndDate(doctorId,date);
     }
+
+    @Override
+    public boolean updateQuota(Integer tId) {
+        return timelineMapper.updateQuota(tId)>0;
+    }
 }

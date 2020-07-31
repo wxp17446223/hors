@@ -78,7 +78,7 @@
         <div class="layui-input-block">
             <ul>
                 <li data-th-each="timeline:${timelines}">
-                    <input type="radio" lay-verify="required" checked="checked" name="tId" value="1" title="8：00" data-th-value="${timeline.tId}" data-th-title="${timeline.date+timeline.startTime}"
+                    <input type="radio" lay-verify="required" checked="checked" name="tId" value="1" title="8：00" data-th-value="${timeline.tId}" data-th-title="${#dates.format(timeline?.date,'yyyy-MM-dd')+timeline.startTime}"
                            data-th-if="${#strings.contains(timeline.startTime,'8:00') ||
                            #strings.contains(timeline.startTime,'9:00') ||
                            #strings.contains(timeline.startTime,'10:00') ||

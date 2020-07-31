@@ -47,7 +47,7 @@
         <h4 id="H4Position" data-th-text="${doctor.position}">主任医师，科主任</h4>
         <a href="NewsDetail-449.html" target="_blank">
             <img data-th-src="@{/hors/images/ico_028.jpg}"
-                 src="../static/hors/images/ico_028.jpg" width="22" height="22">预约</a>
+                 src="../static/hors/images/ico_028.jpg" width="22" height="22">对该医生评论</a>
     </div>
     <div class="doctorRight">
         <div class='import import1'></div>
@@ -336,7 +336,7 @@
                     }
                     if (quota > 0) {
                         console.log(doctorId);
-                        doctor_order += "<td><a data-th-href='@{/doctor/order(doctorId=${doctorId})}' href='/doctor/order?doctorId='+doctorId  >可预约" + quota + "</a></td>";
+                        doctor_order += "<td><a data-th-href='@{/doctor/order(doctorId=${doctorId})}' href='/doctor/order?doctorId=[[${doctor.doctorId}]]&line=0&date="+fun_date(k).day+"'  >可预约" + quota + "</a></td>";
                     } else {
                         doctor_order += "<td></td>";
                     }
@@ -359,7 +359,7 @@
                     }
                     if (quota > 0) {
                         console.log(doctorId);
-                        doctor_order += "<td><a data-th-href='@{/doctor/order(doctorId=${doctor.doctorId})}' href='/doctor/order?doctorId='doctorId >可预约" + quota + "</a></td>";
+                        doctor_order += "<td><a data-th-href='@{/doctor/order(doctorId=${doctor.doctorId})}' href='/doctor/order?doctorId=[[${doctor.doctorId}]]&line=1&date="+fun_date(k).day+"' >可预约" + quota + "</a></td>";
                     } else {
                         doctor_order += "<td></td>";
                     }
