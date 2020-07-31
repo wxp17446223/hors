@@ -22,7 +22,8 @@ create table departments
     depart_name varchar(125)   null comment '科室名字',
     introduce   varchar(1024)  null comment '科室介绍',
     date        date           null comment '成立日期',
-    d_id        int default -1 null comment '父科室ID默认-1 为最高级科室'
+    d_id        int default -1 null comment '父科室ID默认-1 为最高级科室',
+    phone       varchar(15)    null
 )
     comment '科室表';
 
@@ -120,8 +121,8 @@ create table timeline
     doctor_id  int           null comment '医生ID',
     date       date          null comment '日期',
     quota      int           null comment '允许预约的人数',
-    start_time date          not null comment '时段开始',
-    end_time   date          null comment '时段结束',
+    start_time varchar(20)   null comment '时段开始',
+    end_time   varchar(20)   null comment '时段结束',
     status     int default 1 not null comment '该时段是否允许预约
 0 否 1允许'
 )

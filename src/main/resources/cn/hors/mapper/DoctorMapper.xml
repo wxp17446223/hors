@@ -67,6 +67,10 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
     from doctor where doctor_id=#{doctorId}
 </select>
 
+<select id="findEntityById" parameterType="integer" resultType="Doctor">
+    select <include refid="Base_Column_List"></include>
+    from doctor where doctor_id=#{doctorId}
+</select>
 <select id="findAll" parameterType="cn.hors.bean.Doctor" resultMap="BASIC_RESULT_MAP">
     select <include refid="Base_Column_List"></include>
     from doctor

@@ -41,4 +41,9 @@ public class AccountServiceImpl implements AccountService{
         return accountMapper.updateByPrimaryKey(record);
     }
 
+    @Override
+    public Account login(String account, String password) {
+        return accountMapper.login(account,password);
+    }
+
 }

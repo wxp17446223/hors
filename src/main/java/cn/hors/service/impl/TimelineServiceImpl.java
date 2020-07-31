@@ -43,4 +43,9 @@ public class TimelineServiceImpl implements TimelineService{
     public List<Timeline> findByDoctorId(Integer doctorId) {
         return timelineMapper.findByDoctorId(doctorId);
     }
+
+    @Override
+    public List<Timeline> findByDoctorIdAndDate(Integer doctorId, String date) {
+        return timelineMapper.findByDoctorIdAndDate(doctorId,date);
+    }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="cn.hors.bean.Order">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="addtime" jdbcType="DATE" property="addtime" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="reply" jdbcType="VARCHAR" property="reply" />
+    <result column="cost" jdbcType="VARCHAR" property="cost" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    order_id, user_id, t_id, addtime, user_phone, `status`, reply, cost, doctor_id
+  </sql>
+  <sql id="Base_Insert_Columns">
+    <trim suffixOverrides=",">
+        <if test="orderId != null != null">order_id,</if>
+        <if test="userId != null">user_id,</if>
+        <if test="tId != null">t_id,</if>
+        <if test="addtime != null">addtime,</if>
+        <if test="userPhone != null and userPhone != ''">user_phone,</if>
+        <if test="status != null">status,</if>
+        <if test="reply != null and reply != ''">reply,</if>
+        <if test="cost != null and cost != ''">cost,</if>
+        <if test="doctorId != null">doctor_id,</if>
+    </trim>
+  </sql>
+  <sql id="Base_Insert_Values">
+    <trim suffixOverrides=",">
+        <if test="orderId != null">#{orderId,jdbcType=INTEGER},</if>
+        <if test="userId != null">#{userId,jdbcType=INTEGER},</if>
+        <if test="tId != null">#{tId,jdbcType=INTEGER},</if>
+        <if test="addtime != null">#{addtime,jdbcType=TIMESTAMP},</if>
+        <if test="userPhone != null and userPhone != ''">#{userPhone,jdbcType=VARCHAR},</if>
+        <if test="status != null">#{status,jdbcType=INTEGER},</if>
+        <if test="reply != null and reply != ''">#{reply,jdbcType=VARCHAR},</if>
+        <if test="cost != null and cost != ''">#{cost},</if>
+        <if test="doctorId != null">#{doctorId,jdbcType=INTEGER},</if>
+    </trim>
+  </sql>
+  <sql id="Base_Update">
+    <trim suffixOverrides=",">
+        <if test="orderId != null">order_id=#{orderId,jdbcType=INTEGER},</if>
+        <if test="userId != null">user_id=#{userId,jdbcType=INTEGER},</if>
+        <if test="tId != null">t_id=#{tId,jdbcType=INTEGER},</if>
+        <if test="addtime != null">addtime=#{addtime,jdbcType=TIMESTAMP},</if>
+        <if test="userPhone != null and userPhone != ''">user_phone=#{userPhone,jdbcType=VARCHAR},</if>
+        <if test="status != null">status=#{status,jdbcType=INTEGER},</if>
+        <if test="reply != null and reply != ''">reply=#{reply,jdbcType=VARCHAR},</if>
+        <if test="cost != null and cost != ''">cost=#{cost},</if>
+        <if test="doctorId != null">doctor_id=#{doctorId,jdbcType=INTEGER},</if>
+    </trim>
+  </sql>
+  <sql id="Base_Where">
+    <if test="orderId != null">and order_id=#{orderId,jdbcType=INTEGER}</if>
+        <if test="userId != null">and user_id=#{userId,jdbcType=INTEGER}</if>
+        <if test="tId != null">and t_id=#{tId,jdbcType=INTEGER}</if>
+        <if test="addtime != null">and addtime=#{addtime,jdbcType=TIMESTAMP}</if>
+        <if test="userPhone != null and userPhone != ''">and user_phone=#{userPhone,jdbcType=VARCHAR}</if>
+        <if test="status != null">and status=#{status,jdbcType=INTEGER}</if>
+        <if test="reply != null and reply != ''">and reply=#{reply,jdbcType=VARCHAR}</if>
+        <if test="cost != null and cost != ''">and cost=#{cost}</if>
+        <if test="doctorId != null">and doctor_id=#{doctorId,jdbcType=INTEGER}</if>
+  </sql>
+
+  <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+    insert into order(<include refid="Base_Insert_Columns"></include>)
+    values (<include refid="Base_Insert_Values"></include>)
+  </insert>
+  <delete id="delByIds" >
+    delete from order
+    <where>
+        <foreach collection="ids" open="order_id in (" close=")" separator="," item="id">
+         #{id,jdbcType=INTEGER}
+         </foreach>
+    </where>
+  </delete>
+  <update id="update" parameterType="Order">
+    update order
+    <set>
+        <include refid="Base_Update"></include>
+    </set>
+    where order_id=#{tId,jdbcType=INTEGER}
+  </update>
+  <select id="findById" parameterType="Order" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from order
+    where order_id=#{tId,jdbcType=INTEGER}
+  </select>
+  <select id="findAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from order
+    <where>
+        <include refid="Base_Where"></include>
+    </where>
+  </select>
+</mapper>

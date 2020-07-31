@@ -69,4 +69,8 @@
       `password` = #{password,jdbcType=VARCHAR}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
+  <select id="login" resultMap="BaseResultMap">
+  select  <include refid="Base_Column_List"></include>
+  from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password,jdbcType=VARCHAR}
+</select>
 </mapper>
