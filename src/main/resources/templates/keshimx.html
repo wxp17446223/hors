@@ -110,30 +110,30 @@
     <div class="toolsPart">
         <div class="title">专家介绍<span>Expert Introduction</span></div>
         <div class="tools">
-            <a href="keshiys.html" class="Bmore">MORE 》》</a>
+            <a data-th-href="@{/depart/keshiys(departId=${keshi.departId})}" href="keshiys.html" class="Bmore">MORE 》》</a>
             <a href="javascript:;" class="Aprev"></a>
             <a href="javascript:;" class="Anext"></a>
         </div>
         <div class="clear"></div>
     </div>
     <div class="contents">
-        <ul data-num="0">
-            <li><a href="ys.html" class="img"><img data-th-src="@{/hors/pic/2013102215395834.jpg}"
+        <ul data-num="0" >
+            <li data-th-each="ys:${keshi.doctors}" data-th-object="${ys}"><a href="ys.html" class="img"><img data-th-src="*{picture}"
                                                    src="../static/hors/pic/2013102215395834.jpg" alt="医生" title="医生"
                                                    width="120" height="162"/></a>
-                <a href="ys.html" class="name">医生</a>
-                <a href="ys.html" class="office">呼吸内科</a>
-                <a href="ys.html" class="post">主任医师，科主任</a>
-                <a href="ys.html" class="btn more">详细</a>
+                <a href="ys.html" class="name" data-th-text="*{name}">医生</a>
+                <a href="ys.html" class="office" data-th-text="*{department.departName}">呼吸内科</a>
+                <a href="ys.html" class="post" data-th-text="*{position}">主任医师，科主任</a>
+                <a data-th-href="@{/doctor/timeline(doctorId=*{doctorId})}" href="ys.html" class="btn more">详细</a>
                 <a href="NewsDetail-449.html" target="_blank" class="btn date">预约</a></li>
-            <li><a href="Doctor-714.html" class="img"><img data-th-src="@{/hors/pic/2013102215395834.jpg}"
-                                                           src="../static/hors/pic/2013102215395834.jpg" alt="马厚志"
-                                                           title="马厚志" width="120" height="162"/></a>
-                <a href="Doctor-714.html" class="name">马厚志</a>
-                <a href="Doctor-714.html" class="office">呼吸内科</a>
-                <a href="Doctor-714.html" class="post">主任医师</a>
-                <a href="Doctor-714.html" class="btn more">详细</a>
-                <a href="NewsDetail-449.html" target="_blank" class="btn date">预约</a></li>
+<!--            <li><a href="Doctor-714.html" class="img"><img data-th-src="@{/hors/pic/2013102215395834.jpg}"-->
+<!--                                                           src="../static/hors/pic/2013102215395834.jpg" alt="马厚志"-->
+<!--                                                           title="马厚志" width="120" height="162"/></a>-->
+<!--                <a href="Doctor-714.html" class="name">马厚志</a>-->
+<!--                <a href="Doctor-714.html" class="office">呼吸内科</a>-->
+<!--                <a href="Doctor-714.html" class="post">主任医师</a>-->
+<!--                <a href="Doctor-714.html" class="btn more">详细</a>-->
+<!--                <a href="NewsDetail-449.html" target="_blank" class="btn date">预约</a></li>-->
         </ul>
         <div class="hackR"></div>
         <div class="hackL"></div>
