@@ -17,16 +17,22 @@
 
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" data-th-href="@{/hors/css/normalize.css}"  href="../static/hors/css/normalize.css" type="text/css"/>
-    <link rel="stylesheet" data-th-href="@{/hors/css/secondary.css}"  href="../static/hors/css/secondary.css" type="text/css"/>
+    <link rel="stylesheet" data-th-href="@{/hors/css/normalize.css}" href="../static/hors/css/normalize.css"
+          type="text/css"/>
+    <link rel="stylesheet" data-th-href="@{/hors/css/secondary.css}" href="../static/hors/css/secondary.css"
+          type="text/css"/>
     <!--[if lt IE 9]>
-    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Respond.min.js}" src="../static/hors/js/Kunyi.Respond.min.js"></script>
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Respond.min.js}"
+            src="../static/hors/js/Kunyi.Respond.min.js"></script>
     <![endif]-->
-    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/KunyiHTML5.min.js}" src="../static/hors/js/KunyiHTML5.min.js"></script>
-    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}" src="../static/hors/js/Kunyilibrary.js"></script>
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/KunyiHTML5.min.js}"
+            src="../static/hors/js/KunyiHTML5.min.js"></script>
+    <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
+            src="../static/hors/js/Kunyilibrary.js"></script>
 </head>
 <body>
-<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"  src="../static/hors/js/Kunyi.Init.js"></script>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
+        src="../static/hors/js/Kunyi.Init.js"></script>
 <header>
     <div class="topHidden"></div>
     <div class="toolBase">
@@ -39,16 +45,18 @@
                 <li><a href="Office-71.html">人事管理</a></li>
                 <li><a href="History.html">网上院史馆</a></li>
                 <li><a href="Message.html">在线留言</a></li>
-                <li><a href="javascript:;" onClick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
+                <li><a href="javascript:;" onclick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
             </ul>
             <div class="language">选择语言</div>
             <div class="langBtn animated"><i class="flag"></i>中文<i class="downBtn"></i>
-                <a href="javasript:;"><img data-th-src="@{/hors/images/ico_003.png}" src="../static/hors/images/ico_003.png" class="animated" width="13"
+                <a href="javasript:;"><img data-th-src="@{/hors/images/ico_003.png}"
+                                           src="../static/hors/images/ico_003.png" class="animated" width="13"
                                            height="13"/>English</a>
             </div>
         </div>
     </div>
-    <div class="BaseMark logoBase"><a href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}" src="../static/hors/images/logo.jpg" class="load"
+    <div class="BaseMark logoBase"><a href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}"
+                                                             src="../static/hors/images/logo.jpg" class="load"
                                                              width="227" height="47"/></a>
         <div class="searchBase">
             <div class="itemBase">
@@ -59,10 +67,10 @@
                     <li data-id="3">新闻动态</li>
                 </ul>
             </div>
-            <form method="get" action="Search.html" onSubmit="return Kunyi.CheckSearchForm()">
+            <form method="get" action="Search.html" onsubmit="return Kunyi.CheckSearchForm()">
                 <input type="hidden" id="Type" name="Type" value="1"/>
                 <input type="text" name="SearchWords" placeholder="请输入您要查找内容的关键字" value="" autocomplete="off"
-                       onFocus="Kunyi.cls(event)" onBlur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
+                       onfocus="Kunyi.cls(event)" onblur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
                 <input type="submit" value="搜索" class="boxsub animated"/>
             </form>
         </div>
@@ -71,7 +79,8 @@
 <nav>
     <div class="navBase">
         <div class="quickMenuBase" data-type="0">
-            <div class="quickMenu03"><img data-th-src="@{/hors/images/ico_013.png}" src="../static/hors/images/ico_013.png" width="16" height="16"/> <em>快捷菜单</em>
+            <div class="quickMenu03"><img data-th-src="@{/hors/images/ico_013.png}"
+                                          src="../static/hors/images/ico_013.png" width="16" height="16"/> <em>快捷菜单</em>
             </div>
             <div class="quickMenus">
                 <ul class="firstUl">
@@ -81,7 +90,7 @@
                             <ul>
                                 <li><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
                                 <li><a href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
-                                <li><a href="chuzhen.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
                                 <li><a href="ArticleList-56.html" title="住院指南">住院指南<span>进入</span></a></li>
                                 <li><a href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
                                 <li><a href="ArticleList-10.html" title="医保服务">医保服务<span>进入</span></a></li>
@@ -112,7 +121,7 @@
                             <div class="clear"></div>
                         </div>
                     </li>
-                    <li class="first"><a href="chuzhen.html" class="firstA"><em>出诊安排</em><i
+                    <li class="first"><a href="DutyTime.html" class="firstA"><em>出诊安排</em><i
                             class="style03"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
@@ -197,12 +206,12 @@
             </div>
         </div>
         <div class="nav Snav">
+
             <ul>
                 <li class="PMenu"><a href="index.html" class="PAMenu">首页</a></li>
-                <li class="PMenu current"><img data-th-src="@{/hors/images/ico_014.png}"
-                                               src="../static/hors/images/ico_014.png" class="animated" width="15"
-                                               height="8"/><a href="jiuzhen.html" id="Nav_AMenu0" class="PAMenu"
-                                                              title="就诊指南">就诊指南</a>
+                <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
+                                       class="animated" width="15" height="8"/><a href="jiuzhen.html" id="Nav_AMenu0"
+                                                                                  class="PAMenu" title="就诊指南">就诊指南</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -213,7 +222,7 @@
 
                                         <li><a href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
 
-                                        <li><a href="chuzhen.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                        <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
 
                                         <li><a href="ArticleList-56.html" title="住院指南">住院指南<span>进入</span></a></li>
 
@@ -232,8 +241,8 @@
                                 <div class="navSub2 nav_Menu01">
                                     <dl>
                                         <dt>尊敬的病人家属：</dt>
-                                        <dd class="pic"><img data-th-src="@{/hors/prc/pic_001.jpg}"
-                                                             src="../static/hors/prc/pic_001.jpg" width="126"
+                                        <dd class="pic"><img data-th-src="@{/hors/pic/pic_001.jpg}"
+                                                             src="../static/hors/pic/pic_001.jpg" width="126"
                                                              height="77"></dd>
                                         <dd class="text">欢迎您来我院探望亲友！为了保证病人的休息和治疗，维护良好的医疗秩序，请您配合在规定的时间内探视病人。</dd>
                                         <dd class="info"><em>我院病房探视时间为：</em>
@@ -244,8 +253,8 @@
                                     <div class="BottomHidden"></div>
                                     <dl>
                                         <dt>医院标题</dt>
-                                        <dd class="pic"><img data-th-src="@{/hors/prc/pic_002.jpg}"
-                                                             src="../static/hors/prc/pic_002.jpg" width="126"
+                                        <dd class="pic"><img data-th-src="@{/hors/pic/pic_002.jpg}"
+                                                             src="../static/hors/pic/pic_002.jpg" width="126"
                                                              height="77"></dd>
                                         <dd class="text"><p>座落于中华民族的发源地 - ，是历史悠久的西医医院。</p>
                                             <p>医院详细地址位于城区东郊， 。</p></dd>
@@ -267,7 +276,7 @@
                                         <dd><em>汽车客运站</em>
                                             <p>40路</p></dd>
                                     </dl>
-                                    <a href="http://map.baidu.com/" target=" _blank">电子地图</a>
+                                    <a href="http://map.baidu.com/" target="_blank">电子地图</a>
                                 </div>
                                 <div class="clear"></div>
                             </div>
@@ -275,8 +284,8 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="jianjie.html" id="Nav_AMenu1" class="PAMenu" title="医院概况">医院概况</a>
+                                       class="animated" width="15" height="8"/><a href="jianjie.html" id="Nav_AMenu1"
+                                                                                  class="PAMenu" title="医院概况">医院概况</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -360,9 +369,8 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="kexue.html" id="Nav_AMenu2" class="PAMenu"
-                                                      title="科学研究">科学研究</a>
+                                       class="animated" width="15" height="8"/><a href="kexue.html" id="Nav_AMenu2"
+                                                                                  class="PAMenu" title="科学研究">科学研究</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -385,8 +393,8 @@
                                     <dl>
                                         <dt>通知公告</dt>
                                         <dd class="pic"><img alt="通知公告" data-th-src="@{/hors/images/ico_046.jpg}"
-                                                             src="../static/hors/images/ico_046.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_046.jpg" width="48"
+                                                             height="48"/></dd>
 
                                         <dd><em>2016-09-30</em><a href="NewsDetail-8193.html"
                                                                   title="关于开展2016年度山西省国际联合实验室认定工作的通知">关于开展2016年度山西省国际联合实验室认定工作的通知</a>
@@ -405,16 +413,16 @@
                                     <dl>
                                         <dt>学科建设</dt>
                                         <dd class="pic"><img alt="学科建设" data-th-src="@{/hors/images/ico_047.jpg}"
-                                                             src="../static/hors/images/ico_047.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_047.jpg" width="48"
+                                                             height="48"/></dd>
                                     </dl>
                                 </div>
                                 <div class="navSub3 nav_Menu02 autoPic">
                                     <dl>
                                         <dt>科技支撑</dt>
                                         <dd class="pic"><img alt="科技支撑" data-th-src="@{/hors/images/ico_048.jpg}"
-                                                             src="../static/hors/images/ico_048.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_048.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd><em>2014-12-30</em><a href="NewsDetail-6699.html"
                                                                   title="《中华实用诊断与治疗杂志》2014年总索引">《中华实用诊断与治疗杂志》2014年总索引</a>
                                         </dd>
@@ -432,8 +440,8 @@
                                     <dl>
                                         <dt>常用下载</dt>
                                         <dd class="pic"><img alt="常用下载" data-th-src="@{/hors/images/ico_049.jpg}"
-                                                             src="../static/hors/images/ico_049.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_049.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd><em>2016-09-23</em><a href="NewsDetail-8154.html" title="山西省软科学研究计划项目结项要求">山西省软科学研究计划项目结项要求</a>
                                         </dd>
 
@@ -453,9 +461,9 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="NoticeList-110.html" id="Nav_AMenu3" class="PAMenu"
-                                                      title="医学教育">医学教育</a>
+                                       class="animated" width="15" height="8"/><a href="NoticeList-110.html"
+                                                                                  id="Nav_AMenu3" class="PAMenu"
+                                                                                  title="医学教育">医学教育</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -481,8 +489,8 @@
                                     <dl>
                                         <dt>教育动态</dt>
                                         <dd class="pic"><img alt="教育动态" data-th-src="@{/hors/images/ico_046.jpg}"
-                                                             src="../static/hors/images/ico_046.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_046.jpg" width="48"
+                                                             height="48"/></dd>
 
                                         <dd><em>2016-12-19</em><a href="NewsDetail-8442.html"
                                                                   title="我院举行第十三届“金秋杯”学员篮球赛">我院举行第十三届“金秋杯”学员篮球赛</a></dd>
@@ -499,8 +507,8 @@
                                     <dl>
                                         <dt>继续教育</dt>
                                         <dd class="pic"><img alt="继续教育" data-th-src="@{/hors/images/ico_047.jpg}"
-                                                             src="../static/hors/images/ico_047.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_047.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd><em>2016-08-25</em><a href="NewsDetail-8083.html"
                                                                   title="2016年度山西省卫生计生委选派县（市）级骨干医师进修报到通知">2016年度山西省卫生计生委选派县（市）级骨干医师进修报到通知</a>
                                         </dd>
@@ -517,15 +525,15 @@
                                     <dl>
                                         <dt>本科生教育</dt>
                                         <dd class="pic"><img alt="本科生教育" data-th-src="@{/hors/images/ico_048.jpg}"
-                                                             src="../static/hors/images/ico_048.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_048.jpg" width="48"
+                                                             height="48"/></dd>
                                     </dl>
                                     <div class="BottomHidden"></div>
                                     <dl>
                                         <dt>住院医师培养</dt>
                                         <dd class="pic"><img alt="住院医师培养" data-th-src="@{/hors/images/ico_049.jpg}"
-                                                             src="../static/hors/images/ico_049.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_049.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd><em>2016-11-30</em><a href="NewsDetail-8450.html" title="医学应该是有温度的">医学应该是有温度的</a>
                                         </dd>
 
@@ -544,9 +552,9 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="NewsList-23.html" id="Nav_AMenu4" class="PAMenu"
-                                                      title="健康管理">健康管理</a>
+                                       class="animated" width="15" height="8"/><a href="NewsList-23.html"
+                                                                                  id="Nav_AMenu4" class="PAMenu"
+                                                                                  title="健康管理">健康管理</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -568,8 +576,8 @@
                                     <dl class="Img01">
                                         <dt class="title01">科普文章</dt>
                                         <dd class="pic"><img alt="科普文章" data-th-src="@{/hors/images/pic_003.jpg}"
-                                                             src="../static/hors/images/pic_003.jpg"
-                                                             width="126" height="76"/></dd>
+                                                             src="../static/hors/images/pic_003.jpg" width="126"
+                                                             height="76"/></dd>
                                         <dd><em>2016-08-10</em><a href="NewsDetail-8040.html"
                                                                   title="如果基因编辑应用临床 起啥作用—医院标题医学遗传研究所主任医师 廖世秀">如果基因编辑应用临床
                                             起啥作用—医院标题医学遗传研究所主任医师 廖世秀</a></dd>
@@ -609,8 +617,8 @@
                                     <dl>
                                         <dt>检查检验常识</dt>
                                         <dd class="pic"><img alt="检查检验常识" data-th-src="@{/hors/images/ico_050.jpg}"
-                                                             src="../static/hors/images/ico_050.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_050.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd class="url"><span>2012-12-18</span><a href="NewsDetail-447.html"
                                                                                   title="检验科 血液标本的采集">检验科 血液标本的采集</a>
                                         </dd>
@@ -629,8 +637,8 @@
                                     <dl>
                                         <dt>急救常识</dt>
                                         <dd class="pic"><img alt="急救常识" data-th-src="@{/hors/images/ico_051.jpg}"
-                                                             src="../static/hors/images/ico_051.jpg"
-                                                             width="48" height="48"/></dd>
+                                                             src="../static/hors/images/ico_051.jpg" width="48"
+                                                             height="48"/></dd>
                                         <dd class="url"><span>2012-01-27</span><a href="NewsDetail-167.html"
                                                                                   title="《山西健康网》健康过节：学点急救来保健">《山西健康网》健康过节：学点急救来保健</a>
                                         </dd>
@@ -653,10 +661,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="news.html" id="Nav_AMenu5" class="PAMenu"
-                                                      title="新闻动态">新闻动态</a>
+                <li class="PMenu current"><img data-th-src="@{/hors/images/ico_014.png}"
+                                               src="../static/hors/images/ico_014.png" class="animated" width="15"
+                                               height="8"/><a href="news.html" id="Nav_AMenu5" class="PAMenu"
+                                                              title="新闻动态">新闻动态</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -679,8 +687,8 @@
                                 <div class="navSub2 nav_Menu02 noPic NewsSub">
                                     <dl class="Img02">
                                         <dt class="title01">最新公告</dt>
-                                        <dd class="pic"><img alt="最新公告" data-th-src="@{/hors/prc/pic_002.jpg}"
-                                                             src="../static/hors/prc/pic_002.jpg" width="126"
+                                        <dd class="pic"><img alt="最新公告" data-th-src="@{/hors/pic/pic_002.jpg}"
+                                                             src="../static/hors/pic/pic_002.jpg" width="126"
                                                              height="77"/></dd>
                                         <dd class="Lurl">
                                             <em>2016-12-02</em><a href='NewsDetail-8403.html'
@@ -760,9 +768,8 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15"
-                                       height="8"/><a href="Article-46.html" id="Nav_AMenu6" class="PAMenu"
-                                                      title="护理园地">护理园地</a>
+                                       class="animated" width="15" height="8"/><a href="Article-46.html" id="Nav_AMenu6"
+                                                                                  class="PAMenu" title="护理园地">护理园地</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
@@ -879,42 +886,79 @@
                                      title="党群工作">党群工作</a></li>
                 <li class="PMenu"><a href="javascript:;" id="Nav_AMenu8" class="PAMenu">云医院</a></li>
             </ul>
+
         </div>
     </div>
 </nav>
 
 <section class="BaseMark">
-    <div class="bread">您所在的位置<span><a href="index.html">首页</a>><a  href="jiuzhen.html">就诊指南</a> > 科室导航</span></div>
+    <div class="bread">您所在的位置<span><a href="index.html">首页</a>><a href="news.html">新闻动态</a> > 省医快讯</span></div>
     <div class="baseLeft">
-        <div class="title title05_52" ><a data-th-href="@{/depart/keshi/-1}" data-th-text="科室导航"></a> </div>
-        <div class="newsMenu" data-th-each="department:${departs}" data-th-object="${department}">
+        <div class="title title05_19">新闻动态</div>
+        <div class="newsMenu">
             <ul>
+                <li class="first active"><a href="news.html" title="省医快讯"><em>省医快讯</em></a></li>
+                <li><a href="news.html" title="新业务新技术"><em>新业务新技术</em></a></li>
+                <li><a href="news.html" title="最新公告"><em>最新公告</em></a></li>
+                <li><a href="news.html" title="服务动态"><em>服务动态</em></a></li>
 
-                <li><a data-th-href="@{/depart/keshilist(dId=*{departId})}" target="mainBody" data-th-text="*{departName}" ><em>外科</em></a></li>
-<!--                <li><a data-th-href="@{depart/keshi/2}" target="mainBody"  ><em>内科</em></a></li>-->
+                <li><a href="news.html" title="人才招聘"><em>人才招聘</em></a></li>
+
 
             </ul>
         </div>
         <div class="tools"><a href="http://www.o2omed.com.cn/" target="_blank"><img
-                src="../static/hors/images/ico_001.gif" width="52" height="52"><em>互联智慧分诊平台</em></a><a
-                style="margin-right:0;" href="96195.html"><img data-th-src="@{/hors/images/ico_002.gif}"
-                                                               src="../static/hors/images/ico_002.gif" width="52"
-                                                               height="52"><em><span>96195</span> 综合平台</em></a><a
-                href="Hospital.html"><img data-th-src="@{/hors/images/ico_003.gif}"
-                                          src="../static/hors/images/ico_003.gif" width="52"
-                                          height="52"><em>名医馆</em></a><a style="margin-right:0;" href="DrugsInfo.html"
-                                                                         class="last"><img
+                data-th-src="@{/hors/images/ico_001.gif}" src="../static/hors/images/ico_001.gif" width="52"
+                height="52"><em>互联智慧分诊平台</em></a><a style="margin-right:0;" href="96195.html"><img
+                data-th-src="@{/hors/images/ico_002.gif}" src="../static/hors/images/ico_002.gif" width="52"
+                height="52"><em><span>96195</span> 综合平台</em></a><a href="Hospital.html"><img
+                data-th-src="@{/hors/images/ico_003.gif}" src="../static/hors/images/ico_003.gif" width="52"
+                height="52"><em>名医馆</em></a><a style="margin-right:0;" href="DrugsInfo.html" class="last"><img
                 data-th-src="@{/hors/images/ico_004.gif}" src="../static/hors/images/ico_004.gif" width="52"
                 height="52"><em>信息查询</em></a>
             <div class="clear"></div>
         </div>
     </div>
     <div class="baseRight">
-        <iframe name="mainBody" width="1000px" height="950px" frameborder="0">
+        <div class="title01">省医快讯</div>
+        <div class="article detail">
+            <h2 id="H2Title" data-th-text="${news.title}">互联智慧疼痛医联体全面启动</h2>
+            <div id="DIVTool" class="title04">
+                <span id="SPANDate" data-th-text="'发布日期：'+${#dates.format(news.newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span>
+                <span>字号调整<em id="EMChange"><img data-th-src="@{/hors/images/font_ico02.png}"
+                                                 src="../static/hors/images/font_ico02.png" width="22" height="23"/>
+                <a class="fot12" href="javascript:;" data-type="0"></a>
+                <a class="fot14" href="javascript:;" data-type="1"></a>
+                <a class="fot16" href="javascript:;" data-type="2"></a></em> <b id="FontState">14px</b></span>
+                <span id="SPANNum" style="border:none; margin-right:0;"
+                      data-th-text="'浏览次数：'+${news.count}">浏览次数（280）</span>
+                <div class="itemBase" id="phoneArticle"></div>
+                <div class="itemBase share">
+                    <!--                    <div id="bdshare" class="bdshare_b divType" style="padding:0px; float:none;">分享此篇文章（<em-->
+                    <!--                            class="shareCount"></em>）-->
+                    <!--                    </div>-->
+                    <script type="text/javascript" id="bdshare_js" data="type=button&amp;uid=6713615"></script>
+                    <script type="text/javascript" id="bdshell_js"></script>
+                    <script type="text/javascript">document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/../static/hors/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000);</script>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <div id="DIVContent" class="DIVContent">
+                <p data-th-text="${news.content}">
+                    12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨2016年山西省疼痛诊疗规范化培训班在巩义市人民医院举行。山西省卫计委副主任黄红霞，中日友好医院疼痛科主任、中国医师协会疼痛分会会长樊碧发教授，巩义市人民政府市长孙淑芳、副市长刘军杰，我院副院长申志强、麻醉科主任孟凡民及巩义市卫计委等相关单位负责同志参加仪式。我院疼痛科主任夏令杰主持开幕式。
+                </p>
 
-        </iframe>
+                <p>
+                    <br/>
+                </p>
+            </div>
+
+        </div>
+        <div class="PrevNext">
+            <p><span>上一篇</span><a disabled='disabled' title='已经是第一篇'>[已经是第一篇]</a></p>
+            <p><span>下一篇</span><a href="NewsDetail-8478.html" title="豫医联盟医院标题分会成立">豫医联盟医院标题分会成立</a></p>
+        </div>
     </div>
-
     <div class="clear"></div>
 </section>
 <div class="BottomHidden"></div>
@@ -924,49 +968,40 @@
             <div class="QRList">
                 <ul>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR01.jpg}" src="../static/hors/prc/pic_QR01.jpg"
-                                  width="75" height="75"/><label>医院标题APP</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR01.jpg}" src="../static/hors/pic/pic_QR01.jpg"
+                                  width="75" height="75"/><label>医院标题APP</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR02.jpg}" src="../static/hors/prc/pic_QR02.jpg"
-                                  width="75" height="75"/><label>健康之路APP</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR02.jpg}" src="../static/hors/pic/pic_QR02.jpg"
+                                  width="75" height="75"/><label>健康之路APP</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR03.jpg}" src="../static/hors/prc/pic_QR03.jpg"
-                                  width="75" height="75"/><label>挂号网APP</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR03.jpg}" src="../static/hors/pic/pic_QR03.jpg"
+                                  width="75" height="75"/><label>挂号网APP</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR04.jpg}" src="../static/hors/prc/pic_QR04.jpg"
-                                  width="75" height="75"/><label>山西省预约挂号平台Androi客户端</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR04.jpg}" src="../static/hors/pic/pic_QR04.jpg"
+                                  width="75" height="75"/><label>山西省预约挂号平台Androi客户端</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR05.jpg}" src="../static/hors/prc/pic_QR05.jpg"
-                                  width="75"
-                                  height="75"/><label>山西省预约挂号平台IOS客户端</label></div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR05.jpg}" src="../static/hors/pic/pic_QR05.jpg"
+                                  width="75" height="75"/><label>山西省预约挂号平台IOS客户端</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR06.jpg}" src="../static/hors/prc/pic_QR06.jpg"
-                                  width="75"
-                                  height="75"/><label>山西预约挂号平台微信号</label></div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR06.jpg}" src="../static/hors/pic/pic_QR06.jpg"
+                                  width="75" height="75"/><label>山西预约挂号平台微信号</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR07.jpg}" src="../static/hors/prc/pic_QR07.jpg"
-                                  width="75" height="75"/><label>健康之路微信公众号</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR07.jpg}" src="../static/hors/pic/pic_QR07.jpg"
+                                  width="75" height="75"/><label>健康之路微信公众号</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR08.jpg}" src="../static/hors/prc/pic_QR08.jpg"
-                                  width="75" height="75"/><label>名医网微信公众号</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR08.jpg}" src="../static/hors/pic/pic_QR08.jpg"
+                                  width="75" height="75"/><label>名医网微信公众号</label></div>
                     </li>
                     <li>
-                        <div><img data-th-src="@{/hors/prc/pic_QR09.jpg}" src="../static/hors/prc/pic_QR09.jpg"
-                                  width="75" height="75"/><label>挂号网微信公众号</label>
-                        </div>
+                        <div><img data-th-src="@{/hors/pic/pic_QR09.jpg}" src="../static/hors/pic/pic_QR09.jpg"
+                                  width="75" height="75"/><label>挂号网微信公众号</label></div>
                     </li>
                 </ul>
                 <div class="clear"></div>
@@ -982,31 +1017,28 @@
         <div class="BaseMark">
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_006.jpg}" src="../static/hors/images/ico_006.jpg" class="load"
-                         width="36"
-                         height="34"/><em>门诊服务</em><span>outpatient services</span></dt>
+                         width="36" height="34"/><em>门诊服务</em><span>outpatient services</span></dt>
                 <dd><a href="NewsDetail-449.html" title="预约流程" target="_blank">预约流程</a></dd>
                 <dd><a href="NewsDetail-448.html" title="门诊须知" target="_blank">门诊须知</a></dd>
                 <dd><a href="Article-57.html" title="院内导航" target="_blank">院内导航</a></dd>
             </dl>
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_008.jpg}" src="../static/hors/images/ico_008.jpg" class="load"
-                         width="36"
-                         height="34"/><em>住院服务</em><span>hospitalized services</span></dt>
+                         width="36" height="34"/><em>住院服务</em><span>hospitalized services</span></dt>
                 <dd><a href="Article-56.html" title="住院须知" target="_blank">住院须知</a></dd>
                 <dd><a href="NewsDetail-461.html" title="检查须知" target="_blank">检查须知</a></dd>
                 <dd><a href="Article-56.html" title="住院清单" target="_blank">住院清单</a></dd>
             </dl>
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_009.jpg}" src="../static/hors/images/ico_009.jpg" class="load"
-                         width="36"
-                         height="34"/><em>体检服务</em><span>examination services</span></dt>
+                         width="36" height="34"/><em>体检服务</em><span>examination services</span></dt>
                 <dd><a href="NewsDetail-461.html" title="体检须知" target="_blank">体检须知</a></dd>
                 <dd><a href="NewsDetail-7684.html" title="体检套餐查询" target="_blank">体检套餐查询</a></dd>
                 <dd><a href="CheckupsInfo.html" title="体检报告查询" target="_blank">体检报告查询</a></dd>
             </dl>
             <div class="QRBtn"><img data-th-src="@{/hors/images/tempQR.jpg}" src="../static/hors/images/tempQR.jpg"
-                                    class="load" width="85" height="85"/> <span>扫描关注官方微信号</span>
-                <a href="javascript:void(0)" id="BtnQRMore">更多二维码</a></div>
+                                    class="load" width="85" height="85"/> <span>扫描关注官方微信号</span> <a
+                    href="javascript:void(0)" id="BtnQRMore">更多二维码</a></div>
 
             <div class="newsPaper">
                 <div class="npTitle"><img data-th-src="@{/hors/images/ico_010.jpg}"
@@ -1038,7 +1070,7 @@
     <div class="urlHidden"></div>
     <div class="websiteInfo">
         <div class="info">主办单位：医院标题 &nbsp; &nbsp;综合服务电话：120&nbsp;&nbsp; &nbsp;急救中心电话：120 &nbsp; 传真：120 &nbsp; 地 址：地址地址地址
-            &nbsp;<br/> 版权所有：医院标题 &nbsp;
+            &nbsp;<br/> 版权所有：医院标题
         </div>
         <ul>
             <li class="first"><a href="jianjie.html" target="_blank">关于我们</a></li>
@@ -1050,7 +1082,7 @@
         <div class="clear"></div>
         <p> &copy;2015-
             <script language="javascript" type="text/javascript">document.write(new Date().getFullYear());</script>
-            . All Rights Reserved. <a href="http://www.kaicz.com" target="_blank">备案号0000001 </a></p>
+            . All Rights Reserved. <a href="http://www.kaicz.com" target="_blank">备案号0000001 </a></a></p>
         <select id="ddlLinks">
             <option value="0"><span>友情链接</span> HYPERLINK</option>
             <option value="http://www.chinapop.gov.cn/">中华人民共和国卫生和计划生育委员会</option>
@@ -1068,7 +1100,5 @@
         src="../static/hors/js/Kunyi.Common.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Secondary.js}"
         src="../static/hors/js/Kunyi.Secondary.js"></script>
-<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Department.js}"
-        src="../static/hors/js/Kunyi.Department.js"></script>
 </body>
 </html>
