@@ -7,6 +7,7 @@ import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
@@ -71,10 +72,10 @@ public class HomeController {
      * @param session
      * @return
      */
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        session.removeAttribute("account");
-        return "redirect:/index";
+    @GetMapping("/logout")
+    public String logout(SessionStatus session) {
+        session.setComplete();
+        return "redirect:/";
     }
 
 
