@@ -37,7 +37,7 @@ public class UserController {
     public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
         Userinfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
-        return  getModelName()+"/index";
+        return  getModelName()+ "indextjh";
     }
 
     @GetMapping({"/editor","/editor/{id}"})
@@ -74,6 +74,10 @@ public class UserController {
     }
 
 
+    @GetMapping("/five")
+    public String five(){
+        return getModelName()+"/five";
+    }
     public String getModelName() {
         return "user";
     }

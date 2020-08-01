@@ -4,9 +4,15 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: asd123@1
-    url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC
+    password: root
+    url: jdbc:mysql://localhost:3307/hors?serverTimezone=UTC
 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  pageSizeZero: true
+  params: count=countSql
 mybatis:
   mapper-locations: classpath:cn/hors/mapper/sqlmap/*.xml
   type-aliases-package: cn.hors.bean

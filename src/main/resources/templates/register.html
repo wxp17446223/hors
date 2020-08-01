@@ -3,12 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
 </head>
 <body>
-<form action="Logon" method="post">
+<form action="register" method="post">
     账号:<input type="text" name="account"/><br>
     密码:<input type="password" name="password"/><br>
-    <input type="submit" value="登录"/><input type="reset" value="重置"/>
+    确认密码<input type="password" name="Surepassword"/><br>
+    姓名<input type="text" name="name"><br>
+    身份证号<input type="text" name="identityId"><br>
+    性别<input type="text" name="name"><br>
+    生日<input type="text" class="layui-input" id="test1" name="birth" lay-verify="required" autocomplete="off"><br>
+    手机号<input type="text" name="phone"><br>
+    邮箱<input type="text" name="email"><br>
+    地址<input type="text" name="address"><br>
+    <input type="submit" value="注册"/><input type="reset" value="重置"/>
 </form>
 </body>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+    });
+</script>
 </html>
