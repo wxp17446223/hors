@@ -32,18 +32,15 @@
 
 <body id="login_bg">
 <div class="login_wrapper">
-    <div class="login_header">
-        <a href="h/"></a>
-    </div>
     <input id="resubmitToken" type="hidden" value="" />
     <div class="login_box">
-        <form action="Login" id="loginForm" method='post'>
+        <form action="/login" id="loginForm" method='post'>
             <input id="account" name="account" placeholder="请输入账号" tabindex="1" type="text" value="" />
             <input id="password" name="password" placeholder="请输入密码" tabindex="2" type="password" />
             <span class="error" id="beError" style="display:block;"></span>
             <label class="fl" for="remember"><input checked="checked" id="remember" name="autoLogin" type="checkbox" value="" /> 记住我</label>
             <a class="fr" href="reset.html" target="_blank">忘记密码？</a>
-            <a data-th-href="@{/loginSucess}"><input id="submitLogin" type="submit"  value="登 &nbsp; &nbsp; 录" /></a>
+            <a data-th-href="@{/index}"><input id="submitLogin" type="submit"  value="登 &nbsp; &nbsp; 录" /></a>
             <input id="callback" name="callback" type="hidden" value=""/>
             <input id="authType" name="authType" type="hidden" value=""/>
             <input id="signature" name="signature" type="hidden" value=""/>
@@ -53,8 +50,6 @@
             <div>还没有帐号？</div>
             <a  class="registor_now"  data-th-href="@{/register}" >立即注册</a>
             <div class="login_others">使用以下帐号直接登录:</div>
-            <a  class="icon_wb"  href="h/ologin/auth/sina.html" target="_blank" title="使用新浪微博帐号登录"></a>
-            <a  class="icon_qq"  href="h/ologin/auth/qq.html" target="_blank" title="使用腾讯QQ帐号登录"></a>
         </div>
     </div>
     <div class="login_box_btm"></div>
