@@ -1,6 +1,7 @@
 package cn.hors.controller;
 
 import cn.hors.bean.News;
+import cn.hors.service.DepartmentsService;
 import cn.hors.service.NewsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -18,6 +19,8 @@ import java.util.List;
 public class NewsController {
 
     @Resource
+    private DepartmentsService departmentsService;
+    @Resource
     private NewsService newsService;
 
     /**
@@ -33,6 +36,7 @@ public class NewsController {
         PageInfo<News> pageInfo = new PageInfo<>(newsAll);
         model.addAttribute("news", newsAll);
         model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("departs", departmentsService.findAllByDid(-1));
         return "news";
     }
 

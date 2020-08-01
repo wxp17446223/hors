@@ -28,7 +28,7 @@ public class RoleController implements BaseController{
     @GetMapping
     @PreAuthorize("hasAuthority('/role/r')")
     public String home(){
-        return getModelName()+"/index";
+        return getModelName()+ "indextjh";
     }
 
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")

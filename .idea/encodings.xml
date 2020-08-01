@@ -5,6 +5,10 @@
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/hors/css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/static/hors/css/secondary.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/static/hors/js/jquery.min.js" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/templates/index.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/templates/news.html" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/templates/newslist.html" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>
