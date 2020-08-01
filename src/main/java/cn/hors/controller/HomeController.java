@@ -27,7 +27,7 @@ public class HomeController {
      * 主页转跳
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/a")
     public String home() {
         return "index";
     }

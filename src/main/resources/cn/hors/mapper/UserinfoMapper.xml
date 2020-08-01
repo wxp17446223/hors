@@ -33,7 +33,6 @@
         <if test="phone != null and phone!=''">phone=#{phone,jdbcType=VARCHAR},</if>
         <if test="email != null and email!=''">email=#{email,jdbcType=VARCHAR},</if>
         <if test="address != null and address!=''">address=#{address,jdbcType=VARCHAR},</if>
-        <if test="registerTime != null and registerTime!=''">register_time=#{registerTime,jdbcType=DATE},</if>
     </trim>
     </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -56,7 +55,7 @@
       )
     values (#{accountId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{identityId,jdbcType=INTEGER}, 
       #{sex,jdbcType=INTEGER}, #{birth,jdbcType=DATE}, #{picture,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}
+      #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, now()
       )
   </insert>
   <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
@@ -122,9 +121,7 @@
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="registerTime != null">
-        #{registerTime,jdbcType=DATE},
-      </if>
+      now()
     </trim>
   </insert>
     <select id="findById" resultMap="BaseResultMap">
@@ -138,7 +135,7 @@
     </select>
 
     <update id="update" parameterType="cn.hors.bean.Userinfo">
-    update order
+    update userinfo
     <set>
         <include refid="Basic_Update"></include>
     </set>

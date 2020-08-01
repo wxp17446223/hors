@@ -74,6 +74,10 @@ public class UserController {
     }
 
 
+    @GetMapping("/five")
+    public String five(){
+        return getModelName()+"/five";
+    }
     public String getModelName() {
         return "user";
     }

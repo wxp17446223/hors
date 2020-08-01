@@ -40,7 +40,7 @@ public class Userinfo {
     /**
     * 出生日期
     */
-    private Date birth;
+    private String  birth;
 
     /**
     * 用户照片
