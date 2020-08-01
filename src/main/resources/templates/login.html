@@ -33,13 +33,13 @@
 <div class="login_wrapper">
     <input id="resubmitToken" type="hidden" value="" />
     <div class="login_box">
-        <form action="Login" id="loginForm" method='post'>
+        <form action="/login" id="loginForm" method='post'>
             <input id="account" name="account" placeholder="请输入账号" tabindex="1" type="text" value="" />
             <input id="password" name="password" placeholder="请输入密码" tabindex="2" type="password" />
             <span class="error" id="beError" style="display:block;"></span>
             <label class="fl" for="remember"><input checked="checked" id="remember" name="autoLogin" type="checkbox" value="" /> 记住我</label>
             <a class="fr" href="reset.html" target="_blank">忘记密码？</a>
-            <a data-th-href="@{/loginSucess}"><input id="submitLogin" type="submit"  value="登 &nbsp; &nbsp; 录" /></a>
+            <a data-th-href="@{/index}"><input id="submitLogin" type="submit"  value="登 &nbsp; &nbsp; 录" /></a>
             <input id="callback" name="callback" type="hidden" value=""/>
             <input id="authType" name="authType" type="hidden" value=""/>
             <input id="signature" name="signature" type="hidden" value=""/>
