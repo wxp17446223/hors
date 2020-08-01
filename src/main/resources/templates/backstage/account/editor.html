@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <script data-th-replace="public::config"></script>
+    <style>
+        body{
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form">
+    <input type="hidden" name="id" data-th-value="${account?.id}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">账号</label>
+        <div class="layui-input-block">
+            <input type="text" name="account" lay-verify="required" placeholder="请输入登录账号" autocomplete="off" class="layui-input" data-th-value="${account?.account}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色</label>
+        <div class="layui-input-block">
+            <div id="role"></div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery','xmSelect'], function() {
+        let {form,$,xmSelect} = layui;
+        //拉取角色列表
+        $.get("[(@{/account/role/{id}(id=${account?.id})})]",function (rs) {
+            //渲染多选
+            xmSelect.render({
+                el: '#role',
+                data: rs
+            });
+        },'json');
+
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            let roles = xmSelect.get("#role",true);
+            data.field.roleIds = roles.getValue().map(role=>role.value);
+            $.ajax({
+                url: /*[[@{/account}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType:'json',
+                success:function (rs) {
+                   if(rs.code==0){
+                       var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                       parent.layer.close(index);//关闭当前窗口
+                       parent.layer.msg(rs.msg,{icon:6});//在父页面弹出提示框
+                       parent.layui.table.reload('reload');//重载父页面的表格数据
+                   }else{
+                       layer.msg(rs.msg,{icon:5});
+                   }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

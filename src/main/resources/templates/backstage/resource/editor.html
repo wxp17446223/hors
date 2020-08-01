@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body{
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form">
+    <input type="hidden" name="id" data-th-value="${resource?.id}">
+    <input type="hidden" name="pid"  data-th-if="${resource?.parent}" data-th-value="${resource?.parent?.id}">
+    <div class="layui-form-item" data-th-if="${resource?.parent}">
+        <label class="layui-form-label">父资源资源名称</label>
+        <div class="layui-input-block">
+            <input type="text" readonly="readonly"  data-th-value="${resource?.parent?.name}" class="layui-input" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">资源名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" placeholder="请输入资源名称" autocomplete="off" class="layui-input" data-th-value="${resource?.name}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">authority</label>
+        <input type="hidden" data-th-value="${resource.authority}">
+        <div class="layui-input-block">
+            <input type="radio" name="authority"  data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'r')?true:false}" class="layui-input" value="r" title="读取">
+            <input type="radio" name="authority"  data-th-if="${resource.code == null}" class="layui-input" value="r" title="读取">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'c')?true:false}"  class="layui-input" value="c" title="创建">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"   class="layui-input" value="c" title="创建">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'d')?true:false}" class="layui-input" value="d" title="删除">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="d" title="删除">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'u')?true:false}" class="layui-input" value="u" title="修改">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="u" title="修改">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">资源路径</label>
+        <div class="layui-input-block">
+            <input type="text" name="url"  placeholder="请输入资源路径" autocomplete="off" class="layui-input" data-th-value="${resource?.url}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">资源类型</label>
+        <div class="layui-input-block">
+            <input type="radio" name="type"  value="0" data-th-checked="${resource == null or resource?.type == null or resource?.type==0}"  class="layui-input" title="功能">
+            <input type="radio" name="type"  value="1"  data-th-checked="${resource?.type==1}" class="layui-input" title="菜单">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery'], function() {
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            let value = document.getElementsByName("authority");
+            for(var i=0;i<value.length;i++){
+                if(value[i].checked){
+                    data.field.code = value[i].value;
+                    break;
+                }
+            }
+            // let value = '';
+            // for(k in obj){
+            //     if(obj[k].checked) {
+            //         console.log(obj[k].value);
+            //         value += obj[k].value + ",";
+            //     }
+            // }
+            // value=value.substring(0,value.length-1);
+            $.ajax({
+                url: /*[[@{/resource}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType:'json',
+                success:function (rs) {
+                   if(rs.code==0){
+                       var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                       parent.layer.close(index);//关闭当前窗口
+                       parent.layer.msg(rs.msg,{icon:6});//在父页面弹出提示框
+                       parent.layui.table.reload('reload');//重载父页面的表格数据
+                   }else{
+                       layer.msg(rs.msg,{icon:5});
+                   }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

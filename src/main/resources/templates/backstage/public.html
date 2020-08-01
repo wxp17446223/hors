@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<div data-th-fragment="config" data-th-remove="tag">
+    <script data-th-inline="javascript">
+        layui.config({
+            base: '[(@{/layui/extends/})]',
+        }).extend({
+            authtree: 'authtree/authtree',
+            xmSelect: 'xmSelect/xm-select'
+        });
+    </script>
+</div>
+</html>
