@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.PResourceMapper">
+  <resultMap id="BaseResultMap" type="PResource">
+    <!--@mbg.generated-->
+    <!--@Table p_resource-->
+    <id column="id" property="id" />
+    <result column="name"  property="name" />
+     <result column="authority"  property="authority" />
+     <result column="pid"  property="pid" />
+    <result column="url"  property="url" />
+    <result column="code" property="code"></result>
+    <result column="type" property="type"></result>
+     <association property="parent" javaType="PResource" select="findById" column="pid"></association>
+    <collection property="children" ofType="PResource" column="{pid=id}" select="find"/>
+  </resultMap> 
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, url,pid,authority,type,code
+  </sql>
+  <insert id="insertResource" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="PResource">
+  insert into p_resource(name, url,type,authority,code
+  <choose>
+  <when test="pid != null">
+  ,pid)
+</when>
+<otherwise>
+)
+</otherwise>
+</choose>
+  values (#{name},#{url},#{type},#{authority},#{code}
+  <choose>
+  <when test="pid != null">
+  ,#{pid})
+</when>
+<otherwise>
+)
+</otherwise>
+</choose>
+</insert>
+<update id="updateResource" parameterType="PResource">
+update p_resource set name=#{name},url=#{url},authority=#{authority},type=#{type},code=#{code},
+<choose>
+<when test="pid == null">pid = -1</when>
+<otherwise>pid = #{pid}</otherwise>
+</choose>
+where id=#{id}
+</update>
+<delete id="deleteResourceById">
+delete from p_resource
+<where>
+<foreach collection="ids" open="id in (" close=")" separator="," item="id">
+#{id}
+</foreach>
+</where>
+</delete>
+<select id="find" parameterType="PResource" resultMap="BaseResultMap">
+select <include refid="Base_Column_List"></include> from p_resource where 1=1
+<if test="id != null and id != 0">
+and id = #{id}
+</if>
+<if test="authority != null">
+and authority = #{authority}
+</if>
+<if test="pid != null">
+and pid = #{pid}
+</if>
+<if test="name != null and name != ''">
+and name = #{name}
+</if>
+<if test="url != null and url != ''">
+and url = #{url}
+</if>
+<if test="type != null">
+and type = #{type}
+</if>
+<if test="code != null">
+and code=#{code}
+</if>
+</select>
+<select id="findById" parameterType="Integer" resultType="PResource">
+select <include refid="Base_Column_List"></include> from p_resource where id=#{id}
+</select>
+<select id="findByRoleId" parameterType="Integer" resultType="PResource">
+select <include refid="Base_Column_List"></include> from p_resource
+where id in(select resource_id from p_role_resource where role_id=#{roleId})
+</select>
+<delete id="deleteAuthorization" parameterType="Integer">
+delete from p_role_resource where role_id=#{roleId};
+</delete>
+<insert id="Authorization">
+insert into p_role_resource(role_id,resource_id)
+<foreach collection="resourceIds" item="res" separator="," open="values">
+(#{roleId},#{res})
+</foreach>
+</insert>
+<select id="findIdByPid" parameterType="Integer" resultType="Integer">
+select id from p_resource where pid =#{id}
+</select>
+</mapper>

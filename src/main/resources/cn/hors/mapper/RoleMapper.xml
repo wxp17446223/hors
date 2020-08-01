@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hors.mapper.RoleMapper">
+    <resultMap id="roleMap" type="PRole">
+    <id column="id" property="id"></id>
+    <result column="code" property="code"></result>
+    <result column="name" property="name"></result>
+    <collection property="resources" ofType="PResource" column="id" select="cn.hors.mapper.PResourceMapper.findByRoleId"></collection>
+</resultMap>
+<sql id="baseColumn">
+id,name,code
+</sql>
+<sql id="baseUpdate">
+<if test="id != null">
+id = #{id},
+</if>
+<if test="name != null and name != ''">
+name = #{name},
+</if>
+<if test="code != null and code != ''">
+code = #{code},
+</if>
+</sql>
+<sql id="baseWhere">
+<if test="id != null">
+and id = #{id}
+</if>
+<if test="name != null and name != ''">
+and name = #{name}
+</if>
+<if test="code != null and code != ''">
+and code = #{code}
+</if>
+</sql>
+<select id="findByAccountId" resultMap="roleMap" parameterType="Integer">
+select <include refid="baseColumn"></include> from p_role where id in (select role_id from p_account_role where account_id=#{id})
+</select>
+<select id="find" resultMap="roleMap">
+select <include refid="baseColumn"></include> from p_role
+<where>
+<include refid="baseWhere"></include>
+</where>
+</select>
+<select id="findById" resultMap="roleMap">
+select <include refid="baseColumn"></include> from p_role where id = #{id}
+</select>
+<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+insert into p_role(name,code) values (#{name},#{code})
+</insert>
+<update id="update">
+update p_role
+<set>
+<include refid="baseUpdate"></include>
+</set>
+where id = #{id}
+</update>
+<delete id="deleteByIds">
+delete from p_role
+where
+<foreach collection="ids" item="id" open="id in(" separator="," close=")">
+#{id}
+</foreach>
+</delete>
+<delete id="unBindRole">
+delete from p_account_role where account_id=#{accountId}
+</delete>
+<insert id="bindRole">
+insert into p_account_role values
+<foreach collection="roleIds" separator="," item="roleid">
+(#{accountId},#{roleid})
+</foreach>
+</insert>
+</mapper>
