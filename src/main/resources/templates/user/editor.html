@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href= "@{/layui/css/layui.css}" href="../static/layui/css/layui.css ">
+    <style>
+        body{
+            padding: 15px;
+        }
+    </style>
 </head>
-<body>
-
+<body data-th-each="user:${user}" data-th-object="${user}">
+<form class="layui-form" action="" style="width: 40%">
+    <input type="hidden" data-th-value="${user?.userId}" name="id">
+    <input type="hidden" data-th-value="${user?.accountId}" name="id">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名字</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" data-th-value="${user?.name}" lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block">
+            <input type="text" name="identityId" data-th-value="${user?.identityId}" lay-verify="required"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" data-th-value=1 title="男">
+            <input type="radio" name="sex" data-th-value=0 title="女">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery'], function(){
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function(data){
+            $.ajax({
+                url:/*[[@{/user}]]*/ 'save',
+                type:'put',
+                data:data.field,
+                dataType:'json',
+                success:function (rs) {
+                    if(rs.code == 0){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前弹窗
+                        parent.layer.msg(rs.msg,{icon:6});//重载父页面的表格数据
+                        parent.layui.table.reload('table_reload');
+                    }else {
+                        layer.msg(rs.msg,{icon:5});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

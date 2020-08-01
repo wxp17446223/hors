@@ -11,9 +11,9 @@ public interface UserinfoMapper {
 
     Userinfo selectByPrimaryKey(Integer userId);
 
-    int updateByPrimaryKeySelective(Userinfo record);
+    Userinfo findById(Integer userId);
 
-    int updateByPrimaryKey(Userinfo record);
+    int update(Userinfo user);
 
-    Userinfo findById(Integer accountId);
+    Userinfo findByAccId(Integer accountId);
 }

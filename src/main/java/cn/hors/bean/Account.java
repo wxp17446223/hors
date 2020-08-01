@@ -7,14 +7,14 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
-    * 管理员表
+    * 账号表
     */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Account {
     /**
-    * 管理员id
+    * 账号id
     */
     private Integer accountId;
 

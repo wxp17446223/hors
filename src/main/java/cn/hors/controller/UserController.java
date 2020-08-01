@@ -1,23 +1,16 @@
 package cn.hors.controller;
 
-import cn.hors.bean.Account;
-import cn.hors.bean.Doctor;
 import cn.hors.bean.Userinfo;
-import cn.hors.service.AccountService;
 import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -32,24 +25,56 @@ public class UserController {
     @Resource
     private ServletContext application;
 
+    int IDD;
+
     /**
      * 获得个人数据
      * @param model
-     * @param id 账号id
+     * @param accountId 账号id
      * @return
      */
-    @GetMapping
-    public String home(ModelMap model, HttpSession session,Integer id ){
-        id=1;
-//        Userinfo users=userservice.findById(id);
-//        model.addAttribute("users",users);
-        model.addAttribute("name","request value");
-        session.setAttribute("name","session value");
-        application.setAttribute("name","application value");
-        return "/user/index";
+    @GetMapping({"/index","/index/{accountId}"})
+    public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
+        Userinfo users=userservice.findByAccId(accountId);
+        model.addAttribute("users",users);
+        return  getModelName()+"/index";
     }
 
-    public String save(){
-        return null;
+    @GetMapping({"/editor","/editor/{id}"})
+    public String editor(@PathVariable(required = false)Integer id,Model model){
+        if (id!=null){
+            Userinfo user = this.userservice.findById(id);
+            model.addAttribute("user",user);
+        }
+        return getModelName()+"/editor";
+    }
+
+    @PutMapping
+    @ResponseBody
+    public Map<String,Object> save(Userinfo user){
+        Map<String,Object> results = new HashMap<>();
+        if (user.getUserId()!=null){
+            if (userservice.update(user)){
+                results.put("code",0);
+                results.put("msg","修改成功");
+            }else {
+                results.put("code",1);
+                results.put("msg","修改失败");
+            }
+        }else {
+            if(userservice.insert(user)){
+                results.put("code",0);
+                results.put("msg","新增成功");
+            }else {
+                results.put("code",1);
+                results.put("msg","新增失败");
+            }
+        }
+        return results;
+    }
+
+
+    public String getModelName() {
+        return "user";
     }
 }

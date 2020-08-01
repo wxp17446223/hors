@@ -54,4 +54,11 @@ public interface TimelineMapper {
      * @return
      */
     List<Timeline> findByDoctorIdAndDate(@Param("doctorId") Integer doctorId,@Param("date") String date);
+
+    /**
+     * 预约成功后 调用此方法 使预约数量-1
+     * @param tId
+     * @return
+     */
+    int updateQuota(Integer tId);
 }

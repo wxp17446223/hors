@@ -30,7 +30,7 @@ public class Userinfo {
     /**
     * 身份证号
     */
-    private Integer identityId;
+    private String identityId;
 
     /**
     * 性别

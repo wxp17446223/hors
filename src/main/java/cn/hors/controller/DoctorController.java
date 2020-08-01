@@ -4,6 +4,7 @@ import cn.hors.bean.Doctor;
 import cn.hors.bean.Order;
 import cn.hors.bean.Timeline;
 import cn.hors.service.DoctorService;
+import cn.hors.service.OrderService;
 import cn.hors.service.TimelineService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ public class DoctorController {
     private DoctorService doctorService;
     @Resource
     private TimelineService timelineService;
+    @Resource
+    private OrderService orderService;
 
     @GetMapping("/d")
     public String findAllDoctor(Model model,Doctor doctor){
@@ -41,6 +44,14 @@ public class DoctorController {
         return "ys";
     }
 
+    /**
+     * 通过查询日期上午或下午 对医生进行预约 时间段
+     * @param model
+     * @param doctorId 医生ID
+     * @param line 1 下午  0 上午
+     * @param date 日期
+     * @return
+     */
     @GetMapping({"/order","/order/{doctorId}"})
     public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
         Doctor doctor = doctorService.findById(doctorId);
@@ -53,18 +64,38 @@ public class DoctorController {
         }
         return "orderDownTime";
     }
+
+    /**
+     * 返回排班表的Id 医生ID 知道时间段 最后进行预约
+     * @param model
+     * @param tId 排班id
+     * @param doctorId 医生Id
+     * @return
+     */
     @PostMapping({"/order"})
     public String order(Model model,@RequestParam Integer tId,@RequestParam Integer doctorId){
-        System.out.println("tId = " + tId);
-        System.out.println("doctorId = " + doctorId);
         Doctor doctor = doctorService.findById(doctorId);
+        Timeline timeline = timelineService.findById(tId);
         model.addAttribute("doctor", doctor);
-        model.addAttribute("tId", tId);
+        model.addAttribute("timeline", timeline);
         return "orderInfo";
     }
-    @PostMapping({"/orderInfo"})
-    public String order(Order order){
 
-        return "orderInfo";
+    /**
+     * 将预约信息插入到预约表
+     * @param order 预约信息
+     * @return
+     */
+    @PostMapping("/orderInfo")
+    public String order(Model model,Order order){
+//        if (orderService.insert(order)) {
+//            if (timelineService.updateQuota(order.getTId())) {
+//                model.addAttribute("msg","预约成功");
+//            }
+//        }else {
+//            model.addAttribute("msg","预约失败");
+//        }
+        System.out.println("order = " + order);
+        return "redirect:/depart/keshi";
     }
 }

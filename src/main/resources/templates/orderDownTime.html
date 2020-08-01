@@ -69,14 +69,14 @@
     <font color="green"> <span data-th-text="${doctor.department.departName}"></span></font>
     <font color="red"> <span data-th-text="${doctor.name}"></span>(<span data-th-text="${doctor.position}"></span>)</font><br>
     <h2 ><font color="aqua">预约就诊时间：</font></h2>
-    <font color="red"> <span data-th-text="${date}"></span>  上午</font>
+    <font color="red"> <span data-th-text="${date}"></span>  下午</font>
     <input type="hidden" name="doctorId" data-th-value="${doctor.doctorId}">
     <div class="layui-form-item">
         <label class="layui-form-label">请选择时段</label>
         <div class="layui-input-block">
             <ul>
                 <li data-th-each="timeline:${timelines}">
-                    <input type="radio" name="tId" value="1" title="8：00" data-th-value="${timeline.tId}" data-th-title="${timeline.date+timeline.startTime}"
+                    <input type="radio" name="tId" checked="checked" value="1" title="8：00" data-th-value="${timeline.tId}" data-th-title="${#dates.format(timeline?.date,'yyyy-MM-dd')+ timeline.startTime}"
                            data-th-if="${#strings.contains(timeline.startTime,'13:00') ||
                            #strings.contains(timeline.startTime,'14:00') ||
                            #strings.contains(timeline.startTime,'15:00') ||
@@ -87,7 +87,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="formDemo">下一步</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -98,11 +98,11 @@
     layui.use('form', function(){
         var form = layui.form;
 
-        //监听提交
-        form.on('submit(formDemo)', function(data){
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
+        // //监听提交
+        // form.on('submit(formDemo)', function(data){
+        //     layer.msg(JSON.stringify(data.field));
+        //     return false;
+        // });
     });
 </script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Common.js}" src="../static/hors/js/Kunyi.Common.js"></script>

@@ -38,22 +38,21 @@
                 <li><a href="news.html">人才招聘</a></li><li><a href="Office-71.html">人事管理</a></li>
                 <li><a href="History.html">网上院史馆</a></li><li><a href="Message.html">在线留言</a></li>
                 <li><a href="javascript:;" onClick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
-                <li><a href="login.html" style=" position:relative;left: 650px;z-index: 1;"><font style="color:red;">登录/注册</font></a></li>
+                <li><a data-th-href="@{/login}" style=" position:relative;left: 650px;z-index: 1;"><font style="color:red;">登录/注册</font></a></li>
                 <li>
-                    <dl class="collapsible_menu" style="position:relative;left: 600px;z-index: 1; display: none" >
-                        <dt>
-                            <span name="account_id" hidden="hidden">${account.account_id}</span>
-                            <span name="userName" >111</span>
+                    <dl class="collapsible_menu" style="position:relative;left: 650px;z-index: 1;" >
+                        <dt data-th-each="account:${accounts}" data-th-object="${accounts}">
+                            <span name="account_id" hidden="hidden" data-th-text="${account.accountId}"></span>
+                            <span name="userName" data-th-text="${userAcc.name}">黄 博</span>
                             <span class="red dn" id="noticeDot-1"></span>
                             <i></i>
                         </dt>
-                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user}" href="javascript:;">个人中心</a></dd>
+                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}" href="javascript:;">个人中心</a></dd>
                         <dd style="display:none;background-color:#ffffff"><a href="accountBind.html">帐号设置</a></dd>
-                        <dd class="logout" style="display:none;background-color:#ffffff"><a href="login.html" rel="nofollow">退出</a></dd>
+                        <dd class="logout" style="display:none;background-color:#ffffff"><a data-th-href="@{/logout}" rel="nofollow">退出</a></dd>
                     </dl>
                 </li>
             </ul>
-
             <div class="langBtn animated">
                 <i class="flag"></i>中文<i class="downBtn"></i>
                 <a href="javasript:;"><img class="animated" height="13" src="../static/hors/images/ico_003.png" data-th-src="@{/hors/images/ico_003.png}" width="13" />English</a>
@@ -573,10 +572,10 @@
 
 <section class="bannerBase BaseMark">
     <div class="Banners">
-        <ul class="AnimUl">
+        <div class="tempWrap" style="overflow:hidden; position:relative; width:1000px;left: 50px">
+            <ul class="AnimUl">
             <li><a href="http://www.hnsrmyy.net/NewsDetail-8464.html" title="院党委举行学习党的十八届六中全会精神和 省十次党代会精神专题辅导">
                 <img alt="院党委举行学习党的十八届六中全会精神和 省十次党代会精神专题辅导"  src="../static/hors/uploadfiles/thumb/201607271939462.jpg" data-th-src="@{/hors/uploadfiles/thumb/201607271939462.jpg}" /></a></li>
-
             <li><a href="http://www.hnsrmyy.net/NewsDetail-8476.html" title="2016山西省眼科医师大会开启眼科发展新篇章">
                 <img alt="2016山西省眼科医师大会开启眼科发展新篇章"  src="../static/hors/uploadfiles/thumb/201607271939462.jpg" data-th-src="@{/hors/uploadfiles/thumb/201607271939462.jpg}" /></a></li>
 
@@ -588,24 +587,15 @@
 
             <li><a href="http://www.hnsrmyy.net/NewsDetail-8472.html" title="“爱心传递 防治出生缺陷”公益行活动走进山西">
                 <img alt="“爱心传递 防治出生缺陷”公益行活动走进山西"  src="../static/hors/uploadfiles/thumb/201607271939462.jpg" data-th-src="@{/hors/uploadfiles/thumb/201607271939462.jpg}" /></a></li>
-
-
-
-
-
-
-
-
-
             <li><a href="http://www.hnsrmyy.net/NewsDetail-7944.html" title="我院空中救护成功转运首位重症患者—首个“中国紧急救援山西航空救援基地”落户省医"><img alt="我院空中救护成功转运首位重症患者—首个“中国紧急救援山西航空救援基地”落户省医"  src="../static/hors/uploadfiles/thumb/2016072719395872.JPG" /></a></li>
 
-            <li><a href="javascript:void(0)" title=""><img alt=""  src="../static/hors/uploadfiles/thumb/2016090608460311.jpg" data-th-src="@{/hors/uploadfiles/thumb/2016090608460311.jpg}" /></a></li>
+            <li><a href="javascript:void(0)" title=""><img src="../static/hors/uploadfiles/thumb/2016090608460311.jpg" data-th-src="@{/hors/uploadfiles/thumb/2016090608460311.jpg}" /></a></li>
         </ul>
-        <div class="tools">
-            <a class="prev" href="javascript:void(0)"><img alt="上一幅" height="34" src="../static/hors/images/btn_prev01.png" data-th-src="@{/hors/images/btn_prev01.png}" width="34" /></a>
-            <a class="next" href="javascript:void(0)"><img alt="下一幅" height="34" src="../static/hors/images/btn_next01.png" data-th-src="@{/hors/images/btn_next01.png}" width="34" /></a>
-            <div class="text" id="BannerInfo"></div>
-            <ul class="ulMark">
+        </div>
+        <div class="tools" style="background:transparent;position: absolute;left: 50%;top:150px">
+            <a class="prev" href="javascript:void(0)" style="position:absolute;left: -30%"><img alt="上一幅" height="34" src="../static/hors/images/btn_prev01.png" data-th-src="@{/hors/images/btn_prev01.png}" width="34" /></a>
+            <a class="next" href="javascript:void(0)" style="position:absolute;left: 55%"><img alt="下一幅" height="34" src="../static/hors/images/btn_next01.png" data-th-src="@{/hors/images/btn_next01.png}" width="34" /></a>
+            <ul class="ulMark" style="background:transparent;position: absolute;top:270px;left: 6%;">
                 <li class="animated"></li>
                 <li class="animated"></li>
                 <li class="animated"></li>
@@ -613,10 +603,6 @@
                 <li class="animated"></li>
                 <li class="animated"></li>
             </ul>
-            <div class="clear"></div>
-            <div class="animated" data-right="0" data-type="0" id="BannerSwitch">
-                <img class="animated" height="7" src="../static/hors/images/ico_027.png" data-th-src="@{/hors/images/ico_027.png}"  width="5" ><span>隐藏</span>
-            </div>
         </div>
     </div>
 </section>

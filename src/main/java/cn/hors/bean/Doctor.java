@@ -40,6 +40,10 @@ public class Doctor {
     * 性别
     */
     private Integer sex;
+    /**
+     * 枚举性别下标 存进数据库的值
+     */
+    private Integer sexIndex;
 
     /**
     * 医生照片
