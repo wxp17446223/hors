@@ -1,19 +1,26 @@
 create table account
 (
-    account_id int auto_increment comment '管理员id'
+    account_id int auto_increment comment '账号id'
         primary key,
     account    varchar(32) null comment '登录账号',
     password   varchar(16) null comment '登录密码'
 )
-    comment '管理员表';
+   comment '账号表';
 
-create table `account-role-mapping`
+create table userinfo
 (
-    account_id int not null comment '管理员id'
+    user_id       int auto_increment comment '用户id'
         primary key,
-    role_id    int not null comment '身份ID'
+    account_id    int          null comment '关联账号ID',
+    sex           int          null comment '性别',
+    birth         date         null comment '出生日期',
+    picture       varchar(32)  null comment '用户照片',
+    phone         varchar(15)  null comment '联系电话',
+    email         varchar(32)  null comment '邮箱',
+    address       varchar(255) null comment '家庭住址',
+    register_time date         null comment '注册时间'
 )
-    comment '管理员-身份联系表';
+    comment '用户表';
 
 create table departments
 (
@@ -86,34 +93,6 @@ create table `order`
 )
     comment '预约表:记录用户预约的情况';
 
-create table resource
-(
-    resource_id int auto_increment
-        primary key,
-    name        varchar(32)   null comment '资源名称',
-    url         varchar(32)   null comment '资源路径',
-    a_id        int           null comment '父资源id，如果id资源为-1，则为顶级节点(没有父节点)',
-    authority   varchar(10)   null comment 'c d u r增删改查权限',
-    type        int default 1 null comment '0功能 1菜单'
-)
-    comment '资源表';
-
-create table role
-(
-    role_id   int auto_increment
-        primary key,
-    role_name varchar(32) null comment '身份名称',
-    number    varchar(32) null comment '身份编号'
-)
-    comment '身份表';
-
-create table `role-resource-mapping`
-(
-    role_id     int null comment '身份id',
-    resource_id int null comment '资源id'
-)
-    comment '身份-资源联系表';
-
 create table timeline
 (
     t_id       int auto_increment comment '排班ID'
@@ -128,18 +107,60 @@ create table timeline
 )
     comment '医生排班表';
 
-create table userinfo
-(
-    user_id       int auto_increment comment '用户id'
-        primary key,
-    account_id    int          null comment '关联账号ID',
-    sex           int          null comment '性别',
-    birth         date         null comment '出生日期',
-    picture       varchar(32)  null comment '用户照片',
-    phone         varchar(15)  null comment '联系电话',
-    email         varchar(32)  null comment '邮箱',
-    address       varchar(255) null comment '家庭住址',
-    register_time date         null comment '注册时间'
-)
-    comment '用户表';
+
+
+
+
+
+    create table p_account
+    (
+        id       int auto_increment  '管理员id'
+            primary key,
+        account  varchar(25)  null '账号',
+        password char(32)     null  '密码' ,
+        head     varchar(128) null '头像url',
+        constraint p_account_account_uindex
+            unique (account)
+    );
+    comment '管理员表';
+
+    create table p_account_role
+    (
+        account_id int null '管理员id' ,
+        role_id    int null '角色id'
+    )
+        comment '账号角色映射表';
+
+        -- auto-generated definition
+        create table p_resource
+        (
+            id        int auto_increment
+                primary key  '资源id',
+            name      varchar(25)    null '资源名称',
+            url       varchar(1024)  null '资源路径',
+            pid       int default -1 not null '父资源id',
+            authority varchar(256)   not null '资源权限',
+            type      int default 0  null comment '1:菜单 0:功能',
+            code      varchar(10)    null '资源选项'
+        );
+        comment '资源表';
+
+        create table p_role
+        (
+            id   int auto_increment comment '角色标识符'
+                primary key,
+            name varchar(128) null comment '角色名称',
+            code varchar(512) null comment '角色编码'
+        )
+            comment '角色信息表';
+
+            create table p_role_resource
+            (
+                role_id     int null comment '角色标识符',
+                resource_id int null comment '资源标识符'
+            )
+                comment '角色资源映射表';
+
+
+
 
