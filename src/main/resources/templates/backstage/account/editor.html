@@ -5,7 +5,14 @@
     <title>新增界面</title>
     <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
     <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
-    <script data-th-replace="public::config"></script>
+    <script data-th-inline="javascript">
+    layui.config({
+        base: '[(@{/layui/extends/})]',
+    }).extend({
+        authtree: 'authtree/authtree',
+        xmSelect: 'xmSelect/xm-select'
+    });
+</script>
     <style>
         body{
             padding-right: 15px;
