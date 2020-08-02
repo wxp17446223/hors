@@ -24,7 +24,7 @@ public class ResourceController implements BaseController{
     @GetMapping
     @PreAuthorize("hasAuthority('/resource/r')")
     public String home(){
-        return getModelName()+ "indextjh";
+        return getModelName()+ "/index";
     }
 
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")

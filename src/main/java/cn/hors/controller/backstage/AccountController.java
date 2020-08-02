@@ -33,7 +33,7 @@ public class AccountController implements BaseController{
     @GetMapping
     @PreAuthorize("hasAuthority('/account/r')")
     public String home(){
-        return getModelName()+ "indextjh";
+        return getModelName()+ "/index";
     }
     @GetMapping("/l")
     public String login(){
