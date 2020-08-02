@@ -14,7 +14,7 @@
 <body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增账号
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增医生
         </button>
         <button class="layui-btn layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
     </div>
@@ -110,7 +110,7 @@
                     area: ['350px', '450px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: /*[[@{/account/edit}]]*/''
+                    content: /*[[@{/doctors/edit}]]*/''
                 });
             } else if (e.event == 'del') {
                 let status = table.checkStatus('reload');
@@ -118,12 +118,12 @@
                     layer.msg("请选择需要删除的账号");
                 } else {
                     //选中的账号名称(,分割)
-                    //[{account:`a`},{account:`b`}]=>"a,b"
-                    let accountList = status.data.map(d => d.account).join(",");
+                    //[{doctors:`a`},{doctors:`b`}]=>"a,b"
+                    let nameList = status.data.map(d => d.name).join(",");
                     //[{id:`1`},{id:`2`}]=>"id=1&id=2"
                     //选中的账号id(&分割)
-                    let ids = status.data.map(d => 'id=' + d.id).join("&");
-                    del(`确认是否删除账号:[${accountList}]?`, ids);
+                    let ids = status.data.map(d => 'id=' + d.doctorId).join("&");
+                    del(`确认是否删除账号:[${nameList}]?`, ids);
                 }
             }
         });
