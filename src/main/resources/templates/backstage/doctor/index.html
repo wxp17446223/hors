@@ -25,22 +25,24 @@
             class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
 <div class="layui-fluid">
+<!--    导航栏 面包屑-->
     <div class="layui-row">
         <div class="layui-col-md12">
             <span class="layui-breadcrumb" lay-separator="/">
-              <a data-th-href="@{/}">首页</a>
+              <a data-th-href="@{/backstage}">首页</a>
               <a href="javascript:;">权限管理</a>
               <a><cite>医生管理</cite></a>
             </span>
         </div>
     </div>
+<!--    查询-->
     <div class="layui-row">
         <div class="layui-col-md12">
             <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
                 <div class="layui-inline">
-                    <label class="layui-form-label">账号:</label>
+                    <label class="layui-form-label">医生工号:</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="account" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                        <input type="text" name="jobNumber" placeholder="请输入医生工号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -54,34 +56,45 @@
         </div>
     </div>
 
-
+<!--数据表格-->
     <div class="layui-row">
         <div class="layui-col-md12">
             <table class="layui-hide" id="table_data" lay-filter="table_filter"></table>
         </div>
     </div>
 </div>
+
 <script data-th-inline="javascript">
     layui.use(["table", "layer", "jquery", "element", "form"], function () {
         let {table, layer, $, form} = layui; //解构
         table.render({
             id: 'reload',
             elem: '#table_data',
-            url:/*[[@{/doctors}]]*/ 'data/account.json',
-            cellMinWidth: 80
-            , toolbar: '#toolbarDemo',//开启头部工具栏，并为其绑定左侧模板
-            page: true,
+            url:/*[[@{/doctors}]]*/ 'data/doctors.json',
+            cellMinWidth: 80,
+            toolbar: '#toolbarDemo',//开启头部工具栏，并为其绑定左侧模板
+            page: true,//开启分页
             cols: [
                 [
                     {field: 'left', width: 80, type: "checkbox"},
-                    {field: 'doctorId', width: 80, title: 'ID', sort: true}
-                    , {field: 'jobNumber', width: 80, title: '医生工号'}
+                    {field: 'doctorId', width: 60, title: 'ID', sort: true}
+                    , {field: 'jobNumber', width: 100, title: '医生工号'}
                     , {field: 'departId', title: '科室Id'}
-                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 250}
+                    , {field: 'department', title: '科室名字'}
+                    , {field: 'name', title: '姓名'}
+                    , {field: 'sex', title: '性别'}
+                    , {field: 'picture', title: '图片地址'}
+                    , {field: 'birth', title: '生日'}
+                    , {field: 'position', title: '职位'}
+                    , {field: 'workExperience', title: '工作经验'}
+                    , {field: 'phone', title: '医生电话'}
+                    , {field: 'adept', title: '擅长'}
+                    , {field: 'introduce', title: '医生介绍'}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
                 ]
             ]
         });
-
+        //头部工具栏 查询监听事件
         form.on("submit(query)", function (e) {
             table.reload("reload", {
                 where: e.field
@@ -114,6 +127,7 @@
                 }
             }
         });
+
         //监听行工具栏事件
         table.on('tool(table_filter)', function (e) {
             if (e.event == "edit") {
@@ -122,10 +136,10 @@
                     area: ['350px', '200px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: '[(@{/doctors/edit})]/' + e.data.id
+                    content: '[(@{/doctors/edit})]/' + e.data.doctorId
                 });
             } else if (e.event == 'del') {
-                del(`确认是否删除账号:[${e.data.account}]?`, `id=${e.data.id}`);
+                del(`确认是否删除医生:[${e.data.name}]?`, `id=${e.data.doctorId}`);
             }
         });
 
