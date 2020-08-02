@@ -38,12 +38,12 @@
                 <li><a href="news.html">人才招聘</a></li><li><a href="Office-71.html">人事管理</a></li>
                 <li><a href="History.html">网上院史馆</a></li><li><a href="Message.html">在线留言</a></li>
                 <li><a href="javascript:;" onClick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
-                <li><a href="login.html" style=" position:relative;left: 650px;z-index: 1;"><font style="color:red;">登录/注册</font></a></li>
+                <li><a data-th-href="@{/login}" style=" position:relative;left: 650px;z-index: 1;"><font style="color:red;">登录/注册</font></a></li>
                 <li>
-                    <dl class="collapsible_menu" style="position:relative;left: 600px;z-index: 1; display: none" >
-                        <dt>
-                            <span name="account_id" hidden="hidden">${account.account_id}</span>
-                            <span name="userName" >111</span>
+                    <dl class="collapsible_menu" style="position:relative;left: 650px;z-index: 1;" >
+                        <dt data-th-each="account:${accounts}" data-th-object="${accounts}">
+                            <span name="account_id" hidden="hidden" data-th-text="${account.accountId}"></span>
+                            <span name="userName" data-th-text="${userAcc.name}">黄 博</span>
                             <span class="red dn" id="noticeDot-1"></span>
                             <i></i>
                         </dt>
@@ -53,7 +53,6 @@
                     </dl>
                 </li>
             </ul>
-
             <div class="langBtn animated">
                 <i class="flag"></i>中文<i class="downBtn"></i>
                 <a href="javasript:;"><img class="animated" height="13" src="../static/hors/images/ico_003.png" data-th-src="@{/hors/images/ico_003.png}" width="13" />English</a>
