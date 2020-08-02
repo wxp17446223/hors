@@ -46,9 +46,8 @@
           href="http://en.hnsrmyy.net/" target="_blank" class="langBtn langBtnE"><i class="flag"></i>English</a>
       </div>
     </div>
-    <div class="BaseMark logoBase"><a href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}" src="../static/hors/images/logo.jpg" class="load"
+    <div class="BaseMark logoBase"><a data-th-href="@{/}" href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}" src="../static/hors/images/logo.jpg" class="load"
           data-original="../static/hors/images/logo.jpg" width="227" height="47" /></a>
-      <div><a href="Article-140.html"><img data-th-src="@{/hors/images/bwchuxin2019.jpg}" src="../static/hors/images/bwchuxin2019.jpg" class="loadcx" width="227" height="47" /></a>
       </div>
       <div class="searchBase">
         <div class="itemBase">
@@ -68,13 +67,15 @@
   </header>
   <nav>
     <div class="navBase">
-      <div class="quickMenuBase" data-type="1">
-        <div class="quickMenu01">快捷菜单</div>
-        <div class="quickMenu02 animated"></div>
+      <div class="quickMenuBase" data-type="0">
+        <div class="quickMenu03" ><img data-th-src="@{/hors/images/ico_013.png}"
+                                       src="../static/hors/images/ico_013.png" width="16" height="16" /> <em data-th-text="快捷菜单">快捷菜单</em>
+        </div>
         <div class="quickMenus">
           <ul class="firstUl">
-            <li class="first"><a href="jiuzhen.html" class="firstA"><em>就诊指南</em><i
-                    class="style01"></i><span></span></a>
+            <li class="first">
+              <a href="jiuzhen.html" class="firstA"><em>就诊指南</em><i
+                      class="style01"></i><span></span></a>
               <div class="QMSub QMSubMenus">
                 <ul>
                   <li><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
@@ -91,7 +92,6 @@
             </li>
             <li class="first"><a data-th-href="@{/depart/keshi/-1}" href="" target="_blank" class="firstA"><em>预约挂号</em><i
                     class="style02"></i><span></span></a>
-
             </li>
             <li class="first"><a href="chuzhen.html" class="firstA"><em>出诊安排</em><i
                     class="style03"></i><span></span></a>
@@ -142,22 +142,14 @@
             </li>
             <li class="first"><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" class="firstA"><em>专科介绍</em><i
                     class="style05"></i><span></span></a>
-
             </li>
           </ul>
         </div>
       </div>
-      <div class="nav Inav">
+      <div class="nav Snav">
         <ul>
-          <li class="PMenu current" >
-            <img data-th-src="@{/hors/images/ico_014.png}"
-                 src="../static/hors/images/ico_014.png"
-                 class="animated"
-                 width="15"
-                 height="8"/>
-            <a data-th-href="@{/}"   href="index.html" class="PAMenu">首页</a>
-          </li>
-          <li class="PMenu">
+          <li class="PMenu"><a data-th-href="@{/}" href="index.html" class="PAMenu">首页</a></li>
+          <li class="PMenu current">
             <img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
                  class="animated" width="15" height="8"/>
             <a data-th-href="@{/depart/keshi/-1}" href="jiuzhen.html" id="Nav_AMenu0" class="PAMenu" title="就诊指南">就诊指南</a>
@@ -302,12 +294,7 @@
               </div>
             </div>
           </li>
-          <li class="PMenu current">
-            <img data-th-src="@{/hors/images/ico_014.png}"
-                 src="../static/hors/images/ico_014.png"
-                 class="animated"
-                 width="15"
-                 height="8"/>
+          <li class="PMenu">
             <a data-th-href="@{/news/all}" href="news.html"
                id="Nav_AMenu5"
                class="PAMenu"
@@ -402,13 +389,14 @@
       </div>
     </div>
   </nav>
+
   <section class="BaseMark">
     <div class="bread">您所在的位置<span><a href="index.html">首页</a>><a href="ArticleList-54.html">就诊指南</a>>来院路线</span></div>
     <div class="baseLeft">
       <div class="title title05_52">就诊指南</div>
       <div class="newsMenu">
         <ul>
-          <li><a href="keshi.html" title="科室导航"><em>科室导航</em></a></li>
+          <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" title="科室导航"><em>科室导航</em></a></li>
           <li><a href="Telephone.html" title="电话查询"><em>电话查询</em></a></li>
           <li><a href="https://map.baidu.com/poi/%E6%B9%96%E5%8D%97%E8%99%B9%E7%8C%AB%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/@12575210.205,3256269.74,19z?uid=95ec9d88422fdbe8e5e96572&ugc_type=3&ugc_ver=1&device_ratio=2&compat=1&querytype=detailConInfo&da_src=shareurl" target="_blank" title="省医地图"><em>省医地图</em></a></li>
         </ul>

@@ -65,10 +65,10 @@ public class NewsController {
     public String findByNewId(Model model, @RequestParam Integer newId){
         News news = newsService.findByNewId(newId);
         model.addAttribute("newss", news);
-        if (!news.getSource().equalsIgnoreCase("公告")) {
-            return "newslist";
+        if (news.getSource().equals("公告")) {
+            return "newsNoticeList";
         }
-        return "newsNoticeList";
+        return "newslist";
     }
 
     @GetMapping("/scanCount")
