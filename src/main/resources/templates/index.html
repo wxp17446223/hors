@@ -32,6 +32,7 @@
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
         src="../static/hors/js/Kunyi.Init.js"></script>
+<script data-th-src="@{/style/js/conv.js}" src="../static/style/js/conv.js" type="text/javascript"></script>
 <header>
     <div class="topHidden"></div>
     <div class="toolBase">
@@ -45,6 +46,27 @@
                 <li><a href="History.html">网上院史馆</a></li>
                 <li><a href="Message.html">在线留言</a></li>
                 <li><a href="javascript:;" onClick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
+                <li>
+                    <div style="position:relative;left: 640px;z-index: 1;">
+                        <a data-th-href="@{/login}" >登录</a>
+                        &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                        <a data-th-href="@{/register}">注册</a>
+
+                    </div>
+                </li>
+                <li>
+                    <dl class="collapsible_menu" style="position:relative;left: 640px;z-index: 1;" >
+                        <dt data-th-each="account:${accounts}" data-th-object="${accounts}">
+                            <span name="account_id" hidden="hidden" data-th-text="${account.accountId}"></span>
+                            <span name="userName" data-th-text="${userAcc.name}">黄 博</span>
+                            <span class="red dn" id="noticeDot-1"></span>
+                            <i></i>
+                        </dt>
+                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}" href="javascript:;">个人中心</a></dd>
+                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}">帐号设置</a></dd>
+                        <dd class="logout" style="display:none;background-color:#ffffff"><a data-th-href="@{/logout}" rel="nofollow">退出</a></dd>
+                    </dl>
+                </li>
             </ul>
             <div class="language">选择语言</div>
             <div class="langBtn animated"><i class="flag"></i>中文<i class="downBtn"></i>
@@ -425,6 +447,7 @@
 
 <section class="bannerBase BaseMark">
     <div class="Banners">
+        <div class="tempWrap" style="overflow:hidden; position:relative; width:1000px;left: 50px">
         <ul class="AnimUl">
             <li><a href="http://www.hnsrmyy.net/NewsDetail-8464.html" title="院党委举行学习党的十八届六中全会精神和 省十次党代会精神专题辅导"><img
                     data-th-src="@{/hors/uploadfiles/thumb/201607271939462.JPG}"
@@ -460,15 +483,11 @@
                                                            alt=""/></a>
             </li>
         </ul>
-        <div class="tools">
-            <a href="javascript:void(0)" class="prev"><img alt="上一幅" data-th-src="@{/hors/images/btn_prev01.png}"
-                                                           src="../static/hors/images/btn_prev01.png" width="34"
-                                                           height="34"/></a>
-            <a href="javascript:void(0)" class="next"><img alt="下一幅" data-th-src="@{/hors/images/btn_next01.png}"
-                                                           src="../static/hors/images/btn_next01.png" width="34"
-                                                           height="34"/></a>
-            <div class="text" id="BannerInfo"></div>
-            <ul class="ulMark">
+        </div>
+        <div class="tools" style="background:transparent;position: absolute;left: 50%;top:150px">
+            <a class="prev" href="javascript:void(0)" style="position:absolute;left: -30%"><img alt="上一幅" height="34" src="../static/hors/images/btn_prev01.png" data-th-src="@{/hors/images/btn_prev01.png}" width="34" /></a>
+            <a class="next" href="javascript:void(0)" style="position:absolute;left: 55%"><img alt="下一幅" height="34" src="../static/hors/images/btn_next01.png" data-th-src="@{/hors/images/btn_next01.png}" width="34" /></a>
+            <ul class="ulMark" style="background:transparent;position: absolute;top:270px;left: 6%;">
                 <li class="animated"></li>
                 <li class="animated"></li>
                 <li class="animated"></li>
@@ -476,11 +495,6 @@
                 <li class="animated"></li>
                 <li class="animated"></li>
             </ul>
-            <div class="clear"></div>
-            <div id="BannerSwitch" class="animated" data-type="0" data-right="0">
-                <img data-th-src="@{/hors/images/ico_027.png}" src="../static/hors/images/ico_027.png" width="5"
-                     height="7" class="animated"><span>隐藏</span>
-            </div>
         </div>
     </div>
 </section>
@@ -930,5 +944,6 @@
         src="../static/hors/js/Kunyi.Common.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Index.js}"
         src="../static/hors/js/Kunyi.Index.js"></script>
+<script data-th-src="@{/style/js/core.min.js}" src="../static/style/js/core.min.js" type="text/javascript"></script>
 </body>
 </html>

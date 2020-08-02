@@ -1,34 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script charset="utf-8" data-th-src="@{/style/js/allmobilize.min.js}" id="allmobilize" src="../static/style/js/allmobilize.min.js"></script>
+    <meta content="no-siteapp" http-equiv="Cache-Control" />
+    <link media="handheld" rel="alternate"  />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="23635710066417756375" property="qc:admins" />
+    <meta content="QIQ6KC1oZ6" name="baidu-site-verification" />
+    <script type="text/javascript">
+        var ctx = "h";
+        console.log(1);
+    </script>
+    <link data-th-href="@{/style/css/style.css}" href="../static/style/css/style.css" rel="stylesheet" type="text/css"/>
+    <script data-th-src="@{/style/js/jquery.1.10.1.min.js}" src="../static/style/js/jquery.1.10.1.min.js" type="text/javascript"></script>
+    <script data-th-src="@{/style/js/jquery.lib.min.js}" src="../static/style/js/jquery.lib.min.js" type="text/javascript"></script>
+    <script data-th-src="@{/style/js/core.min.js}" src="../static/style/js/core.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var youdao_conv_id = 271546;
+    </script>
+    <script data-th-src="@{/style/js/conv.js}" src="../static/style/js/conv.js" type="text/javascript"></script>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
     <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
-    <link rel="stylesheet" href="../static/layui/css/layui.css" media="all">
+    <link rel="stylesheet" data-th-href= "@{/layui/css/layui.css}" href="../static/layui/css/layui.css ">
+    <style>
+        body{
+            padding: 15px;
+        }
+    </style>
+    <title>注册</title>
 </head>
-<body>
-<form action="register" method="post">
-    账号:<input type="text" name="account"/><br>
-    密码:<input type="password" name="password"/><br>
-    确认密码<input type="password" name="Surepassword"/><br>
-    姓名<input type="text" name="name"><br>
-    身份证号<input type="text" name="identityId"><br>
-    性别<input type="text" name="name"><br>
-    生日<input type="text" class="layui-input" id="test1" name="birth" lay-verify="required" autocomplete="off"><br>
-    手机号<input type="text" name="phone"><br>
-    邮箱<input type="text" name="email"><br>
-    地址<input type="text" name="address"><br>
-    <input type="submit" value="注册"/><input type="reset" value="重置"/>
+<body style="background:#019875;">
+<div style="margin-left: auto;margin-right:auto;width:50%;background: #FFFFFF">
+<form class="layui-form"  style="width: 50%" method="put">
+    <div class="layui-form-item">
+        <label class="layui-form-label">账号</label>
+        <div class="layui-input-block">
+            <input type="text" name="account" lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="password"  lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">确认密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="pwd" lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">名字</label>
+        <div class="layui-input-block">
+            <input type="text" name="name" lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block">
+            <input type="text" name="identityId" lay-verify="required"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" data-th-value=1 title="男">
+            <input type="radio" name="sex" data-th-value=0 title="女">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">生日</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" id="test1" name="birth" lay-verify="required"   autocomplete="off" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">图片</label>
+        <button type="button" class="layui-btn" id="test2">
+            <i class="layui-icon">&#xe67c;</i>上传图片
+        </button>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone"  lay-verify="required"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="email"  lay-verify="required"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address"  lay-verify="required"   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
 </form>
-</body>
-<script>
-    layui.use('laydate', function(){
+</div>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery','laydate','upload'], function(){
         var laydate = layui.laydate;
-
-        //执行一个laydate实例
+        var upload = layui.upload;
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function(data){
+            $.ajax({
+                url:/*[[@{/register}]]*/ 'save',
+                type:'put',
+                data:data.field,
+                dataType:'json',
+                success:function (rs) {
+                    if(rs.code == 0){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前弹窗
+                        parent.layer.msg(rs.msg,{icon:6});//重载父页面的表格数据
+                        parent.layui.table.reload('table_reload');
+                    }else {
+                        layer.msg(rs.msg,{icon:5});
+                    }
+                }
+            });
+            return false;
+        });
         laydate.render({
             elem: '#test1' //指定元素
         });
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test2' //绑定元素
+            ,url: '/upload/' //上传接口
+            ,done: function(res){
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
     });
 </script>
+</body>
 </html>

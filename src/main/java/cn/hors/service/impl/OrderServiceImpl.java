@@ -39,4 +39,9 @@ public class OrderServiceImpl implements OrderService{
     public Order findById(Integer id) {
         return orderMapper.findById(id);
     }
+
+    @Override
+    public Order findByUseId(Integer userId) {
+        return orderMapper.findByUseId(userId);
+    }
 }

@@ -11,6 +11,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @SessionAttributes({"accounts","userAcc"})
@@ -26,9 +29,9 @@ public class HomeController {
      * 主页转跳
      * @return
      */
-    @GetMapping("/a")
+    @GetMapping("/")
     public String home() {
-        return "indextjh";
+        return "/index";
     }
 
 
@@ -37,7 +40,7 @@ public class HomeController {
      */
     @GetMapping("/login")
     public String toLogin() {
-        return "login";
+        return "/login";
     }
 
     /**
@@ -59,7 +62,7 @@ public class HomeController {
             model.addAttribute("accounts", accounts);
             Userinfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
-            return "indextjh";
+            return "/index";
         } else {
             attributes.addFlashAttribute("message", "用户名或密码错误！");
             return "redirect:/login";
@@ -83,6 +86,6 @@ public class HomeController {
      */
     @GetMapping("/register")
     public  String register(){
-        return "register";
+        return "/register";
     }
 }

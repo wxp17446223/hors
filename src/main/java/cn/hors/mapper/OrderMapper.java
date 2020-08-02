@@ -41,4 +41,12 @@ public interface OrderMapper {
      * @return
      */
     Order findById(Integer id);
+
+
+    /**
+     * 通过用户查询该用户的预约信息
+     * @param userId
+     * @return
+     */
+    Order findByUseId(Integer userId);
 }

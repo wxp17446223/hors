@@ -1,6 +1,10 @@
 package cn.hors.controller;
 
+import cn.hors.bean.Account;
+import cn.hors.bean.Order;
 import cn.hors.bean.Userinfo;
+import cn.hors.service.AccountService;
+import cn.hors.service.OrderService;
 import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +27,9 @@ public class UserController {
     @Resource
     private UserinfoService userservice;
     @Resource
-    private ServletContext application;
+    private AccountService accountService;
+    @Resource
+    private OrderService orderService;
 
     int IDD;
 
@@ -33,11 +39,11 @@ public class UserController {
      * @param accountId 账号id
      * @return
      */
-    @GetMapping({"/index","/index/{accountId}"})
-    public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
+    @GetMapping({"/info","/info/{accountId}"})
+    public String info(ModelMap model,@PathVariable(required = false)Integer accountId){
         Userinfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
-        return  getModelName()+ "indextjh";
+        return  getModelName()+ "/info";
     }
 
     @GetMapping({"/editor","/editor/{id}"})
@@ -47,6 +53,26 @@ public class UserController {
             model.addAttribute("user",user);
         }
         return getModelName()+"/editor";
+    }
+
+    @GetMapping({"/orderUser","/orderUser/{userId}"})
+    public String orderUser(@PathVariable(required = false)Integer userId,Model model){
+        if (userId!=null){
+            Order orders = this.orderService.findByUseId(userId);
+            Userinfo users=this.userservice.findById(userId);
+            model.addAttribute("orders",orders);
+            model.addAttribute("users",users);
+        }
+        return getModelName()+"/orderUser";
+    }
+
+    @GetMapping({"/uacc","/uacc/{accountId}"})
+    public String uacc(@PathVariable(required = false)Integer accountId,Model model){
+        if (accountId!=null){
+            Account account = this.accountService.selectByPrimaryKey(accountId);
+            model.addAttribute("account",account);
+        }
+        return getModelName()+"/uacc";
     }
 
     @PutMapping
@@ -73,10 +99,11 @@ public class UserController {
         return results;
     }
 
-
-    @GetMapping("/five")
-    public String five(){
-        return getModelName()+"/five";
+    @GetMapping({"/index","/index/{accountId}"})
+    public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
+        Userinfo users=userservice.findByAccId(accountId);
+        model.addAttribute("users",users);
+        return  getModelName()+ "/index";
     }
     public String getModelName() {
         return "user";
