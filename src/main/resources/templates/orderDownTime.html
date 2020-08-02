@@ -21,48 +21,7 @@
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
         src="../static/hors/js/Kunyi.Init.js"></script>
-<header>
-    <div class="topHidden"></div>
-    <div class="toolBase">
-        <div class="BaseMark">
-            <ul>
-                <li class="first"><a href="SiteMap.html">站点地图</a></li>
-                <li><a href="Complain.html">院长(信访)信箱</a></li>
-                <li><a href="https://61.163.73.190/por/login_psw.csp" target="_blank">内部OA</a></li>
-                <li><a href="OfficeNewsList-71-12.html">人才招聘</a></li>
-                <li><a href="Office-71.html">人事管理</a></li>
-                <li><a href="History.html">网上院史馆</a></li>
-                <li><a href="Message.html">在线留言</a></li>
-                <li><a href="javascript:;" onclick="Kunyi.AddFavorite(window.location,document.title)">加入收藏</a></li>
-            </ul>
-            <div class="language">选择语言</div>
-            <div class="langBtn animated"><i class="flag"></i>中文<i class="downBtn"></i>
-                <a href="javasript:;"><img data-th-src="@{/hors/images/ico_003.png}" src="../static/hors/images/ico_003.png" class="animated" width="13" height="13"/>English</a>
-            </div>
-        </div>
-    </div>
-    <div class="BaseMark logoBase"><a href="Index.html">
-        <img data-th-src="@{/hors/images/logo.jpg}" src="../static/hors/images/logo.jpg" class="load" width="227"
-             height="47"/>
-    </a>
-        <div class="searchBase">
-            <div class="itemBase">
-                <div class="divType" data-state="0">全站内容</div>
-                <ul>
-                    <li data-id="1">全站内容</li>
-                    <li data-id="2">医生查找</li>
-                    <li data-id="3">新闻动态</li>
-                </ul>
-            </div>
-            <form method="get" action="Search.html" onsubmit="return Kunyi.CheckSearchForm()">
-                <input type="hidden" id="Type" name="Type" value="1"/>
-                <input type="text" name="SearchWords" placeholder="请输入您要查找内容的关键字" value="" autocomplete="off"
-                       onfocus="Kunyi.cls(event)" onblur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
-                <input type="submit" value="搜索" class="boxsub animated"/>
-            </form>
-        </div>
-    </div>
-</header>
+
 <form class="layui-form" action="" data-th-action="@{/doctor/order}" data-th-method="post" method="post">
 
     <h2 ><font color="aqua">您预约的医生:</font></h2>
