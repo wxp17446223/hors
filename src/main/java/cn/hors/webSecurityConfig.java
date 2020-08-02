@@ -66,7 +66,7 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic();
         //http.formLogin();//开启表单登录
         http.authorizeRequests()
-                .antMatchers("/") // 不需要登录就可以访问
+                .antMatchers("/","/depart/*") // 不需要登录就可以访问
                 .permitAll()
 //                .antMatchers("/p1").permitAll() //任何人都可以访问p1
 //                .antMatchers("/p2").hasAnyRole("admin") //只有拥有admin角色的人可以访问
@@ -117,4 +117,6 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
                 "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2");
     }
+
+
 }

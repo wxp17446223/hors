@@ -1,0 +1,1 @@
+INSERT INTO news (new_id, title, content, news_date, source) VALUES (1, '新闻', '内容', '2020-08-02', '');

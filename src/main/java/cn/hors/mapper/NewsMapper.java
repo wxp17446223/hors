@@ -27,5 +27,10 @@ public interface NewsMapper {
      */
     void updateCount( @Param("newId")Integer newId, @Param("count") Integer count);
 
-
+    /**
+     * 查询所有公告
+     * @param news
+     * @return
+     */
+    List<News> findNoticeAll(News news);
 }

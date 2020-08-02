@@ -36,10 +36,21 @@
   <select id="findNewsAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from news
-    <where><include refid="BASIC_WHERE"></include></where>
+    <where>
+    <include refid="BASIC_WHERE"></include>
+    and source !='公告'
+    </where>
     order by `count` desc , news_date desc
   </select>
-
+  <select id="findNoticeAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from news
+    <where>
+    <include refid="BASIC_WHERE"></include>
+    and source='公告'
+    </where>
+    order by `count` desc , news_date desc
+  </select>
   <select id="findByNewId" resultMap="BaseResultMap">
    select <include refid="Base_Column_List"></include>
    from news where new_id = #{newId}
