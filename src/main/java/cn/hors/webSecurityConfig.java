@@ -117,4 +117,6 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
                 "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2");
     }
+
+
 }
