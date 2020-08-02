@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
@@ -65,7 +66,7 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic();
         //http.formLogin();//开启表单登录
         http.authorizeRequests()
-                .antMatchers("/") // 不需要登录就可以访问
+                .antMatchers("/","/depart/*") // 不需要登录就可以访问
                 .permitAll()
 //                .antMatchers("/p1").permitAll() //任何人都可以访问p1
 //                .antMatchers("/p2").hasAnyRole("admin") //只有拥有admin角色的人可以访问
@@ -109,5 +110,11 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .headers().frameOptions().disable();
+    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        // 忽略URL
+        web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
+                "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2");
     }
 }

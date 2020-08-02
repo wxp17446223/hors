@@ -66,4 +66,8 @@ public class DepartController {
         model.addAttribute("keshiys", departmentsService.findAllByDepartId(departId));
         return "keshiys";
     }
+    @GetMapping("/jiuzhen")
+    public String jiuzhen(){
+        return "jiuzhen";
+    }
 }

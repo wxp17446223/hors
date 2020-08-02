@@ -1,0 +1,26 @@
+.bookguide { width: 998px; border: 1px solid #e0e0e0; }
+.bookguide_menu ul { padding: 15px; }
+.bookguide_menu ul li { height: 40px; font-size: 14px; text-align: center; line-height: 40px; margin-bottom: 10px; }
+.bookguide_menu ul li a { color: #666 }
+.zhinan_middle { color: #666; font-size: 14px; }
+.zhinan_middle p { text-indent: 2em; line-height: 22px; color: #777 }
+.bookguide .prompt { color: #777; font-size: 14px; line-height: 40px; padding-bottom: 10px; }
+.bookguide .prompt_bottom { padding: 10px 20px; background: #f9f9f9; }
+.bookguide .prompt span { color: green }
+.bookguide .prompt_dl dl { float: left; width: 33.3%; min-height: 350px; }
+.bookguide .prompt_dl dt { padding-right: 20px; }
+.bookguide .prompt_dl dt img { border: 2px solid #e0e0e0; }
+.bookguide .prompt_dl dd { padding-right: 20px; line-height: 30px; }
+.bookguide .prompt_dl .first { color: green; font-size: 16px; line-height: 40px }
+.bookguide .prompt_con { padding: 20px 30px; font-size: 14px; color: #666; }
+.prompt_img { display: inline-block; float: left; padding-right: 20px; }
+.prompt_p { padding-top: 15px; }
+.prompt_p b { color: green; }
+.prompt_img img { height: 50px; display: inline; }
+.bookguide .prompt_con p { text-indent: 2em; margin-top: 10px; background: #f6f6f6; border-left: 3px solid #93bc2f; border-top: 1px dashed #e0e0e0; padding: 5px 10px; }
+.bookguide .prompt_con li { margin-bottom: 20px; padding-bottom: 10px; }
+.action_button { margin: 0px 0 30px 180px; }
+.login_prompt { width: 350px; margin: 30px 0; padding-left: 45px; border-left: 1px solid #e0e0e0; float: right; margin-top: 60px; }
+.login_prompt p { color: #999; margin-left: 20px; margin-bottom: 10px; line-height: 40px; }
+.button_right { margin-top: 15px; }
+.login_title { text-align: center; font-weight: normal; font-size: 24px; color: #333; margin-bottom: 20px; line-height: 30px; }

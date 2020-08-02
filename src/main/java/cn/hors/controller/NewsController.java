@@ -39,7 +39,22 @@ public class NewsController {
         model.addAttribute("departs", departmentsService.findAllByDid(-1));
         return "news";
     }
-
+    /**
+     * 查询所有公告信息
+     * @param model
+     * @param news
+     * @return
+     */
+    @GetMapping("/notice")
+    public String findNoticeAll(Model model, News news,@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "3")int limit){
+        PageHelper.startPage(page,limit);
+        List<News> newsAll = newsService.findNoticeAll(news);
+        PageInfo<News> pageInfo = new PageInfo<>(newsAll);
+        model.addAttribute("news", newsAll);
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("departs", departmentsService.findAllByDid(-1));
+        return "newsNotice";
+    }
     /**
      * 查询单条具体信息
      * @param model
@@ -48,8 +63,12 @@ public class NewsController {
      */
     @GetMapping("/new")
     public String findByNewId(Model model, @RequestParam Integer newId){
-        model.addAttribute("newss", newsService.findByNewId(newId));
-        return "newslist";
+        News news = newsService.findByNewId(newId);
+        model.addAttribute("newss", news);
+        if (!news.getSource().equalsIgnoreCase("公告")) {
+            return "newslist";
+        }
+        return "newsNoticeList";
     }
 
     @GetMapping("/scanCount")
