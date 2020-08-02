@@ -7,10 +7,10 @@ import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @SessionAttributes({"accounts","userAcc"})
@@ -26,9 +26,9 @@ public class HomeController {
      * 主页转跳
      * @return
      */
-    @GetMapping("/")
+    @GetMapping("/a")
     public String home() {
-        return "index";
+        return "indextjh";
     }
 
 
@@ -59,7 +59,7 @@ public class HomeController {
             model.addAttribute("accounts", accounts);
             Userinfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
-            return "/index";
+            return "indextjh";
         } else {
             attributes.addFlashAttribute("message", "用户名或密码错误！");
             return "redirect:/login";
@@ -71,10 +71,10 @@ public class HomeController {
      * @param session
      * @return
      */
-    @PostMapping("/logout")
-    public String logout(HttpSession session) {
-        session.removeAttribute("account");
-        return "redirect:/index";
+    @GetMapping("/logout")
+    public String logout(SessionStatus session) {
+        session.setComplete();
+        return "redirect:/";
     }
 
 

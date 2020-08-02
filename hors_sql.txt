@@ -108,59 +108,52 @@ create table timeline
     comment '医生排班表';
 
 
+ create table p_account
+ (
+     id       int auto_increment comment '管理员id'
+         primary key,
+     account  varchar(25)  null comment'账号',
+     password char(32)     null  comment'密码' ,
+     head     varchar(128) null comment '头像url',
+     constraint p_account_account_uindex
+         unique (account)
+ )
+ comment '管理员表';
 
+ create table p_account_role
+ (
+     account_id int null comment '管理员id' ,
+     role_id    int null comment '角色id'
+ )
+     comment '账号角色映射表';
 
+ -- auto-generated definition
+ create table p_resource
+ (
+     id        int auto_increment
+         primary key  comment '资源id',
+     name      varchar(25)    null comment '资源名称',
+     url       varchar(1024)  null comment '资源路径',
+     pid       int default -1 not null comment '父资源id',
+     authority varchar(256)   not null comment '资源权限',
+     type      int default 0  null comment '1:菜单 0:功能',
+     code      varchar(10)    null comment '资源选项'
+ )
+     comment '资源表';
 
+ create table p_role
+ (
+     id   int auto_increment comment '角色标识符'
+         primary key,
+     name varchar(128) null  comment '角色名称',
+     code varchar(512) null comment '角色编码'
+ )
+     comment '角色信息表';
 
-    create table p_account
-    (
-        id       int auto_increment  '管理员id'
-            primary key,
-        account  varchar(25)  null '账号',
-        password char(32)     null  '密码' ,
-        head     varchar(128) null '头像url',
-        constraint p_account_account_uindex
-            unique (account)
-    );
-    comment '管理员表';
-
-    create table p_account_role
-    (
-        account_id int null '管理员id' ,
-        role_id    int null '角色id'
-    )
-        comment '账号角色映射表';
-
-        -- auto-generated definition
-        create table p_resource
-        (
-            id        int auto_increment
-                primary key  '资源id',
-            name      varchar(25)    null '资源名称',
-            url       varchar(1024)  null '资源路径',
-            pid       int default -1 not null '父资源id',
-            authority varchar(256)   not null '资源权限',
-            type      int default 0  null comment '1:菜单 0:功能',
-            code      varchar(10)    null '资源选项'
-        );
-        comment '资源表';
-
-        create table p_role
-        (
-            id   int auto_increment comment '角色标识符'
-                primary key,
-            name varchar(128) null comment '角色名称',
-            code varchar(512) null comment '角色编码'
-        )
-            comment '角色信息表';
-
-            create table p_role_resource
-            (
-                role_id     int null comment '角色标识符',
-                resource_id int null comment '资源标识符'
-            )
-                comment '角色资源映射表';
-
-
-
+ create table p_role_resource
+ (
+     role_id     int null comment '角色标识符',
+     resource_id int null comment '资源标识符'
+ )
+     comment '角色资源映射表';
 

@@ -33,6 +33,8 @@
             src="../static/hors/js/KunyiHTML5.min.js"></script>
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
             src="../static/hors/js/Kunyilibrary.js"></script>
+    <link rel="stylesheet" data-th-href="@{/hors/css/yanzhenma.css}" href="../static/hors/css/yanzhenma.css"
+          type="text/css"/>
 </head>
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
@@ -212,7 +214,7 @@
         <div class="nav Snav">
 
             <ul>
-                <li class="PMenu"><a href="index.html" class="PAMenu">首页</a></li>
+                <li class="PMenu"><a href="indextjh.html" class="PAMenu">首页</a></li>
                 <li class="PMenu current"><img data-th-src="@{/hors/images/ico_014.png}"
                                                src="../static/hors/images/ico_014.png" class="animated" width="15"
                                                height="8"/><a href="jiuzhen.html" id="Nav_AMenu0" class="PAMenu"
@@ -896,7 +898,7 @@
 </nav>
 
 <section class="BaseMark">
-    <form action="" data-th-action="@{/doctor/orderInfo}" data-th-method="post" method="post">
+    <form action="" data-th-action="@{/doctor/orderInfo}" data-th-method="post" method="post" id="form">
     <div class="baseRight">
         <input type="hidden" name="doctorId" data-th-value="${doctor?.doctorId}">
         <input type="hidden" name="tId" data-th-value="${timeline?.tId}">
@@ -923,10 +925,33 @@
             <h4 style="color: red;font-size:18px;">温馨提示</h4>
             <p style="margin-left: 30px;font-size:18px">预约如有三次没安预约时间到所在科室排队，将进入黑名单，无法再进行挂号预约，请谨慎操作</p>
         </div>
+        <div style="margin-left:30px;">
+            <div>
+                <table border="0" cellspacing="5" cellpadding="5" >
+                    <tr>
+                        <td> <div id="checkCode" class="code"  onclick="createCode(4)" ></div></td>
+                        <td> <span  id="pic" onclick="createCode(4)">看不清换一张</span></td>
+                    </tr>
+                    <tr>
+                        <td>验证码：</td>
+                        <td>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <input type="text" id="inputCode"  required  lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="button" class="layui-btn"  onclick="validateCode()" lay-submit lay-filter="formDemo" value="预约提交"></input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
-    </div>
-    <div class="clear"></div>
-        <button type="submit">预约提交</button>
     </form>
 </section>
 <div class="BottomHidden"></div>
@@ -1066,6 +1091,67 @@
         document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fafd2ae44e23648da4e8a81a7b1349be4' type='text/javascript'%3E%3C/script%3E"));
     </script>
 </div>
+<script>
+
+    //页面加载时，生成随机验证码
+    window.onload=function(){
+        createCode(4);
+    };
+
+    layui.use('form', function(){
+        var form = layui.form;
+    });
+
+    //生成验证码的方法
+    function createCode(length) {
+        var code = "";
+        var codeLength = parseInt(length); //验证码的长度
+        var checkCode = document.getElementById("checkCode");
+        ////所有候选组成验证码的字符，当然也可以用中文的
+        var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
+        //循环组成验证码的字符串
+        for (var i = 0; i < codeLength; i++)
+        {
+            //获取随机验证码下标
+            var charNum = Math.floor(Math.random() * 62);
+            //组合成指定字符验证码
+            code += codeChars[charNum];
+        }
+        if (checkCode)
+        {
+            //为验证码区域添加样式名
+            checkCode.className = "code";
+            //将生成验证码赋值到显示区
+            checkCode.innerHTML = code;
+        }
+    }
+
+    //检查验证码是否正确
+    function validateCode()
+    {
+        //获取显示区生成的验证码
+        var checkCode = document.getElementById("checkCode").innerHTML;
+        //获取输入的验证码
+        var inputCode = document.getElementById("inputCode").value;
+        console.log(checkCode);
+        console.log(inputCode);
+        if (inputCode.length <= 0)
+        {
+            layer.msg("请输入验证码!",{icon:5,title:'温馨提示'});
+        }
+        else if (inputCode.toUpperCase() != checkCode.toUpperCase())
+        {
+            layer.msg("验证码输入有误!",{icon:5,title:'温馨提示'});
+            createCode(4);
+        }
+        else
+        {
+            $("form").submit();
+        }
+    }
+</script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Common.js}"
         src="../static/hors/js/Kunyi.Common.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Secondary.js}"

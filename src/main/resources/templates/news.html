@@ -4,23 +4,23 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>HTML5简约大气网上预约挂号医院网站模板全套下载_在线演示_电脑网站模板_前端模板_js代码</title>
-    <meta name="keywords" content="HTML5,简约大气,网上,预约挂号,医院网站,网站模板,全套下载"/>
-    <meta name="description" content="HTML5简约大气网上预约挂号医院网站模板全套下载。"/>
+    <title>省医快讯 - 新闻动态 - 医院标题</title>
+    <meta name="Keywords" content="医院标题,人民医院,省医,山西人民医院,咨询, 留言, 山西医院, 寻医问药"/>
+    <meta name="Description"
+          content="医院标题位于山西省太原市，建院于1906年，是一家三级甲等综合医院。医院秉承“患者至上，员工为本”的服务理念，弘扬“仁爱、博学、严谨、卓越”的医院精神，坚持“人民医院为人民”的办院宗旨，造就了一支业务精湛、医德高尚、纪律严明、作风过硬的职工队伍，树立了社会满意、患者信赖的良好形象。先后获得全国精神文明建设先进单位、全国文明单位、全国卫生系统先进集体、全国医院文化建设先进单位等多项荣誉称号。"/>
     <meta name="robots" content="All"/>
-    <meta http-equiv="mobile-agent" content="format=html5;url=http://m.hnsrmyy.net/"/>
     <noscript>
         <meta http-equiv="refresh" content="0; url=/noscript.htm"/>
     </noscript>
     <!--[if lt IE 7]>
     <meta http-equiv="refresh" content="0; url=/YouLose.htm"/><![endif]-->
-    <meta name="Author" content="miraclevision technical team,kunyi"/>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" data-th-href="@{/hors/css/normalize.css}" href="../static/hors/css/normalize.css"
           type="text/css"/>
-    <link rel="stylesheet" data-th-href="@{/hors/css/index.css}" href="../static/hors/css/index.css" type="text/css"/>
+    <link rel="stylesheet" data-th-href="@{/hors/css/secondary.css}" href="../static/hors/css/secondary.css"
+          type="text/css"/>
     <!--[if lt IE 9]>
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Respond.min.js}"
             src="../static/hors/js/Kunyi.Respond.min.js"></script><![endif]-->
@@ -54,10 +54,9 @@
             </div>
         </div>
     </div>
-    <div class="BaseMark logoBase"><a href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}"
+    <div class="BaseMark logoBase"><a data-th-href="@{/}" href="Index.html"><img data-th-src="@{/hors/images/logo.jpg}"
                                                              src="../static/hors/images/logo.jpg" class="load"
-                                                             width="227"
-                                                             height="47"/></a>
+                                                             width="227" height="47"/></a>
         <div class="searchBase">
             <div class="itemBase">
                 <div class="divType" data-state="0">全站内容</div>
@@ -78,9 +77,10 @@
 </header>
 <nav>
     <div class="navBase">
-        <div class="quickMenuBase" data-type="1">
-            <div class="quickMenu01">快捷菜单</div>
-            <div class="quickMenu02 animated"></div>
+        <div class="quickMenuBase" data-type="0">
+            <div class="quickMenu03" ><img data-th-src="@{/hors/images/ico_013.png}"
+                                          src="../static/hors/images/ico_013.png" width="16" height="16" /> <em data-th-text="快捷菜单">快捷菜单</em>
+            </div>
             <div class="quickMenus">
                 <ul class="firstUl">
                     <li class="first"><a href="jiuzhen.html" class="firstA"><em>就诊指南</em><i
@@ -110,7 +110,7 @@
                             <div class="clear"></div>
                         </div>
                     </li>
-                    <li class="first"><a href="chuzhen.html" class="firstA"><em>出诊安排</em><i
+                    <li class="first"><a href="DutyTime.html" class="firstA"><em>出诊安排</em><i
                             class="style03"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
@@ -164,7 +164,8 @@
                 </ul>
             </div>
         </div>
-        <div class="nav Inav">
+        <div class="nav Snav">
+
             <ul>
                 <li class="PMenu"><a data-th-href="@{/}" href="indextjh.html" class="PAMenu">首页</a></li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
@@ -367,7 +368,7 @@
                                     <dl>
                                         <dt class="title01">省医快讯</dt>
                                         <dd class="url" data-th-each="sigle:${news}" data-th-object="${sigle}"><span data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
-                                                                                                                                                                                                         data-th-title="*{title}">互联智慧疼痛医联体全面启动</a>
+                                                                                  data-th-title="*{title}">互联智慧疼痛医联体全面启动</a>
                                         </dd>
                                     </dl>
                                 </div>
@@ -422,370 +423,88 @@
     </div>
 </nav>
 
-<section class="bannerBase BaseMark">
-    <div class="Banners">
-        <ul class="AnimUl">
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-8464.html" title="院党委举行学习党的十八届六中全会精神和 省十次党代会精神专题辅导"><img
-                    data-th-src="@{/hors/uploadfiles/thumb/201607271939462.JPG}"
-                    src="../static/hors/uploadfiles/thumb/201607271939462.JPG" alt="院党委举行学习党的十八届六中全会精神和 省十次党代会精神专题辅导"/></a>
-            </li>
-
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-8476.html" title="2016山西省眼科医师大会开启眼科发展新篇章"><img
-                    data-th-src="@{/hors/uploadfiles/thumb/201607271939462.jpg}"
-                    src="../static/hors/uploadfiles/thumb/201607271939462.jpg" alt="2016山西省眼科医师大会开启眼科发展新篇章"/></a></li>
-
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-8470.html" title="立足中原 开放合作
-“直通梅奥国际诊疗中心中原中心”启动"><img data-th-src="@{/hors/uploadfiles/thumb/201607271939462.JPG}"
-                         src="../static/hors/uploadfiles/thumb/201607271939462.JPG" alt="立足中原 开放合作
-“直通梅奥国际诊疗中心中原中心”启动"/></a></li>
-
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-8468.html" title="山西省医院自媒体联盟成立了！"><img
-                    data-th-src="@{/hors/uploadfiles/thumb/201607271939462.jpg}"
-                    src="../static/hors/uploadfiles/thumb/201607271939462.jpg" alt="山西省医院自媒体联盟成立了！"/></a></li>
-
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-8472.html" title="“爱心传递 防治出生缺陷”公益行活动走进山西"><img
-                    data-th-src="@{/hors/uploadfiles/thumb/201607271939462.JPG}"
-                    src="../static/hors/uploadfiles/thumb/201607271939462.JPG" alt="“爱心传递 防治出生缺陷”公益行活动走进山西"/></a></li>
-
-
-            <li><a href="http://www.hnsrmyy.net/NewsDetail-7944.html"
-                   title="我院空中救护成功转运首位重症患者—首个“中国紧急救援山西航空救援基地”落户省医"><img data-th-src="@{}"
-                                                                        src="../static/hors/uploadfiles/thumb/2016072719395872.JPG"
-                                                                        alt="我院空中救护成功转运首位重症患者—首个“中国紧急救援山西航空救援基地”落户省医"/></a>
-            </li>
-
-            <li><a href="javascript:void(0)" title=""><img data-th-src="@{/hors/uploadfiles/thumb/2016090608460311.jpg}"
-                                                           src="../static/hors/uploadfiles/thumb/2016090608460311.jpg"
-                                                           alt=""/></a>
-            </li>
-        </ul>
-        <div class="tools">
-            <a href="javascript:void(0)" class="prev"><img alt="上一幅" data-th-src="@{/hors/images/btn_prev01.png}"
-                                                           src="../static/hors/images/btn_prev01.png" width="34"
-                                                           height="34"/></a>
-            <a href="javascript:void(0)" class="next"><img alt="下一幅" data-th-src="@{/hors/images/btn_next01.png}"
-                                                           src="../static/hors/images/btn_next01.png" width="34"
-                                                           height="34"/></a>
-            <div class="text" id="BannerInfo"></div>
-            <ul class="ulMark">
-                <li class="animated"></li>
-                <li class="animated"></li>
-                <li class="animated"></li>
-                <li class="animated"></li>
-                <li class="animated"></li>
-                <li class="animated"></li>
+<section class="BaseMark">
+    <div class="bread">您所在的位置<span><a data-th-href="@{/}" href="indextjh.html">首页</a>><a data-th-href="@{/news/all}" href="news.html">新闻动态</a>  省医快讯</span></div>
+    <div class="baseLeft">
+        <div class="title title05_19">新闻动态</div>
+        <div class="newsMenu">
+            <ul>
+                <li class="first active"><a data-th-href="@{/news/all}" href="news.html" title="省医快讯"><em>省医快讯</em></a></li>
+                <li><a href="news.html" title="最新公告"><em>最新公告</em></a></li>
             </ul>
+        </div>
+        <div class="tools"><a href="http://www.o2omed.com.cn/" target="_blank"><img
+                data-th-src="@{/hors/images/ico_001.gif}" src="../static/hors/images/ico_001.gif" width="52"
+                height="52"><em>互联智慧分诊平台</em></a><a style="margin-right:0;" href="96195.html"><img
+                data-th-src="@{/hors/images/ico_002.gif}"
+                src="../static/hors/images/ico_002.gif"
+                width="52"
+                height="52"><em><span>96195</span>
+            综合平台</em></a><a href="Hospital.html"><img data-th-src="@{/hors/images/ico_003.gif}"
+                                                      src="../static/hors/images/ico_003.gif"
+                                                      width="52" height="52"><em>名医馆</em></a><a style="margin-right:0;"
+                                                                                                href="DrugsInfo.html"
+                                                                                                class="last"><img
+                data-th-src="@{/hors/images/ico_004.gif}" src="../static/hors/images/ico_004.gif" width="52"
+                height="52"><em>信息查询</em></a>
             <div class="clear"></div>
-            <div id="BannerSwitch" class="animated" data-type="0" data-right="0">
-                <img data-th-src="@{/hors/images/ico_027.png}" src="../static/hors/images/ico_027.png" width="5"
-                     height="7" class="animated"><span>隐藏</span>
-            </div>
         </div>
     </div>
-</section>
-
-<section class="NewsBase BaseMark">
-    <div class="tools"><a href="http://www.o2omed.com.cn/" target="_blank"><img
-            data-th-src="@{/hors/images/ico_001.gif}" src="../static/hors/images/ico_001.gif" class="load"
-            width="52"
-            height="52"/><em>互联智慧分诊平台</em></a><a
-            href="96195.html"><img data-th-src="@{/hors/images/ico_002.gif}" src="../static/hors/images/ico_002.gif"
-                                   class="load" width="52" height="52"/><em><span>96195</span>
-        综合平台</em></a>
-        <a href="Hospital.html"><img alt="" data-th-src="@{/hors/images/ico_003.gif}"
-                                     src="../static/hors/images/ico_003.gif" class="load" width="52"
-                                     height="52"/><em>名医馆</em></a><a href="DrugsInfo.html" class="last"><img
-                data-th-src="@{/hors/images/ico_004.gif}" src="../static/hors/images/ico_004.gif" class="load"
-                width="52" height="52"/><em>信息查询</em></a>
-    </div>
-
-    <div class="noticeBase">
-        <div class="notice notice01"><a href="news.html" class="more">更多</a>
-            <div class="title"><em>最新公告</em><span>Latest Announcement</span></div>
-            <div class="first"><a href="NewsDetail-8528.html" id="ANoticeFirst" target="_blank"
-                                  title="关于征集阜外华中心血管病医院院徽的公告"><img data-th-src="@{/hors/pic/pic_005.jpg}"
-                                                                   src="../static/hors/pic/pic_005.jpg" class="load"
-                                                                   width="126"
-                                                                   height="76"/></a>
-                <div><span>2017-01-09</span><a href='NewsDetail-8528.html' title='关于征集阜外华中心血管病医院院徽的公告' target='_blank'>关于征集阜外华中心血管病医院院徽的公告</a>
-                </div>
-                <div class="clear"></div>
-            </div>
+    <div class="baseRight">
+        <div class="title01">省医快讯</div>
+        <div class="title02">
+            <a  href="news.html" id="DateAscOrDesc" class="current">发布时间排序</a>
+            <a  href="news.html" id="HitAscOrDesc">阅览次数排序</a>
+            <span class="count">共发布文章<em id="EMCount" data-th-text="${pageInfo.total}">1633</em>篇</span>
+        </div>
+        <div class="clear"></div>
+        <div class="newList">
             <ul>
-                <li><span>2017-01-06</span> <a target="_blank" href="NewsDetail-8513.html"
-                                               title="2017年1月14日（周六）、1月15日（周日）出诊医师排班表">2017年1月14日（周六）、1月15日（周日）出诊医师排班表</a>
+                <li data-th-each="sigle:${news}" data-th-object="${sigle}">
+                    <div class="headLines"><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
+                                              data-th-title="*{title}"
+                                              target="_blank" class="title" data-th-text="*{title}">互联智慧疼痛医联体全面启动</a>
+                        <p data-th-text="*{content}">
+                            12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨疼痛诊疗规范化培训班在巩义市人民医院举行。</p>
+                    </div>
+                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">
+                        2016-12-29 09:55:00</h4>
+                        <p>阅览次数<span data-th-text="*{count}">280</span></p></div>
+                    <div class="listBtn"><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
+                                            data-th-title="*{title}" target="_blank">进入</a></div>
+                    <div class="clear"></div>
                 </li>
-                <li><span>2017-01-05</span> <a target="_blank" href="NewsDetail-8512.html" title="医院标题2017年人才招聘面试通知">医院标题2017年人才招聘面试通知</a>
-                </li>
-                <li><span>2017-01-04</span> <a target="_blank" href="NewsDetail-8511.html"
-                                               title="关于我院2017年人才招聘面试工作 提前举行的通知">关于我院2017年人才招聘面试工作 提前举行的通知</a></li>
+
             </ul>
         </div>
+        <div class="clear"></div>
 
-
-        <div class="notice notice02">
-            <a href="news.html" class="more">更多</a>
-            <div class="title"><em>省医快讯</em><span>Hospital News</span></div>
-            <div class="first"><a href="NewsDetail-8479.html" id="ANewsFirst" target="_blank" title="互联智慧疼痛医联体全面启动"><img
-                    data-th-src="@{/hors/pic/pic_005.jpg}" src="../static/hors/pic/pic_005.jpg" class="load" width="126"
-                    height="76"/></a>
-                <div><span>2016-12-29</span><a href='NewsDetail-8479.html' title='互联智慧疼痛医联体全面启动' target='_blank'>互联智慧疼痛医联体全面启动</a>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <ul>
-                <li><span>2016-12-29</span> <a target="_blank" href="NewsDetail-8478.html" title="豫医联盟医院标题分会成立">豫医联盟医院标题分会成立</a>
-                </li>
-                <li><span>2016-12-29</span> <a target="_blank" href="NewsDetail-8477.html"
-                                               title="2016年肺癌多学科综合治疗论坛 暨山西省肺癌规范化治疗学习班顺利召开">2016年肺癌多学科综合治疗论坛
-                    暨山西省肺癌规范化治疗学习班顺利召开</a></li>
-                <li><span>2016-12-29</span> <a target="_blank" href="NewsDetail-8476.html"
-                                               title="2016山西省眼科医师大会开启眼科发展新篇章">2016山西省眼科医师大会开启眼科发展新篇章</a></li>
-            </ul>
+        <!--         分页 -->
+        <div id="anpNews">
+            <tr>
+                <td data-th-if="${pageInfo.hasPreviousPage}">
+                    <a data-th-href="@{?page=1}" href="news.html" style="margin-right:5px;" data-th-text="首页">首页</a>
+                </td>
+                <td data-th-if="${pageInfo.hasPreviousPage}">
+                    <a data-th-href="@{'?page='+${pageInfo.prePage}}" href="news.html" style="margin-right:5px;"
+                       data-th-text="上一页">上一页</a>
+                </td>
+                <td data-th-each="nav:${pageInfo.navigatepageNums}">
+                    <a data-th-href="@{'?page='+${nav}}" href="news.html" style="margin-right:5px;"
+                       data-th-text="${nav}" data-th-if="${nav != pageInfo.pageNum}"><span style="font-weight: bold" data-th-if="${nav == pageInfo.pageNum}" data-th-text="${nav}"></span></a>
+                </td>
+                <td data-th-if="${pageInfo.hasNextPage}">
+                    <a data-th-href="@{'?page='+${pageInfo.nextPage}}" href="news.html" style="margin-right:5px;"
+                       data-th-text="下一页">下一页</a>
+                </td>
+                <td data-th-if="${pageInfo.hasNextPage}">
+                    <a data-th-href="@{'?page='+${pageInfo.pages}}" href="news.html" style="margin-right:5px;"
+                       data-th-text="末页">末页</a>
+                </td>
+            </tr>
         </div>
     </div>
     <div class="clear"></div>
-</section>
-
-<section class="doctorsBase BaseMark">
-    <div class="toolsBase">
-        <div class="title"><em>专家介绍</em> <span>Expert Introduction</span></div>
-        <div class="tools"><a href="javascript:;" class="ASwitch" id="DSearchSwitch">快速查找</a>
-            <form method="get" class="search" action="Search.html" onSubmit="return Kunyi.CheckSearchFrom()"><input
-                    type="hidden" name="Type" value="2"/><input type="text" name="SearchWords" placeholder="请输入医生名字"
-                                                                class="animated" value="" autocomplete="off"
-                                                                maxlength="28"/><input class="btn" type="submit"
-                                                                                       value=""/></form>
-            <a href="keshi.html" class="Amore">更多 >></a>
-            <a href="javascript:;" class="Aprev"></a>
-            <a href="javascript:;" class="Anext"></a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="contents">
-        <ul data-num="0">
-            <li><a href="ys.html" title="医生姓名" target="_blank" class="img">
-                <img alt="姓名" title="姓名" data-th-src="@{/hors/pic/201603221527067.png}"
-                     src="../static/hors/pic/201603221527067.png" width="120" height="162"/></a>
-                <a href="ys.html" title="医生姓名" target="_blank" class="name">姓名</a>
-                <a href="keshi.html" title="所在医院" target="_blank" class="office">所在医院医院</a>
-                <a href="ys.html" title="姓名" target="_blank" class="post">主任医师 研究生导师</a>
-                <a href="ys.html" title="姓名" target="_blank" class="btn more">详细</a>
-                <a href="#" target="_blank" class="btn date">预约</a></li>
-            <div class="hackR"></div>
-            <div class="hackL"></div>
-        </ul>
-    </div>
-    <div class="DFastSearch">
-        <div class="DFTitle"><label>按医生姓名首字母查找</label>
-            <button class="animated">关闭查找</button>
-        </div>
-        <div class="DFContent">
-            <div class="DListBase"></div>
-            <div class="IndexWords">
-                <ul>
-                    <li data-index="0">A</li>
-                    <li data-index="1" class="other">B</li>
-                    <li data-index="2">C</li>
-                    <li data-index="3" class="other">D</li>
-                    <li data-index="4">E</li>
-                    <li data-index="5" class="other">F</li>
-                    <li data-index="6">G</li>
-                    <li data-index="7" class="other">H</li>
-                    <li data-index="8">I</li>
-                    <li data-index="9" class="other">J</li>
-                    <li data-index="10">K</li>
-                    <li data-index="11" class="other">L</li>
-                    <li data-index="12">M</li>
-                </ul>
-                <ul>
-                    <li data-index="13" class="other">N</li>
-                    <li data-index="14">O</li>
-                    <li class="other" data-index="15">P</li>
-                    <li data-index="16">Q</li>
-                    <li data-index="17" class="other">R</li>
-                    <li data-index="18">S</li>
-                    <li data-index="19" class="other">T</li>
-                    <li data-index="20">U</li>
-                    <li data-index="21" class="other">V</li>
-                    <li data-index="22">W</li>
-                    <li data-index="23" class="other">X</li>
-                    <li data-index="24">Y</li>
-                    <li data-index="25" class="other">Z</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="officesBase BaseMark">
-    <div class="toolsBase">
-        <div class="title"><em>重点专科</em> <span>Key Specialty</span></div>
-        <div class="tools"><a href="javascript:;" class="ASwitch" id="OSearchSwitch">快速查找科室</a>
-            <a href="keshi.html" class="Amore">更多 >></a>
-            <a href="javascript:;" class="Aprev"></a>
-            <a href="javascript:;" class="Anext"></a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="contents">
-        <ul data-num="0">
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="呼吸内科" data-th-src="@{/hors/pic/pic_007.png}"
-                                               src="../static/hors/pic/pic_007.png" width="80" height="80"/></div>
-                <a href="keshimx.html" title="呼吸内科" class="office">呼吸内科</a>
-                <p>我科始建于上世纪70年代初，目前为卫生部国家重点专科建设项目单位，山西省重点……</p>
-                <a href="keshimx.html" title="呼吸内科" class="btn more">查看详细</a>
-                <a href="keshiys.html" title="呼吸内科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="神经内科" data-th-src="@{/hors/pic/pic_009.png}"
-                                               src="../static/hors/pic/pic_009.png" width="80" height="80"/></div>
-                <a href="Office-12.html" title="神经内科" class="office">神经内科</a>
-                <p>医院标题神经内科始建于1954年，经过半个多世纪的发展，目前已发展为全……</p>
-                <a href="Office-12.html" title="神经内科" class="btn more">查看详细</a>
-                <a href="ExpertInfo-12.html" title="神经内科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="内分泌科" data-th-src="@{/hors/pic/pic_008.png}"
-                                               src="../static/hors/pic/pic_008.png" width="80" height="80"/></div>
-                <a href="Office-4.html" title="内分泌科" class="office">内分泌科</a>
-                <p>医院标题内分泌代谢科，是国家重点专科、山西省重点专科、山西省糖尿病防治……</p>
-                <a href="Office-4.html" title="内分泌科" class="btn more">查看详细</a>
-                <a href="ExpertInfo-4.html" title="内分泌科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="神经内科康馨病房" data-th-src="@{/hors/pic/pic_012.png}"
-                                               src="../static/hors/pic/pic_012.png" width="80" height="80"/></div>
-                <a href="Office-57.html" title="神经内科康馨病房" class="office">神经内科康馨病房</a>
-                <p>医院标题神经内科康馨病房为国家临床重点专科神经内科干部保健病房，成立于……</p>
-                <a href="Office-57.html" title="神经内科康馨病房" class="btn more">查看详细</a>
-                <a href="ExpertInfo-57.html" title="神经内科康馨病房医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="心内科" data-th-src="@{/hors/pic/pic_010.png}"
-                                               src="../static/hors/pic/pic_010.png" width="80" height="80"/></div>
-                <a href="Office-8.html" title="心内科" class="office">心内科</a>
-                <p>医院标题心血管内科是国家级临床重点专科、山西临床重点专科、山西省心血管……</p>
-                <a href="Office-8.html" title="心内科" class="btn more">查看详细</a>
-                <a href="ExpertInfo-8.html" title="心内科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="肾病风湿免疫科" data-th-src="@{/hors/pic/pic_013.png}"
-                                               src="../static/hors/pic/pic_013.png" width="80" height="80"/></div>
-                <a href="Office-6.html" title="肾病风湿免疫科" class="office">肾病风湿免疫科</a>
-                <p>医院标题肾病风湿免疫科成立于1985年，由肾病专业及风湿病专业组成，是……</p>
-                <a href="Office-6.html" title="肾病风湿免疫科" class="btn more">查看详细</a>
-                <a href="ExpertInfo-6.html" title="肾病风湿免疫科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="呼吸内科康馨病房" data-th-src="@{/hors/pic/pic_012.png}"
-                                               src="../static/hors/pic/pic_012.png" width="80" height="80"/></div>
-                <a href="Office-101.html" title="呼吸内科康馨病房" class="office">呼吸内科康馨病房</a>
-                <p>医院标题呼吸与危重症医学科康馨病房为国家临床重点专科呼吸与危重症医学科……</p>
-                <a href="Office-101.html" title="呼吸内科康馨病房" class="btn more">查看详细</a>
-                <a href="ExpertInfo-101.html" title="呼吸内科康馨病房医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="心外科" data-th-src="@{/hors/pic/pic_010.png}"
-                                               src="../static/hors/pic/pic_010.png" width="80" height="80"/></div>
-                <a href="Office-33.html" title="心外科" class="office">心外科</a>
-                <p>医院标题、山西省心血管病医院心血管外科是国家临床重点专科之一，是省内综……</p>
-                <a href="Office-33.html" title="心外科" class="btn more">查看详细</a>
-                <a href="ExpertInfo-33.html" title="心外科医生" class="btn doctor">科室专家</a></li>
-
-            <li><i class="ico01"></i>
-                <div class="img animated"><img alt="山西省立眼科医院" data-th-src="@{/hors/pic/pic_011.png}"
-                                               src="../static/hors/pic/pic_011.png" width="80" height="80"/></div>
-                <a href="Office-30.html" title="山西省立眼科医院" class="office">山西省立眼科医院</a>
-                <p>山西省眼科研究所于1962年经山西省人民政府批准正式成立，是国内最早集眼科临……</p>
-                <a href="Office-30.html" title="山西省立眼科医院" class="btn more">查看详细</a>
-                <a href="ExpertInfo-30.html" title="山西省立眼科医院医生" class="btn doctor">科室专家</a></li>
-
-        </ul>
-        <div class="hackR"></div>
-        <div class="hackL"></div>
-    </div>
-    <div class="hiddenLineR"></div>
-    <div class="hiddenLineL"></div>
-    <div class="OFastSearch">
-        <div class="OFTitle"><label>快速查找科室</label>
-            <button class="animated">返回重点科室</button>
-        </div>
-        <div class="OFContent">
-            <div class="OListBase"></div>
-        </div>
-    </div>
-</section>
-
-<section class="othersBase BaseMark">
-    <div class="left">
-        <div class="img">
-            <ul class="Anim">
-                <li><img data-th-src="@{/hors/pic/pic_011.jpg}" src="../static/hors/pic/pic_011.jpg" width="290"
-                         height="185"/>
-                    <div>巩义市施救1</div>
-                </li>
-                <li><img data-th-src="@{/hors/pic/pic_011b.jpg}" src="../static/hors/pic/pic_011b.jpg" width="290"
-                         height="185"/>
-                    <div>巩义市施救2</div>
-                </li>
-                <li><img data-th-src="@{/hors/pic/pic_011.jpg}" src="../static/hors/pic/pic_011.jpg" width="290"
-                         height="185"/>
-                    <div>巩义市施救3</div>
-                </li>
-            </ul>
-            <ul class="index">
-                <li class="animated"></li>
-                <li class="animated"></li>
-                <li class="animated"></li>
-            </ul>
-        </div>
-        <div class="content">
-            <h3>空中救援</h3>
-            <p>首个 “中国紧急救援山西航空救援基地” 落户医院标题 ，最快30分钟内施救。</p>
-            <label>快速施救</label>
-            <label>空中转院</label>
-            <label>抢险救灾</label>
-            <a href="NewsList-116.html" title="空中救援" target="_blank">MORE</a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="right">
-        <a href="NewsList-10.html" title="新业务新技术">
-            <img data-th-src="@{/hors/images/ico_039a.png}" src="../static/hors/images/ico_039a.png" width="32"
-                 height="32"/>
-            <img data-th-src="@{/hors/images/ico_039b.png}" src="../static/hors/images/ico_039b.png" width="32"
-                 height="32" class="second animated"/>
-            <em class="animated">新业务新技术</em>
-            <span class="animated">了解我院最新科研技术发布与介</span>
-            <b class="animated">MORE</b>
-        </a>
-        <a href="History.html">
-            <img data-th-src="@{/hors/images/ico_041a.png}" src="../static/hors/images/ico_041a.png" width="32"
-                 height="32"/>
-            <img data-th-src="@{/hors/images/ico_041b.png}" src="../static/hors/images/ico_041b.png" width="32"
-                 height="32" class="second animated"/>
-            <em class="animated">院史馆</em>
-            <span class="animated">励精图治，厚德济生，省医百年展陈</span>
-            <b class="animated">MORE</b>
-        </a><a href="NewsList-75.html" title="媒体看省医"><img data-th-src="@{/hors/images/ico_042a.png}"
-                                                          src="../static/hors/images/ico_042a.png" width="32"
-                                                          height="32"/>
-        <img data-th-src="@{/hors/images/ico_042b.png}" src="../static/hors/images/ico_042b.png" width="32" height="32"
-             class="second animated"/>
-        <em class="animated">媒体看省医</em>
-        <span class="animated">我院与社会媒体合作，服务于患者</span>
-        <b class="animated">MORE</b>
-    </a><a href="news.html" title="服务动态"><img data-th-src="@{/hors/images/ico_043a.png}"
-                                              src="../static/hors/images/ico_043a.png" width="32" height="32"/>
-        <img data-th-src="@{/hors/images/ico_043b.png}" src="../static/hors/images/ico_043b.png" width="32" height="32"
-             class="second animated"/>
-        <em class="animated">服务动态</em>
-        <span class="animated">了解我院服务宗旨的最新动态介绍</span>
-        <b class="animated">MORE</b>
-    </a>
-    </div>
 </section>
 <div class="BottomHidden"></div>
 <div id="QRBase">
@@ -843,31 +562,28 @@
         <div class="BaseMark">
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_006.jpg}" src="../static/hors/images/ico_006.jpg" class="load"
-                         width="36" height="34"/><em>门诊服务</em><span>outpatient services</span>
-                </dt>
+                         width="36" height="34"/><em>门诊服务</em><span>outpatient services</span></dt>
                 <dd><a href="NewsDetail-449.html" title="预约流程" target="_blank">预约流程</a></dd>
                 <dd><a href="NewsDetail-448.html" title="门诊须知" target="_blank">门诊须知</a></dd>
                 <dd><a href="Article-57.html" title="院内导航" target="_blank">院内导航</a></dd>
             </dl>
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_008.jpg}" src="../static/hors/images/ico_008.jpg" class="load"
-                         width="36" height="34"/><em>住院服务</em><span>hospitalized services</span>
-                </dt>
+                         width="36" height="34"/><em>住院服务</em><span>hospitalized services</span></dt>
                 <dd><a href="Article-56.html" title="住院须知" target="_blank">住院须知</a></dd>
                 <dd><a href="NewsDetail-461.html" title="检查须知" target="_blank">检查须知</a></dd>
                 <dd><a href="Article-56.html" title="住院清单" target="_blank">住院清单</a></dd>
             </dl>
             <dl>
                 <dt><img data-th-src="@{/hors/images/ico_009.jpg}" src="../static/hors/images/ico_009.jpg" class="load"
-                         width="36" height="34"/><em>体检服务</em><span>examination services</span>
-                </dt>
+                         width="36" height="34"/><em>体检服务</em><span>examination services</span></dt>
                 <dd><a href="NewsDetail-461.html" title="体检须知" target="_blank">体检须知</a></dd>
                 <dd><a href="NewsDetail-7684.html" title="体检套餐查询" target="_blank">体检套餐查询</a></dd>
                 <dd><a href="CheckupsInfo.html" title="体检报告查询" target="_blank">体检报告查询</a></dd>
             </dl>
             <div class="QRBtn"><img data-th-src="@{/hors/images/tempQR.jpg}" src="../static/hors/images/tempQR.jpg"
-                                    class="load" width="85" height="85"/> <span>扫描关注官方微信号</span>
-                <a href="javascript:void(0)" id="BtnQRMore">更多二维码</a></div>
+                                    class="load" width="85" height="85"/> <span>扫描关注官方微信号</span> <a
+                    href="javascript:void(0)" id="BtnQRMore">更多二维码</a></div>
 
             <div class="newsPaper">
                 <div class="npTitle"><img data-th-src="@{/hors/images/ico_010.jpg}"
@@ -896,7 +612,7 @@
                                                                                        class="tencent" title="腾讯微博">腾讯官方微博</a>
         <div class="clear"></div>
     </div>
-
+    <div class="urlHidden"></div>
     <div class="websiteInfo">
         <div class="info">主办单位：医院标题 &nbsp; &nbsp;综合服务电话：120&nbsp;&nbsp; &nbsp;急救中心电话：120 &nbsp; 传真：120 &nbsp; 地 址：地址地址地址
             &nbsp;<br/> 版权所有：医院标题
@@ -911,7 +627,7 @@
         <div class="clear"></div>
         <p> &copy;2015-
             <script language="javascript" type="text/javascript">document.write(new Date().getFullYear());</script>
-            . All Rights Reserved. <a href="http://www.kaicz.com" target="_blank">备案号0000001 </a></a></p>
+            . All Rights Reserved. <a href="http://www.kaicz.com" target="_blank">备案号0000001 </a></p>
         <select id="ddlLinks">
             <option value="0"><span>友情链接</span> HYPERLINK</option>
             <option value="http://www.chinapop.gov.cn/">中华人民共和国卫生和计划生育委员会</option>
@@ -927,7 +643,9 @@
 </div>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Common.js}"
         src="../static/hors/js/Kunyi.Common.js"></script>
-<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Index.js}"
-        src="../static/hors/js/Kunyi.Index.js"></script>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Secondary.js}"
+        src="../static/hors/js/Kunyi.Secondary.js"></script>
+<script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.News.js}"
+        src="../static/hors/js/Kunyi.News.js"></script>
 </body>
 </html>
