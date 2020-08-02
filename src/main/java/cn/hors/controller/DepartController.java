@@ -66,4 +66,9 @@ public class DepartController {
         model.addAttribute("keshiys", departmentsService.findAllByDepartId(departId));
         return "keshiys";
     }
+
+    @GetMapping("/luxian")
+    public String luxian(){
+        return "Article-57";
+    }
 }
