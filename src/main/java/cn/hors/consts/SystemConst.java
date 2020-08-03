@@ -9,4 +9,9 @@ public interface SystemConst {
      * 用户拥有的菜单
      */
     String MENUS = "MENUS";
+
+    /**
+     * 父科室信息
+     */
+    String PARENT_DEPARTMENTS="PARENT_DEPARTMENTS";
 }

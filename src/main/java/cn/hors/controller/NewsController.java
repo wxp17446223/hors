@@ -39,6 +39,8 @@ public class NewsController {
         model.addAttribute("departs", departmentsService.findAllByDid(-1));
         return "news";
     }
+
+
     /**
      * 查询所有公告信息
      * @param model
@@ -65,16 +67,23 @@ public class NewsController {
     public String findByNewId(Model model, @RequestParam Integer newId){
         News news = newsService.findByNewId(newId);
         model.addAttribute("newss", news);
-        if (news.getSource().equals("公告")) {
-            return "newsNoticeList";
-        }
         return "newslist";
     }
 
+    /**
+     * 计算每次点击进去的浏览数量
+     * @param model
+     * @param newId
+     * @return
+     */
     @GetMapping("/scanCount")
     public String scanCounter(Model model,@RequestParam Integer newId) {
         Integer counter = newsService.scanCounter(newId);
-        model.addAttribute("news", newsService.findByNewId(newId));
+        News news = newsService.findByNewId(newId);
+        model.addAttribute("news", news);
+        if (news.getSource().equalsIgnoreCase("公告")){
+            return "newsNoticeList";
+        }
         return "newslist";
     }
 
