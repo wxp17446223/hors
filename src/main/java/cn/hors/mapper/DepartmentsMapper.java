@@ -6,6 +6,7 @@ import cn.hors.bean.Doctor;
 import java.util.List;
 
 public interface DepartmentsMapper {
+
     /**
      * 通过主键查询
      * @param departId 主键：科室ID

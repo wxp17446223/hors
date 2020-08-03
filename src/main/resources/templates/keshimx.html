@@ -42,14 +42,8 @@
     <div class="introLeft">
         <div class="lefttitle">科室栏目<span>Column sections</span></div>
         <ul>
-            <li><a href="OfficeArticle-11.html">科室简介</a></li>
-            <li id="LIExpertInfo1"><a href="keshiys.html">专家介绍</a></li>
-
-            <li><a href="OfficeNewsList-11-1.html" title="工作动态">工作动态</a></li>
-
-            <li><a href="OfficeNewsList-11-4.html" title="医疗设备">医疗设备</a></li>
-
-            <li><a href="OfficeNewsList-11-2.html" title="健康教育">健康教育</a></li>
+            <li><a data-th-href="@{/depart/keshimx(departId=${keshi.departId})}" href="keshimx.html">科室简介</a></li>
+            <li id="LIExpertInfo1"><a data-th-href="@{/depart/keshiys(departId=${keshi.departId})}" href="keshiys.html">专家介绍</a></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -66,11 +60,11 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="rightbtn"><a href="javascript:;" id="AOnDuty" class="green">出诊安排</a><a class="blue"
-                                                                                           href="keshi.html">返回科室导航</a>
+        <div class="rightbtn"><a href="javascript:;" id="AOnDuty" class="green">出诊安排</a>
+            <a class="blue" data-th-href="@{/depart/keshi/-1}" href="keshi.html">返回科室导航</a>
         </div>
         <div class="righttel"><h2 id="H2Tel"></h2>
-            <h3>本科室电话 Telephone Number</h3></div>
+            <h3 data-th-text="'本科室电话:'+${keshi.phone}">本科室电话:0738-9999999</h3></div>
     </div>
     <div class="clear"></div>
 </section>
@@ -79,13 +73,8 @@
     <div class="introLeft">
         <div class="lefttitle">科室栏目<span>Column sections</span></div>
         <ul>
-            <li><a href="OfficeArticle-11.html">科室简介</a></li>
-            <li id="LIExpertInfo2"><a href="keshiys.html">专家介绍</a></li>
-            <li><a href='OfficeNewsList-11-1.html' title='工作动态'>工作动态</a></li>
-            <li><a href='OfficeNewsList-11-4.html' title='医疗设备'>医疗设备</a></li>
-        </ul>
-        <ul class='margRt'>
-            <li><a href='OfficeNewsList-11-2.html' title='健康教育'>健康教育</a></li>
+            <li><a data-th-href="@{/depart/keshimx(departId=*{departId})}" href="keshimx.html">科室简介</a></li>
+            <li id="LIExpertInfo2"><a data-th-href="@{/depart/keshiys(departId=*{departId})}" href="keshiys.html">专家介绍</a></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -95,12 +84,8 @@
             <h3>科室简介</h3><h4>INTRODUCTION</h4></div>
         <div class="right">
             <h1 id="H1Type">国家临床重点专科</h1>
-            <p id="PDescription">
+            <p id="PDescription" data-th-text="${keshi.introduce}">
                 我科始建于上世纪70年代初，目前为卫生部国家重点专科建设项目单位，山西省重点学科、“山西省呼吸内科医疗质量控制中心”、“山西省呼吸疾病诊疗中心”、“山西省睡眠呼吸障碍诊疗中心”、山西省睡眠呼吸疾病网路中心、“卫生部内镜诊疗技术培训基地”依托单位。成为全省呼吸与危重症医学科的龙头科室。目前开放床位218张，RICU床位31张。拥有独立的山西省睡眠呼吸障碍诊疗中心、呼吸内镜中心，是山西省睡眠技师、无创...</p>
-            <div class="rightbottom">
-                <a href="OfficeArticle-11.html" class="more">MORE</a>
-
-            </div>
         </div>
     </div>
     <div class="clear"></div>
@@ -122,156 +107,13 @@
                                                    src="../static/hors/pic/2013102215395834.jpg" alt="医生" title="医生"
                                                    width="120" height="162"/></a>
                 <a href="ys.html" class="name" data-th-text="*{name}">医生</a>
-                <a href="ys.html" class="office" data-th-text="*{department.departName}">呼吸内科</a>
-                <a href="ys.html" class="post" data-th-text="*{position}">主任医师，科主任</a>
+                <a data-th-href="@{/depart/keshimx}" href="ys.html" class="office" data-th-text="*{department.departName}">呼吸内科</a>
+                <a data-th-href="@{/doctor/timeline(doctorId=*{doctorId})}" href="ys.html" class="post" data-th-text="*{position}">主任医师，科主任</a>
                 <a data-th-href="@{/doctor/timeline(doctorId=*{doctorId})}" href="ys.html" class="btn more">详细</a>
-                <a href="NewsDetail-449.html" target="_blank" class="btn date">预约</a></li>
+                <a data-th-href="@{/doctor/timeline(doctorId=*{doctorId})}" href="ys.html" target="_blank" class="btn date">预约</a></li>
         </ul>
         <div class="hackR"></div>
         <div class="hackL"></div>
-    </div>
-</section>
-
-
-<section class="BaseMark partDoctor jobWork">
-    <div class="toolsPart">
-        <div class="title">工作动态<span></span></div>
-        <div class="tools">
-            <a href="OfficeNewsList-11-1.html" title="工作动态" class="Bmore">MORE 》》</a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="contents">
-        <ul>
-            <li class='first'><a href="OfficeNewsDetail-3671.html" class="ydxx" target="_blank" title="卡氏肺孢子菌肺炎的病原学诊断">阅读详细</a>
-                <div class="neir">
-                    <h4>2015-05-26</h4>
-                    <a href="OfficeNewsDetail-3671.html" target="_blank" title="卡氏肺孢子菌肺炎的病原学诊断" class="title">卡氏肺孢子菌肺炎的病原学诊断</a>
-                    <p>肺孢子菌肺炎（PCP），又称卡氏肺孢子虫肺炎，卡氏肺囊虫……</p>
-                </div>
-            </li>
-
-            <li><a href="OfficeNewsDetail-2932.html" class="ydxx" target="_blank" title="山西省首个肺癌早期诊断门诊成立">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-11-04</h4>
-                    <a href="OfficeNewsDetail-2932.html" target="_blank" title="山西省首个肺癌早期诊断门诊成立" class="title">山西省首个肺癌早期诊断门诊成立</a>
-                    <p>为进一步提高普通人群对肺部结节（肿瘤）早期诊断的认识，由……</p>
-                </div>
-            </li>
-
-            <li><a href="OfficeNewsDetail-2324.html" class="ydxx" target="_blank" title="世界哮喘日大型义诊活动">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-05-11</h4>
-                    <a href="OfficeNewsDetail-2324.html" target="_blank" title="世界哮喘日大型义诊活动"
-                       class="title">世界哮喘日大型义诊活动</a>
-                    <p>为迎接世界哮喘日，于2014年5月5日上午，我院呼吸科在……</p>
-                </div>
-            </li>
-
-            <li class='fourth'><a href="OfficeNewsDetail-2183.html" class="ydxx" target="_blank"
-                                  title="援疆医疗队深入偏远地区开展工作">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-04-17</h4>
-                    <a href="OfficeNewsDetail-2183.html" target="_blank" title="援疆医疗队深入偏远地区开展工作" class="title">援疆医疗队深入偏远地区开展工作</a>
-                    <p>3月25日至28日，根据哈密地区卫生局的统一安排，哈密地……</p>
-                </div>
-            </li>
-
-            <li class='fifth'><a href="OfficeNewsDetail-768.html" class="ydxx" target="_blank" title="医院标题呼吸内科变态反应学门诊">阅读详细</a>
-                <div class="neir">
-                    <h4>2013-03-08</h4>
-                    <a href="OfficeNewsDetail-768.html" target="_blank" title="医院标题呼吸内科变态反应学门诊" class="title">医院标题呼吸内科变态反应学门诊</a>
-                    <p>医院标题变态反应科门诊介绍及脱敏治疗介绍</p>
-                </div>
-            </li>
-
-        </ul>
-        <div class="clear"></div>
-    </div>
-</section>
-
-<section class="BaseMark partDoctor jobWork">
-    <div class="toolsPart">
-        <div class="title">医疗设备<span></span></div>
-        <div class="tools">
-            <a href="OfficeNewsList-11-4.html" title="医疗设备" class="Bmore">MORE 》》</a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="contents">
-        <ul>
-            <li class='first'><a href="OfficeNewsDetail-834.html" class="ydxx" target="_blank"
-                                 title="无创气道炎症呼出气–氧化氮含量（FENO）检查">阅读详细</a>
-                <div class="neir">
-                    <h4>2013-03-17</h4>
-                    <a href="OfficeNewsDetail-834.html" target="_blank" title="无创气道炎症呼出气–氧化氮含量（FENO）检查" class="title">无创气道炎症呼出气–氧化氮含量（FENO）检查</a>
-                    <p>无创气道炎症呼出气–氧化氮含量（FENO）检查</p>
-                </div>
-            </li>
-
-        </ul>
-        <div class="clear"></div>
-    </div>
-</section>
-
-<section class="BaseMark partDoctor jobWork">
-    <div class="toolsPart">
-        <div class="title">健康教育<span></span></div>
-        <div class="tools">
-            <a href="OfficeNewsList-11-2.html" title="健康教育" class="Bmore">MORE 》》</a>
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="contents">
-        <ul>
-            <li class='first'><a href="OfficeNewsDetail-2922.html" class="ydxx" target="_blank"
-                                 title="雾霾天气注意事项">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-10-31</h4>
-                    <a href="OfficeNewsDetail-2922.html" target="_blank" title="雾霾天气注意事项" class="title">雾霾天气注意事项</a>
-                    <p>由于雾霾天气中存在一些对人体有害的气溶胶粒子，可能直接进……</p>
-                </div>
-            </li>
-
-            <li><a href="OfficeNewsDetail-2803.html" class="ydxx" target="_blank" title="呼吸运动训练（2）缩唇腹式呼吸">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-10-10</h4>
-                    <a href="OfficeNewsDetail-2803.html" target="_blank" title="呼吸运动训练（2）缩唇腹式呼吸" class="title">呼吸运动训练（2）缩唇腹式呼吸</a>
-                    <p>原理及目的： 对抗阻力呼吸……</p>
-                </div>
-            </li>
-
-            <li><a href="OfficeNewsDetail-2802.html" class="ydxx" target="_blank" title="呼吸运动训练（1）- 腹式呼吸">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-10-10</h4>
-                    <a href="OfficeNewsDetail-2802.html" target="_blank" title="呼吸运动训练（1）- 腹式呼吸" class="title">呼吸运动训练（1）-
-                        腹式呼吸</a>
-                    <p>是通过提高支气管内压，并利用腹肌运动，以提高通气量，减少……</p>
-                </div>
-            </li>
-
-            <li class='fourth'><a href="OfficeNewsDetail-2139.html" class="ydxx" target="_blank"
-                                  title="慢性阻塞性肺疾病（COPD）- 稳定期治疗">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-04-11</h4>
-                    <a href="OfficeNewsDetail-2139.html" target="_blank" title="慢性阻塞性肺疾病（COPD）- 稳定期治疗" class="title">慢性阻塞性肺疾病（COPD）-
-                        稳定期治疗</a>
-                    <p>COPD稳定期治疗一、治疗目的1．减轻症状，阻止病情发展……</p>
-                </div>
-            </li>
-
-            <li class='fifth'><a href="OfficeNewsDetail-2010.html" class="ydxx" target="_blank"
-                                 title="慢性阻塞性肺疾病(COPD) - 诊断">阅读详细</a>
-                <div class="neir">
-                    <h4>2014-03-23</h4>
-                    <a href="OfficeNewsDetail-2010.html" target="_blank" title="慢性阻塞性肺疾病(COPD) - 诊断" class="title">慢性阻塞性肺疾病(COPD)
-                        - 诊断</a>
-                    <p>COPD的诊断应根据临床表现、危险因素接触史、体征及实验……</p>
-                </div>
-            </li>
-
-        </ul>
-        <div class="clear"></div>
     </div>
 </section>
 

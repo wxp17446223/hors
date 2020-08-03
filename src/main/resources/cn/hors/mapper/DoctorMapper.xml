@@ -96,6 +96,14 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
     select <include refid="Base_Column_List"></include>
     from doctor where depart_id=#{departId}
 </select>
+
+<select id="findByName" parameterType="string" resultType="Doctor">
+select <include refid="Base_Column_List"></include> from doctor
+where 1=1
+<if test="name != null and name != ''">
+and name like #{name}
+</if>
+</select>
 <select id="findByOrd" resultMap="OrderDoctorMap">
     select <include refid="Base_Column_List"></include>
     from doctor where doctor_id=#{doctorId}

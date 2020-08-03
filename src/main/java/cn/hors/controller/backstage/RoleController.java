@@ -25,12 +25,24 @@ public class RoleController implements BaseController{
     private RoleService roleService;
     @Resource
     private PResourceService pResourceService;
+
+    /**
+     * 进入角色管理首页
+     * @return
+     */
     @GetMapping
     @PreAuthorize("hasAuthority('/role/r')")
     public String home(){
         return getModelName()+ "/index";
     }
 
+    /**
+     * 查询所有角色
+     * @param account 角色bean
+     * @param page 页数
+     * @param limit 条数
+     * @return
+     */
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")
     @ResponseBody
     @PreAuthorize("hasAuthority('/role/r')")
@@ -45,9 +57,16 @@ public class RoleController implements BaseController{
         map.put("msg","查询成功");
         return map;
     }
+
+    /**
+     * 新增和修改角色
+     * @param id 角色id
+     * @param map
+     * @return
+     */
     @GetMapping({"/edit","/edit/{id}"})
     @PreAuthorize("hasAuthority('/role/edit/r')")
-    public String editor(@PathVariable(required = false) Integer id, @RequestParam(defaultValue = "-1") Integer pid, Model map){
+    public String editor(@PathVariable(required = false) Integer id, Model map){
         PRole PRole = null;
         if(id != null && id !=0){
             PRole account = new PRole();
@@ -59,10 +78,15 @@ public class RoleController implements BaseController{
         return getModelName()+"/editor";
     }
 
+    /**
+     *对角色进行修改
+     * @param account 角色bean
+     * @return
+     */
     @PutMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/role/u')")
-    public Map<String,Object> save(PRole account, HttpServletRequest request){
+    public Map<String,Object> save(PRole account){
         Map<String,Object> map = new HashMap<>();
         if(account.getId() != null && account.getId() !=0){
             if (roleService.update(account)) {
@@ -84,6 +108,11 @@ public class RoleController implements BaseController{
         return map;
     }
 
+    /**
+     * 根据id对角色进行删除
+     * @param ids 角色id集合
+     * @return
+     */
     @DeleteMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/role/d')")
@@ -99,6 +128,12 @@ public class RoleController implements BaseController{
         return map;
     }
 
+    /**
+     * 得到角色的权限
+     * @param id 角色id
+     * @param model
+     * @return
+     */
     @GetMapping("/authorize/{id}")
     @PreAuthorize("hasAuthority('/role/authorize/r')")
     public String authorize(@PathVariable Integer id, Model model){
@@ -106,11 +141,16 @@ public class RoleController implements BaseController{
         return getModelName()+"/authorize";
     }
 
+    /**
+     * 对角色进行赋权
+     * @param id 角色id
+     * @param resourceIds 资源id
+     * @return
+     */
     @PutMapping("/authorize")
     @PreAuthorize("hasAuthority('/role/authorize/r')")
     @ResponseBody
     public Map<String,Object> authorize(@RequestParam(value = "id",required = false) Integer id, @RequestParam(value = "resourceIds[]",required = false) Integer[] resourceIds){
-        System.out.println(2);
         Map<String,Object> map = new HashMap<>();
         try {
             pResourceService.authorization(id, resourceIds);
@@ -123,11 +163,16 @@ public class RoleController implements BaseController{
         }
         return map;
     }
+
+    /**
+     * 得到所有角色的权限
+     * @param id
+     * @return
+     */
     @GetMapping(path = "/authorize/{id}",headers = "X-Requested-With=XMLHttpRequest")
     @PreAuthorize("hasAuthority('/role/authorize/r')")
     @ResponseBody
     public Map<String,Object> authorize(@PathVariable Integer id){
-        System.out.println(3);
         Map<String,Object> map = new HashMap<>();
         Map<String,Object> data = new HashMap<>();
         List<PResource> pResources = pResourceService.find(null);

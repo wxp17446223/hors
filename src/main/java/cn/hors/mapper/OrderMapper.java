@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface OrderMapper {
+
     /**
      * 添加一个预约表信息
      * @param order 预约信息

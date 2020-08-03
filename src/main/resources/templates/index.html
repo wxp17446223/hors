@@ -83,18 +83,29 @@
         <div class="searchBase">
             <div class="itemBase">
                 <div class="divType" data-state="0">全站内容</div>
-                <ul>
-                    <li data-id="1">全站内容</li>
-                    <li data-id="2">医生查找</li>
-                    <li data-id="3">新闻动态</li>
+                <ul id="op">
+                    <li data-id="1" value="1">全站内容</li>
+                    <li data-id="2" value="2">医生查找</li>
+                    <li data-id="3" value="3">新闻动态</li>
                 </ul>
             </div>
-            <form method="get" action="Search.html" onSubmit="return Kunyi.CheckSearchForm()">
-                <input type="hidden" id="Type" name="Type" value="1"/>
-                <input type="text" name="SearchWords" placeholder="请输入您要查找内容的关键字" value="" autocomplete="off"
+            <form action="/find" method="get"  id="f">
+                <input type="hidden" id="Type" name="type" value="1"/>
+                <input type="text" name="name" placeholder="请输入您要查找内容的关键字" autocomplete="off"
                        onFocus="Kunyi.cls(event)" onBlur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
-                <input type="submit" value="搜索" class="boxsub animated"/>
+                <input id="sub" type="button"  value="搜索" class="boxsub animated"/>
             </form>
+            <script>
+                $("#op li").click(function () {
+                   var type = document.getElementById("Type");
+                   type.value = $(this)[0].value;
+                })
+                $("#sub").click(function () {
+                    var type = document.getElementById("Type");
+                    console.log(type.value);
+                    document.getElementById("f").submit();
+                })
+            </script>
         </div>
     </div>
 </header>
@@ -112,7 +123,7 @@
                                 <li><a href="jiuzhen.html" data-th-href="@{depart/jiuzhen}" title="就诊流程">就诊流程<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html"
                                        title="科室导航">科室导航<span>进入</span></a></li>
-                                <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/luxian}" href="Article-57.html"
                                        title="来院路线">来院路线<span>进入</span></a></li>
                             </ul>
@@ -265,22 +276,15 @@
                     </div>
                 </li>
                 <li class="PMenu"><img data-th-src="@{/hors/images/ico_014.png}" src="../static/hors/images/ico_014.png"
-                                       class="animated" width="15" height="8"/><a href="jianjie.html" id="Nav_AMenu1"
+                                       class="animated" width="15" height="8"/><a data-th-href="@{/depart/jianjie}" href="Article-3.html" id="Nav_AMenu1"
                                                                                   class="PAMenu" title="医院概况">医院概况</a>
                     <div class="navboxBase">
                         <div class="navboxBg">
                             <div class="navbox BaseMark">
                                 <div class="navMenus">
                                     <ul>
-                                        <li class="first"><a href="jianjie.html" title="医院简介">医院简介<span>进入</span></a>
+                                        <li class="first"><a data-th-href="@{/depart/jianjie}" href="Article-3.html" title="医院简介">医院简介<span>进入</span></a>
                                         </li>
-
-                                        <li><a href="jianjie.html" title="医院沿革">医院沿革<span>进入</span></a></li>
-
-                                        <li><a href="jianjie.html" title="荣誉称号">荣誉称号<span>进入</span></a></li>
-
-                                        <li><a href="jianjie.html" title="组织结构">组织结构<span>进入</span></a></li>
-
                                     </ul>
                                 </div>
                                 <div class="navSub5">
@@ -290,59 +294,7 @@
                                     <p><br/></p>
                                     <p>
                                         黄河之畔，绿城太原，坐落着一座拥有一百一十多年历史的神圣生命殿堂——医院标题。省医前身是中华基督教内地会1904年创办的开封“福音医院”，1950年更名为“医院标题”，1955年随省政府迁址太原，2010年增名“人民医院”，2012年被确定为“部省共建”医院。</p>
-                                    <a href="jianjie.html" class="Amore">了解详情</a>
-                                </div>
-                                <div class="navSub6">
-                                    <img data-th-src="@{/hors/images/pic_002.jpg}"
-                                         src="../static/hors/images/pic_002.jpg" width="92" height="92"/>
-                                    <ul>
-                                        <li><span>1904</span><em>福音医院</em></li>
-                                        <li><span>1950</span><em>更名“医院标题”</em></li>
-                                        <li><span>1955</span><em>迁址太原市</em></li>
-                                        <li><span>2010</span><em>增名“人民医院”</em></li>
-                                        <li><span>2012</span><em>确定为“部省共建”医院</em></li>
-                                    </ul>
-                                    <a href="jianjie.html" class="Amore">了解详情</a>
-                                </div>
-                                <div class="navSub7">
-                                    <h3>医院标题文化</h3>
-                                    <ul>
-                                        <li><a href="DisciplineNewsDetail-8381.html" title="福音书吧举办第二期读书分享会">福音书吧举办第二期读书分享会</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8196.html" title="【省医榜样】“人文医生”高传玉">【省医榜样】“人文医生”高传玉</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8195.html"
-                                               title="【省医人文】网络时代该怎么读书？看完这篇文章你就会有答案">【省医人文】网络时代该怎么读书？看完这篇文章你就会有答案</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8194.html" title="【省医聚焦】山西首家医院书吧——“福音书吧”亮相省医">【省医聚焦】山西首家医院书吧——“福音书吧”亮相省医</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8159.html" title="《百年省医 人文讲堂》第九讲开课啦">《百年省医
-                                            人文讲堂》第九讲开课啦</a></li>
-
-                                        <li><a href="DisciplineNewsDetail-8158.html" title="【榜样】庞辰久：光明路上的执着追求">【榜样】庞辰久：光明路上的执着追求</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8157.html" title="【省医聚焦】我院举行援埃塞俄比亚第18批医疗队表彰会">【省医聚焦】我院举行援埃塞俄比亚第18批医疗队表彰会</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8090.html" title="福音书吧——书香伴您度过“无忧时光”">福音书吧——书香伴您度过“无忧时光”</a>
-                                        </li>
-
-                                        <li><a href="DisciplineNewsDetail-8010.html"
-                                               title="“百年省医 人文讲堂”第七场讲座开讲---你是一名智慧型科室团队的领导吗？">“百年省医
-                                            人文讲堂”第七场讲座开讲---你是一名智慧型科室团队的领导吗？</a></li>
-                                    </ul>
-                                    <div>
-                                        <h4>省医院报</h4>
-                                        <a href="Newspaper-2017-1.html" id="Nav_NavFirst" class="first" target="_blank"
-                                           title="2017年第1期"><span>> </span> 2017年第1期</a>
-                                        <a href="Newspaper-2017-1.html" id="Nav_NavSecond" class="second"
-                                           target="_blank" title="2017年第1期">阅览</a>
-                                    </div>
+                                    <a data-th-href="@{/depart/jianjie}" href="Article-3.html" class="Amore">了解详情</a>
                                 </div>
                                 <div class="clear"></div>
                             </div>
