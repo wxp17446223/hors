@@ -2,6 +2,7 @@ package cn.hors.controller;
 
 import cn.hors.bean.Account;
 import cn.hors.bean.Order;
+import cn.hors.bean.PAccount;
 import cn.hors.bean.Userinfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.OrderService;
@@ -9,20 +10,25 @@ import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-    /**
-     * 个人中心转跳
-     */
 
     @Resource
     private UserinfoService userservice;
@@ -46,6 +52,12 @@ public class UserController {
         return  getModelName()+ "/info";
     }
 
+    /**
+     * 修改界面
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping({"/editor","/editor/{id}"})
     public String editor(@PathVariable(required = false)Integer id,Model model){
         if (id!=null){
@@ -55,17 +67,15 @@ public class UserController {
         return getModelName()+"/editor";
     }
 
-    @GetMapping({"/orderUser","/orderUser/{userId}"})
-    public String orderUser(@PathVariable(required = false)Integer userId,Model model){
-        if (userId!=null){
-            Order orders = this.orderService.findByUseId(userId);
-            Userinfo users=this.userservice.findById(userId);
-            model.addAttribute("orders",orders);
-            model.addAttribute("users",users);
-        }
-        return getModelName()+"/orderUser";
-    }
 
+
+
+    /**
+     * 修改密码
+     * @param accountId
+     * @param model
+     * @return
+     */
     @GetMapping({"/uacc","/uacc/{accountId}"})
     public String uacc(@PathVariable(required = false)Integer accountId,Model model){
         if (accountId!=null){
@@ -75,6 +85,12 @@ public class UserController {
         return getModelName()+"/uacc";
     }
 
+
+    /**
+     * 保存修改数据
+     * @param user
+     * @return
+     */
     @PutMapping
     @ResponseBody
     public Map<String,Object> save(Userinfo user){
@@ -99,11 +115,60 @@ public class UserController {
         return results;
     }
 
+    @PostMapping("/userfileUpload")
+    public String fileUpload(@RequestPart("file") MultipartFile file, Userinfo user, SessionStatus status) throws FileNotFoundException {
+        String serverpath= ResourceUtils.getURL("classpath:static").getPath().replace("%20"," ").replace('/', '\\');
+        String realPath=serverpath.substring(1,serverpath.indexOf("\\target"))+"\\src\\main\\resources\\static\\hors\\images";//从路径字符串中取出工程路径
+        System.out.println("realPath = " + realPath);
+        Path path = Paths.get(realPath);
+        try {
+            if(!Files.exists(path)){
+                Files.createDirectories(path);
+            }
+            //得到上传文件的实际名称
+            String fileName = file.getOriginalFilename();
+            user.setPicture(fileName);
+            System.out.println(fileName);
+            //String fileName = file.getOriginalFilename();
+            //path.resolve(fileName) 得到完整的file路径
+            file.transferTo(path.resolve(fileName));
+            userservice.updatePic(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        status.setComplete();
+        return "/user/editor";
+    }
+
+
+    /**
+     * 页面转跳
+     * @param model
+     * @param accountId
+     * @return
+     */
     @GetMapping({"/index","/index/{accountId}"})
     public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
         Userinfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
         return  getModelName()+ "/index";
+    }
+
+
+    /**
+     * 预约信息
+     * @param userId
+     * @param model
+     * @return
+     */
+    @GetMapping({"/orderUser","/orderUser/{userId}"})
+    public String orderUser(@PathVariable(required = false)Integer userId,Model model){
+        System.out.println(userId);
+        if (userId!=null){
+            Order orders = this.orderService.findByUseId(userId);
+            model.addAttribute("orders",orders);
+        }
+        return getModelName()+"/orderUser";
     }
     public String getModelName() {
         return "user";

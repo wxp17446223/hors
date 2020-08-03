@@ -12,6 +12,20 @@
     <result column="cost" jdbcType="VARCHAR" property="cost" />
     <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
   </resultMap>
+  <resultMap id="OrderUserDoctorTimeMap" type="cn.hors.bean.Order">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="t_id" jdbcType="INTEGER" property="tId" />
+    <result column="addtime" jdbcType="DATE" property="addtime" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="reply" jdbcType="VARCHAR" property="reply" />
+    <result column="cost" jdbcType="VARCHAR" property="cost" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <association property="doctor" select="cn.hors.mapper.DoctorMapper.findByOrd" column="doctor_id"/>
+    <association property="orderUser" select="cn.hors.mapper.UserinfoMapper.findById" column="user_id"/>
+    <association property="timeline" select="cn.hors.mapper.TimelineMapper.findById" column="t_id"/>
+</resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     order_id, user_id, t_id, addtime, user_phone, `status`, reply, cost, doctor_id
@@ -67,7 +81,7 @@
         <if test="doctorId != null">and doctor_id=#{doctorId,jdbcType=INTEGER}</if>
   </sql>
 
-  <insert id="insert" parameterType="Order" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="cn.hors.bean.Order" useGeneratedKeys="true" keyProperty="id">
     insert into order(<include refid="Base_Insert_Columns"></include>)
     values (<include refid="Base_Insert_Values"></include>)
   </insert>
@@ -79,14 +93,14 @@
          </foreach>
     </where>
   </delete>
-  <update id="update" parameterType="Order">
+  <update id="update" parameterType="cn.hors.bean.Order">
     update order
     <set>
         <include refid="Base_Update"></include>
     </set>
     where order_id=#{tId,jdbcType=INTEGER}
   </update>
-  <select id="findById" parameterType="Order" resultMap="BaseResultMap">
+  <select id="findById" parameterType="cn.hors.bean.Order" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from order
     where order_id=#{tId,jdbcType=INTEGER}
@@ -98,8 +112,8 @@
         <include refid="Base_Where"></include>
     </where>
   </select>
-  <select id="findByUseId" resultMap="BaseResultMap">
+  <select id="findByUseId" resultMap="OrderUserDoctorTimeMap" parameterType="cn.hors.bean.Order">
   select <include refid="Base_Column_List"></include>
-  from order where user_id=#{userId,jdbcType=INTEGER}
+  from `order` where user_id=#{userId,jdbcType=INTEGER}
 </select>
 </mapper>

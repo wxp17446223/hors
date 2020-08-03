@@ -12,4 +12,6 @@ public interface DoctorService{
     List<Doctor> findAll(Doctor doctor);
 
     List<Doctor> findAllByDepartId(Integer departId);
+
+    Doctor findByOrd(Integer id);
 }
