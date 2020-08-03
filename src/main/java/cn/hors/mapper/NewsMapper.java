@@ -27,5 +27,11 @@ public interface NewsMapper {
      */
     void updateCount( @Param("newId")Integer newId, @Param("count") Integer count);
 
+    /**
+     *模糊查询主题和内容
+     * @param name 输入
+     * @return 新闻集合
+     */
+    List<News> findByTitleOrContent(@Param("name") String name);
 
 }

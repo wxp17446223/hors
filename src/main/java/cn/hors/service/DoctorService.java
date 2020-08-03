@@ -12,4 +12,11 @@ public interface DoctorService{
     List<Doctor> findAll(Doctor doctor);
 
     List<Doctor> findAllByDepartId(Integer departId);
+
+    /**
+     * 根据医生名称模糊查询医生
+     * @param name 输入
+     * @return 医生集合
+     */
+    List<Doctor> findByName(String name);
 }

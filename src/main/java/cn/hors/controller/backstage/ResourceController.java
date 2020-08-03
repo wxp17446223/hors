@@ -21,12 +21,23 @@ public class ResourceController implements BaseController{
     @Resource
     private PResourceService service;
 
+    /**
+     * 进入资源管理首页
+     * @return
+     */
     @GetMapping
     @PreAuthorize("hasAuthority('/resource/r')")
     public String home(){
         return getModelName()+ "/index";
     }
 
+    /**
+     * 找到所有资源信息
+     * @param account 资源bean
+     * @param page 页数
+     * @param limit 条数
+     * @return
+     */
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")
     @ResponseBody
     @PreAuthorize("hasAuthority('/resource/r')")
@@ -41,6 +52,14 @@ public class ResourceController implements BaseController{
         map.put("msg","查询成功");
         return map;
     }
+
+    /**
+     * 新增和修改资源
+     * @param id 资源id
+     * @param pid 父资源id
+     * @param map 结果存储
+     * @return
+     */
     @GetMapping({"/edit","/edit/{id}"})
     @PreAuthorize("hasAuthority('/resource/edit/r')")
     public String editor(@PathVariable(required = false) Integer id, @RequestParam(defaultValue = "-1") Integer pid, Model map){
@@ -58,10 +77,15 @@ public class ResourceController implements BaseController{
         return getModelName()+"/editor";
     }
 
+    /**
+     * 保存资源
+     * @param account 资源bean
+     * @return
+     */
     @PutMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/resource/u')")
-    public Map<String,Object> save(PResource account, HttpServletRequest request){
+    public Map<String,Object> save(PResource account){
         account.setAuthority(account.getUrl()+"/"+account.getCode());
         System.out.println(account.getAuthority());
         Map<String,Object> map = new HashMap<>();
@@ -93,6 +117,11 @@ public class ResourceController implements BaseController{
         return map;
     }
 
+    /**
+     * 删除资源 包括删除父资源
+     * @param ids
+     * @return
+     */
     @DeleteMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/resource/d')")

@@ -1,8 +1,12 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
+import cn.hors.bean.Doctor;
+import cn.hors.bean.News;
 import cn.hors.bean.Userinfo;
 import cn.hors.service.AccountService;
+import cn.hors.service.DoctorService;
+import cn.hors.service.NewsService;
 import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"accounts","userAcc"})
@@ -22,13 +27,19 @@ public class HomeController {
     @Resource
     private UserinfoService userinfoService;
 
+    @Resource
+    private DoctorService doctorService;
+
+    @Resource
+    private NewsService newsService;
+
     /**
      * 主页转跳
      * @return
      */
     @GetMapping("/a")
     public String home() {
-        return "indextjh";
+        return "index";
     }
 
 
@@ -59,7 +70,7 @@ public class HomeController {
             model.addAttribute("accounts", accounts);
             Userinfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
-            return "indextjh";
+            return "index";
         } else {
             attributes.addFlashAttribute("message", "用户名或密码错误！");
             return "redirect:/login";
@@ -85,4 +96,23 @@ public class HomeController {
     public  String register(){
         return "register";
     }
+    @GetMapping("/find")
+    public String find(String name,Integer type,Model map){
+        if(type == 1){
+            List<Doctor> dlist = doctorService.findByName(name);
+            List<News> nlist = newsService.findByTitleOrContent(name);
+            map.addAttribute("dlist",dlist);
+            map.addAttribute("olist",nlist);
+            return "search";
+        }else if(type ==2){
+            List<Doctor> list = doctorService.findByName(name);
+            map.addAttribute("list",list);
+            return "dsearch";
+        }
+        List<News> list = newsService.findByTitleOrContent(name);
+        map.addAttribute("list",list);
+        return "newsearch";
+    }
+
+
 }

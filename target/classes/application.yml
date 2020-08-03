@@ -7,6 +7,12 @@ spring:
     password: asd123@1
     url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC
 
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  pageSizeZero: true
+  params: count=countSql
 mybatis:
   mapper-locations: classpath:cn/hors/mapper/sqlmap/*.xml
   type-aliases-package: cn.hors.bean
