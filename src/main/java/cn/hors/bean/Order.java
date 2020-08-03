@@ -56,4 +56,11 @@ public class Order {
     * 预约的医生ID
     */
     private Integer doctorId;
+
+    private Userinfo orderUser;
+
+    private Timeline timeline;
+
+    private Doctor doctor;
+
 }

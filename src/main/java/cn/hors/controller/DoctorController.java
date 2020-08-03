@@ -36,7 +36,7 @@ public class DoctorController {
      * @param doctorId
      * @return
      */
-    @GetMapping({"/timeline","/timeline/{doctorId}"})
+    @GetMapping({"/timeline"})
     public String findDoctorByID(Model model,@RequestParam Integer doctorId){
         Doctor doctor = doctorService.findById(doctorId);
         System.out.println("doctor = " + doctor.getTimelineList());

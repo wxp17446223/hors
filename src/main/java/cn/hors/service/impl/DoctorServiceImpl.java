@@ -33,4 +33,9 @@ public class DoctorServiceImpl implements DoctorService{
     public List<Doctor> findByName(String name) {
         return doctorMapper.findByName(name);
     }
+
+    @Override
+    public Doctor findByOrd(Integer id) {
+        return doctorMapper.findByOrd(id);
+    }
 }

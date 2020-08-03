@@ -141,4 +141,8 @@
     </set>
     where user_id=#{userId,jdbcType=INTEGER}
   </update>
+  <update id="updatePic" parameterType="cn.hors.bean.Userinfo">
+update userinfo set picture = #{picture} where user_id=#{userId,jdbcType=INTEGER}
+</update>
+
 </mapper>

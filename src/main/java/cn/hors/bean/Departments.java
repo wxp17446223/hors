@@ -39,6 +39,11 @@ public class Departments {
     private Integer dId;
 
     /**
+     * 科室电话
+     */
+    private String phone;
+
+    /**
      *子科室列表
      */
     private List<Departments> children;
@@ -48,5 +53,8 @@ public class Departments {
      */
     private Departments parent;
 
+    /**
+     * 科室下的所有医生
+     */
     private List<Doctor> doctors;
 }

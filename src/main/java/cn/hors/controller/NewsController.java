@@ -25,13 +25,14 @@ public class NewsController {
 
     /**
      * 查询所有新闻信息
+     *
      * @param model
      * @param news
      * @return
      */
     @GetMapping("/all")
-    public String findNewsAll(Model model, News news,@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "3")int limit){
-        PageHelper.startPage(page,limit);
+    public String findNewsAll(Model model, News news, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int limit) {
+        PageHelper.startPage(page, limit);
         List<News> newsAll = newsService.findNewsAll(news);
         PageInfo<News> pageInfo = new PageInfo<>(newsAll);
         model.addAttribute("news", newsAll);
@@ -46,8 +47,8 @@ public class NewsController {
      * @return
      */
     @GetMapping("/notice")
-    public String findNoticeAll(Model model, News news,@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "3")int limit){
-        PageHelper.startPage(page,limit);
+    public String findNoticeAll(Model model, News news, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int limit) {
+        PageHelper.startPage(page, limit);
         List<News> newsAll = newsService.findNoticeAll(news);
         PageInfo<News> pageInfo = new PageInfo<>(newsAll);
         model.addAttribute("news", newsAll);
@@ -62,19 +63,39 @@ public class NewsController {
      * @return
      */
     @GetMapping("/new")
-    public String findByNewId(Model model, @RequestParam Integer newId){
+    public String findByNewId(Model model, @RequestParam Integer newId) {
         News news = newsService.findByNewId(newId);
         model.addAttribute("newss", news);
-        if (news.getSource().equals("公告")) {
-            return "newsNoticeList";
-        }
         return "newslist";
     }
 
+    /**
+     * 计算每次点击进去的浏览数量
+     * @param model
+     * @param newId
+     * @return
+     */
     @GetMapping("/scanCount")
-    public String scanCounter(Model model,@RequestParam Integer newId) {
+    public String scanCounter(Model model, News news, @RequestParam Integer newId) {
         Integer counter = newsService.scanCounter(newId);
+        List<News> newsAll = newsService.findNewsAll(null);
+        int i = newsAll.indexOf(newsService.findByNewId(newId));
+        model.addAttribute("newsAll",newsAll);
         model.addAttribute("news", newsService.findByNewId(newId));
+        if (i == 0) {
+            model.addAttribute("newsup", newsService.findByNewId(newId));
+            System.out.println("i:"+newsAll.get(i));
+            System.out.println(newsAll.size());
+            System.out.println("i+1:"+newsAll.get(i + 1));
+            model.addAttribute("newsdown", newsService.findByNewId(newsAll.get(i + 1).getNewId()));
+        } else if (i == newsAll.size() - 1) {
+            model.addAttribute("newsup", newsService.findByNewId(newsAll.get(i - 1).getNewId()));
+            model.addAttribute("newsdown", newsService.findByNewId(newsAll.get(i).getNewId()));
+        } else {
+            model.addAttribute("newsup", newsService.findByNewId(newsAll.get(i - 1).getNewId()));
+            model.addAttribute("newsdown", newsService.findByNewId(newsAll.get(i + 1).getNewId()));
+        }
+
         return "newslist";
     }
 

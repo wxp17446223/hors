@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface NewsMapper {
+
     /**
      * 查询所有新闻信息
      * @param news
@@ -33,5 +34,7 @@ public interface NewsMapper {
      * @return 新闻集合
      */
     List<News> findByTitleOrContent(@Param("name") String name);
+
+    List<News> findNoticeAll(News news);
 
 }
