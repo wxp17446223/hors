@@ -1,5 +1,6 @@
 package cn.hors.service;
 
+import cn.hors.bean.PAccount;
 import cn.hors.bean.Userinfo;
 public interface UserinfoService{
 
@@ -18,4 +19,6 @@ public interface UserinfoService{
     boolean update(Userinfo user);
 
     Userinfo findByAccId(Integer accountId);
+
+    int updatePic(Userinfo userinfo);
 }

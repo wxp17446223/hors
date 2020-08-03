@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href= "@{/layui/css/layui.css}" href="../static/layui/css/layui.css ">
+    <style>
+        body{
+            padding: 15px;
+        }
+    </style>
 </head>
-<body>
-
+<body data-th-each="account:${account}" data-th-object="${account}">
+<form class="layui-form" action="" style="width: 40%">
+    <input type="hidden" data-th-value="${account?.accountId}" name="accountId">
+    <input type="hidden" data-th-value="${account?.account}" name="account">
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="password" name="password" data-th-value="${account?.password}" lay-verify="required"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">修改</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery','laydate','upload'], function(){
+        var laydate = layui.laydate;
+        var upload = layui.upload;
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function(data){
+            $.ajax({
+                url:/*[[@{/uacc}]]*/ 'saveAcc',
+                type:'put',
+                data:data.field,
+                dataType:'json',
+                success:function (rs) {
+                    if(rs.code == 0){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前弹窗
+                        parent.layer.msg(rs.msg,{icon:6});//重载父页面的表格数据
+                        parent.layui.table.reload('table_reload');
+                    }else {
+                        layer.msg(rs.msg,{icon:5});
+                    }
+                }
+            });
+            return false;
+        });
+        laydate.render({
+            elem: '#test1' //指定元素
+        });
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test2' //绑定元素
+            ,url: '/upload/' //上传接口
+            ,done: function(res){
+                //上传完毕回调
+            }
+            ,error: function(){
+                //请求异常回调
+            }
+        });
+    });
+</script>
 </body>
 </html>
+
+
+

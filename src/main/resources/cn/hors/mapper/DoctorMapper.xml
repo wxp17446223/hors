@@ -19,6 +19,20 @@
         <collection property="timelineList" ofType="cn.hors.bean.Timeline"
         column="doctor_id" select="cn.hors.mapper.TimelineMapper.findByDoctorId"/>
      </resultMap>
+     <resultMap id="OrderDoctorMap" type="cn.hors.bean.Doctor">
+        <id property="doctorId" column="doctor_id"/>
+        <result property="jobNumber" column="job_number"/>
+        <result property="departId" column="depart_id"/>
+        <result property="name" column="name"/>
+        <result property="sex" column="sex"/>
+        <result property="picture" column="picture"/>
+        <result property="birth" column="birth"/>
+        <result property="position" column="position"/>
+        <result property="workExperience" column="work_experience"/>
+        <result property="phone" column="phone"/>
+        <result property="adept" column="adept"/>
+        <result property="introduce" column="introduce"/>
+     </resultMap>
 <sql id="Base_Column_List">
 doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experience,phone,adept,introduce
 </sql>
@@ -87,7 +101,11 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
 select <include refid="Base_Column_List"></include> from doctor
 where 1=1
 <if test="name != null and name != ''">
-and name like #{name}
+and name like CONCAT('%',#{name},'%')
 </if>
+</select>
+<select id="findByOrd" resultMap="OrderDoctorMap">
+    select <include refid="Base_Column_List"></include>
+    from doctor where doctor_id=#{doctorId}
 </select>
 </mapper>

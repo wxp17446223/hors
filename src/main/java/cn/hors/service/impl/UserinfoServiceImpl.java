@@ -1,7 +1,10 @@
 package cn.hors.service.impl;
 
+import cn.hors.bean.PAccount;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import javax.jws.soap.SOAPBinding;
+
 import cn.hors.bean.Userinfo;
 import cn.hors.mapper.UserinfoMapper;
 import cn.hors.service.UserinfoService;
@@ -45,6 +48,11 @@ public class UserinfoServiceImpl implements UserinfoService{
     @Override
     public Userinfo findByAccId(Integer accountId) {
         return userinfoMapper.findByAccId(accountId);
+    }
+
+    @Override
+    public int updatePic(Userinfo userinfo) {
+        return userinfoMapper.updatePic(userinfo);
     }
 
 

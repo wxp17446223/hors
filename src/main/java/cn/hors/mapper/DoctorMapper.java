@@ -36,4 +36,6 @@ public interface DoctorMapper {
     List<Doctor> findByName(@Param("name") String name);
 
 
+
+    Doctor findByOrd(Integer id);
 }

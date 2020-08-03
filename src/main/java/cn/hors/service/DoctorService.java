@@ -33,4 +33,6 @@ public interface DoctorService{
      * @return 医生集合
      */
     List<Doctor> findByName(String name);
+
+    Doctor findByOrd(Integer id);
 }
