@@ -24,6 +24,12 @@ import java.util.Map;
 public class HomesController implements SystemConst {
     @Resource
     private PAccountService pAccountService;
+
+    /**
+     * 判断文件是否存在
+     * @param md5 文件名
+     * @return 是否存在
+     */
     @RequestMapping("/exists")
     @ResponseBody
     public Map<String,Object> exists(String md5){
@@ -39,7 +45,7 @@ public class HomesController implements SystemConst {
         return map;
     }
     /**
-     *
+     *文件上传
      * @param file  参数注解的name就是前端的name
      * @return
      */
@@ -68,23 +74,42 @@ public class HomesController implements SystemConst {
         return "backstage/logins";
     }
     //fileUpload
+
+    /**
+     * 退出登录
+     * @param status
+     * @return
+     */
     @GetMapping("/loginout")
     public String loginOut(SessionStatus status){
         //清除session
         status.setComplete();
         return "backstage/logins";
     }
+
+    /**
+     *进入首页
+     * @return
+     */
     @GetMapping("/index")
     @PreAuthorize("hasAuthority('ir')")
     public String home(){
-        System.out.println(1);
         return "backstage/index";
     }
-    //防止二次请求非法进去
+
+    /**
+     * 防止二次请求非法进去
+     * @return
+     */
     @GetMapping
     public String homes(){
         return "backstage/logins";
     }
+
+    /**
+     * 进入头像修改界面
+     * @return
+     */
     @GetMapping("/edit")
     public String edit(){
         return "backstage/edit";

@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>登录</title>
+    <link rel="stylesheet" data-th-href="@{/hors/css/styles.css}" href="../static/hors/css/styles.css">
+    <!--    <link  type="text/css" rel="stylesheet" href="css/style.css"/>-->
+<!--    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>-->
+    <!--    <script type="text/javascript" src="js/selectivizr.js"></script>-->
 </head>
+
 <body>
-<form data-th-action="@{/index}" method="post">
-账号:<input type="text" name="name"><br>
-密码:<input type="password" name="password"><br>
-    <button type="submit">登录</button>
-</form>
+<div id="container">
+    <form data-th-action="@{/index}" method="post">
+        <div class="login">LOGIN</div>
+        <div class="username-text">Username:</div>
+        <div class="password-text">Password:</div>
+        <div class="username-field">
+            <input type="text" name="name"  />
+        </div>
+        <div class="password-field">
+            <input type="password" name="password"/>
+        </div>
+        <input type="submit" name="submit" id="go" value="GO" />
+    </form>
+</div>
+<div id="footer">
+    Copyright &copy; 2017.Company name Monika视频社区
+</div>
 </body>
 </html>

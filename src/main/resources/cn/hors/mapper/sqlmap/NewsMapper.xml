@@ -67,4 +67,11 @@
   </select>
 
 
+  <select id="findByTitleOrContent" resultType="News" parameterType="string">
+  select * from news
+  <choose>
+  <when test="name != null and name != ''"> where title like CONCAT('%',#{name},'%') or content like CONCAT('%',#{name},'%')</when>
+  <otherwise>where 1=1</otherwise>
+</choose>
+</select>
 </mapper>

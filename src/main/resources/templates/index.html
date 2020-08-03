@@ -83,18 +83,29 @@
         <div class="searchBase">
             <div class="itemBase">
                 <div class="divType" data-state="0">全站内容</div>
-                <ul>
-                    <li data-id="1">全站内容</li>
-                    <li data-id="2">医生查找</li>
-                    <li data-id="3">新闻动态</li>
+                <ul id="op">
+                    <li data-id="1" value="1">全站内容</li>
+                    <li data-id="2" value="2">医生查找</li>
+                    <li data-id="3" value="3">新闻动态</li>
                 </ul>
             </div>
-            <form method="get" action="Search.html" onSubmit="return Kunyi.CheckSearchForm()">
-                <input type="hidden" id="Type" name="Type" value="1"/>
-                <input type="text" name="SearchWords" placeholder="请输入您要查找内容的关键字" value="" autocomplete="off"
+            <form action="/find" method="get"  id="f">
+                <input type="hidden" id="Type" name="type" value="1"/>
+                <input type="text" name="name" placeholder="请输入您要查找内容的关键字" autocomplete="off"
                        onFocus="Kunyi.cls(event)" onBlur="Kunyi.res(event)" maxlength="28" id="SearchWords"/>
-                <input type="submit" value="搜索" class="boxsub animated"/>
+                <input id="sub" type="button"  value="搜索" class="boxsub animated"/>
             </form>
+            <script>
+                $("#op li").click(function () {
+                   var type = document.getElementById("Type");
+                   type.value = $(this)[0].value;
+                })
+                $("#sub").click(function () {
+                    var type = document.getElementById("Type");
+                    console.log(type.value);
+                    document.getElementById("f").submit();
+                })
+            </script>
         </div>
     </div>
 </header>
