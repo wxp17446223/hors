@@ -39,6 +39,11 @@ public class Departments {
     private Integer dId;
 
     /**
+     * 科室电话
+     */
+    private String phone;
+
+    /**
      *子科室列表
      */
     private List<Departments> children;

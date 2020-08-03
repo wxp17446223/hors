@@ -30,9 +30,9 @@ public interface NewsService{
     Integer scanCounter(Integer newId);
 
     /**
-     * 查询所有公告
-     * @param news
-     * @return
+     * 模糊查询主题和内容
+     * @param name 输入
+     * @return 新闻集合
      */
-    List<News> findNoticeAll(News news);
+    List<News> findByTitleOrContent(String name);
 }

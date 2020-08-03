@@ -25,21 +25,33 @@ public class AccountController implements BaseController{
     @Resource
     private RoleService roleService;
 
-    @GetMapping("/a")
-    public String h(){
-        return "a";
-    }
-
+    /**
+     * 进入账号管理
+     * @return
+     */
     @GetMapping
     @PreAuthorize("hasAuthority('/account/r')")
     public String home(){
         return getModelName()+ "/index";
     }
+
+    /**
+     * 登录
+     * @return
+     */
     @GetMapping("/l")
     public String login(){
 //        throw new RuntimeException();
         return "backstage/logins";
     }
+
+    /**
+     * 得到所有账号管理员信息返回给首页
+     * @param account 账号bean
+     * @param page 页数
+     * @param limit 条数
+     * @return
+     */
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/r')")
@@ -55,6 +67,12 @@ public class AccountController implements BaseController{
         return map;
     }
 
+    /**
+     * 新增和修改账号
+     * @param id 账号id
+     * @param map
+     * @return
+     */
     @GetMapping({"/edit","/edit/{id}"})
     @PreAuthorize("hasAuthority('/account/c')")
     public String editor(@PathVariable(required = false) Integer id, Model map){
@@ -67,6 +85,12 @@ public class AccountController implements BaseController{
         return getModelName()+"/editor";
     }
 
+    /**
+     * 保存账号
+     * @param account 账号实体
+     * @param roleIds 角色id
+     * @return
+     */
     @PutMapping
     @PreAuthorize("hasAuthority('/account/u')")
     @ResponseBody
@@ -91,6 +115,12 @@ public class AccountController implements BaseController{
         }
         return map;
     }
+
+    /**
+     * 得到用户的角色
+     * @param accountId 账号id
+     * @return
+     */
     @GetMapping({"/role/{accountId}","/role"})
     @PreAuthorize("hasAuthority('/account/role/r')")
     @ResponseBody
@@ -116,6 +146,11 @@ public class AccountController implements BaseController{
         return roleList;
     }
 
+    /**
+     * 删除用户
+     * @param ids 用户id集合
+     * @return
+     */
     @DeleteMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/d')")

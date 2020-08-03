@@ -35,8 +35,8 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public List<News> findNoticeAll(News news) {
-        return newsMapper.findNoticeAll(news);
+    public List<News> findByTitleOrContent(String name) {
+        return newsMapper.findByTitleOrContent(name);
     }
 
 }

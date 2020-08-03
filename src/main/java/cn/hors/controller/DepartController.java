@@ -71,6 +71,10 @@ public class DepartController {
         return "keshiys";
     }
 
+    /**
+     * 到达本医院的路线
+     * @return
+     */
     @GetMapping("/luxian")
     public String luxian(){
         return "Article-57";
@@ -80,6 +84,7 @@ public class DepartController {
      * 就诊流程 页面跳转
      * @return
      */
+
     @GetMapping("/jiuzhen")
     public String jiuzhen(){
         return "jiuzhen";
@@ -108,5 +113,14 @@ public class DepartController {
         model.addAttribute("parent",departId1);
         System.out.println("departId1.getDoctors() = " + departId1.getDoctors());
         return "chuzhen";
+    }
+
+    /**
+     * 查看医院简介
+     * @return
+     */
+    @GetMapping("/jianjie")
+    public String jianjie(){
+        return "Article-3";
     }
 }
