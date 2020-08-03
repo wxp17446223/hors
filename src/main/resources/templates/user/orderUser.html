@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<div data-th-each="orders:${orders}" data-th-each="user:${users}" data-th-each="doctor:${doctors}" data-th-each="timeline:${timelines}">
+    <table>
+        <tr>
+            <th>预约ID</th>
+            <th>预约人</th>
+            <th>预约医生</th>
+            <th>预约时段</th>
+            <th>预约状态</th>
+            <th>联系电话</th>
+            <th>价钱</th>
+            <th>操作</th>
+        </tr>
+        <tr>
+            <td data-th-text="${orders?.orderId}">预约ID</td>
+            <td data-th-text="${user?.name}">预约人</td>
+            <td data-th-text="${doctor?.name}">预约医生</td>
+            <td data-th-text="${timeline?.date},${timeline?.startTime},${timeline?.endTime}">预约时段</td>
+            <td data-th-text="${orders?.status}">预约状态</td>
+            <td data-th-text="${orders?.userPhone}">联系电话</td>
+            <td data-th-text="${orders?.cost}">价钱</td>
+            <td><input type="button" value="修改"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

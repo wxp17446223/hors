@@ -42,4 +42,10 @@ public interface OrderService{
      */
     Order findById(Integer id);
 
+    /**
+     * 通过用户ID查询单一用户的预约信息
+     * @param userId 用户ID
+     * @return
+     */
+    Order findByUseId(Integer userId);
 }
