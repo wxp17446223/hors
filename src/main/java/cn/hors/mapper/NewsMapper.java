@@ -33,4 +33,5 @@ public interface NewsMapper {
      * @return
      */
     List<News> findNoticeAll(News news);
+
 }

@@ -67,12 +67,26 @@ public class DepartController {
         return "keshiys";
     }
 
+    /**
+     * 到达本医院的路线
+     * @return
+     */
     @GetMapping("/luxian")
     public String luxian(){
         return "Article-57";
     }
+
     @GetMapping("/jiuzhen")
     public String jiuzhen(){
         return "jiuzhen";
+    }
+
+    /**
+     * 查看医院简介
+     * @return
+     */
+    @GetMapping("/jianjie")
+    public String jianjie(){
+        return "Article-3";
     }
 }

@@ -66,6 +66,5 @@
     select count(*) from news
   </select>
 
-  <select id="findNewsAllByAsc" resultMap="BaseResultMap"></select>
 
 </mapper>
