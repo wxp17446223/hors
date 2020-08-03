@@ -1149,7 +1149,7 @@
                     <a href=""><img data-th-src="${l.picture}" width="120" height="162" /></a>
                     <div class="txt">
                         <div class="info">
-                            <a href="https://www.hnsrmyy.net/Doctor-331.html" target="_blank"><span data-th-text="${l.name}"></span></a>
+                            <a data-th-href="@{/doctor/timeline?doctorId={doctorId}(doctorId=${l.doctorId})}" target="_blank"><span data-th-text="${l.name}"></span></a>
                             <br /><span data-th-text="${l.adept}"></span>
                             <br />
                             <em data-th-text="${l.position}">主任医师</em>

@@ -98,4 +98,20 @@ public class DoctorController {
         System.out.println("order = " + order);
         return "redirect:/depart/keshi";
     }
+
+    @GetMapping("/sreach")
+    public String sreachByName(String name,int page,Model model){
+        List<Doctor> list = doctorService.findByName(name);
+        model.addAttribute("list",list);
+        String flag;
+        if(list.size()<page*10){
+            flag = "t";
+        }else {
+            flag = "f";
+        }
+        model.addAttribute("list",list);
+        model.addAttribute("flag",flag);
+        return "index";
+    }
+
 }
