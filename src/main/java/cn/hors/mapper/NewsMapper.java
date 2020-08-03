@@ -35,6 +35,11 @@ public interface NewsMapper {
      */
     List<News> findByTitleOrContent(@Param("name") String name);
 
+    /**
+     * 查询所有的公告信息
+     * @param news
+     * @return
+     */
     List<News> findNoticeAll(News news);
 
 }

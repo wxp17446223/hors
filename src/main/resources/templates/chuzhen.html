@@ -427,53 +427,44 @@
                     <a data-th-text="*{departName}" data-th-title="*{departName}"
                        data-th-href="@{/depart/keshimx(departId=*{departId})}"
                        href="DutyTime-1-165.html" title="肾内科">肾内科</a>
-<!--                    <a href="DutyTime-1-11.html" title="呼吸内科">呼吸内科</a>-->
-<!--                    <a href="DutyTime-1-12.html" title="神经内科">神经内科</a>-->
-<!--                    <a href="DutyTime-1-13.html" title="消化内科">消化内科</a>-->
-<!--                    <a href="DutyTime-1-16.html" title="感染性疾病科">感染性疾病科</a>-->
-<!--                    <a href="DutyTime-1-7.html" title="中医科">中医科</a>-->
-<!--                    <a href="DutyTime-1-4.html" title="内分泌科">内分泌科</a>-->
-<!--                    <a href="DutyTime-1-3.html" title="血液内科">血液内科</a>-->
-<!--                    <a href="DutyTime-1-6.html" title="风湿免疫科">风湿免疫科</a>-->
-<!--                    <a href="DutyTime-1-5.html" title="肿瘤内科">肿瘤内科</a>-->
-<!--                    <a href="DutyTime-1-2.html" title="过敏反应科（变态反应科）">过敏反应科（变态反应科）</a>-->
                 </em>
             </p>
             <div class="clear"></div>
         </div>
+
         <div class="general">
             <div id="DepName" class="title07 generaltitle" data-th-text="${parent?.departName}">内科临床医学部</div>
-            <div id="DIVWeekday" style="position: absolute; top: 90px;">
-                <div class="visitList">
-                    <div class="title">
-                        <div class="wide" style="background:#eaeaea">星期一 <em>2020/8/3</em><span
-                                class="green">上午</span><span
-                                class="blue">下午</span></div>
-                        <div class="wide">星期二 <em>2020/8/4</em><span class="green">上午</span><span class="blue">下午</span>
-                        </div>
-                        <div class="wide">星期三 <em>2020/8/5</em><span class="green">上午</span><span class="blue">下午</span>
-                        </div>
-                        <div class="wide">星期四 <em>2020/8/6</em><span class="green">上午</span><span class="blue">下午</span>
-                        </div>
-                        <div>星期五 <em>2020/8/7</em><span class="green">上午</span><span class="blue">下午</span></div>
-                        <div>星期六 <em>2020/8/8</em><span class="green">上午</span><span class="blue">下午</span></div>
-                        <div>星期日 <em>2020/8/9</em><span class="green">上午</span><span class="blue">下午</span></div>
-                    </div>
-                </div>
-            </div>
-            <em >
-                <div class="visitList" data-th-each="departs:${parent?.children}">
+<!--            <div id="DIVWeekday" style="position: absolute; top: 90px;">-->
+<!--                <div class="visitList">-->
+<!--                    <div class="title">-->
+<!--                        <div class="wide" style="background:#eaeaea">星期一 <em>2020/8/3</em><span-->
+<!--                                class="green">上午</span><span-->
+<!--                                class="blue">下午</span></div>-->
+<!--                        <div class="wide">星期二 <em>2020/8/4</em><span class="green">上午</span><span class="blue">下午</span>-->
+<!--                        </div>-->
+<!--                        <div class="wide">星期三 <em>2020/8/5</em><span class="green">上午</span><span class="blue">下午</span>-->
+<!--                        </div>-->
+<!--                        <div class="wide">星期四 <em>2020/8/6</em><span class="green">上午</span><span class="blue">下午</span>-->
+<!--                        </div>-->
+<!--                        <div>星期五 <em>2020/8/7</em><span class="green">上午</span><span class="blue">下午</span></div>-->
+<!--                        <div>星期六 <em>2020/8/8</em><span class="green">上午</span><span class="blue">下午</span></div>-->
+<!--                        <div>星期日 <em>2020/8/9</em><span class="green">上午</span><span class="blue">下午</span></div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <em data-th-each="departs:${parent?.children}">
+                <div class="visitList" >
                     <div class="namelist"><h3 data-th-text="${departs.departName}">肾内科</h3>
-
-                            <div class="list01 frist" style="height: 130px; width: 130px">
-                                <em data-th-each="doctor:${departs.doctors}" data-th-object="${doctor}">
-                                <a target="_blank" data-th-href="@{/depart/ys(doctorId=*{doctorId})}"
-                                   href="ys.html" data-th-text="*{name}">朱清</a>
-                                </em>
-                            </div>
-                        <div class="clear"></div>
                     </div>
                 </div>
+
+                <div class="choose" style="height: 130px; width: 130px">
+                    <em data-th-each="doctor:${departs.doctors}" data-th-object="${doctor}">
+                        <a target="_blank" data-th-href="@{/depart/ys(doctorId=*{doctorId})}"
+                           href="ys.html" data-th-text="*{name}">朱清</a>
+                    </em>
+                </div>
+                <div class="clear"></div>
             </em>
             <div class="notice"><h4>温馨提示</h4>
                 <p>我院医师肩负着外出会诊、学术活动、教学、外出进修、出国学习、下乡等任务，因此出诊时间会临时调整，以当天出诊医师为准。此表仅供参考。</p></div>
