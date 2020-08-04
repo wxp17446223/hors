@@ -37,8 +37,10 @@ public class HomeController {
      * 主页转跳
      * @return
      */
-    @GetMapping("/a")
-    public String home() {
+    @GetMapping("/")
+    public String home(Model model) {
+        List<Doctor> list = doctorService.findByName(null);
+        model.addAttribute("list",list);
         return "index";
     }
 
