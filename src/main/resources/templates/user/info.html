@@ -4,51 +4,60 @@
     <meta charset="UTF-8">
     <title>个人中心</title>
 </head>
-<body>
+<body style="height: 100%">
 <div data-th-each="user:${users}" data-th-object="${user}">
-   <table>
+   <table border="1" cellpadding="10" style="margin-left: 135px;width: 60%">
        <tr hidden="hidden">
-           <th>ID</th>
+           <td id="p1">ID</td>
            <td data-th-text="*{userId}">111</td>
        </tr>
        <tr>
-           <th>名字</th>
+           <td id="p1" style="text-align: center;">名字</td>
            <td data-th-text="*{name}">111</td>
        </tr>
        <tr>
-           <th>身份证</th>
+           <td id="p1" style="text-align: center;">身份证</td>
            <td data-th-text="*{identityId}">111</td>
        </tr>
        <tr>
-           <th>性别</th>
+           <td id="p1" style="text-align: center;">性别</td>
            <td data-th-text="*{sex==0?'女':'男'}">男</td>
        </tr>
        <tr>
-           <th>生日</th>
+           <td id="p1" style="text-align: center;">生日</td>
            <td data-th-text="*{birth}">111</td>
        </tr>
        <tr>
-           <th>图片</th>
-           <td data-th-text="*{picture}" >11</td>
+           <td id="p1" style="text-align: center;">图片
+            <input hidden="hidden" data-th-value="*{picture}" name></td>
+           <td ><img data-th-src="*{picture}"></td>
        </tr>
        <tr>
-           <th>手机</th>
+           <td id="p1" style="text-align: center;">手机</td>
            <td data-th-text="*{phone}">111</td>
        </tr>
        <tr>
-           <th>邮箱</th>
+           <td id="p1" style="text-align: center;">邮箱</td>
            <td data-th-text="*{email}">111</td>
        </tr>
        <tr>
-           <th>地址</th>
+           <td id="p1" style="text-align: center;">地址</td>
            <td data-th-text="*{address}">111</td>
        </tr>
        <tr>
-           <th>注册时间</th>
+           <td id="p1" style="text-align: center;">注册时间</td>
            <td data-th-text="*{#dates.format(registerTime,'yyyy-MM-dd HH:mm:ss')}">111</td>
        </tr>
    </table>
-    <a href="javascript:;" data-th-href="@{/user/editor/{id}(id=${user?.userId})}"> <input type="submit" name="update" value="修改" ></a>
+    <a href="javascript:;" data-th-href="@{/user/editor/{id}(id=${user?.userId})}">
+        <input type="submit" name="update" value="修改"
+               style="width: 10%;position: relative;margin-left: 20%;margin-top: 20px;padding: 7px;">
+    </a>
+    <script type="text/javascript">
+        let picture=user.picture;
+        var url = "../static/hors/images/"+{picture};
+        document.getElementById("pic").src = url;
+    </script>
 </div>
 </body>
 </html>

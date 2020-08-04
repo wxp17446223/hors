@@ -1,11 +1,14 @@
+server:
+  port: 80
+
 spring:
   profiles:
     active: pro
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: asd123@1
-    url: jdbc:mysql://localhost:3306/jdbc?serverTimezone=UTC
+    username: hors
+    password: 123456
+    url: jdbc:mysql://localhost:3306/hors?serverTimezone=UTC
 
 pagehelper:
   helper-dialect: mysql

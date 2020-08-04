@@ -1,5 +1,7 @@
 package cn.hors.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -7,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.util.StringUtils;
 
 /**
     * 科室表
@@ -28,10 +32,11 @@ public class Departments {
     */
     private String introduce;
 
+
     /**
     * 成立日期
     */
-    private Date date;
+    private String  date;
 
     /**
     * 父科室ID默认-1 为最高级科室

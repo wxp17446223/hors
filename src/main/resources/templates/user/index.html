@@ -28,6 +28,7 @@
             src="../static/hors/js/KunyiHTML5.min.js"></script>
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
             src="../static/hors/js/Kunyilibrary.js"></script>
+
 </head>
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
@@ -438,7 +439,7 @@
         </div>
     </div>
     <div class="baseRight">
-        <iframe name="mainBody" width="1000px" height="950px" frameborder="0">
+        <iframe name="mainBody" width="1000px" height="1000px" frameborder="0">
 
         </iframe>
     </div>
@@ -598,5 +599,12 @@
         src="../static/hors/js/Kunyi.Secondary.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Department.js}"
         src="../static/hors/js/Kunyi.Department.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
 </body>
 </html>

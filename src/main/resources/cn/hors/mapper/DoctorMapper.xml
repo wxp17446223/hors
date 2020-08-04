@@ -220,10 +220,11 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
 
 <select id="findByName" parameterType="string" resultType="Doctor">
 select <include refid="Base_Column_List"></include> from doctor
-where 1=1
+<where>
 <if test="name != null and name != ''">
 and name like CONCAT('%',#{name},'%')
 </if>
+</where>
 </select>
 <select id="findByOrd" resultMap="OrderDoctorMap">
     select <include refid="Base_Column_List"></include>

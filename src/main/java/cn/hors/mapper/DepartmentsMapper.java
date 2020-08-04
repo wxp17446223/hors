@@ -2,6 +2,7 @@ package cn.hors.mapper;
 
 import cn.hors.bean.Departments;
 import cn.hors.bean.Doctor;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -42,5 +43,11 @@ public interface DepartmentsMapper {
      */
     Departments findEntityById(Integer departId);
 
+    int deleteByIds(@Param("ids") Integer... ids);
 
+    List<Integer> findDepartIdByDid(Integer id);
+
+    int update(Departments departments);
+
+    int insert(Departments departments);
 }
