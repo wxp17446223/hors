@@ -35,4 +35,11 @@ public interface NewsService{
      * @return 新闻集合
      */
     List<News> findByTitleOrContent(String name);
+
+    /**
+     * 查询所有的公告信息
+     * @param news
+     * @return
+     */
+    List<News> findNoticeAll(News news);
 }

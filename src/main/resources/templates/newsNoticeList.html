@@ -429,8 +429,8 @@
 
         </div>
         <div class="PrevNext">
-            <p><span>上一篇</span><a disabled='disabled' title='已经是第一篇'>[已经是第一篇]</a></p>
-            <p><span>下一篇</span><a href="NewsDetail-8478.html" title="豫医联盟医院标题分会成立">豫医联盟医院标题分会成立</a></p>
+            <p><span>上一篇</span><a data-th-href="@{/news/scanCount(newId=${newsup.newId})}" href="newslist.html" title="上一篇" data-th-text="${newsup.title}">[上一篇]</a></p>
+            <p><span>下一篇</span><a data-th-href="@{/news/scanCount(newId=${newsdown.newId})}" href="newslist.html" title="下一篇" data-th-text="${newsdown.title}">[下一篇]</a></p>
         </div>
     </div>
     <div class="clear"></div>
