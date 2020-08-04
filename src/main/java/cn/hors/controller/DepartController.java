@@ -123,4 +123,8 @@ public class DepartController {
     public String jianjie(){
         return "Article-3";
     }
+    @GetMapping("/find")
+    public String findByName(String name){
+        return "index";
+    }
 }

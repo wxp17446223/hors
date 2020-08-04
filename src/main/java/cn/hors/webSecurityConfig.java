@@ -18,7 +18,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.util.DigestUtils;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 
 import javax.annotation.Resource;
@@ -110,12 +112,16 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable()
                 .headers().frameOptions().disable();
+                CharacterEncodingFilter filter = new CharacterEncodingFilter();
+                filter.setEncoding("UTF-8");
+                filter.setForceEncoding(true);
+                http.addFilterBefore(filter, CsrfFilter.class);
+
     }
     public void configure(WebSecurity web) throws Exception {
-        // 忽略URL
+        // 指定可以通过的ur;
         web.ignoring().antMatchers("/depart/**","/news/**","/doctor/**/*","/depart/**/*","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
-                //"/hors/css/styles.css","/hors/js/jquery-1.7.1.min.js",
+        //"/hors/css/styles.css","/hors/js/jquery-1.7.1.min.js",
                 "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2","/uacc/**","/register","/user/**");
-
     }
 }

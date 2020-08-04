@@ -33,4 +33,25 @@ public class DepartmentsServiceImpl implements DepartmentsService{
     public Departments findAllByDepartId(Integer departId) {
         return departmentsMapper.findAllByDepartId(departId);
     }
+
+    @Override
+    public boolean deleteByIds(Integer... ids) {
+        for (Integer id : ids) {
+            List<Integer> departIdByDid = departmentsMapper.findDepartIdByDid(id);
+            for (Integer departid : departIdByDid) {
+                departmentsMapper.deleteByIds(departid);
+            }
+        }
+        return departmentsMapper.deleteByIds(ids)>0?true:false;
+    }
+
+    @Override
+    public boolean update(Departments departments) {
+        return departmentsMapper.update(departments)>0?true:false;
+    }
+
+    @Override
+    public boolean insert(Departments departments) {
+        return departmentsMapper.insert(departments)>0?true:false;
+    }
 }

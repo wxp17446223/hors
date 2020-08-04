@@ -6,6 +6,7 @@
         <result property="departName" column="depart_name"/>
         <result property="introduce" column="introduce"/>
         <result property="date" column="date"/>
+         <result property="phone" column="phone"/>
         <result property="dId" column="d_id"/>
         <association property="parent" javaType="cn.hors.bean.Departments" select="findEntityById" column="d_id"/>
         <collection property="children" ofType="cn.hors.bean.Departments" column="{dId=depart_id}" select="findAll"/>
@@ -14,7 +15,7 @@
     </resultMap>
     
 <sql id="Base_Column_List">
-    depart_id,depart_name,introduce,`date`,d_id
+    depart_id,depart_name,introduce,`date`,d_id,phone
 </sql>
 
 <sql id="BASIC_WHERE">
@@ -64,4 +65,55 @@
     from departments where depart_id = #{departId}
 </select>
 
+
+<delete id="deleteByIds" parameterType="Integer">
+delete from departments where
+<foreach collection="ids" item="id" open="depart_id in (" separator="," close=")">
+#{id}
+</foreach>
+</delete>
+
+<select id="findDepartIdByDid" parameterType="Integer" resultType="Integer">
+select depart_id from departments where d_id = #{id}
+</select>
+<update id="update" parameterType="Departments">
+   update departments
+    <set>
+      <if test="departName != null and departName != ''">
+       depart_name = #{departName},
+      </if>
+      <if test="introduce != null and introduce != ''">
+        introduce = #{introduce},
+      </if>
+      <if test="date != null">
+         date = #{date},
+      </if>
+      <if test="phone != null and phone != ''">
+        phone = #{phone}
+      </if>
+    </set>
+    where depart_id = #{departId}
+</update>
+
+
+<insert id="insert" parameterType="Departments" useGeneratedKeys="true" keyColumn="depart_id" keyProperty="departId">
+insert into departments(depart_name,introduce,date,phone
+  <choose>
+  <when test="dId != null">
+  ,d_id)
+</when>
+<otherwise>
+)
+</otherwise>
+</choose>
+  values (#{departName},#{introduce},#{date},#{phone}
+  <choose>
+  <when test="dId != null">
+  ,#{dId})
+</when>
+<otherwise>
+)
+</otherwise>
+</choose>
+</insert>
 </mapper>
