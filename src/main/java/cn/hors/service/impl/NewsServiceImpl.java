@@ -43,4 +43,5 @@ public class NewsServiceImpl implements NewsService{
     public List<News> findNoticeAll(News news) {
         return newsMapper.findNoticeAll(news);
     }
+
 }

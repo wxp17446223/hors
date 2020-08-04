@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf8"/>
     <meta name="renderer" content="webkit"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>科室导航 - 就诊指南 - 医院标题</title>
+    <title>个人中心</title>
     <meta name="Keywords" content="医院标题,人民医院,省医,山西人民医院,咨询, 留言, 山西医院, 寻医问药"/>
     <meta name="Description"
           content="医院标题位于山西省太原市，建院于1906年，是一家三级甲等综合医院。医院秉承“患者至上，员工为本”的服务理念，弘扬“仁爱、博学、严谨、卓越”的医院精神，坚持“人民医院为人民”的办院宗旨，造就了一支业务精湛、医德高尚、纪律严明、作风过硬的职工队伍，树立了社会满意、患者信赖的良好形象。先后获得全国精神文明建设先进单位、全国文明单位、全国卫生系统先进集体、全国医院文化建设先进单位等多项荣誉称号。"/>
@@ -429,11 +429,11 @@
         <div class="title title05_52" ><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}" data-th-text="个人中心">个人中心</a> </div>
         <div class="newsMenu" data-th-each="users:${users}" data-th-object="${users}">
             <ul>
-                <li><a data-th-href="@{/user/info(accountId=*{accountId})}" href="/user/info.html" target="mainBody" data-th-text="个人信息" ><em>个人信息</em></a></li>
-                <li><a data-th-href="@{/user/uacc(accountId=*{accountId})}" href="/user/uacc.html" target="mainBody"  ><em>密码设置</em></a></li>
+                <li><a data-th-href="@{/user/info/{accountId}(accountId=*{accountId})}" href="/user/info.html" target="mainBody" data-th-text="个人信息" ><em>个人信息</em></a></li>
+                <li><a data-th-href="@{/user/uacc/{accountId}(accountId=*{accountId})}" href="/user/uacc.html" target="mainBody"  ><em>密码设置</em></a></li>
             </ul>
             <ul>
-                <li><a data-th-href="@{/user/orderUser(userId=*{userId})}" href="/user/orderUser/html" target="mainBody"><em>预约信息</em></a></li>
+                <li><a data-th-href="@{/user/orderUser/{userId}(userId=*{userId})}" href="/user/orderUser/html" target="mainBody"><em>预约信息</em></a></li>
             </ul>
         </div>
     </div>

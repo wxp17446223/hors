@@ -1,5 +1,6 @@
 package cn.hors.mapper;
 
+import cn.hors.bean.PAccount;
 import cn.hors.bean.Userinfo;
 
 public interface UserinfoMapper {
@@ -16,4 +17,6 @@ public interface UserinfoMapper {
     int update(Userinfo user);
 
     Userinfo findByAccId(Integer accountId);
+
+    int updatePic(Userinfo userinfo);
 }

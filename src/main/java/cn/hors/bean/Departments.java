@@ -53,5 +53,8 @@ public class Departments {
      */
     private Departments parent;
 
+    /**
+     * 科室下的所有医生
+     */
     private List<Doctor> doctors;
 }

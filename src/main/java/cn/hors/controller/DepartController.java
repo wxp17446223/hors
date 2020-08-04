@@ -1,17 +1,21 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Departments;
+import cn.hors.consts.SystemConst;
 import cn.hors.service.DepartmentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/depart")
+@SessionAttributes({SystemConst.PARENT_DEPARTMENTS})
 public class DepartController {
     @Resource
     private DepartmentsService departmentsService;
@@ -76,9 +80,39 @@ public class DepartController {
         return "Article-57";
     }
 
+    /**
+     * 就诊流程 页面跳转
+     * @return
+     */
+
     @GetMapping("/jiuzhen")
     public String jiuzhen(){
         return "jiuzhen";
+    }
+
+    /**
+     * 出诊安排 页面跳转
+     * @return
+     */
+    @GetMapping("/chuzhen")
+    public String chuzhen(Model model){
+        //查到所有父科室
+        List<Departments> parentDepartment = departmentsService.findAllByDid(-1);
+        model.addAttribute(SystemConst.PARENT_DEPARTMENTS,parentDepartment);
+        return "chuzhen";
+    }
+
+    /**
+     * 出诊单个父科室下的所有医生信息安排 页面跳转
+     * @return
+     */
+    @GetMapping("/chuzhenByDepartId")
+    public String chuzhenByDepartId(Model model,@RequestParam Integer departId){
+        //查到父科室 跟父科室下的所有子科室 跟子科室下的所有医生
+        Departments departId1 = departmentsService.findAllByDepartId(departId);
+        model.addAttribute("parent",departId1);
+        System.out.println("departId1.getDoctors() = " + departId1.getDoctors());
+        return "chuzhen";
     }
 
     /**

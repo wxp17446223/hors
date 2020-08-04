@@ -9,8 +9,65 @@
             padding: 15px;
         }
     </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.0/spark-md5.js"></script>
+    <script>
+        $(function () {
+            $("[name=file]").change(function (e) {
+                var file = this.files[0];
+                //创建文件读取对象
+                var fileReader = new FileReader();
+                //定义缓存
+                var buff = 2<<20;
+                //读取次数
+                var maxCount =  Math.ceil(file.size/buff);
+                //当前读取次数
+                var current = 0;
+                //   得到分片读取文件的函数
+                var slice = File.prototype.slice;
+                //创建md5计算对象
+                var spart = new SparkMD5.ArrayBuffer();
+                //onload
+                fileReader.onload=function (){
+                    //将读取的数据放入md5计算对象
+                    spart.append(this.result);
+                    if(current >= maxCount){
+                        //获得md5
+                        var md5 = spart.end();
+                        console.log(md5);
+                        $("#upload").text("上传").attr("disabled",false);
+                        $.get("/exists",{md5},function (rs) {
+                            if(rs.exists) {
+                                alert("文件秒传完成");
+                            }
+                        },'json')
+                    }else{
+                        readFile();
+                    }
+                }
+                function readFile() {
+                    // file start end
+                    var start = current*buff;
+                    var end = (start+buff)>file.size? file.size:(start+buff);
+                    fileReader.readAsArrayBuffer(slice.call(file,start,end));
+                    current++;
+                    //设置动态下标
+                    $("#progress").val(end);
+                }
+                //开始解析MD5
+                $("#progress").val(0).attr("max",file.size);
+                $("#upload").text("正在校验文件...").attr("disabled",true);
+                readFile();
+            });
+        })
+    </script>
 </head>
 <body data-th-each="user:${user}" data-th-object="${user}">
+<form action="/user/userfileUpload" method="post" enctype="multipart/form-data" style="left: 90px;bottom: 15px;position: relative;">
+    <input type="hidden" name="userId" data-th-value="*{userId}">
+    <input type="file" name="file" data-th-value="*{picture}">
+    <button type="submit" id="upload">上传</button><font color="red" size="0.5px">*如果要换图片请点击</font>
+</form>
 <form class="layui-form" action="" style="width: 40%">
     <input type="hidden" data-th-value="${user?.userId}" name="userId">
     <input type="hidden" data-th-value="${user?.accountId}" name="accountId">
@@ -40,12 +97,6 @@
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">图片</label>
-        <button type="button" class="layui-btn" id="test2">
-            <i class="layui-icon">&#xe67c;</i>上传图片
-        </button>
-    </div>
-    <div class="layui-form-item">
         <label class="layui-form-label">手机号</label>
         <div class="layui-input-block">
             <input type="text" name="phone" data-th-value="${user?.phone}" lay-verify="required"   autocomplete="off" class="layui-input">
@@ -73,7 +124,6 @@
 <script data-th-inline="javascript">
     layui.use(['form','jquery','laydate','upload'], function(){
         var laydate = layui.laydate;
-        var upload = layui.upload;
         let {form,$} = layui;
         //监听提交
         form.on('submit(formSubmit)', function(data){
@@ -97,17 +147,6 @@
         });
         laydate.render({
             elem: '#test1' //指定元素
-        });
-        //执行实例
-        var uploadInst = upload.render({
-            elem: '#test2' //绑定元素
-            ,url: '/upload/' //上传接口
-            ,done: function(res){
-                //上传完毕回调
-            }
-            ,error: function(){
-                //请求异常回调
-            }
         });
     });
 </script>

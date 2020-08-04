@@ -7,8 +7,18 @@ import java.util.List;
 
 public interface NewsService{
 
+    /**
+     * 查询所有新闻信息
+     * @param news
+     * @return
+     */
     List<News> findNewsAll(News news);
 
+    /**
+     * 通过newId查询单条新闻信息
+     * @param newId
+     * @return
+     */
     News findByNewId(Integer newId);
 
     /**
@@ -26,5 +36,10 @@ public interface NewsService{
      */
     List<News> findByTitleOrContent(String name);
 
+    /**
+     * 查询所有的公告信息
+     * @param news
+     * @return
+     */
     List<News> findNoticeAll(News news);
 }
