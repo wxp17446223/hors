@@ -56,6 +56,7 @@ public class NewsController {
         model.addAttribute("departs", departmentsService.findAllByDid(-1));
         return "newsNotice";
     }
+
     /**
      * 查询单条具体信息
      * @param model
@@ -78,7 +79,12 @@ public class NewsController {
     @GetMapping("/scanCount")
     public String scanCounter(Model model, News news, @RequestParam Integer newId) {
         Integer counter = newsService.scanCounter(newId);
-        List<News> newsAll = newsService.findNewsAll(null);
+        List<News> newsAll =null;
+        if (newsService.findByNewId(newId).getSource().equals("公告")){
+            newsAll=newsService.findNoticeAll(null);
+        }else {
+            newsAll=newsService.findNewsAll(null);
+        }
         int i = newsAll.indexOf(newsService.findByNewId(newId));
         model.addAttribute("newsAll",newsAll);
         model.addAttribute("news", newsService.findByNewId(newId));
@@ -96,7 +102,7 @@ public class NewsController {
             model.addAttribute("newsdown", newsService.findByNewId(newsAll.get(i + 1).getNewId()));
         }
 
-        return "newslist";
+        return newsService.findByNewId(newId).getSource().equals("公告")?"newsNoticeList":"newslist";
     }
 
 
