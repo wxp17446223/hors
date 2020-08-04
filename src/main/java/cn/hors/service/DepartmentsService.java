@@ -16,4 +16,9 @@ public interface DepartmentsService{
 
     Departments findAllByDepartId(Integer departId);
 
+    boolean deleteByIds(Integer... ids);
+
+    boolean update(Departments departments);
+
+    boolean insert(Departments departments);
 }

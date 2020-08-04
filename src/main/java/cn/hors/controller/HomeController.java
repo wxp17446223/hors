@@ -96,6 +96,8 @@ public class HomeController {
     public  String register(){
         return "register";
     }
+
+
     @GetMapping("/find")
     public String find(String name,Integer type,Model map){
         if(type == 1){

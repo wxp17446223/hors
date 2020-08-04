@@ -17,7 +17,7 @@
     <input type="hidden" name="id" data-th-value="${resource?.id}">
     <input type="hidden" name="pid"  data-th-if="${resource?.parent}" data-th-value="${resource?.parent?.id}">
     <div class="layui-form-item" data-th-if="${resource?.parent}">
-        <label class="layui-form-label">父资源资源名称</label>
+        <label class="layui-form-label">父资源名称</label>
         <div class="layui-input-block">
             <input type="text" readonly="readonly"  data-th-value="${resource?.parent?.name}" class="layui-input" >
         </div>
