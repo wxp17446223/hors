@@ -111,11 +111,12 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .headers().frameOptions().disable();
     }
+    @Override
     public void configure(WebSecurity web) throws Exception {
         // 忽略URL
-        web.ignoring().antMatchers("/news/**","/doctor/**/*","/depart/**/*","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
-        //"/hors/css/styles.css","/hors/js/jquery-1.7.1.min.js",
-        web.ignoring().antMatchers("/find","/depart/**/*","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
-                "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2");
+        web.ignoring().antMatchers("/news/**","/doctor/**/*","/depart/**/*","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html");
+                //"/hors/css/styles.css","/hors/js/jquery-1.7.1.min.js",
+                web.ignoring().antMatchers("/find","/depart/**/*","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
+                        "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2");
     }
 }
