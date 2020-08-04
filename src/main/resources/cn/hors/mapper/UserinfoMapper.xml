@@ -29,7 +29,7 @@
         <if test="identityId != null and identityId != ''">identity_id=#{identityId,jdbcType=VARCHAR},</if>
         <if test="sex != null">sex=#{sex,jdbcType=INTEGER},</if>
         <if test="birth != null and birth != ''">birth=#{birth,jdbcType=DATE},</if>
-        <if test="picture != null and picture != ''">picture=#{picture},</if>
+        <if test="picture != null and picture != ''">picture=#{picture,jdbcType=VARCHAR},</if>
         <if test="phone != null and phone!=''">phone=#{phone,jdbcType=VARCHAR},</if>
         <if test="email != null and email!=''">email=#{email,jdbcType=VARCHAR},</if>
         <if test="address != null and address!=''">address=#{address,jdbcType=VARCHAR},</if>

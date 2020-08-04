@@ -24,21 +24,24 @@ public class RegisterController {
 
     @PutMapping
     @ResponseBody
-    public Map<String,Object> save(Userinfo user,Account account){
+    public Map<String,Object>  save(Userinfo user, Account account){
         Map<String,Object> results = new HashMap<>();
-        if (accountServices.insert(account)>0){
-            user.setAccountId(account.getAccountId());
-            if(userinfoService.insert(user)){
-                results.put("code",0);
-                results.put("msg","注册成功");
-            }else {
-                results.put("code",1);
-                results.put("msg","注册失败");
+            if (accountServices.insert(account) > 0) {
+                user.setAccountId(account.getAccountId());
+                if (userinfoService.insert(user)) {
+                    results.put("code", 0);
+                    results.put("msg", "注册成功");
+                } else {
+                    results.put("code", 1);
+                    results.put("msg", "注册失败");
+                }
+            } else {
+                results.put("code", 1);
+                results.put("msg", "注册失败");
             }
-        }else {
-            results.put("code",1);
-            results.put("msg","注册失败");
-        }
-        return results;
+            return results;
+
     }
+
+
 }
