@@ -25,4 +25,6 @@ public interface NewsService{
      * @return 新闻集合
      */
     List<News> findByTitleOrContent(String name);
+
+    List<News> findNoticeAll(News news);
 }
