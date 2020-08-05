@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.hors.mapper.UserinfoMapper">
-  <resultMap id="BaseResultMap" type="cn.hors.bean.Userinfo">
+<mapper namespace="cn.hors.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.hors.bean.UserInfo">
     <!--@mbg.generated-->
     <!--@Table userinfo-->
     <id column="user_id" jdbcType="INTEGER" property="userId" />
@@ -47,7 +47,7 @@
     delete from userinfo
     where user_id = #{userId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.UserInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into userinfo (account_id, `name`, identity_id, 
       sex, birth, picture, phone, 
@@ -58,7 +58,7 @@
       #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, now()
       )
   </insert>
-  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.Userinfo" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="user_id" keyProperty="userId" parameterType="cn.hors.bean.UserInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -134,14 +134,14 @@
         from userinfo where account_id = #{accountId,jdbcType=INTEGER}
     </select>
 
-    <update id="update" parameterType="cn.hors.bean.Userinfo">
+    <update id="update" parameterType="cn.hors.bean.UserInfo">
     update userinfo
     <set>
         <include refid="Basic_Update"></include>
     </set>
     where user_id=#{userId,jdbcType=INTEGER}
   </update>
-  <update id="updatePic" parameterType="cn.hors.bean.Userinfo">
+  <update id="updatePic" parameterType="cn.hors.bean.UserInfo">
 update userinfo set picture = #{picture} where user_id=#{userId,jdbcType=INTEGER}
 </update>
 

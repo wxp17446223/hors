@@ -7,10 +7,11 @@
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id" jdbcType="INTEGER" property="roleId"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    account_id, account, `password`
+    account_id, account, `password`,role_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -26,26 +27,32 @@
   </delete>
   <insert id="insert" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into account (account, `password`)
-    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    insert into account (account, `password`,role_id)
+    values (#{account,jdbcType=VARCHAR}, MD5(#{password}),#{roleId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into account
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="account != null">
+      <if test="account != null and account!=''">
         account,
       </if>
       <if test="password != null">
         `password`,
       </if>
+      <if test="roleId != null and roleId!=''">
+        role_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="account != null">
+      <if test="account != null and account!=''">
         #{account,jdbcType=VARCHAR},
       </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+      <if test="password != null and password!=''">
+        MD5(#{password}),
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -57,7 +64,10 @@
         account = #{account,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        `password` = #{password,jdbcType=VARCHAR},
+        `password` = MD5(#{password,jdbcType=VARCHAR}),
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
       </if>
     </set>
     where account_id = #{accountId,jdbcType=INTEGER}
@@ -66,11 +76,11 @@
     <!--@mbg.generated-->
     update account
     set account = #{account,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      `password` = MD5(#{password}), role_id = #{roleId,jdbcType=INTEGER}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
   <select id="login" resultMap="BaseResultMap">
   select  <include refid="Base_Column_List"></include>
-  from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password,jdbcType=VARCHAR}
+  from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password}
 </select>
 </mapper>
