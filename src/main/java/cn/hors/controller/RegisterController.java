@@ -1,10 +1,11 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -19,16 +20,17 @@ public class RegisterController {
     private AccountService accountServices;
 
     @Resource
-    private UserinfoService userinfoService;
+    private UserInfoService userinfoService;
 
 
     @PutMapping
     @ResponseBody
-    public Map<String,Object>  save(Userinfo user, Account account){
+    public Map<String,Object>  save(UserInfo user, Account account){
         Map<String,Object> results = new HashMap<>();
-            if (accountServices.insert(account) > 0) {
+        account.setPassword(DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
+            if (accountServices.insertSelective(account) > 0) {
                 user.setAccountId(account.getAccountId());
-                if (userinfoService.insert(user)) {
+                if (userinfoService.insertSelective(user)>0) {
                     results.put("code", 0);
                     results.put("msg", "注册成功");
                 } else {
@@ -42,6 +44,4 @@ public class RegisterController {
             return results;
 
     }
-
-
 }

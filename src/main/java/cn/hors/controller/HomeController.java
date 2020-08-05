@@ -3,13 +3,14 @@ package cn.hors.controller;
 import cn.hors.bean.Account;
 import cn.hors.bean.Doctor;
 import cn.hors.bean.News;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.DoctorService;
 import cn.hors.service.NewsService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -25,7 +26,7 @@ public class HomeController {
     private AccountService accountServices;
 
     @Resource
-    private UserinfoService userinfoService;
+    private UserInfoService userinfoService;
 
     @Resource
     private DoctorService doctorService;
@@ -64,13 +65,12 @@ public class HomeController {
     @PostMapping("/login")
     public String login(@RequestParam String account, @RequestParam String password, Model model,
                         RedirectAttributes attributes) {
-
-        Account accounts = accountServices.login(account, password);
-
+        String md5Pass = DigestUtils.md5DigestAsHex(password.getBytes());
+        Account accounts= accountServices.login(account, md5Pass);
         if (accounts != null) {
-            accounts.setPassword(null);
+            accounts.setPassword(md5Pass);
             model.addAttribute("accounts", accounts);
-            Userinfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
+            UserInfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
             return "index";
         } else {

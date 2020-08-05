@@ -23,8 +23,9 @@
     <result column="cost" jdbcType="VARCHAR" property="cost" />
     <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
     <association property="doctor" select="cn.hors.mapper.DoctorMapper.findByOrd" column="doctor_id"/>
-    <association property="orderUser" select="cn.hors.mapper.UserinfoMapper.findById" column="user_id"/>
+    <association property="orderUser" select="cn.hors.mapper.UserInfoMapper.findById" column="user_id"/>
     <association property="timeline" select="cn.hors.mapper.TimelineMapper.findById" column="t_id"/>
+    <association property="feedback" select="cn.hors.mapper.FeedBackMapper.findByUsId" column="user_id"/>
 </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
@@ -38,7 +39,7 @@
         <if test="addtime != null">addtime,</if>
         <if test="userPhone != null and userPhone != ''">user_phone,</if>
         <if test="status != null">status,</if>
-        <if test="reply != null and reply != ''">reply,</if>
+        reply,
         <if test="cost != null and cost != ''">cost,</if>
         <if test="doctorId != null">doctor_id,</if>
     </trim>
@@ -51,7 +52,7 @@
         <if test="addtime != null">#{addtime,jdbcType=TIMESTAMP},</if>
         <if test="userPhone != null and userPhone != ''">#{userPhone,jdbcType=VARCHAR},</if>
         <if test="status != null">#{status,jdbcType=INTEGER},</if>
-        <if test="reply != null and reply != ''">#{reply,jdbcType=VARCHAR},</if>
+        #{reply,jdbcType=VARCHAR},
         <if test="cost != null and cost != ''">#{cost},</if>
         <if test="doctorId != null">#{doctorId,jdbcType=INTEGER},</if>
     </trim>

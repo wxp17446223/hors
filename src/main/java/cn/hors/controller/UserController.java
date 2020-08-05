@@ -1,12 +1,13 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
+import cn.hors.bean.FeedBack;
 import cn.hors.bean.Order;
-import cn.hors.bean.PAccount;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
+import cn.hors.service.FeedBackService;
 import cn.hors.service.OrderService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,14 +17,13 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,11 +31,13 @@ import java.util.Map;
 public class UserController {
 
     @Resource
-    private UserinfoService userservice;
+    private UserInfoService userservice;
     @Resource
     private AccountService accountService;
     @Resource
     private OrderService orderService;
+    @Resource
+    private FeedBackService feedBackService;
 
     int IDD;
 
@@ -47,7 +49,8 @@ public class UserController {
      */
     @GetMapping({"/info","/info/{accountId}"})
     public String info(ModelMap model,@PathVariable(required = false)Integer accountId){
-        Userinfo users=userservice.findByAccId(accountId);
+        UserInfo users=userservice.findByAccId(accountId);
+        users.setPicture("/hors/images/"+users.getPicture());
         model.addAttribute("users",users);
         return  getModelName()+ "/info";
     }
@@ -61,7 +64,7 @@ public class UserController {
     @GetMapping({"/editor","/editor/{id}"})
     public String editor(@PathVariable(required = false)Integer id,Model model){
         if (id!=null){
-            Userinfo user = this.userservice.findById(id);
+            UserInfo user = this.userservice.findById(id);
             model.addAttribute("user",user);
         }
         return getModelName()+"/editor";
@@ -93,7 +96,7 @@ public class UserController {
      */
     @PutMapping
     @ResponseBody
-    public Map<String,Object> save(Userinfo user){
+    public Map<String,Object> save(UserInfo user){
         Map<String,Object> results = new HashMap<>();
         if (user.getUserId()!=null){
             if (userservice.update(user)){
@@ -104,7 +107,7 @@ public class UserController {
                 results.put("msg","修改失败");
             }
         }else {
-            if(userservice.insert(user)){
+            if(userservice.insertSelective(user)>0){
                 results.put("code",0);
                 results.put("msg","新增成功");
             }else {
@@ -116,7 +119,7 @@ public class UserController {
     }
 
     @PostMapping("/userfileUpload")
-    public String fileUpload(@RequestPart("file") MultipartFile file, Userinfo user, SessionStatus status) throws FileNotFoundException {
+    public String fileUpload(@RequestPart("file") MultipartFile file, UserInfo user, SessionStatus status) throws FileNotFoundException {
         String serverpath= ResourceUtils.getURL("classpath:static").getPath().replace("%20"," ").replace('/', '\\');
         String realPath=serverpath.substring(1,serverpath.indexOf("\\target"))+"\\src\\main\\resources\\static\\hors\\images";//从路径字符串中取出工程路径
         System.out.println("realPath = " + realPath);
@@ -149,7 +152,7 @@ public class UserController {
      */
     @GetMapping({"/index","/index/{accountId}"})
     public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
-        Userinfo users=userservice.findByAccId(accountId);
+        UserInfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
         return  getModelName()+ "/index";
     }
@@ -165,8 +168,18 @@ public class UserController {
     public String orderUser(@PathVariable(required = false)Integer userId,Model model){
         System.out.println(userId);
         if (userId!=null){
-            Order orders = this.orderService.findByUseId(userId);
+            List<Order> orders = this.orderService.findByUseId(userId);
             model.addAttribute("orders",orders);
+        }
+        return getModelName()+"/orderUser";
+    }
+
+    @PostMapping({"/content","/content/{userId}"})
+    public String content(@PathVariable(required = false)FeedBack feedBack,Model model){
+        if (feedBack.getUserId()!=null){
+            if(feedBackService.updateFeed(feedBack)){
+                model.addAttribute("feedBack",feedBack);
+            }
         }
         return getModelName()+"/orderUser";
     }

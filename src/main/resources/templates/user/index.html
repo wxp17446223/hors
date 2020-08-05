@@ -431,6 +431,8 @@
         <div class="newsMenu" data-th-each="users:${users}" data-th-object="${users}">
             <ul>
                 <li><a data-th-href="@{/user/info/{accountId}(accountId=*{accountId})}" href="/user/info.html" target="mainBody" data-th-text="个人信息" ><em>个人信息</em></a></li>
+            </ul>
+            <ul>
                 <li><a data-th-href="@{/user/uacc/{accountId}(accountId=*{accountId})}" href="/user/uacc.html" target="mainBody"  ><em>密码设置</em></a></li>
             </ul>
             <ul>
@@ -440,7 +442,6 @@
     </div>
     <div class="baseRight">
         <iframe name="mainBody" width="1000px" height="1000px" frameborder="0">
-
         </iframe>
     </div>
 
