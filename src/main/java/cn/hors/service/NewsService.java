@@ -37,9 +37,39 @@ public interface NewsService{
     List<News> findByTitleOrContent(String name);
 
     /**
+     * 模糊查询标题和内容
+     * @param news
+     * @return
+     */
+    List<News> findAllByBlurry(News news);
+
+    /**
      * 查询所有的公告信息
      * @param news
      * @return
      */
     List<News> findNoticeAll(News news);
+
+    /**
+     * 新增新闻
+     * @param news 新闻bean
+     * @return
+     */
+    boolean insert(News news);
+
+    /**
+     * 修改新闻
+     * @param news 新闻bean
+     * @return
+     */
+    boolean update(News news);
+
+    /**
+     * 删除新闻
+     * @param ids 新闻id集合
+     * @return
+     */
+    boolean deleteByIds(@Param("ids") Integer... ids);
+
+
 }

@@ -30,7 +30,7 @@ public class News {
     /**
     * 新闻日期
     */
-    private Date newsDate;
+    private String newsDate;
 
     /**
     * 新闻来源

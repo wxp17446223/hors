@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body {
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<!--        <script type="text/plain" id="editor"></script>-->
+
+<form class="layui-form">
+    <input type="hidden" name="newId" data-th-value="${newss?.newId}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" placeholder="请输入新闻标题" autocomplete="off" class="layui-input"
+                   data-th-value="${newss?.title}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">新闻内容</label>
+        <div class="layui-input-block">
+            <script type="text/plain" id="editor" name="content" data-th-utext="${newss?.content}"></script>
+            <!--              <input  name="content" data-th-value="${newss?.content}">-->
+        </div>
+    </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">新闻时间</label>
+            <div class="layui-input-block">
+                <input type="text" id="test30" name="newsDate" placeholder="yyyy-MM-dd" autocomplete="off"
+                       class="layui-input" data-th-value="${newss?.newsDate}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">新闻来源</label>
+            <div class="layui-input-block">
+                <input type="text" name="source" placeholder="请输入新闻来源" autocomplete="off" class="layui-input"
+                       data-th-value="${newss?.source}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+</form>
+<script data-th-src="@{/ueditor/ueditor.config.js}"></script>
+<script data-th-src="@{/ueditor/ueditor.all.js}"></script>
+<script data-th-src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
+<script>
+    UE.getEditor('editor');
+</script>
+<script data-th-inline="javascript">
+    layui.use(['form', 'jquery', 'laydate'], function () {
+        let {form, $, laydate} = layui;
+        //自定义颜色
+        laydate.render({
+            elem: '#test30'
+            , theme: '#393D49'
+        });
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            $.ajax({
+                url: /*[[@{/new}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType: 'json',
+                success: function (rs) {
+                    if (rs.code == 0) {
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前窗口
+                        parent.layer.msg(rs.msg, {icon: 6});//在父页面弹出提示框
+                        parent.layui.table.reload('reload');//重载父页面的表格数据
+                    } else {
+                        layer.msg(rs.msg, {icon: 5});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

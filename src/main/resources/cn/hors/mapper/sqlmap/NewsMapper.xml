@@ -40,7 +40,7 @@
     <include refid="BASIC_WHERE"></include>
     and source !='公告'
     </where>
-    order by `count` desc , news_date desc
+    order by news_date desc , `count` desc
   </select>
   <select id="findNoticeAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
@@ -70,8 +70,113 @@
   <select id="findByTitleOrContent" resultType="News" parameterType="string">
   select * from news<where>
   <choose>
-  <when test="name != null and name != ''"> where title like CONCAT('%',#{name},'%') or content like CONCAT('%',#{name},'%')</when>
-</choose>
+    <when test="name != null and name != ''"> where title like CONCAT('%',#{name},'%') or content like CONCAT('%',#{name},'%')</when>
+    <otherwise>where 1=1</otherwise>
+  </choose>
+  </where>
+  </select>
+
+<sql id="Base_Insert_Colume">
+    <trim suffixOverrides=",">
+        <if test="newId != null">
+            new_id,
+        </if>
+        <if test="title != null and title != ''">
+            title,
+        </if>
+        <if test="content != null and content != ''">
+            content,
+        </if>
+        <if test="newsDate != null">
+           news_date,
+        </if>
+        <if test="source != null and source != ''">
+          source,
+        </if>
+        <if test="count != null">
+            `count`,
+        </if>
+    </trim>
+</sql>
+
+<sql id="Base_Insert_Value">
+    <trim suffixOverrides=",">
+         <if test="newId != null">
+            #{newId},
+    </if>
+    <if test="title != null and title != ''">
+            #{title},
+    </if>
+    <if test="content != null and content != ''">
+            #{content},
+    </if>
+    <if test="newsDate != null">
+            #{newsDate},
+    </if>
+    <if test="source != null and source != ''">
+            #{source},
+    </if>
+    <if test="count != null">
+            #{count},
+    </if>
+    </trim>
+</sql>
+
+<sql id="Base_Update">
+    <trim suffixOverrides=",">
+        <if test="newId != null">
+            new_id = #{newId},
+    </if>
+    <if test="title != null and title != ''">
+            title = #{title},
+    </if>
+    <if test="content != null and content != ''">
+            content = #{content},
+    </if>
+    <if test="newsDate != null">
+            news_date=#{newsDate},
+    </if>
+    <if test="source != null and source != ''">
+            source = #{source},
+    </if>
+    <if test="count != null">
+            `count` = #{count},
+    </if>
+    </trim>
+</sql>
+
+<insert id="insert" useGeneratedKeys="true" keyColumn="newId" keyProperty="newId">
+    insert into news (<include refid="Base_Insert_Colume"></include>)
+        values (<include refid="Base_Insert_Value"></include>)
+</insert>
+
+<update id="update" parameterType="News">
+    update news
+        <set>
+        <include refid="Base_Update"></include>
+        </set>
+        where new_id=#{newId}
+</update>
+
+<delete id="deleteByIds">
+    delete from news
+    <where>
+    <foreach collection="ids" item="newId" open="new_id in (" separator="," close=")">
+    #{newId}
+</foreach>
 </where>
+</delete>
+
+<select id="findAllByBlurry" resultMap="BaseResultMap" parameterType="News">
+    select <include refid="Base_Column_List"></include>
+    from news
+    <where>
+        <if test="title != null and title != ''">
+        or title like concat ('%',#{title},'%')
+        </if>
+        <if test="content != null and content != ''">
+        or content like concat ('%',#{content},'%')
+        </if>
+    </where>
 </select>
 </mapper>

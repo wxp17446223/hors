@@ -280,23 +280,13 @@
                                         <li class="first"><a data-th-href="@{/news/all}" href="news.html" title="省医快讯">省医快讯<span>进入</span></a>
                                         </li>
 
-                                        <li><a href="news.html" title="最新公告">最新公告<span>进入</span></a></li>
+                                        <li><a data-th-href="@{/news/notice}" href="news.html" title="最新公告">最新公告<span>进入</span></a></li>
 
                                     </ul>
                                 </div>
                                 <div class="navSub2 nav_Menu02 noPic NewsSub">
                                     <dl class="Img02">
                                         <dt class="title01">最新公告</dt>
-                                        <dd class="pic"><img alt="最新公告" data-th-src="@{/hors/pic/pic_002.jpg}"
-                                                             src="../static/hors/pic/pic_002.jpg" width="126"
-                                                             height="77"/></dd>
-                                        <dd class="Lurl">
-                                            <em>2016-12-02</em><a href='NewsDetail-8403.html'
-                                                                  title='阜外华中心血管病医院 内设机构部门负责人竞选安排'>阜外华中心血管病医院
-                                            内设机构部门负责人竞选安排</a></dd>
-                                        <dd class="url"><span>2016-10-21</span><a href="NewsDetail-8249.html"
-                                                                                  title="山西省立眼科医院（山西省眼科研究所）基础研究部门正、副科级干部竞聘实施方案（面向国内外）">山西省立眼科医院（山西省眼科研究所）基础研究部门正、副科级干部竞聘实施方案（面向国内外）</a>
-                                        </dd>
                                         <dd class="url"><span>2016-10-21</span><a href="NewsDetail-8248.html"
                                                                                   title="山西省立眼科医院（山西省眼科研究所）临床部门干部竞聘实施方案（面向国内外）">山西省立眼科医院（山西省眼科研究所）临床部门干部竞聘实施方案（面向国内外）</a>
                                         </dd>
@@ -308,7 +298,7 @@
                                     <dl>
                                         <dt class="title01">省医快讯</dt>
                                         <dd class="url" data-th-each="sigle:${news}" data-th-object="${sigle}"><span
-                                                data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span><a
+                                                data-th-text="*{newsDate}">2016-12-29</span><a
                                                 data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
                                                 data-th-title="*{title}" data-th-text="*{title}">互联智慧疼痛医联体全面启动</a>
                                         </dd>
@@ -355,7 +345,6 @@
                                     </dl>
                                 </div>
                                 <div class="clear"></div>
-
                             </div>
                         </div>
                     </div>
@@ -412,7 +401,7 @@
                         <p style="width:600px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" data-th-text="*{content}">
                             12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨疼痛诊疗规范化培训班在巩义市人民医院举行。</p>
                     </div>
-                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">
+                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{newsDate}">
                         2016-12-29 09:55:00</h4>
                         <p>阅览次数<span data-th-text="*{count}">280</span></p></div>
                     <div class="listBtn"><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"

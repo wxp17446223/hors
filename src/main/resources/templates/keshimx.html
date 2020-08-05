@@ -33,7 +33,7 @@
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
         src="../static/hors/js/Kunyi.Init.js"></script>
     <div class="BaseMark logoBase">
-        <a href="Index.html">
+        <a data-th-href="@{/}" href="Index.html">
         <img data-th-src="@{/hors/images/logo.jpg}"
              src="../static/hors/images/logo.jpg" class="load"
                width="227" height="47"/></a>
@@ -60,7 +60,7 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="rightbtn"><a href="javascript:;" id="AOnDuty" class="green">出诊安排</a>
+        <div class="rightbtn"><a data-th-href="@{/depart/chuzhen}" href="javascript:;" id="AOnDuty" class="green">出诊安排</a>
             <a class="blue" data-th-href="@{/depart/keshi/-1}" href="keshi.html">返回科室导航</a>
         </div>
         <div class="righttel"><h2 id="H2Tel"></h2>
@@ -73,8 +73,8 @@
     <div class="introLeft">
         <div class="lefttitle">科室栏目<span>Column sections</span></div>
         <ul>
-            <li><a data-th-href="@{/depart/keshimx(departId=*{departId})}" href="keshimx.html">科室简介</a></li>
-            <li id="LIExpertInfo2"><a data-th-href="@{/depart/keshiys(departId=*{departId})}" href="keshiys.html">专家介绍</a></li>
+            <li><a data-th-href="@{/depart/keshimx(departId=${keshi.departId})}" href="keshimx.html">科室简介</a></li>
+            <li id="LIExpertInfo2"><a data-th-href="@{/depart/keshiys(departId=${keshi.departId})}" href="keshiys.html">专家介绍</a></li>
         </ul>
         <div class="clear"></div>
     </div>
