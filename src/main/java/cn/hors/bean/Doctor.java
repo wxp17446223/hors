@@ -3,10 +3,12 @@ package cn.hors.bean;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
     * 医生表
@@ -53,7 +55,9 @@ public class Doctor {
     /**
     * 出生日期
     */
-    private Date birth;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    private String birth;
 
     /**
     * 医生职位

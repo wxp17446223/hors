@@ -12,6 +12,8 @@
     <title>Title</title>
 </head>
 <body>
+
+<!--开启头工具栏编辑按钮权限-->
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增医生
@@ -19,12 +21,35 @@
         <button class="layui-btn layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
     </div>
 </script>
+
+<!--开启行工具栏 编辑按钮权限-->
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
             class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
+
+<!--对后台传输的性别 1 2 数据进行转变显示-->
+<script type="text/html" id="sexChange">
+    {{#if (d.sex == 1) { }}
+    <span>男</span>
+    {{# }else if(d.sex == 2){ }}
+    <span>女</span>
+    {{# } }}
+</script>
+
+<!--对后台返回的一个时间段是2018-08-24 15:15:55 ，但是我们只需要显示年月日，这里我们就需要截取字符串-->
+<script type="text/html" id="cTime">
+    {{#
+    var fn = function(data){
+    return data.substring(0,10);
+    };
+    }}
+    {{ fn(d.cTime) }}
+</script>
+
 <div class="layui-fluid">
+
 <!--    导航栏 面包屑-->
     <div class="layui-row">
         <div class="layui-col-md12">
@@ -35,7 +60,8 @@
             </span>
         </div>
     </div>
-<!--    查询-->
+
+<!--    头部查询-->
     <div class="layui-row">
         <div class="layui-col-md12">
             <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
@@ -45,6 +71,14 @@
                         <input type="text" name="jobNumber" placeholder="请输入医生工号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">医生姓名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" placeholder="请输入医生姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
                 <div class="layui-inline">
                     <div class="layui-input-inline">
                         <button class="layui-btn" lay-submit lay-filter="query">
@@ -62,6 +96,7 @@
             <table class="layui-hide" id="table_data" lay-filter="table_filter"></table>
         </div>
     </div>
+
 </div>
 
 <script data-th-inline="javascript">
@@ -79,12 +114,13 @@
                     {field: 'left', width: 80, type: "checkbox"},
                     {field: 'doctorId', width: 60, title: 'ID', sort: true}
                     , {field: 'jobNumber', width: 100, title: '医生工号'}
-                    , {field: 'departId', title: '科室Id'}
-                    , {field: 'department', title: '科室名字'}
+                    , {field: 'department?.departName', title: '科室名字',templet:function (rs) {
+                        return rs.department.departName;
+                    }}
                     , {field: 'name', title: '姓名'}
-                    , {field: 'sex', title: '性别'}
+                    , {field: 'sex', title: '性别',toolbar:'#sexChange'}
                     , {field: 'picture', title: '图片地址'}
-                    , {field: 'birth', title: '生日'}
+                    , {field: 'birth', title: '生日' ,templet : "<div>{{layui.util.toDateString(d.birth, 'yyyy年-MM月-dd日 ')}}</div>"}
                     , {field: 'position', title: '职位'}
                     , {field: 'workExperience', title: '工作经验'}
                     , {field: 'phone', title: '医生电话'}
@@ -107,7 +143,7 @@
                 //iframe层-父子操作
                 layer.open({
                     type: 2,
-                    area: ['350px', '450px'],
+                    area: ['450px', '550px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: /*[[@{/doctors/edit}]]*/''
@@ -133,7 +169,7 @@
             if (e.event == "edit") {
                 layer.open({
                     type: 2,
-                    area: ['350px', '200px'],
+                    area: ['450px', '550px'],
                     fixed: false, //不固定
                     maxmin: true,
                     content: '[(@{/doctors/edit})]/' + e.data.doctorId

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>科室编辑界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body{
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form">
+    <input type="hidden" name="departId" data-th-value="${departments?.departId}">
+    <input type="hidden" name="dId"  data-th-if="${departments?.parent}" data-th-value="${departments?.parent?.departId}">
+    <div class="layui-form-item" data-th-if="${departments?.parent}">
+        <label class="layui-form-label">父科室名称</label>
+        <div class="layui-input-block">
+            <input type="text" readonly="readonly"  data-th-value="${departments?.parent?.departName}" class="layui-input" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="departName" placeholder="请输入科室名称" autocomplete="off" class="layui-input" data-th-value="${departments?.departName}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室简介</label>
+        <div class="layui-input-block">
+            <input type="text" name="introduce"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.introduce}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">成立日期</label>
+        <div class="layui-input-block">
+            <input type="date" name="date"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.date}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室电话</label>
+        <div class="layui-input-block">
+            <input type="text" name="phone"  placeholder="请输入科室电话" autocomplete="off" class="layui-input" data-th-value="${departments?.phone}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery'], function() {
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            // let value = document.getElementsByName("authority");
+            // for(var i=0;i<value.length;i++){
+            //     if(value[i].checked){
+            //         data.field.code = value[i].value;
+            //         break;
+            //     }
+            // }
+            // // let value = '';
+            // // for(k in obj){
+            // //     if(obj[k].checked) {
+            // //         console.log(obj[k].value);
+            // //         value += obj[k].value + ",";
+            // //     }
+            // // }
+            // // value=value.substring(0,value.length-1);
+            console.log(data.field);
+            $.ajax({
+                url: /*[[@{/departments}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType:'json',
+                success:function (rs) {
+                    if(rs.code==0){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前窗口
+                        parent.layer.msg(rs.msg,{icon:6});//在父页面弹出提示框
+                        parent.layui.table.reload('reload');//重载父页面的表格数据
+                    }else if (rs.code == 1) {
+                        layer.msg(rs.msg,{icon:5});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

@@ -76,6 +76,127 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
     </if>
 </sql>
 
+<sql id="Base_Insert_Columns">
+    <trim suffixOverrides=",">
+     <if test="doctorId != null">
+        doctor_id,
+    </if>
+     <if test="jobNumber!=null">
+        job_number,
+    </if>
+    <if test="departId!=null">
+        depart_id,
+    </if>
+    <if test="name!=null and name !=''">
+        `name`,
+    </if>
+    <if test="sex!=null">
+        sex ,
+    </if>
+    <if test="picture!=null and picture!=''">
+        picture ,
+    </if>
+    <if test="birth != null">
+        birth,
+    </if>
+     <if test="position != null">
+        `position` ,
+    </if>
+    <if test="workExperience!=null and workExperience!=''">
+        work_experience ,
+    </if>
+    <if test="phone != null and phone != ''">
+        phone ,
+    </if>
+    <if test="adept!=null and adept!=''">
+        adept,
+    </if>
+    <if test="introduce!=null and introduce!=''">
+        introduce,
+    </if>
+    </trim>
+  </sql>
+
+  <sql id="Base_Insert_Values">
+    <trim suffixOverrides=",">
+         <if test="doctorId != null">
+            #{doctorId},
+        </if>
+         <if test="jobNumber!=null">
+            #{jobNumber},
+        </if>
+        <if test="departId!=null">
+            #{departId},
+        </if>
+        <if test="name!=null and name !=''">
+            #{name},
+        </if>
+        <if test="sex!=null">
+            #{sex},
+        </if>
+        <if test="picture!=null and picture!=''">
+            #{picture} ,
+        </if>
+        <if test="birth != null">
+            #{birth},
+        </if>
+         <if test="position != null">
+            #{position},
+        </if>
+        <if test="workExperience!=null and workExperience!=''">
+            #{workExperience},
+        </if>
+        <if test="phone != null and phone != ''">
+            #{phone},
+        </if>
+        <if test="adept!=null and adept!=''">
+            #{adept},
+        </if>
+        <if test="introduce!=null and introduce!=''">
+            #{introduce},
+        </if>
+    </trim>
+  </sql>
+  <sql id="Base_Update">
+    <trim suffixOverrides=",">
+         <if test="doctorId != null">
+            doctor_id = #{doctorId},
+        </if>
+         <if test="jobNumber!=null">
+            job_number = #{jobNumber},
+        </if>
+        <if test="departId!=null">
+            depart_id = #{departId},
+        </if>
+        <if test="name!=null and name !=''">
+            `name` = #{name},
+        </if>
+        <if test="sex!=null">
+            sex = #{sex},
+        </if>
+        <if test="picture!=null and picture!=''">
+            picture = #{picture},
+        </if>
+        <if test="birth != null">
+            birth = #{birth},
+        </if>
+         <if test="position != null">
+            `position` = #{position},
+        </if>
+        <if test="workExperience!=null and workExperience!=''">
+            work_experience = #{workExperience},
+        </if>
+        <if test="phone != null and phone != ''">
+            phone = #{phone},
+        </if>
+        <if test="adept!=null and adept!=''">
+            adept = #{adept},
+        </if>
+        <if test="introduce!=null and introduce!=''">
+            introduce = #{introduce},
+        </if>
+    </trim>
+  </sql>
 <select id="findById" parameterType="integer" resultMap="BASIC_RESULT_MAP">
     select <include refid="Base_Column_List"></include>
     from doctor where doctor_id=#{doctorId}
@@ -99,13 +220,26 @@ doctor_id,job_number,depart_id,`name`,sex,picture,birth,`position`,work_experien
 
 <select id="findByName" parameterType="string" resultType="Doctor">
 select <include refid="Base_Column_List"></include> from doctor
-where 1=1
+<where>
 <if test="name != null and name != ''">
 and name like CONCAT('%',#{name},'%')
 </if>
+</where>
 </select>
 <select id="findByOrd" resultMap="OrderDoctorMap">
     select <include refid="Base_Column_List"></include>
     from doctor where doctor_id=#{doctorId}
 </select>
+
+<update id="update" parameterType="Doctor">
+    update doctor 
+    <set> 
+        <include refid="Base_Update"></include>
+    </set>
+    where doctor_id=#{doctorId,jdbcType=INTEGER}
+</update>
+<insert id="insert" parameterType="Doctor">
+    insert into doctor (<include refid="Base_Insert_Columns"></include>)
+    values (<include refid="Base_Insert_Values"></include>)
+</insert>
 </mapper>

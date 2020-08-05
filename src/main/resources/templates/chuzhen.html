@@ -460,7 +460,7 @@
 
                 <div class="choose" style="height: 130px; width: 130px">
                     <em data-th-each="doctor:${departs.doctors}" data-th-object="${doctor}">
-                        <a target="_blank" data-th-href="@{/depart/ys(doctorId=*{doctorId})}"
+                        <a target="_blank" data-th-href="@{/doctor/timeline(doctorId=*{doctorId})}"
                            href="ys.html" data-th-text="*{name}">朱清</a>
                     </em>
                 </div>

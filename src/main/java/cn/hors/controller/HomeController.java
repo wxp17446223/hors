@@ -37,8 +37,10 @@ public class HomeController {
      * 主页转跳
      * @return
      */
-    @GetMapping("/a")
-    public String home() {
+    @GetMapping("/")
+    public String home(Model model) {
+        List<Doctor> list = doctorService.findByName(null);
+        model.addAttribute("list",list);
         return "index";
     }
 
@@ -96,6 +98,8 @@ public class HomeController {
     public  String register(){
         return "register";
     }
+
+
     @GetMapping("/find")
     public String find(String name,Integer type,Model map){
         if(type == 1){
