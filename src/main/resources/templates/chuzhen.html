@@ -304,7 +304,7 @@
                                         <li class="first"><a data-th-href="@{/news/all}" href="news.html" title="省医快讯">省医快讯<span>进入</span></a>
                                         </li>
 
-                                        <li><a href="news.html" title="最新公告">最新公告<span>进入</span></a></li>
+                                        <li><a data-th-href="@{/news/notice}" href="news.html" title="最新公告">最新公告<span>进入</span></a></li>
 
                                     </ul>
                                 </div>
@@ -426,7 +426,7 @@
                 <em data-th-each="departs:${parent?.children}" data-th-object="${departs}">
                     <a data-th-text="*{departName}" data-th-title="*{departName}"
                        data-th-href="@{/depart/keshimx(departId=*{departId})}"
-                       href="DutyTime-1-165.html" title="肾内科">肾内科</a>
+                       href="keshimx.html" title="肾内科">肾内科</a>
                 </em>
             </p>
             <div class="clear"></div>

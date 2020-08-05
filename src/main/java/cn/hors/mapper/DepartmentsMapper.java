@@ -36,7 +36,7 @@ public interface DepartmentsMapper {
     Departments findAllByDepartId(Integer departId);
 
     /**
-     * 通过科室Id查询科室信息 返回的是esultType
+     * 通过科室Id查询科室信息 返回的是resultType
      * @param departId
      * @return
      */

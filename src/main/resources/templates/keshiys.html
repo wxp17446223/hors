@@ -39,16 +39,8 @@
             <div class="title partTitle"><a href="keshimx.html" data-th-text="${keshiys?.departName}">呼吸内科</a></div>
             <div class="newsMenu depmMenu">
                 <ul>
-                    <li class="first"><a href="OfficeArticle-11.html"><em>科室简介</em></a></li>
+                    <li class="first"><a data-th-href="@{/depart/keshimx(departId=${keshiys.departId})}"href="keshimx.html"><em>科室简介</em></a></li>
                     <li class="active"><a href="keshiys.html"><em>专家介绍</em></a></li>
-
-                    <li><a href="OfficeNewsList-11-1.html" title="工作动态"><em>工作动态</em></a></li>
-
-                    <li><a href="OfficeNewsList-11-4.html" title="医疗设备"><em>医疗设备</em></a></li>
-
-                    <li><a href="OfficeNewsList-11-2.html" title="健康教育"><em>健康教育</em></a></li>
-
-
                 </ul>
             </div>
         </div>

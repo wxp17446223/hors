@@ -39,7 +39,7 @@ public interface RoleMapper {
   * @param role 角色bean
   * @return
   */
-     List<PRole> find(PRole role);
+ List<PRole> find(PRole role);
 
  /**
   * 通过id得到角色

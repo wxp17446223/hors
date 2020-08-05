@@ -1,7 +1,6 @@
 package cn.hors.service.impl;
 
 import cn.hors.bean.News;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import cn.hors.mapper.NewsMapper;
@@ -40,8 +39,28 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
+    public List<News> findAllByBlurry(News news) {
+        return newsMapper.findAllByBlurry(news);
+    }
+
+    @Override
     public List<News> findNoticeAll(News news) {
         return newsMapper.findNoticeAll(news);
+    }
+
+    @Override
+    public boolean insert(News news) {
+        return newsMapper.insert(news)>0?true:false;
+    }
+
+    @Override
+    public boolean update(News news) {
+        return newsMapper.update(news)>0?true:false;
+    }
+
+    @Override
+    public boolean deleteByIds(Integer... ids) {
+        return newsMapper.deleteByIds(ids)>0?true:false;
     }
 
 }
