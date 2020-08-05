@@ -1,6 +1,7 @@
 package cn.hors.service;
 
 import cn.hors.bean.Doctor;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -49,4 +50,18 @@ public interface DoctorService{
      * @return
      */
     boolean insert(Doctor doctor);
+
+    /**
+     * 通过医生工号 查询医生信息
+     * @param jobNumber
+     * @return
+     */
+    Doctor findByJobNumber(Integer jobNumber);
+
+    /**
+     * 批量删除医生信息
+     * @param ids
+     * @return
+     */
+    boolean deleteByIds(@Param("ids")Integer[]ids );
 }

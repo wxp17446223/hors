@@ -48,4 +48,14 @@ public class DoctorServiceImpl implements DoctorService{
     public boolean insert(Doctor doctor) {
         return doctorMapper.insert(doctor)>0;
     }
+
+    @Override
+    public Doctor findByJobNumber(Integer jobNumber) {
+        return doctorMapper.findByJobNumber(jobNumber);
+    }
+
+    @Override
+    public boolean deleteByIds(Integer[] ids) {
+        return doctorMapper.deleteByIds(ids)>0;
+    }
 }

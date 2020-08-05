@@ -50,4 +50,18 @@ public interface DoctorMapper {
      * @return
      */
     int insert(Doctor doctor);
+
+    /**
+     * 通过医生工号 查询医生信息
+     * @param jobNumber
+     * @return
+     */
+    Doctor findByJobNumber(Integer jobNumber);
+
+    /**
+     * 批量删除医生信息
+     * @param ids
+     * @return
+     */
+    int deleteByIds(@Param("ids")Integer[] ids );
 }

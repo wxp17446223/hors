@@ -242,4 +242,16 @@ and name like CONCAT('%',#{name},'%')
     insert into doctor (<include refid="Base_Insert_Columns"></include>)
     values (<include refid="Base_Insert_Values"></include>)
 </insert>
+<select id="findByJobNumber" parameterType="integer" resultType="Doctor">
+    select <include refid="Base_Column_List"></include>
+    from doctor
+    where job_number=#{jobNumber,jdbcType=INTEGER}
+</select>
+<delete id="deleteByIds" >
+    delete from doctor
+    where
+    <foreach collection="ids" item="doctorId" separator="," open="doctor_id in (" close=")">
+        #{doctorId,jdbcType=INTEGER}
+    </foreach>
+</delete>
 </mapper>
