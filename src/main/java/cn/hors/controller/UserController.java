@@ -2,8 +2,7 @@ package cn.hors.controller;
 
 import cn.hors.bean.Account;
 import cn.hors.bean.Order;
-import cn.hors.bean.PAccount;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.OrderService;
 import cn.hors.service.UserinfoService;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -47,7 +44,7 @@ public class UserController {
      */
     @GetMapping({"/info","/info/{accountId}"})
     public String info(ModelMap model,@PathVariable(required = false)Integer accountId){
-        Userinfo users=userservice.findByAccId(accountId);
+        UserInfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
         return  getModelName()+ "/info";
     }
@@ -61,7 +58,7 @@ public class UserController {
     @GetMapping({"/editor","/editor/{id}"})
     public String editor(@PathVariable(required = false)Integer id,Model model){
         if (id!=null){
-            Userinfo user = this.userservice.findById(id);
+            UserInfo user = this.userservice.findById(id);
             model.addAttribute("user",user);
         }
         return getModelName()+"/editor";
@@ -93,7 +90,7 @@ public class UserController {
      */
     @PutMapping
     @ResponseBody
-    public Map<String,Object> save(Userinfo user){
+    public Map<String,Object> save(UserInfo user){
         Map<String,Object> results = new HashMap<>();
         if (user.getUserId()!=null){
             if (userservice.update(user)){
@@ -116,7 +113,7 @@ public class UserController {
     }
 
     @PostMapping("/userfileUpload")
-    public String fileUpload(@RequestPart("file") MultipartFile file, Userinfo user, SessionStatus status) throws FileNotFoundException {
+    public String fileUpload(@RequestPart("file") MultipartFile file, UserInfo user, SessionStatus status) throws FileNotFoundException {
         String serverpath= ResourceUtils.getURL("classpath:static").getPath().replace("%20"," ").replace('/', '\\');
         String realPath=serverpath.substring(1,serverpath.indexOf("\\target"))+"\\src\\main\\resources\\static\\hors\\images";//从路径字符串中取出工程路径
         System.out.println("realPath = " + realPath);
@@ -149,7 +146,7 @@ public class UserController {
      */
     @GetMapping({"/index","/index/{accountId}"})
     public String home(ModelMap model,@PathVariable(required = false)Integer accountId){
-        Userinfo users=userservice.findByAccId(accountId);
+        UserInfo users=userservice.findByAccId(accountId);
         model.addAttribute("users",users);
         return  getModelName()+ "/index";
     }

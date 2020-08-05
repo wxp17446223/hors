@@ -1,22 +1,24 @@
 package cn.hors.mapper;
 
-import cn.hors.bean.PAccount;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserinfoMapper {
     int deleteByPrimaryKey(Integer userId);
 
-    int insert(Userinfo record);
+    int insert(UserInfo record);
 
-    int insertSelective(Userinfo record);
+    int insertSelective(UserInfo record);
 
-    Userinfo selectByPrimaryKey(Integer userId);
+    UserInfo selectByPrimaryKey(Integer userId);
 
-    Userinfo findById(Integer userId);
+    UserInfo findById(Integer userId);
 
-    int update(Userinfo user);
+    int update(UserInfo user);
 
-    Userinfo findByAccId(Integer accountId);
+    UserInfo findByAccId(Integer accountId);
 
-    int updatePic(Userinfo userinfo);
+    int updatePic(UserInfo userinfo);
+
+    int deleteByIds(@Param("ids") Integer... ids);
 }

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>科室编辑界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body{
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form">
+    <input type="hidden" name="accountId" data-th-value="${patient?.accountId}">
+    <input type="hidden" name="userInfo.userId" data-th-value="${patient?.userInfo?.userId}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">账号</label>
+        <div class="layui-input-block">
+            <input type="text" name="account" placeholder="请输入账号" autocomplete="off" class="layui-input" data-th-value="${patient?.account}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.name"  placeholder="请输入用户名称" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.name}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份证号</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.identityId"  placeholder="请输入身份证号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.identityId}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.phone"  placeholder="请输入手机号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.phone}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <select name="userInfo.sex">
+                <option data-th-checked="${patient?.userInfo?.sex==1}" value="1">男</option>
+                <option data-th-checked="${patient?.userInfo?.sex==0}" value="0">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出生日期</label>
+        <div class="layui-input-block">
+            <input type="date" name="userInfo.identityId"  placeholder="请输入出生日期" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.birth}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">注册时间</label>
+        <div class="layui-input-block">
+            <input type="date" name="userInfo.registerTime"  placeholder="请输入注册时间" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.registerTime}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">邮箱</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.email"  placeholder="请输入出生日期" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.email}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">家庭住址</label>
+        <div class="layui-input-block">
+            <input type="text" name="userInfo.address"  placeholder="请输入注册时间" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.address}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form','jquery'], function() {
+        let {form,$} = layui;
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            console.log(data.field);
+            $.ajax({
+                url: /*[[@{/patient}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType:'json',
+                success:function (rs) {
+                    if(rs.code==0){
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前窗口
+                        parent.layer.msg(rs.msg,{icon:6});//在父页面弹出提示框
+                        parent.layui.table.reload('reload');//重载父页面的表格数据
+                    }else if (rs.code == 1) {
+                        layer.msg(rs.msg,{icon:5});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

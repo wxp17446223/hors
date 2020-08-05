@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Userinfo {
+public class UserInfo {
     /**
     * 用户id
     */
@@ -65,5 +65,5 @@ public class Userinfo {
     /**
     * 注册时间
     */
-    private Date registerTime;
+    private String registerTime;
 }

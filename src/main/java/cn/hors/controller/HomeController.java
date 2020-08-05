@@ -3,7 +3,7 @@ package cn.hors.controller;
 import cn.hors.bean.Account;
 import cn.hors.bean.Doctor;
 import cn.hors.bean.News;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.DoctorService;
 import cn.hors.service.NewsService;
@@ -70,7 +70,7 @@ public class HomeController {
         if (accounts != null) {
             accounts.setPassword(null);
             model.addAttribute("accounts", accounts);
-            Userinfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
+            UserInfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
             return "index";
         } else {

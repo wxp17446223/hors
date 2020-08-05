@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -56,7 +58,6 @@ public class AccountController implements BaseController{
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/r')")
     public Map<String,Object> findAll(PAccount account, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int limit){
-        PageHelper.startPage(page,limit);
         List<PAccount> pAccounts = service.find(account);
         PageInfo<PAccount> pageInfo = new PageInfo<>(pAccounts);
         Map<String,Object> map = new HashMap<>();
@@ -154,8 +155,17 @@ public class AccountController implements BaseController{
     @DeleteMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/d')")
-    public Map<String,Object> del(@RequestParam("id") Integer[] ids){
+    public Map<String,Object> del(@RequestParam("id") Integer[] ids,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
+        HttpSession session = request.getSession();
+        PAccount account = (PAccount) session.getAttribute(SystemConst.LOGIN_STATUS);
+        for (Integer id : ids) {
+            if(account.getId()==id){
+                map.put("code",1);
+                map.put("msg","自己不能删除自己");
+                return map;
+            }
+        }
         if(service.deleteAccountById(ids)){
             map.put("code",0);
             map.put("msg","删除成功");

@@ -1,24 +1,25 @@
 package cn.hors.service;
 
-import cn.hors.bean.PAccount;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 public interface UserinfoService{
 
 
     int deleteByPrimaryKey(Integer userId);
 
-    boolean insert(Userinfo record);
+    boolean insert(UserInfo record);
 
-    int insertSelective(Userinfo record);
+    int insertSelective(UserInfo record);
 
-    Userinfo selectByPrimaryKey(Integer userId);
+    UserInfo selectByPrimaryKey(Integer userId);
 
 
-    Userinfo findById(Integer userId);
+    UserInfo findById(Integer userId);
 
-    boolean update(Userinfo user);
+    boolean update(UserInfo user);
 
-    Userinfo findByAccId(Integer accountId);
+    UserInfo findByAccId(Integer accountId);
 
-    int updatePic(Userinfo userinfo);
+    int updatePic(UserInfo userinfo);
+
+    boolean deleteByIds(Integer... ids);
 }

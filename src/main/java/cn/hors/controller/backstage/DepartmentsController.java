@@ -53,7 +53,7 @@ public class DepartmentsController implements BaseController {
         return map;
     }
     /**
-     * 新增和修改资源
+     * 新增和修改科室资源
      * @param id 资源id
      * @param pid 父资源id
      * @param map 结果存储
@@ -112,7 +112,7 @@ public class DepartmentsController implements BaseController {
     }
 
     /**
-     * 删除资源 包括删除父资源
+     * 删除科室资源 包括删除父科室资源
      * @param ids
      * @return
      */

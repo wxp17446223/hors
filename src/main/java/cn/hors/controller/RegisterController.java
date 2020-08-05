@@ -1,7 +1,7 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
-import cn.hors.bean.Userinfo;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.UserinfoService;
 import org.springframework.stereotype.Controller;
@@ -24,9 +24,9 @@ public class RegisterController {
 
     @PutMapping
     @ResponseBody
-    public Map<String,Object> save(Userinfo user,Account account){
+    public Map<String,Object> save(UserInfo user, Account account){
         Map<String,Object> results = new HashMap<>();
-        if (accountServices.insert(account)>0){
+        if (accountServices.insert(account)){
             user.setAccountId(account.getAccountId());
             if(userinfoService.insert(user)){
                 results.put("code",0);

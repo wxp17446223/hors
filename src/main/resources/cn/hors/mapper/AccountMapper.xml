@@ -2,17 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hors.mapper.AccountMapper">
   <resultMap id="BaseResultMap" type="cn.hors.bean.Account">
-    <!--@mbg.generated-->
-    <!--@Table account-->
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id"  property="roleId"></result>
+  </resultMap>
+  <resultMap id="ResultMap" type="cn.hors.bean.Account">
+    <id column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id"  property="roleId"></result>
+    <association property="userInfo" javaType="cn.hors.bean.UserInfo"  column="account_id"  select="cn.hors.mapper.UserinfoMapper.findByAccId"></association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    account_id, account, `password`
+    account_id, account, `password`,role_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
@@ -62,7 +68,7 @@
     </set>
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.hors.bean.Account">
+  <update id="update" parameterType="cn.hors.bean.Account">
     <!--@mbg.generated-->
     update account
     set account = #{account,jdbcType=VARCHAR},
@@ -72,5 +78,31 @@
   <select id="login" resultMap="BaseResultMap">
   select  <include refid="Base_Column_List"></include>
   from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password,jdbcType=VARCHAR}
+</select>
+<select id="find" parameterType="Account" resultMap="ResultMap">
+select <include refid="Base_Column_List"></include> from account
+<where>
+<if test="accountId != null">
+and account_id=#{accountId}
+</if>
+<if test="account != null and account != ''">
+and account=#{account}
+</if>
+<if test="password != null">
+and password=#{password}
+</if>
+<if test="roleId != null">
+and role_id=#{roleId}
+</if>
+</where>
+</select>
+<delete id="deleteByIds" parameterType="Integer">
+delete from account where
+<foreach collection="ids" item="id" open="account_id in(" separator="," close=")">
+#{id}
+</foreach>
+</delete>
+<select id="findById" parameterType="Integer" resultMap="ResultMap">
+select <include refid="Base_Column_List"></include> from account where account_id=#{id}
 </select>
 </mapper>

@@ -24,7 +24,7 @@ public class UaccController {
     public Map<String,Object> saveAcc(Account account){
         Map<String,Object> results = new HashMap<>();
         if (account.getAccountId()!=null){
-            if (accountService.updateByPrimaryKey(account)>0){
+            if (accountService.update(account)){
                 results.put("code",0);
                 results.put("msg","修改成功");
             }else {
@@ -32,7 +32,7 @@ public class UaccController {
                 results.put("msg","修改失败");
             }
         }else {
-            if(accountService.insert(account)>0){
+            if(accountService.insert(account)){
                 results.put("code",0);
                 results.put("msg","新增成功");
             }else {

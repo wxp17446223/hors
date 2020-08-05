@@ -57,7 +57,7 @@ public class Order {
     */
     private Integer doctorId;
 
-    private Userinfo orderUser;
+    private UserInfo orderUser;
 
     private Timeline timeline;
 
