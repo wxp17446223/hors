@@ -298,7 +298,7 @@
                                     <dl>
                                         <dt class="title01">省医快讯</dt>
                                         <dd class="url" data-th-each="sigle:${news}" data-th-object="${sigle}"><span
-                                                data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span><a
+                                                data-th-text="*{newsDate}">2016-12-29</span><a
                                                 data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
                                                 data-th-title="*{title}" data-th-text="*{title}">互联智慧疼痛医联体全面启动</a>
                                         </dd>
@@ -401,7 +401,7 @@
                         <p style="width:600px; white-space:nowrap;text-overflow:ellipsis;overflow:hidden;" data-th-text="*{content}">
                             12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨疼痛诊疗规范化培训班在巩义市人民医院举行。</p>
                     </div>
-                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">
+                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{newsDate}">
                         2016-12-29 09:55:00</h4>
                         <p>阅览次数<span data-th-text="*{count}">280</span></p></div>
                     <div class="listBtn"><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
