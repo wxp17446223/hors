@@ -40,7 +40,7 @@
     <include refid="BASIC_WHERE"></include>
     and source !='公告'
     </where>
-    order by `count` desc , news_date desc
+    order by news_date desc , `count` desc
   </select>
   <select id="findNoticeAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>

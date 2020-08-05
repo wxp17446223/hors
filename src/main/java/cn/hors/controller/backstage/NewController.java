@@ -6,6 +6,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,21 +41,59 @@ public class NewController implements BaseController {
         map.put("msg","查询成功");
         return map;
     }
-//
-//    @PostMapping
-//    @ResponseBody
-//    @PreAuthorize("hasAuthority('/new/r')")
-//    public Map<String,Object> findAllByBlurry(@RequestParam String title,@RequestParam String content,@RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int limit){
-//        PageHelper.startPage(page,limit);
-//        List<News> allByBlurry = newsService.findAllByBlurry(title, content);
-//        PageInfo<News> pageInfo = new PageInfo<>(allByBlurry);
-//        Map<String,Object> map = new HashMap<>();
-//        map.put("data",pageInfo.getList());
-//        map.put("code",0);
-//        map.put("count",pageInfo.getTotal());
-//        map.put("msg","查询成功");
-//        return map;
-//    }
+
+    /**
+     * 新增和修改新闻
+     * @param newId 新闻id
+     * @param map
+     * @return
+     */
+    @GetMapping({"/edit","/edit/{newId}"})
+    @PreAuthorize("hasAuthority('/new/edit/r')")
+    public String editor(@PathVariable(required = false) Integer newId, Model map){
+        News New = null;
+        if(newId != null && newId !=0){
+            News news = new News();
+            news.setNewId(newId);
+            List<News> News = newsService.findNewsAll(news);
+            New = News.get(0);
+        }
+        map.addAttribute("newss",New);
+        System.out.println("-----------"+New);
+        return getModelName()+"/editor";
+    }
+
+
+    /**
+     * 对新闻进行修改
+     * @param news 新闻bean
+     * @return
+     */
+    @PutMapping
+    @ResponseBody
+    @PreAuthorize("hasAuthority('/new/u')")
+    public Map<String,Object> save(News news){
+        Map<String,Object> map = new HashMap<>();
+        if(news.getNewId() != null && news.getNewId() !=0){
+            if (newsService.update(news)) {
+                map.put("code",0);
+                map.put("msg","修改成功");
+            }else{
+                map.put("code",1);
+                map.put("msg","修改失败");
+            }
+        }else{
+            if (newsService.insert(news)) {
+                map.put("code",0);
+                map.put("msg","新增成功");
+            }else{
+                map.put("code",1);
+                map.put("msg","新增失败");
+            }
+        }
+        return map;
+    }
+
 
     /**
      * 根据id对新闻进行删除

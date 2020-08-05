@@ -138,7 +138,7 @@
                     content: '[(@{/new/edit})]/' + e.data.newId
                 });
             } else if (e.event == 'del') {
-                del(`确认是否删除新闻:[${e.data.title}]?`, `id=${e.data.newId}`);
+                del(`确认是否删除新闻:[${e.data.title}]?`, `newId=${e.data.newId}`);
             }
         });
 

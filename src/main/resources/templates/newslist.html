@@ -307,7 +307,7 @@
                                     <dl>
                                         <dt class="title01">省医快讯</dt>
                                         <dd class="url" data-th-each="sigle:${newsAll}" data-th-object="${sigle}"><span
-                                                data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span><a
+                                                data-th-text="*{newsDate}">2016-12-29</span><a
                                                 data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
                                                 data-th-title="*{title}" data-th-text="*{title}">互联智慧疼痛医联体全面启动</a>
                                         </dd>
@@ -391,7 +391,7 @@
         <div class="article detail">
             <h2 id="H2Title" data-th-text="${news.title}">互联智慧疼痛医联体全面启动</h2>
             <div id="DIVTool" class="title04">
-                <span id="SPANDate" data-th-text="'发布日期：'+${#dates.format(news.newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span>
+                <span id="SPANDate" data-th-text="'发布日期：'+${news.newsDate}">2016-12-29</span>
                 <span>字号调整<em id="EMChange"><img data-th-src="@{/hors/images/font_ico02.png}"
                                                  src="../static/hors/images/font_ico02.png" width="22" height="23"/>
                 <a class="fot12" href="javascript:;" data-type="0"></a>
@@ -403,7 +403,7 @@
             </div>
             <div class="clear"></div>
             <div id="DIVContent" class="DIVContent">
-                <p data-th-text="${news.content}">
+                <p data-th-utext="${news.content}">
                     12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨2016年山西省疼痛诊疗规范化培训班在巩义市人民医院举行。山西省卫计委副主任黄红霞，中日友好医院疼痛科主任、中国医师协会疼痛分会会长樊碧发教授，巩义市人民政府市长孙淑芳、副市长刘军杰，我院副院长申志强、麻醉科主任孟凡民及巩义市卫计委等相关单位负责同志参加仪式。我院疼痛科主任夏令杰主持开幕式。
                 </p>
                 <p><br/></p>

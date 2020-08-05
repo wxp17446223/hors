@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
     * 账号表
     */
@@ -28,5 +26,11 @@ public class Account {
     */
     private String password;
 
-    private Userinfo userinfo;
+    /**
+     * 角色ID
+     * 默认为8
+     */
+    private Integer roleId;
+
+    private UserInfo userInfo;
 }
