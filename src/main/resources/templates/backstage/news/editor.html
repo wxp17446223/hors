@@ -13,14 +13,13 @@
     </style>
 </head>
 <body>
-<!--        <script type="text/plain" id="editor"></script>-->
 
 <form class="layui-form">
     <input type="hidden" name="newId" data-th-value="${newss?.newId}">
     <div class="layui-form-item">
         <label class="layui-form-label">新闻标题</label>
         <div class="layui-input-block">
-            <input type="text" name="title" placeholder="请输入新闻标题" autocomplete="off" class="layui-input"
+            <input type="text" name="title" lay-verify="title" placeholder="请输入标题" autocomplete="off" class="layui-input"
                    data-th-value="${newss?.title}">
         </div>
     </div>
@@ -28,20 +27,19 @@
         <label class="layui-form-label">新闻内容</label>
         <div class="layui-input-block">
             <script type="text/plain" id="editor" name="content" data-th-utext="${newss?.content}"></script>
-            <!--              <input  name="content" data-th-value="${newss?.content}">-->
         </div>
     </div>
         <div class="layui-form-item">
             <label class="layui-form-label">新闻时间</label>
             <div class="layui-input-block">
-                <input type="text" id="test30" name="newsDate" placeholder="yyyy-MM-dd" autocomplete="off"
+                <input type="text" id="test30" name="newsDate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
                        class="layui-input" data-th-value="${newss?.newsDate}">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">新闻来源</label>
             <div class="layui-input-block">
-                <input type="text" name="source" placeholder="请输入新闻来源" autocomplete="off" class="layui-input"
+                <input type="text" name="source" placeholder="请输入新闻来源" lay-verify="source" autocomplete="off" class="layui-input"
                        data-th-value="${newss?.source}">
             </div>
         </div>
@@ -65,6 +63,24 @@
         laydate.render({
             elem: '#test30'
             , theme: '#393D49'
+        });
+        //表单验证
+        form.verify({
+            title:function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,date:function (value) {
+                if(value.length ==null || value.length==''){
+                    return '新闻发布时间不能为空';
+                }
+            }
+            ,source:function (value) {
+                if(value.length ==null || value.length==''){
+                    return '新闻来源不能为空';
+                }
+            }
         });
         //监听提交
         form.on('submit(formSubmit)', function (data) {

@@ -1,7 +1,6 @@
 package cn.hors.controller.backstage;
 
 import cn.hors.bean.News;
-import cn.hors.bean.PRole;
 import cn.hors.service.NewsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -118,6 +117,6 @@ public class NewController implements BaseController {
 
     @Override
     public String getModelName() {
-        return "backstage/news";
+        return "/backstage/news";
     }
 }
