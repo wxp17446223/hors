@@ -25,7 +25,7 @@
     <association property="doctor" select="cn.hors.mapper.DoctorMapper.findByOrd" column="doctor_id"/>
     <association property="orderUser" select="cn.hors.mapper.UserInfoMapper.findById" column="user_id"/>
     <association property="timeline" select="cn.hors.mapper.TimelineMapper.findById" column="t_id"/>
-    <association property="feedback" select="cn.hors.mapper.FeedBackMapper.findByUsId" column="user_id"/>
+    <association property="feedback" select="cn.hors.mapper.FeedbackMapper.findByUsId" column="user_id"/>
 </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
