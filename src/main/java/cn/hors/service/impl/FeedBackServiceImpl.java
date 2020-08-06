@@ -1,7 +1,7 @@
 package cn.hors.service.impl;
 
 import cn.hors.bean.FeedBack;
-import cn.hors.mapper.FeedbackMapper;
+import cn.hors.mapper.FeedBackMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import cn.hors.service.FeedBackService;
@@ -12,7 +12,7 @@ import java.util.List;
 public class FeedBackServiceImpl implements FeedBackService {
 
     @Resource
-    private FeedbackMapper feedbackMapper;
+    private FeedBackMapper feedbackMapper;
 
     @Override
     public List<FeedBack> findByUsId(Integer userId) {

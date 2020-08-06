@@ -1,12 +1,17 @@
-﻿package cn.hors.mapper;
+package cn.hors.mapper;
 
 import cn.hors.bean.FeedBack;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface FeedbackMapper {
+public interface FeedBackMapper {
 
+    /**
+     * 查询单一用户所有的反馈信息
+     * @param userId
+     * @return
+     */
     List<FeedBack> findByUsId(Integer userId);
 
     /**
