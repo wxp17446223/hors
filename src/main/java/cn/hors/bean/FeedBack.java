@@ -1,49 +1,54 @@
 package cn.hors.bean;
 
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
-    * 反馈留言表:对医生的评论反馈  对医院的评论反馈 投诉
-    */
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class FeedBack {
+
+
     /**
-    * 反馈id
-    */
+     * 反馈ID
+     */
     private Integer backId;
 
     /**
-    * 用户ID
-    */
+     * 患者ID
+     */
     private Integer userId;
 
     /**
-    * 医生ID
-    */
+     * 医生ID
+     */
     private Integer doctorId;
 
     /**
-    * 反馈内容
-    */
+     * 反馈内容
+     */
     private String content;
 
     /**
-    * 反馈时间
-    */
+     * 反馈时间
+     */
     private String backTime;
 
     /**
-    * 管理回复
-    */
+     * 回复内容
+     */
     private String reply;
 
     /**
-    * 回复时间
-    */
+     * 回复时间
+     */
     private String replyTime;
+
+    private UserInfo conUser;
+
+    private Doctor doctor;
+
 }

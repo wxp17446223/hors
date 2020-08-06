@@ -35,7 +35,7 @@
         form.on('submit(formSubmit)', function(data){
             $.ajax({
                 url:/*[[@{/uacc}]]*/ 'saveAcc',
-                type:'put',
+                type:'post',
                 data:data.field,
                 dataType:'json',
                 success:function (rs) {

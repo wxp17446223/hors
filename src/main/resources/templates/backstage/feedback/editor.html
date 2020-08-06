@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body {
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<form class="layui-form">
+    <input type="hidden" name="backId" data-th-value="${feedback?.backId}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">患者ID：</label>
+        <div class="layui-input-block">
+            <input type="text" name="userId" lay-verify="userId" placeholder="请输入" autocomplete="off" class="layui-input"
+                   data-th-value="${feedback?.userId}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">医生ID：</label>
+        <div class="layui-input-block">
+            <input type="text" name="doctorId" lay-verify="doctorId" placeholder="请输入" autocomplete="off" class="layui-input"
+                   data-th-value="${feedback?.doctorId}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">反馈内容：</label>
+        <div class="layui-input-block">
+            <input type="text" name="content" lay-verify="content" placeholder="请输入" autocomplete="off" class="layui-input"
+                   data-th-value="${feedback?.content}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">反馈时间：</label>
+        <div class="layui-input-block">
+            <input type="text" id="test30" name="backTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                   class="layui-input" data-th-value="${feedback?.backTime}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">回复内容：</label>
+        <div class="layui-input-block">
+            <input type="text" name="reply" placeholder="请输入" lay-verify="reply" autocomplete="off" class="layui-input"
+                   data-th-value="${feedback?.reply}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">回复时间：</label>
+        <div class="layui-input-block">
+            <input type="text" id="test29" name="replyTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                   class="layui-input" data-th-value="${feedback?.replyTime}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form', 'jquery', 'laydate'], function () {
+        let {form, $, laydate} = layui;
+        //自定义颜色
+        laydate.render({
+            elem: '#test30'
+            , theme: '#393D49'
+        });
+        laydate.render({
+            elem: '#test29'
+            , theme: '#393D40'
+        });
+        //表单验证
+        form.verify({
+            userId:function(value){
+                if(value == null||value==''){
+                    return '请输入患者Id';
+                }
+            }
+        });
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            $.ajax({
+                url: /*[[@{/feedback}]]*/ '/save',
+                type: 'put',
+                data: data.field,
+                dataType: 'json',
+                success: function (rs) {
+                    if (rs.code == 0) {
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前窗口
+                        parent.layer.msg(rs.msg, {icon: 6});//在父页面弹出提示框
+                        parent.layui.table.reload('reload');//重载父页面的表格数据
+                    } else {
+                        layer.msg(rs.msg, {icon: 5});
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

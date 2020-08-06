@@ -19,7 +19,7 @@ public class UaccController {
     private AccountService accountService;
 
 
-    @PutMapping
+    @PostMapping
     @ResponseBody
     public Map<String,Object> saveAcc(Account account){
         Map<String,Object> results = new HashMap<>();

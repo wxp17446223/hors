@@ -9,7 +9,7 @@
             line-height: 30px;
         }
     </style>
-    <title>Title</title>
+    <title>排班管理</title>
 </head>
 <body>
 
@@ -56,7 +56,7 @@
             <span class="layui-breadcrumb" lay-separator="/">
               <a data-th-href="@{/backstage}">首页</a>
               <a href="javascript:;">权限管理</a>
-              <a><cite>医生管理</cite></a>
+              <a><cite>排班管理</cite></a>
             </span>
         </div>
     </div>
@@ -105,7 +105,7 @@
         table.render({
             id: 'reload',
             elem: '#table_data',
-            url:/*[[@{/doctors}]]*/ 'data/doctors.json',
+            url:/*[[@{/timeline}]]*/ 'data/timeline.json',
             cellMinWidth: 80,
             toolbar: '#toolbarDemo',//开启头部工具栏，并为其绑定左侧模板
             page: true,//开启分页

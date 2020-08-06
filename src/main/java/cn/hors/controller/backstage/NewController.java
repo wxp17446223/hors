@@ -27,6 +27,13 @@ public class NewController implements BaseController {
         return getModelName()+"/index";
     }
 
+    /**
+     * 模糊查询新闻信息
+     * @param news 新闻bean
+     * @param page
+     * @param limit
+     * @return
+     */
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")
     @ResponseBody
     @PreAuthorize("hasAuthority('/new/r')")
@@ -59,7 +66,6 @@ public class NewController implements BaseController {
             New = News.get(0);
         }
         map.addAttribute("newss",New);
-        System.out.println("-----------"+New);
         return getModelName()+"/editor";
     }
 

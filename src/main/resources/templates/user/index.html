@@ -436,7 +436,10 @@
                 <li><a data-th-href="@{/user/uacc/{accountId}(accountId=*{accountId})}" href="/user/uacc.html" target="mainBody"  ><em>密码设置</em></a></li>
             </ul>
             <ul>
-                <li><a data-th-href="@{/user/orderUser/{userId}(userId=*{userId})}" href="/user/orderUser/html" target="mainBody"><em>预约信息</em></a></li>
+                <li><a data-th-href="@{/user/orderUser/{userId}(userId=*{userId})}" href="/user/orderUser.html" target="mainBody"><em>预约信息</em></a></li>
+            </ul>
+            <ul>
+                <li><a data-th-href="@{/user/contentUser/{userId}(userId=*{userId})}" href="/user/contentUser.html" target="mainBody"><em>反馈信息</em></a></li>
             </ul>
         </div>
     </div>
@@ -600,12 +603,5 @@
         src="../static/hors/js/Kunyi.Secondary.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Department.js}"
         src="../static/hors/js/Kunyi.Department.js"></script>
-<script>
-    //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
-
-    });
-</script>
 </body>
 </html>

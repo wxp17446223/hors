@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+</head>
+<body>
+<div>
+    <table style="background-color: snow;width: 100%;" frame="box" border="1" cellpadding="0">
+        <thead>
+        <th>反馈ID</th>
+        <th>反馈人</th>
+        <th>反馈对象</th>
+        <th>反馈信息</th>
+        <th>反馈时间</th>
+        <th>医生回复</th>
+        <th>回复时间</th>
+        </thead>
+        <tbody data-th-each="contents:${contents}" data-th-object="${contents}" style="text-align: center;">
+        <td data-th-text="*{backId}">反馈ID</td>
+        <td data-th-text="*{conUser?.name}">反馈人</td>
+        <td data-th-text="*{doctor?.name}">反馈对象</td>
+        <td data-th-text="*{content}">反馈信息</td>
+        <td data-th-text="*{backTime}">反馈时间</td>
+        <td data-th-text="*{reply}">医生回复</td>
+        <td data-th-text="*{replyTime}">回复时间</td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

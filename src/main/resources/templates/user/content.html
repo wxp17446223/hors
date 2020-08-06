@@ -5,8 +5,33 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" name="content" data-th-each="feedBack:${feedBack}" data-th-object="${feedBack}">
-    <input name="userId" data-th-value="*{userId}">
+<form method="post" name="content" action="/user/content">
+    <input name="userId" data-th-value="*{userId}" type="text" hidden="hidden">
+    <input name="doctorId" data-th-value="*{doctorId}" type="text" hidden="hidden">
+    <div style="width: 350px;">
+    反馈人：<i name="userName" data-th-text="*{userName}" style="margin-left: 0px;position: relative">111</i>
+    反馈对象：<i name="doctorName" data-th-text="*{doctorName}" style="position:relative;margin-right: 0px">111</i>
+        <input name="backTime" value="" hidden="hidden">
+    </div>
+    <div>
+    <textarea style="font-family: 宋体;width: 350px;height: 225px;resize:none;" name="content" ></textarea>
+    </div>
+    <input type="submit" name="submit"
+           data-th-href="@{/user/content}"
+           onclick="myFunction()"
+           value="立即提交">
 </form>
+<script>
+    function myFunction() {
+        var txt;
+        if (confirm("确认提交？")) {
+            txt = "感谢您的反馈，我们会提交给医生的";
+        } else {
+            txt = "取消提交";
+        }
+        document.getElementById("demo").innerHTML = txt;
+    }
+</script>
+
 </body>
 </html>
