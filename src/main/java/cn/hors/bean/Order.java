@@ -63,6 +63,6 @@ public class Order {
 
     private Doctor doctor;
 
-    private FeedBack feedback;
+    private Feedback feedback;
 
 }

@@ -1,7 +1,7 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
-import cn.hors.bean.FeedBack;
+import cn.hors.bean.Feedback;
 import cn.hors.bean.Order;
 import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
@@ -175,7 +175,7 @@ public class UserController {
     }
 
     @PostMapping({"/content","/content/{userId}"})
-    public String content(@PathVariable(required = false)FeedBack feedBack,Model model){
+    public String content(@PathVariable(required = false) Feedback feedBack, Model model){
         if (feedBack.getUserId()!=null){
             if(feedBackService.updateFeed(feedBack)){
                 model.addAttribute("feedBack",feedBack);
