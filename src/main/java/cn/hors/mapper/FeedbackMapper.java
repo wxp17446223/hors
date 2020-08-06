@@ -1,4 +1,4 @@
-package cn.hors.mapper;
+﻿package cn.hors.mapper;
 
 import cn.hors.bean.FeedBack;
 import org.apache.ibatis.annotations.Param;
