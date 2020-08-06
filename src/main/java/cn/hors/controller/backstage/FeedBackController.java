@@ -1,6 +1,6 @@
 package cn.hors.controller.backstage;
 
-import cn.hors.bean.Feedback;
+import cn.hors.bean.FeedBack;
 import cn.hors.service.FeedBackService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -30,10 +30,10 @@ public class FeedBackController implements BaseController{
     @GetMapping(headers = "X-Requested-With=XMLHttpRequest")
     @ResponseBody
     @PreAuthorize("hasAuthority('/feedback/r')")
-    public Map<String,Object> findAll(Feedback feedBack, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int limit){
+    public Map<String,Object> findAll(FeedBack feedBack, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int limit){
         PageHelper.startPage(page,limit);
-        List<Feedback> feedbackList = feedBackService.findAll(feedBack);
-        PageInfo<Feedback> pageInfo = new PageInfo<>(feedbackList);
+        List<FeedBack> feedBackList = feedBackService.findAll(feedBack);
+        PageInfo<FeedBack> pageInfo = new PageInfo<>(feedBackList);
         Map<String,Object> map = new HashMap<>();
         map.put("data",pageInfo.getList());
         map.put("code",0);
@@ -51,11 +51,11 @@ public class FeedBackController implements BaseController{
     @GetMapping({"/edit","/edit/{backId}"})
     @PreAuthorize("hasAuthority('/feedback/edit/r')")
     public String editor(@PathVariable(required = false) Integer backId, Model map){
-        Feedback FeedBack = null;
+        FeedBack FeedBack = null;
         if(backId != null && backId !=0){
-            Feedback feedBacks = new Feedback();
+            cn.hors.bean.FeedBack feedBacks = new FeedBack();
             feedBacks.setBackId(backId);
-            List<Feedback> FeedBacks = feedBackService.findAll(feedBacks);
+            List<cn.hors.bean.FeedBack> FeedBacks = feedBackService.findAll(feedBacks);
             FeedBack = FeedBacks.get(0);
         }
         map.addAttribute("feedback",FeedBack);
@@ -70,7 +70,7 @@ public class FeedBackController implements BaseController{
     @PutMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/feedback/u')")
-    public Map<String,Object> save(Feedback feedBack){
+    public Map<String,Object> save(FeedBack feedBack){
         Map<String,Object> map = new HashMap<>();
         if(feedBack.getBackId() != null && feedBack.getBackId() !=0){
             if (feedBackService.update(feedBack)) {

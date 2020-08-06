@@ -35,6 +35,11 @@ public interface DoctorMapper {
      */
     List<Doctor> findByName(@Param("name") String name);
 
+    /**
+     * 利用订单Id查找医生
+     * @param id
+     * @return
+     */
     Doctor findByOrd(Integer id);
 
     /**

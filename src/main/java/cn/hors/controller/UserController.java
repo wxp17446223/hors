@@ -1,13 +1,10 @@
 package cn.hors.controller;
 
 import cn.hors.bean.Account;
-import cn.hors.bean.Feedback;
+import cn.hors.bean.FeedBack;
 import cn.hors.bean.Order;
 import cn.hors.bean.UserInfo;
-import cn.hors.service.AccountService;
-import cn.hors.service.FeedBackService;
-import cn.hors.service.OrderService;
-import cn.hors.service.UserInfoService;
+import cn.hors.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -38,6 +35,8 @@ public class UserController {
     private OrderService orderService;
     @Resource
     private FeedBackService feedBackService;
+    @Resource
+    private DoctorService doctorService;
 
     int IDD;
 
@@ -174,15 +173,39 @@ public class UserController {
         return getModelName()+"/orderUser";
     }
 
-    @PostMapping({"/content","/content/{userId}"})
-    public String content(@PathVariable(required = false) Feedback feedBack, Model model){
-        if (feedBack.getUserId()!=null){
-            if(feedBackService.updateFeed(feedBack)){
-                model.addAttribute("feedBack",feedBack);
+    /**
+     * 转跳到添加反馈信息的页面
+     * @param userId 用于显示反馈人
+     * @param doctorId  用于显示被反馈的医生
+     * @param model
+     * @return
+     */
+    @GetMapping("/content/{userId}/{doctorId}")
+    public String toContent(@PathVariable(required = false) Integer userId, @PathVariable(required = false) Integer doctorId, Model model){
+        if(userId!=null){
+            if(doctorId!=null){
+                String userName=userservice.findById(userId).getName();
+                String doctorName=doctorService.findById(doctorId).getName();
+                model.addAttribute("userName",userName);
+                model.addAttribute("doctorName",doctorName);
+                model.addAttribute("userId",userId);
+                model.addAttribute("doctorId",doctorId);
             }
+
         }
-        return getModelName()+"/orderUser";
+        return getModelName()+"/content";
     }
+
+    @GetMapping({"/contentUser/{userId}","/contentUser"})
+    public String contentAll(@PathVariable(required = false) Integer userId,Model model){
+        System.out.println(userId);
+        if(userId!=null){
+            List<FeedBack> feedBackList=feedBackService.findByUsId(userId);
+            model.addAttribute("contents",feedBackList);
+        }
+        return getModelName()+"/contentUser";
+    }
+
     public String getModelName() {
         return "user";
     }

@@ -1,6 +1,6 @@
 package cn.hors.service.impl;
 
-import cn.hors.bean.Feedback;
+import cn.hors.bean.FeedBack;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import cn.hors.mapper.FeedbackMapper;
@@ -15,32 +15,23 @@ public class FeedBackServiceImpl implements FeedBackService {
     private FeedbackMapper feedbackMapper;
 
     @Override
-    public Feedback findByUsId(Integer userId) {
+    public List<FeedBack> findByUsId(Integer userId) {
         return feedbackMapper.findByUsId(userId);
     }
 
-    @Override
-    public boolean insertFeed(Feedback record) {
-        return feedbackMapper.insertFeed(record);
-    }
 
     @Override
-    public boolean updateFeed(Feedback record) {
-        return feedbackMapper.updateFeed(record);
-    }
-
-    @Override
-    public List<Feedback> findAll(Feedback feedBack) {
+    public List<FeedBack> findAll(FeedBack feedBack) {
         return feedbackMapper.findAll(feedBack);
     }
 
     @Override
-    public boolean insert(Feedback feedBack) {
+    public boolean insert(FeedBack feedBack) {
         return feedbackMapper.insert(feedBack)>0?true:false;
     }
 
     @Override
-    public boolean update(Feedback feedBack) {
+    public boolean update(FeedBack feedBack) {
         return feedbackMapper.update(feedBack)>0?true:false;
     }
 
