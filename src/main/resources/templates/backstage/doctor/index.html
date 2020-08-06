@@ -99,7 +99,7 @@
 
 </div>
 
-<script data-th-inline="javascript">
+<script data-th-inline="javascript"type="text/javascript">
     layui.use(["table", "layer", "jquery", "element", "form"], function () {
         let {table, layer, $, form} = layui; //解构
         table.render({
@@ -114,12 +114,17 @@
                     {field: 'left', width: 80, type: "checkbox"},
                     {field: 'doctorId', width: 60, title: 'ID', sort: true}
                     , {field: 'jobNumber', width: 100, title: '医生工号'}
-                    , {field: 'department?.departName', title: '科室名字',templet:function (rs) {
+                    , {field: 'department?.departName', width: 100,  title: '科室名字',templet:function (rs) {
                         return rs.department.departName;
                     }}
                     , {field: 'name', title: '姓名'}
-                    , {field: 'sex', title: '性别',toolbar:'#sexChange'}
-                    , {field: 'picture', title: '图片地址'}
+                    , {field: 'sex', title: '性别',width: 60,toolbar:'#sexChange'}
+                    , {field: 'picture', title: '医生图像',
+                        align: 'center',
+                        templet: function(d) {
+                             return '<div onclick="show_img(this)" ><img src="'+d.picture+'" ' + 'alt="" width="50px" height="50px"></a></div>';
+                        }
+                    }
                     , {field: 'birth', title: '生日' ,templet : "<div>{{layui.util.toDateString(d.birth, 'yyyy年-MM月-dd日 ')}}</div>"}
                     , {field: 'position', title: '职位'}
                     , {field: 'workExperience', title: '工作经验'}
@@ -137,6 +142,24 @@
             });
             return false;
         });
+
+
+        //显示图片
+        function show_img(t) {
+            var t = $(t).find("img");
+            //页面层
+            layer.open({
+                type: 1,
+                title: '区域图片',
+                skin: 'layui-layer-rim', //加上边框
+                area: ['80%', '80%'], //宽高 t.width() t.height()
+                shadeClose: true, //开启遮罩关闭
+                end: function (index, layero) {
+                    return false;
+                },
+                content: '<div style="text-align:center"><img src="' + $(t).attr('src') + '" /></div>'
+            });
+        }
 
         table.on('toolbar(table_filter)', function (e) {
             if (e.event == 'add') {
