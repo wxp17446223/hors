@@ -1,11 +1,9 @@
 package cn.hors.controller.backstage;
 
 import cn.hors.bean.Account;
-import cn.hors.bean.Departments;
-import cn.hors.bean.PAccount;
 import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,7 @@ public class PatientController implements BaseController{
     @Resource
     private AccountService accountService;
     @Resource
-    private UserinfoService userinfoService;
+    private UserInfoService userinfoService;
     @GetMapping
     @PreAuthorize("hasAuthority('/patient/r')")
     public String home(){
@@ -46,8 +44,8 @@ public class PatientController implements BaseController{
 
 
     /**
-     * 新增和修改科室资源
-     * @param id 资源id
+     * 新增和修改患者
+     * @param id 患者id
      * @param map 结果存储
      * @return
      */
@@ -107,7 +105,7 @@ public class PatientController implements BaseController{
     }
 
     /**
-     * 删除科室资源 包括删除父科室资源
+     * 删除患者资源
      * @param ids
      * @return
      */
@@ -125,6 +123,9 @@ public class PatientController implements BaseController{
         }
         return map;
     }
+
+
+
 
 
     @Override

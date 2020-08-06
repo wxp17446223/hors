@@ -35,4 +35,18 @@ public interface DoctorService{
     List<Doctor> findByName(String name);
 
     Doctor findByOrd(Integer id);
+
+    /**
+     * 修改医生信息
+     * @param doctor
+     * @return
+     */
+    boolean update(Doctor doctor);
+
+    /**
+     * 新增医生信息
+     * @param doctor
+     * @return
+     */
+    boolean insert(Doctor doctor);
 }

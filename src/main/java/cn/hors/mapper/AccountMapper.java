@@ -26,4 +26,5 @@ public interface AccountMapper {
     int deleteByIds(@Param("ids") Integer ... ids);
 
     Account findById(@Param("id") Integer id);
+
 }

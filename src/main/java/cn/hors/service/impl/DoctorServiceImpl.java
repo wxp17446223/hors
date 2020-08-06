@@ -38,4 +38,14 @@ public class DoctorServiceImpl implements DoctorService{
     public Doctor findByOrd(Integer id) {
         return doctorMapper.findByOrd(id);
     }
+
+    @Override
+    public boolean update(Doctor doctor) {
+        return doctorMapper.update(doctor)>0;
+    }
+
+    @Override
+    public boolean insert(Doctor doctor) {
+        return doctorMapper.insert(doctor)>0;
+    }
 }

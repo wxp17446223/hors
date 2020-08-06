@@ -19,39 +19,48 @@
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
         <div class="layui-input-block">
-            <input type="text" name="account" placeholder="请输入账号" autocomplete="off" class="layui-input" data-th-value="${patient?.account}">
+            <input type="text" name="account" placeholder="请输入账号" autocomplete="off" class="layui-input" data-th-value="${patient?.account}" lay-verify="account">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">用户名称</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.name"  placeholder="请输入用户名称" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.name}">
+            <input type="text" name="userInfo.name"  placeholder="请输入用户名称" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.name}" lay-verify="name">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="text" name="userInfo.password"  placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="password">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">身份证号</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.identityId"  placeholder="请输入身份证号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.identityId}">
+            <input type="text" name="userInfo.identityId"  placeholder="请输入身份证号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.identityId}" lay-verify="identityId">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">手机号</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.phone"  placeholder="请输入手机号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.phone}">
+            <input type="text" name="userInfo.phone"  placeholder="请输入手机号" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.phone}" lay-verify="phone">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
             <select name="userInfo.sex">
-                <option data-th-checked="${patient?.userInfo?.sex==1}" value="1">男</option>
+                <option data-th-checked="${patient?.userInfo?.sex==1}" value="1" selected="selected">男</option>
                 <option data-th-checked="${patient?.userInfo?.sex==0}" value="0">女</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">身份</label>
+        <div class="layui-input-block">
+            <select name="roleId">
+                <option data-th-checked="${patient?.roleId==8}" value="8" selected="selected">普通患者</option>
+                <option data-th-checked="${patient?.roleId==9}" value="9">黑名单</option>
             </select>
         </div>
     </div>
@@ -70,13 +79,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.email"  placeholder="请输入出生日期" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.email}">
+            <input type="text" name="userInfo.email"  placeholder="请输入出生日期" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.email}" lay-verify="email">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">家庭住址</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.address"  placeholder="请输入注册时间" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.address}">
+            <script type="text/plain" id="editor" name="userInfo.address" data-th-utext="${patient?.userInfo?.address}" lay-verify="introduce"></script>
         </div>
     </div>
     <div class="layui-form-item">
@@ -86,10 +95,56 @@
         </div>
     </div>
 </form>
+<script data-th-src="@{/ueditor/ueditor.config.js}"></script>
+<script data-th-src="@{/ueditor/ueditor.all.js}"></script>
+<script data-th-src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
+<script>
+    UE.getEditor('editor');
+</script>
 <script data-th-inline="javascript">
     layui.use(['form','jquery'], function() {
         let {form,$} = layui;
         //监听提交
+        form.verify({
+            account:function(value){
+                console.log(value);
+                if(value.length==0 || value.length == 0){
+                    return '账号不为空';
+                }
+            }
+            ,name:function (value) {
+
+                if(value.length ==null || value.length == 0){
+                    return '用户名不为空';
+                }
+            }
+            ,identityId:function (value) {
+
+                if(value.length != 18){
+                    return '身份证长度必须位18位';
+                }
+            }
+            ,phone:function (value) {
+
+                if(value.length ==null || value.length != 11){
+                    return '手机号长度位为11位';
+                }
+            }
+            ,email:function (value) {
+                if(!new RegExp("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*").test(value)){
+                    return '请输入正确的邮箱格式';
+                }
+            }
+            ,introduce:function (value) {
+                if(value.length ==null || value.length != 11){
+                    return '家庭住址不为空';
+                }
+            }
+            ,password:function (value) {
+                if(value.length ==null || value.length==''){
+                    return '密码不能为空';
+                }
+            }});
         form.on('submit(formSubmit)', function (data) {
             console.log(data.field);
             $.ajax({

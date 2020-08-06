@@ -5,9 +5,9 @@
     <title>个人中心</title>
 </head>
 <body>
-<div data-th-each="orders:${orders}" data-th-object="${orders}">
-    <table>
-        <tr>
+<div>
+    <table style="background-color: snow;width: 100%;" frame="box" border="1" cellpadding="0">
+        <thead>
             <th>预约ID</th>
             <th>预约人</th>
             <th>预约医生</th>
@@ -15,21 +15,23 @@
             <th>预约状态</th>
             <th>联系电话</th>
             <th>价钱</th>
+            <th>医生回复</th>
             <th>操作</th>
-        </tr>
-        <tr>
+        </thead>
+        <tbody data-th-each="orders:${orders}" data-th-object="${orders}" style="text-align: center;">
             <td data-th-text="*{orderId}">预约ID</td>
             <td data-th-text="*{orderUser?.name}">预约人</td>
             <td data-th-text="*{doctor?.name}">预约医生</td>
             <td>
             <p data-th-text="*{#dates.format(timeline?.date,'yyyy-MM-dd')}"></p>
-            <p data-th-text="*{timeline?.startTime}""*{timeline?.endTime}"></p>
+            <p data-th-text="*{timeline?.startTime}+'~'+*{timeline?.endTime}"></p>
             </td>
-            <td data-th-text="*{status}">预约状态</td>
+            <td data-th-text="*{status==0?'预约失败':'预约成功'}">预约状态</td>
             <td data-th-text="*{userPhone}">联系电话</td>
             <td data-th-text="*{cost}">价钱</td>
-            <td><input type="button" value="修改"></td>
-        </tr>
+            <td data-th-text="*{feedback?.reply}">医生回复</td>
+            <td><a value="评论" data-th-href="@{/user/content/{id}(id=${user?.userId})}"></a></td>
+        </tbody>
     </table>
 </div>
 </body>

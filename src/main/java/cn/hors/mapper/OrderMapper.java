@@ -49,5 +49,5 @@ public interface OrderMapper {
      * @param userId
      * @return
      */
-    Order findByUseId(Integer userId);
+    List<Order> findByUseId(Integer userId);
 }

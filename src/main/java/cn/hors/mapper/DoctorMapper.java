@@ -35,7 +35,19 @@ public interface DoctorMapper {
      */
     List<Doctor> findByName(@Param("name") String name);
 
-
-
     Doctor findByOrd(Integer id);
+
+    /**
+     * 修改医生信息
+     * @param doctor
+     * @return
+     */
+    int update(Doctor doctor);
+
+    /**
+     * 新增医生信息
+     * @param doctor
+     * @return
+     */
+    int insert(Doctor doctor);
 }

@@ -64,4 +64,6 @@ public class AccountServiceImpl implements AccountService{
         return accountMapper.deleteByIds(ids)>0?true:false;
     }
 
+
+
 }

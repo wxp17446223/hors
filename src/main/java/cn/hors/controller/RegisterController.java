@@ -3,7 +3,7 @@ package cn.hors.controller;
 import cn.hors.bean.Account;
 import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,33 +12,32 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/register")
 public class RegisterController {
 
     @Resource
     private AccountService accountServices;
 
     @Resource
-    private UserinfoService userinfoService;
+    private UserInfoService userinfoService;
 
 
-    @PutMapping
-    @ResponseBody
-    public Map<String,Object> save(UserInfo user, Account account){
-        Map<String,Object> results = new HashMap<>();
-        if (accountServices.insert(account)){
-            user.setAccountId(account.getAccountId());
-            if(userinfoService.insert(user)){
-                results.put("code",0);
-                results.put("msg","注册成功");
-            }else {
-                results.put("code",1);
-                results.put("msg","注册失败");
-            }
-        }else {
-            results.put("code",1);
-            results.put("msg","注册失败");
-        }
-        return results;
-    }
+//    @PutMapping
+//    @ResponseBody
+//    public Map<String,Object> save(UserInfo user, Account account){
+//        Map<String,Object> results = new HashMap<>();
+//        if (accountServices.insert(account)){
+//            user.setAccountId(account.getAccountId());
+//            if(userinfoService.insert(user)){
+//                results.put("code",0);
+//                results.put("msg","注册成功");
+//            }else {
+//                results.put("code",1);
+//                results.put("msg","注册失败");
+//            }
+//        }else {
+//            results.put("code",1);
+//            results.put("msg","注册失败");
+//        }
+//        return results;
+//    }
 }

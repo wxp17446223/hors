@@ -26,13 +26,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">账号</label>
         <div class="layui-input-block">
-            <input type="text" name="account" lay-verify="required" placeholder="请输入登录账号" autocomplete="off" class="layui-input" data-th-value="${account?.account}">
+            <input type="text" name="account" lay-verify="required" placeholder="请输入登录账号" autocomplete="off" class="layui-input" data-th-value="${account?.account}" lay-verify="name">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-block">
-            <input type="password" name="password"  placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="password"  placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="password">
         </div>
     </div>
     <div class="layui-form-item">
@@ -59,7 +59,19 @@
                 data: rs
             });
         },'json');
-
+        form.verify({
+            name:function(value){
+                console.log(value);
+                if(value==null||value.length==0){
+                    return '账号不为空';
+                }
+            }
+            ,password:function (value) {
+                console.log(value);
+                if(value.length ==null || value.length ==0){
+                    return '密码不为空';
+                }
+            }});
         //监听提交
         form.on('submit(formSubmit)', function (data) {
             let roles = xmSelect.get("#role",true);

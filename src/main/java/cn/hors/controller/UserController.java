@@ -5,7 +5,7 @@ import cn.hors.bean.Order;
 import cn.hors.bean.UserInfo;
 import cn.hors.service.AccountService;
 import cn.hors.service.OrderService;
-import cn.hors.service.UserinfoService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,7 +29,7 @@ import java.util.Map;
 public class UserController {
 
     @Resource
-    private UserinfoService userservice;
+    private UserInfoService userservice;
     @Resource
     private AccountService accountService;
     @Resource
@@ -162,7 +163,7 @@ public class UserController {
     public String orderUser(@PathVariable(required = false)Integer userId,Model model){
         System.out.println(userId);
         if (userId!=null){
-            Order orders = this.orderService.findByUseId(userId);
+            List<Order> orders = this.orderService.findByUseId(userId);
             model.addAttribute("orders",orders);
         }
         return getModelName()+"/orderUser";

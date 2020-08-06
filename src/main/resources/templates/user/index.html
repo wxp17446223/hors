@@ -28,6 +28,7 @@
             src="../static/hors/js/KunyiHTML5.min.js"></script>
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
             src="../static/hors/js/Kunyilibrary.js"></script>
+
 </head>
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"
@@ -430,6 +431,8 @@
         <div class="newsMenu" data-th-each="users:${users}" data-th-object="${users}">
             <ul>
                 <li><a data-th-href="@{/user/info/{accountId}(accountId=*{accountId})}" href="/user/info.html" target="mainBody" data-th-text="个人信息" ><em>个人信息</em></a></li>
+            </ul>
+            <ul>
                 <li><a data-th-href="@{/user/uacc/{accountId}(accountId=*{accountId})}" href="/user/uacc.html" target="mainBody"  ><em>密码设置</em></a></li>
             </ul>
             <ul>
@@ -438,8 +441,7 @@
         </div>
     </div>
     <div class="baseRight">
-        <iframe name="mainBody" width="1000px" height="950px" frameborder="0">
-
+        <iframe name="mainBody" width="1000px" height="1000px" frameborder="0">
         </iframe>
     </div>
 
@@ -598,5 +600,12 @@
         src="../static/hors/js/Kunyi.Secondary.js"></script>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Department.js}"
         src="../static/hors/js/Kunyi.Department.js"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
 </body>
 </html>

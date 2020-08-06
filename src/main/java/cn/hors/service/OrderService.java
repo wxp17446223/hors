@@ -48,5 +48,5 @@ public interface OrderService{
      * @param userId 用户ID
      * @return
      */
-    Order findByUseId(Integer userId);
+    List<Order> findByUseId(Integer userId);
 }

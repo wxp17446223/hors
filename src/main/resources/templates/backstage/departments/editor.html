@@ -25,25 +25,26 @@
     <div class="layui-form-item">
         <label class="layui-form-label">科室名称</label>
         <div class="layui-input-block">
-            <input type="text" name="departName" placeholder="请输入科室名称" autocomplete="off" class="layui-input" data-th-value="${departments?.departName}">
+            <input type="text" name="departName" placeholder="请输入科室名称" autocomplete="off" class="layui-input" data-th-value="${departments?.departName}" lay-verify="departName">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">科室简介</label>
         <div class="layui-input-block">
-            <input type="text" name="introduce"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.introduce}">
+            <script type="text/plain" id="editor" name="introduce" data-th-utext="${departments?.introduce}" lay-verify="introduce"></script>
+<!--            <input type="text" name="introduce"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.introduce}">-->
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">成立日期</label>
         <div class="layui-input-block">
-            <input type="date" name="date"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.date}">
+            <input type="date" name="date"  placeholder="请输入科室简介" autocomplete="off" class="layui-input" data-th-value="${departments?.date}" lay-verify="date">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">科室电话</label>
         <div class="layui-input-block">
-            <input type="text" name="phone"  placeholder="请输入科室电话" autocomplete="off" class="layui-input" data-th-value="${departments?.phone}">
+            <input type="text" name="phone"  placeholder="请输入科室电话" autocomplete="off" class="layui-input" data-th-value="${departments?.phone}" lay-verify="phone">
         </div>
     </div>
     <div class="layui-form-item">
@@ -53,9 +54,35 @@
         </div>
     </div>
 </form>
+<script data-th-src="@{/ueditor/ueditor.config.js}"></script>
+<script data-th-src="@{/ueditor/ueditor.all.js}"></script>
+<script data-th-src="@{/ueditor/lang/zh-cn/zh-cn.js}"></script>
+<script>
+    UE.getEditor('editor');
+</script>
 <script data-th-inline="javascript">
     layui.use(['form','jquery'], function() {
         let {form,$} = layui;
+        //表单验证
+        form.verify({
+            departName:function(value){
+                console.log(value);
+                if(value==null || value.length ==0){
+                    return '科室名称不为空';
+                }
+            }
+            ,phone:function (value) {
+                console.log(value);
+                if(value.length ==null || value.length != 11){
+                    return '科室电话必须为11位数字';
+                }
+            }
+            ,introduce:function (value) {
+                console.log(value);
+                if(value.length ==null || value.length==''){
+                    return '科室简介不能为空';
+                }
+            }});
         //监听提交
         form.on('submit(formSubmit)', function (data) {
             // let value = document.getElementsByName("authority");

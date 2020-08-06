@@ -18,13 +18,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">角色名称</label>
         <div class="layui-input-block">
-            <input type="text" name="name" placeholder="请输入角色名称" autocomplete="off" class="layui-input" data-th-value="${role?.name}">
+            <input type="text" name="name" placeholder="请输入角色名称" autocomplete="off" class="layui-input" data-th-value="${role?.name}" lay-verify="name">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">角色代码:</label>
         <div class="layui-input-block">
-            <input type="text" name="code"  placeholder="请输入角色代码" autocomplete="off" class="layui-input" data-th-value="${role?.code}">
+            <input type="text" name="code"  placeholder="请输入角色代码" autocomplete="off" class="layui-input" data-th-value="${role?.code}" lay-verify="code">
         </div>
     </div>
     <div class="layui-form-item">
@@ -38,10 +38,22 @@
     layui.use(['form','jquery'], function() {
         let {form,$} = layui;
         //监听提交
+        form.verify({
+            name:function(value){
+                if(value==null||value.length==0){
+                    return '角色名称不为空';
+                }
+            }
+            ,code:function (value) {
+                if(value==null || value.length ==0){
+                    return '角色代码不为空';
+                }
+            }});
         form.on('submit(formSubmit)', function (data) {
             $.ajax({
                 url: /*[[@{/role}]]*/ '/save',
-                type: 'put',
+                type: 'pu3' +
+                    't',
                 data: data.field,
                 dataType:'json',
                 success:function (rs) {

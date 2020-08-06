@@ -26,4 +26,5 @@ public interface AccountService{
     Account findById(Integer id);
 
     boolean deleteByIds(Integer... ids);
+
 }

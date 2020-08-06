@@ -8,6 +8,7 @@
         <result property="date" column="date"/>
          <result property="phone" column="phone"/>
         <result property="dId" column="d_id"/>
+        <result property="phone" column="phone"/>
         <association property="parent" javaType="cn.hors.bean.Departments" select="findEntityById" column="d_id"/>
         <collection property="children" ofType="cn.hors.bean.Departments" column="{dId=depart_id}" select="findAll"/>
         <collection property="doctors" ofType="cn.hors.bean.Doctor"
@@ -33,6 +34,9 @@
     </if>
     <if test="dId != null">
         and d_id = #{dId}
+    </if>
+    <if test="phone != null and phone != ''">
+        and phone = #{phone}
     </if>
 </sql>
 
