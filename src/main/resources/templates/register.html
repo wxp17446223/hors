@@ -449,7 +449,7 @@
             <div class="tabBase"><a data-th-href="@{/login}">用户登录</a><a class="active" data-th-href="@{/register}">用户注册</a></div>
             <div class="clear"></div>
             <div class="userForm" style="position: relative;left: 10%">
-                <form action="/register/save" class="layui-form" id="RegForm" method="put">
+                <form action="/register/save" class="layui-form" id="RegForm" method="post">
                     <input id="tbHashReg" name="tbHashReg" type="hidden" value="VH5IB4YtEchYDisgbrb0qqPomnTAuKJY8"/>
                     <div class="item uName" style="height: 20%;position: relative">
                         <label for="tbName" style="height: 100%">
@@ -467,18 +467,18 @@
                         <label for="tbPhone">
                             手机号</label>
                         <input  autocomplete="off" datatype="m" errormsg="您输入的手机号码不正确！" id="tbPhone" maxlength="11"
-                               name="phone" nullmsg="                   请输入您的手机号码！" type="text"/>
+                                name="phone" nullmsg="                   请输入您的手机号码！" type="text"/>
                         <input type="button" value="发送验证码" style="width: 10%">
                         <div class="Validform_checktip" style="position: absolute;left: 740px;"></div>
                     </div>
-<!--                    <div>-->
-<!--                        <label>验证码</label><input>-->
-<!--                    </div>-->
+                    <!--                    <div>-->
+                    <!--                        <label>验证码</label><input>-->
+                    <!--                    </div>-->
                     <div class="item"><label for="tbCardID">
                         身份证号</label>
                         <input  autocomplete="off" datatype="idcard" errormsg="您输入的身份证号码不对！" id="tbCardID"
-                               maxlength="18" name="identityId" nullmsg="请填写身份证号码！"
-                               type="text" />
+                                maxlength="18" name="identityId" nullmsg="请填写身份证号码！"
+                                type="text" />
                         <div class="Validform_checktip"></div>
                     </div>
                     <div class="item"><label for="account">账号</label><input
@@ -490,13 +490,13 @@
                     <div class="item password">
                         <label for="tbPassword">密码</label>
                         <input autocomplete="off" datatype="*6-18" errormsg="密码至少6个字符,最多18个字符！" id="tbPassword" maxlength="18"
-                            name="password" nullmsg="请输入密码" type="password"/>
+                               name="password" nullmsg="请输入密码" type="password"/>
                         <div class="Validform_checktip"></div>
                     </div>
                     <div class="item password">
                         <label for="tbDPassword">确认密码</label>
                         <input autocomplete="off" datatype="*" errormsg="您两次输入的账号密码不一致！" id="tbDPassword" maxlength="18" name="tbDPassword"
-                            nullmsg="请再输入一次密码！" recheck="tbPassword" tip="test" type="password"/>
+                               nullmsg="请再输入一次密码！" recheck="tbPassword" tip="test" type="password"/>
                         <div class="Validform_checktip"></div>
                     </div>
                     <div class="layui-form-item">
@@ -682,7 +682,7 @@
         form.on('submit(formSubmit)', function(data){
             $.ajax({
                 url:/*[[@{/register}]]*/ 'save',
-                type:'put',
+                type:'post',
                 data:data.field,
                 dataType:'json',
                 success:function (rs) {

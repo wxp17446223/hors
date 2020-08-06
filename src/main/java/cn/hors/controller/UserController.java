@@ -93,7 +93,7 @@ public class UserController {
      * @param user
      * @return
      */
-    @PutMapping
+    @PostMapping
     @ResponseBody
     public Map<String,Object> save(UserInfo user){
         Map<String,Object> results = new HashMap<>();
@@ -196,6 +196,12 @@ public class UserController {
         return getModelName()+"/content";
     }
 
+    /**
+     * 转跳到反馈信息的页面
+     * @param userId 用于显示反馈人
+     * @param model
+     * @return
+     */
     @GetMapping({"/contentUser/{userId}","/contentUser"})
     public String contentAll(@PathVariable(required = false) Integer userId,Model model){
         System.out.println(userId);

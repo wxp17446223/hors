@@ -20,7 +20,7 @@ public class UaccController {
     private AccountService accountService;
 
 
-    @PutMapping
+    @PostMapping
     @ResponseBody
     public Map<String,Object> saveAcc(Account account){
         Map<String,Object> results = new HashMap<>();
@@ -30,7 +30,6 @@ public class UaccController {
             if (accountService.updateByPrimaryKey(account)>0){
                 results.put("code",0);
                 results.put("msg","修改成功");
-                System.out.println("成功");
             }else {
                 results.put("code",1);
                 results.put("msg","修改失败");

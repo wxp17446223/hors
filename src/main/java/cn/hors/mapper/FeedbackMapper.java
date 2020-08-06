@@ -9,7 +9,6 @@ public interface FeedbackMapper {
 
     List<FeedBack> findByUsId(Integer userId);
 
-
     /**
      * 查询所有反馈信息
      * @param feedBack 反馈bean

@@ -79,7 +79,7 @@
         form.on('submit(formSubmit)', function(data){
             $.ajax({
                 url:/*[[@{/user}]]*/ 'save',
-                type:'put',
+                type:'post',
                 data:data.field,
                 dataType:'json',
                 success:function (rs) {
