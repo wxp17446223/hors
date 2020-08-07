@@ -1,7 +1,7 @@
 package cn.hors.service;
 
 import cn.hors.bean.UserInfo;
-public interface UserInfoService{
+public interface UserInfoService {
 
 
     int deleteByPrimaryKey(Integer userId);
@@ -20,4 +20,6 @@ public interface UserInfoService{
     UserInfo findByAccId(Integer accountId);
 
     int updatePic(UserInfo userinfo);
+
+    boolean deleteByIds(Integer... ids);
 }

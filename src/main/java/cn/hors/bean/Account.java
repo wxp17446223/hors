@@ -3,6 +3,12 @@ package cn.hors.bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
     * 账号表
@@ -26,11 +32,13 @@ public class Account {
     */
     private String password;
 
-    /**
-     * 角色ID
-     * 默认为8
-     */
-    private Integer roleId;
+    private boolean locked;
 
+    private boolean expired;
+
+    private boolean enabled;
+
+
+    private Integer roleId;
     private UserInfo userInfo;
 }

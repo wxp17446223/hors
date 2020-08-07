@@ -19,40 +19,40 @@
     <div class="layui-form-item" data-th-if="${resource?.parent}">
         <label class="layui-form-label">父资源名称</label>
         <div class="layui-input-block">
-            <input type="text" readonly="readonly"  data-th-value="${resource?.parent?.name}" class="layui-input" >
+            <input type="text" readonly="readonly"  data-th-value="${resource?.parent?.name}" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">资源名称</label>
         <div class="layui-input-block">
-            <input type="text" name="name" placeholder="请输入资源名称" autocomplete="off" class="layui-input" data-th-value="${resource?.name}">
+            <input type="text" name="name" placeholder="请输入资源名称" autocomplete="off" class="layui-input" data-th-value="${resource?.name}" lay-verify="name">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">authority</label>
         <input type="hidden" data-th-value="${resource.authority}">
         <div class="layui-input-block">
-            <input type="radio" name="authority"  data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'r')?true:false}" class="layui-input" value="r" title="读取">
-            <input type="radio" name="authority"  data-th-if="${resource.code == null}" class="layui-input" value="r" title="读取">
-            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'c')?true:false}"  class="layui-input" value="c" title="创建">
-            <input type="radio" name="authority"   data-th-if="${resource.code == null}"   class="layui-input" value="c" title="创建">
-            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'d')?true:false}" class="layui-input" value="d" title="删除">
-            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="d" title="删除">
-            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'u')?true:false}" class="layui-input" value="u" title="修改">
-            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="u" title="修改">
+            <input type="radio" name="authority"  data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'r')?true:false}" class="layui-input" value="r" title="读取" lay-verify="authority">
+            <input type="radio" name="authority"  data-th-if="${resource.code == null}" class="layui-input" value="r" title="读取" checked="checked" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'c')?true:false}"  class="layui-input" value="c" title="创建" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"   class="layui-input" value="c" title="创建" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'d')?true:false}" class="layui-input" value="d" title="删除" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="d" title="删除" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code != null}" data-th-checked="${#strings.contains(resource?.code,'u')?true:false}" class="layui-input" value="u" title="修改" lay-verify="authority">
+            <input type="radio" name="authority"   data-th-if="${resource.code == null}"  class="layui-input" value="u" title="修改" lay-verify="authority">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">资源路径</label>
         <div class="layui-input-block">
-            <input type="text" name="url"  placeholder="请输入资源路径" autocomplete="off" class="layui-input" data-th-value="${resource?.url}">
+            <input type="text" name="url"  placeholder="请输入资源路径" autocomplete="off" class="layui-input" data-th-value="${resource?.url}" lay-verify="url">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">资源类型</label>
         <div class="layui-input-block">
-            <input type="radio" name="type"  value="0" data-th-checked="${resource == null or resource?.type == null or resource?.type==0}"  class="layui-input" title="功能">
-            <input type="radio" name="type"  value="1"  data-th-checked="${resource?.type==1}" class="layui-input" title="菜单">
+            <input type="radio" name="type"  value="0" data-th-checked="${resource == null or resource?.type == null or resource?.type==0}"  class="layui-input" title="功能" lay-verify="type">
+            <input type="radio" name="type"  value="1"  data-th-checked="${resource?.type==1}" class="layui-input" title="菜单" lay-verify="type">
         </div>
     </div>
     <div class="layui-form-item">
@@ -66,6 +66,17 @@
     layui.use(['form','jquery'], function() {
         let {form,$} = layui;
         //监听提交
+        form.verify({
+            name:function(value){
+                if(value==null||value.length==0){
+                    return '资源名称不为空';
+                }
+            }
+            ,url:function (value) {
+                if(value==null || value.length ==0){
+                    return '资源不为空';
+                }
+            }});
         form.on('submit(formSubmit)', function (data) {
             let value = document.getElementsByName("authority");
             for(var i=0;i<value.length;i++){

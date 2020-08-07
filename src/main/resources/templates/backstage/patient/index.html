@@ -14,12 +14,11 @@
 <body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增科室</button>
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增患者</button>
         <button class="layui-btn layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 </script>
@@ -29,7 +28,7 @@
             <span class="layui-breadcrumb" lay-separator="/">
   <a data-th-href="@{/}">首页</a>
   <a href="javascript:;">权限管理</a>
-  <a><cite>科室管理</cite></a>
+  <a><cite>患者管理</cite></a>
 </span>
         </div>
     </div>
@@ -37,9 +36,9 @@
         <div class="layui-col-md12">
             <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
                 <div class="layui-inline">
-                    <label class="layui-form-label">科室名称:</label>
+                    <label class="layui-form-label">患者账号:</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="departName" placeholder="请输入科室名称" autocomplete="off" class="layui-input">
+                        <input type="text" name="account" placeholder="请患者账号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -64,29 +63,66 @@
         table.render({
             id:'reload',
             elem:'#table_data',
-            url:/*[[@{/departments}]]*/ 'data/departments.json',
+            url:/*[[@{/patient}]]*/ 'data/patient.json',
             cellMinWidth: 80
             ,toolbar: '#toolbarDemo',//开启头部工具栏，并为其绑定左侧模板
             page:true,
             cols:[
                 [
                     {field:'left', width:80, type:"checkbox"},
-                    {field:'departId', width:80, title: 'ID', sort: true}
-                    ,{title: '父科室名称',width:150,templet:function (d) {
-                        return d.parent?d.parent.departName:'-';
+                    {field:'accountId', width:80, title: 'ID', sort: true}
+                    ,{field:'account', width:80, title: '账号'}
+                    ,{width:80, title: '姓名',templet:function (d) {
+                        return d.userInfo?d.userInfo.name:'-';
                     }}
-                    ,{field:'departName', title: '科室名称',width:150}
-                    ,{field:'introduce', title: '科室简介',width:250}
-                    ,{title: '科室成立日期',width:250,templet:function (d) {
-                        return layui.util.toDateString(d.date,'yyyy-MM-dd')
+                    ,{width:200, title: '身份证号',templet:function (d) {
+                        return d.userInfo?d.userInfo.identityId:'-';
                     }}
-                    ,{field:'phone', title: '科室电话',width:150}
+                    ,{width:80, title: '性别',templet:function (d) {
+                        return d.userInfo.sex==1?'男':'女';
+                    }}
+                    ,{width:150, title: '出生日期',templet:function (d) {
+                        return d.userInfo?d.userInfo.birth:'-';
+                    }}
+                    ,{width:150, title: '电话',templet:function (d) {
+                        return d.userInfo?d.userInfo.phone:'-';
+                    }}
+                    ,{width:150, title: '邮箱',templet:function (d) {
+                        return d.userInfo?d.userInfo.email:'-';
+                    }}
+                    ,{width:80, title: '家庭住址',templet:function (d) {
+                        return d.userInfo?d.userInfo.address:'-';
+                    }}
+                    ,{width:150, title: '注册时间',templet:function (d) {
+                        return d.userInfo?d.userInfo.registerTime:'-';
+                    }}
+                    ,{field:'password',title: '密码',width:150}
+                    ,{field:'roleId',width:150,title: '身份' ,templet:function (d) {
+                        // <span class="layui-badge">赤</span>
+                        //     layui-bg-orange
+                        //         <span class="layui-badge layui-bg-orange">橙</span>
+                        //         <span class="layui-badge layui-bg-green">绿</span>
+                        //         <span class="layui-badge layui-bg-blue">蓝</span>
+
+                        let color = '';
+                        let text =  '';
+                        switch(d.roleId){
+                            case 8: color='layui-bg-green';text='普通患者';break;
+                            case 9: color='';text='黑名单患者';break;
+                            // case 'u': color='layui-bg-orange';text='修改';break;
+                            // case 'd': color='';text='删除';break;
+                        }
+                        return `<span class="layui-badge ${color}">${text}</span>&emsp;`;
+                    }
+                }
+                ,{}
                     ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
                 ]
             ]
         });
 
         form.on("submit(query)",function (e) {
+            console.log(e.field.account);
             table.reload("reload",{
                 where:e.field
             });
@@ -98,23 +134,23 @@
                 //iframe层-父子操作
                 layer.open({
                     type: 2,
-                    area: ['400px', '350px'],
+                    area: ['350px', '450px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: /*[[@{/departments/edit}]]*/''
+                    content: /*[[@{/patient/edit}]]*/''
                 });
             }else if(e.event == 'del'){
                 let status = table.checkStatus('reload');
                 if( status.data.length==0){
-                    layer.msg("请选择需要删除的科室");
+                    layer.msg("请选择需要删除的账号");
                 }else{
-                    //选中的资源名称(,分割)
-                    //[{name:`a`},{name:`b`}]=>"a,b"
-                    let departmentsList = status.data.map(d=>d.departName).join(",");
+                    //选中的账号名称(,分割)
+                    //[{patient:`a`},{patient:`b`}]=>"a,b"
+                    let patientList = status.data.map(d=>d.userInfo.name).join(",");
                     //[{id:`1`},{id:`2`}]=>"id=1&id=2"
-                    //选中的资源id(&分割)
-                    let ids = status.data.map(d=>'id='+d.departId).join("&");
-                    del(`确认是否删除科室:[${departmentsList}]?`,ids);
+                    //选中的账号id(&分割)
+                    let ids = status.data.map(d=>'id='+d.accountId).join("&");
+                    del(`确认是否删除账号:[${patientList}]?`,ids);
                 }
             }
         });
@@ -123,20 +159,20 @@
             if(e.event == "edit"){
                 layer.open({
                     type: 2,
-                    area: ['400x', '350px'],
+                    area: ['350px', '200px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: '[(@{/departments/edit})]/'+e.data.departId
+                    content: '[(@{/patient/edit})]/'+e.data.accountId
                 });
             }else if(e.event == 'del'){
-                del(`确认是否删除科室:[${e.data.departName}]?`,`id=${e.data.departId}`);
-            }else if(e.event == "add"){
+                del(`确认是否删除账号:[${e.data.userInfo.name}]?`,`id=${e.data.accountId}`);
+            }else if(e.event == 'authorize'){
                 layer.open({
                     type: 2,
-                    area: ['400px', '350px'],
+                    area: ['450px', '400px'],
                     fixed: false, //不固定
                     maxmin: true,
-                    content: '[(@{/departments/edit})]?pid='+e.data.departId
+                    content: '[(@{/patient/authorize})]/'+e.data.accountId
                 });
             }
         });
@@ -145,7 +181,7 @@
                 //显示正在加载
                 let index = layer.load(2,{shade:0.3});
                 $.ajax({
-                    url: '[(@{/departments})]?'+parameter,
+                    url: '[(@{/patient})]?'+parameter,
                     type: 'delete',
                     dataType:'json',
                     success:function (rs){

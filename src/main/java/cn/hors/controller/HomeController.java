@@ -1,5 +1,6 @@
 package cn.hors.controller;
 
+import cn.hors.bean.*;
 import cn.hors.bean.Account;
 import cn.hors.bean.Doctor;
 import cn.hors.bean.News;
@@ -9,6 +10,7 @@ import cn.hors.service.AccountService;
 import cn.hors.service.DoctorService;
 import cn.hors.service.NewsService;
 import cn.hors.service.UserInfoService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -49,6 +52,7 @@ public class HomeController {
      * @return
      */
     @GetMapping("/")
+//    @PreAuthorize("hasAuthority('/index/r')")
     public String home(Model model) {
         List<Doctor> list = doctorService.findByName(null);
         model.addAttribute("list",list);
@@ -60,6 +64,7 @@ public class HomeController {
      * 去登录页
      */
     @GetMapping("/login")
+//    @PreAuthorize("hasAuthority('/index/login/r')")
     public String toLogin() {
         return "login";
     }
@@ -73,6 +78,7 @@ public class HomeController {
      * @return
      */
     @PostMapping("/login")
+//    @PreAuthorize("hasAuthority('/index/login/r')")
     public String login(@RequestParam String account, @RequestParam String password, Model model,
                         RedirectAttributes attributes) {
         Account accounts= accountServices.login(account, password);
@@ -93,6 +99,7 @@ public class HomeController {
      * @return
      */
     @GetMapping("/logout")
+//    @PreAuthorize("hasAuthority('/index/logout/r')")
     public String logout(SessionStatus session) {
         session.setComplete();
         return "redirect:/";
@@ -103,8 +110,30 @@ public class HomeController {
      * 注册页面转跳
      */
     @GetMapping("/register")
+//    @PreAuthorize("hasAuthority('/index/register/r')")
     public  String register(){
         return "register";
+    }
+
+
+    @PostMapping("/register")
+    @ResponseBody
+    public Map<String,Object> save(UserInfo user, Account account){
+        Map<String,Object> results = new HashMap<>();
+        if (accountServices.insert(account)){
+            user.setAccountId(account.getAccountId());
+            if(userinfoService.insert(user)){
+                results.put("code",0);
+                results.put("msg","注册成功");
+            }else {
+                results.put("code",1);
+                results.put("msg","注册失败");
+            }
+        }else {
+            results.put("code",1);
+            results.put("msg","注册失败");
+        }
+        return results;
     }
 
 
@@ -214,6 +243,7 @@ public class HomeController {
 
 
     @GetMapping("/find")
+//    @PreAuthorize("hasAuthority('/index/find/r')")
     public String find(String name,Integer type,Model map){
         if(type == 1){
             List<Doctor> dlist = doctorService.findByName(name);

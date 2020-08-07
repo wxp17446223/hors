@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import cn.hors.mapper.AccountMapper;
 import cn.hors.bean.Account;
 import cn.hors.service.AccountService;
+
+import java.util.List;
+
 @Service
 public class AccountServiceImpl implements AccountService{
 
@@ -17,8 +20,8 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public int insert(Account record) {
-        return accountMapper.insert(record);
+    public boolean insert(Account record) {
+        return accountMapper.insert(record)>0?true:false;
     }
 
     @Override
@@ -37,13 +40,30 @@ public class AccountServiceImpl implements AccountService{
     }
 
     @Override
-    public int updateByPrimaryKey(Account record) {
-        return accountMapper.updateByPrimaryKey(record);
+    public boolean update(Account record) {
+        return accountMapper.update(record)>0?true:false;
     }
 
     @Override
     public Account login(String account, String password) {
         return accountMapper.login(account,password);
     }
+
+    @Override
+    public List<Account> find(Account account) {
+        return accountMapper.find(account);
+    }
+
+    @Override
+    public Account findById(Integer id) {
+        return accountMapper.findById(id);
+    }
+
+    @Override
+    public boolean deleteByIds(Integer... ids) {
+        return accountMapper.deleteByIds(ids)>0?true:false;
+    }
+
+
 
 }

@@ -2,18 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hors.mapper.AccountMapper">
   <resultMap id="BaseResultMap" type="cn.hors.bean.Account">
-    <!--@mbg.generated-->
-    <!--@Table account-->
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+    <result column="role_id"  property="roleId"></result>
+  </resultMap>
+  <resultMap id="ResultMap" type="cn.hors.bean.Account">
+    <id column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_id"  property="roleId"></result>
+    <association property="userInfo" javaType="cn.hors.bean.UserInfo"  column="account_id"  select="cn.hors.mapper.UserInfoMapper.findByAccId"></association>
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     account_id, account, `password`,role_id
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMap">
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
@@ -27,32 +32,26 @@
   </delete>
   <insert id="insert" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into account (account, `password`,role_id)
-    values (#{account,jdbcType=VARCHAR}, MD5(#{password}),#{roleId,jdbcType=INTEGER})
+    insert into account (account, `password`)
+    values (#{account,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR}))
   </insert>
   <insert id="insertSelective" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into account
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="account != null and account!=''">
+      <if test="account != null">
         account,
       </if>
       <if test="password != null">
         `password`,
       </if>
-      <if test="roleId != null and roleId!=''">
-        role_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="account != null and account!=''">
+      <if test="account != null">
         #{account,jdbcType=VARCHAR},
       </if>
-      <if test="password != null and password!=''">
-        MD5(#{password}),
-      </if>
-      <if test="roleId != null">
-        #{roleId,jdbcType=INTEGER},
+      <if test="password != null">
+        MD5(#{password,jdbcType=VARCHAR}),
       </if>
     </trim>
   </insert>
@@ -64,23 +63,47 @@
         account = #{account,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        `password` = MD5(#{password,jdbcType=VARCHAR}),
-      </if>
-      <if test="roleId != null">
-        role_id = #{roleId,jdbcType=INTEGER},
+        `password` = #{password,jdbcType=VARCHAR},
       </if>
     </set>
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="cn.hors.bean.Account">
+  <update id="update" parameterType="cn.hors.bean.Account">
     <!--@mbg.generated-->
     update account
     set account = #{account,jdbcType=VARCHAR},
-      `password` = MD5(#{password}), role_id = #{roleId,jdbcType=INTEGER}
+      `password` = MD5(#{password,jdbcType=VARCHAR}),
+      role_id = #{roleId}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
   <select id="login" resultMap="BaseResultMap">
   select  <include refid="Base_Column_List"></include>
-  from account where account = #{account,jdbcType=VARCHAR} and `password` = MD5(#{password})
+  from account where account = #{account,jdbcType=VARCHAR} and `password` = MD5(#{password,jdbcType=VARCHAR})
+</select>
+<select id="find" parameterType="Account" resultMap="ResultMap">
+select <include refid="Base_Column_List"></include> from account
+<where>
+<if test="accountId != null">
+and account_id=#{accountId}
+</if>
+<if test="account != null and account != ''">
+and account=#{account}
+</if>
+<if test="password != null">
+and password=#{password}
+</if>
+<if test="roleId != null">
+and role_id=#{roleId}
+</if>
+</where>
+</select>
+<delete id="deleteByIds" parameterType="Integer">
+delete from account where
+<foreach collection="ids" item="id" open="account_id in(" separator="," close=")">
+#{id}
+</foreach>
+</delete>
+<select id="findById" parameterType="Integer" resultMap="ResultMap">
+select <include refid="Base_Column_List"></include> from account where account_id=#{id}
 </select>
 </mapper>
