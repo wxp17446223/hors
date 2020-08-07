@@ -6,6 +6,7 @@ import cn.hors.bean.PResource;
 import cn.hors.service.DepartmentsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -81,11 +82,11 @@ public class DepartmentsController implements BaseController {
     @PutMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/departments/u')")
-    public Map<String,Object> save(Departments department){
+    public Map<String,Object> save(Departments department,@Param("name") String name){
         Map<String,Object> map = new HashMap<>();
         Departments d = new Departments();
         d.setDepartName(department.getDepartName());
-        if(service.findAll(d).size()>0){
+        if(service.findAll(d).size()>0&&!department.getDepartName().equals(name)){
             map.put("code",1);
             map.put("msg","科室名称不能重复");
             return map;

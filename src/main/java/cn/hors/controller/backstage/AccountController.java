@@ -7,6 +7,7 @@ import cn.hors.service.PAccountService;
 import cn.hors.service.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,9 +96,9 @@ public class AccountController implements BaseController{
     @PutMapping
     @PreAuthorize("hasAuthority('/account/u')")
     @ResponseBody
-    public Map<String,Object> save(PAccount account,@RequestParam("roleIds[]") Integer[] roleIds){
+    public Map<String,Object> save(PAccount account,@RequestParam("roleIds[]") Integer[] roleIds,@Param("name") String name){
         Map<String,Object> map = new HashMap<>();
-        if(service.findByAccount(account.getAccount()) != null){
+        if(service.findByAccount(account.getAccount()) != null&&!name.equals(account.getAccount())){
             map.put("code",1);
             map.put("msg","用户名不能重复");
             return map;

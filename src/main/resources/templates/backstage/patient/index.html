@@ -36,9 +36,9 @@
         <div class="layui-col-md12">
             <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
                 <div class="layui-inline">
-                    <label class="layui-form-label">患者姓名:</label>
+                    <label class="layui-form-label">患者账号:</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="name" placeholder="请患者姓名" autocomplete="off" class="layui-input">
+                        <input type="text" name="account" placeholder="请患者账号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -72,7 +72,7 @@
                     {field:'left', width:80, type:"checkbox"},
                     {field:'accountId', width:80, title: 'ID', sort: true}
                     ,{field:'account', width:80, title: '账号'}
-                    ,{field:'name',width:80, title: '姓名',templet:function (d) {
+                    ,{width:80, title: '姓名',templet:function (d) {
                         return d.userInfo?d.userInfo.name:'-';
                     }}
                     ,{width:200, title: '身份证号',templet:function (d) {
@@ -122,7 +122,7 @@
         });
 
         form.on("submit(query)",function (e) {
-            console.log(e.field.name);
+            console.log(e.field.account);
             table.reload("reload",{
                 where:e.field
             });

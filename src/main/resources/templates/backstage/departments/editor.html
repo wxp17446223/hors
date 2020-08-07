@@ -14,6 +14,7 @@
 </head>
 <body>
 <form class="layui-form">
+    <input type="hidden" name="name" data-th-value="${departments?.departName}">
     <input type="hidden" name="departId" data-th-value="${departments?.departId}">
     <input type="hidden" name="dId"  data-th-if="${departments?.parent}" data-th-value="${departments?.parent?.departId}">
     <div class="layui-form-item" data-th-if="${departments?.parent}">

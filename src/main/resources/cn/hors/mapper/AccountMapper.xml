@@ -6,7 +6,6 @@
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="role_id"  property="roleId"></result>
-     <collection property="resources" ofType="cn.hors.bean.PRole" select="cn.hors.mapper.PResourceMapper.findByRoleId" column="role_id"></collection>
   </resultMap>
   <resultMap id="ResultMap" type="cn.hors.bean.Account">
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
@@ -34,7 +33,7 @@
   <insert id="insert" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into account (account, `password`)
-    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    values (#{account,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR}))
   </insert>
   <insert id="insertSelective" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -52,7 +51,7 @@
         #{account,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
-        #{password,jdbcType=VARCHAR},
+        MD5(#{password,jdbcType=VARCHAR}),
       </if>
     </trim>
   </insert>
@@ -73,13 +72,13 @@
     <!--@mbg.generated-->
     update account
     set account = #{account,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
+      `password` = MD5(#{password,jdbcType=VARCHAR}),
       role_id = #{roleId}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
   <select id="login" resultMap="BaseResultMap">
   select  <include refid="Base_Column_List"></include>
-  from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password,jdbcType=VARCHAR}
+  from account where account = #{account,jdbcType=VARCHAR} and `password` = MD5(#{password,jdbcType=VARCHAR})
 </select>
 <select id="find" parameterType="Account" resultMap="ResultMap">
 select <include refid="Base_Column_List"></include> from account

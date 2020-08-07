@@ -68,10 +68,8 @@ public class HomeController {
 //    @PreAuthorize("hasAuthority('/index/login/r')")
     public String login(@RequestParam String account, @RequestParam String password, Model model,
                         RedirectAttributes attributes) {
-        String md5Pass = DigestUtils.md5DigestAsHex(password.getBytes());
-        Account accounts= accountServices.login(account, md5Pass);
+        Account accounts= accountServices.login(account, password);
         if (accounts != null) {
-            accounts.setPassword(md5Pass);
             model.addAttribute("accounts", accounts);
             UserInfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
             model.addAttribute("userAcc",userAcc);
