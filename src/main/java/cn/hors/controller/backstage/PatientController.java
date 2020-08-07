@@ -71,7 +71,7 @@ public class PatientController implements BaseController{
             if (accountService.update(account)) {
                 UserInfo userInfo = account.getUserInfo();
                 if(userinfoService.update(userInfo)) {
-                    System.out.println(2);
+                    System.out.println(userInfo.getIdentityId());
                     map.put("code", 0);
                     map.put("msg", "修改成功");
                 }else{
@@ -123,7 +123,6 @@ public class PatientController implements BaseController{
         }
         return map;
     }
-
 
 
 

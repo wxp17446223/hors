@@ -72,7 +72,7 @@
                     {field:'left', width:80, type:"checkbox"},
                     {field:'accountId', width:80, title: 'ID', sort: true}
                     ,{field:'account', width:80, title: '账号'}
-                    ,{width:80, title: '姓名',templet:function (d) {
+                    ,{field:'name',width:80, title: '姓名',templet:function (d) {
                         return d.userInfo?d.userInfo.name:'-';
                     }}
                     ,{width:200, title: '身份证号',templet:function (d) {
@@ -122,6 +122,7 @@
         });
 
         form.on("submit(query)",function (e) {
+            console.log(e.field.name);
             table.reload("reload",{
                 where:e.field
             });

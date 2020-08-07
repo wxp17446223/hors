@@ -73,7 +73,8 @@
     <!--@mbg.generated-->
     update account
     set account = #{account,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR}
+      `password` = #{password,jdbcType=VARCHAR},
+      role_id = #{roleId}
     where account_id = #{accountId,jdbcType=INTEGER}
   </update>
   <select id="login" resultMap="BaseResultMap">
