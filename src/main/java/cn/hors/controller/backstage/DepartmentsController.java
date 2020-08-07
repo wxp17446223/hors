@@ -83,6 +83,13 @@ public class DepartmentsController implements BaseController {
     @PreAuthorize("hasAuthority('/departments/u')")
     public Map<String,Object> save(Departments department){
         Map<String,Object> map = new HashMap<>();
+        Departments d = new Departments();
+        d.setDepartName(department.getDepartName());
+        if(service.findAll(d).size()>0){
+            map.put("code",1);
+            map.put("msg","科室名称不能重复");
+            return map;
+        }
         if(department.getDepartId() != null && department.getDepartId() !=0){
             if (service.update(department)) {
                 System.out.println(department.getDate());

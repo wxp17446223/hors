@@ -97,6 +97,11 @@ public class AccountController implements BaseController{
     @ResponseBody
     public Map<String,Object> save(PAccount account,@RequestParam("roleIds[]") Integer[] roleIds){
         Map<String,Object> map = new HashMap<>();
+        if(service.findByAccount(account.getAccount()) != null){
+            map.put("code",1);
+            map.put("msg","用户名不能重复");
+            return map;
+        }
         if(account.getId() != null && account.getId() !=0){
             if (service.updateAccount(account,roleIds)) {
                 map.put("code",0);

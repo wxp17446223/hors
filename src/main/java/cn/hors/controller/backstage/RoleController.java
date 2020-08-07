@@ -88,6 +88,13 @@ public class RoleController implements BaseController{
     @PreAuthorize("hasAuthority('/role/u')")
     public Map<String,Object> save(PRole account){
         Map<String,Object> map = new HashMap<>();
+        PRole p = new PRole();
+        p.setCode(account.getCode());
+        if(roleService.find(p).size()>0){
+            map.put("code",1);
+            map.put("msg","角色代码必须唯一");
+            return map;
+        }
         if(account.getId() != null && account.getId() !=0){
             if (roleService.update(account)) {
                 map.put("code",0);

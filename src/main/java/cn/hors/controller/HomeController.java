@@ -105,7 +105,7 @@ public class HomeController {
     }
 
 
-    @PutMapping("/register")
+    @PostMapping("/register")
     @ResponseBody
     public Map<String,Object> save(UserInfo user, Account account){
         Map<String,Object> results = new HashMap<>();
