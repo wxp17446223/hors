@@ -81,6 +81,6 @@
   </update>
   <select id="login" resultMap="BaseResultMap">
   select  <include refid="Base_Column_List"></include>
-  from account where account = #{account,jdbcType=VARCHAR} and `password` = #{password}
+  from account where account = #{account,jdbcType=VARCHAR} and `password` = MD5(#{password})
 </select>
 </mapper>

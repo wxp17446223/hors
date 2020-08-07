@@ -23,7 +23,7 @@
     <input type="hidden" data-th-value="${account?.roleId}" name="roleId">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formSubmit">修改</button>
+            <button class="layui-btn" lay-submit lay-filter="formSubmit" onclick="ti()">修改</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -34,7 +34,7 @@
         //监听提交
         form.on('submit(formSubmit)', function(data){
             $.ajax({
-                url:/*[[@{/uacc}]]*/ 'saveAcc',
+                url:/*[[@{/user/uacc}]]*/ 'saveAcc',
                 type:'post',
                 data:data.field,
                 dataType:'json',
@@ -52,6 +52,11 @@
             return false;
         });
     });
+</script>
+<script>
+    function ti() {
+        window.alert(修改成功);
+    }
 </script>
 </body>
 </html>

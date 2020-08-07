@@ -66,7 +66,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="formSubmit" onclick="f()">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -78,7 +78,7 @@
         //监听提交
         form.on('submit(formSubmit)', function(data){
             $.ajax({
-                url:/*[[@{/user}]]*/ 'save',
+                url:/*[[@{/user/editor}]]*/ 'save',
                 type:'post',
                 data:data.field,
                 dataType:'json',
@@ -156,6 +156,11 @@
         var element = layui.element;
 
     });
+</script>
+<script>
+    function f() {
+        window.alert("提交成功");
+    }
 </script>
 </body>
 </html>

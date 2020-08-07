@@ -463,17 +463,25 @@
 
                         <div class="Validform_checktip" style="position: relative;margin-top: -9%;left: 593px"></div>
                     </div>
-                    <div class="item">
-                        <label for="tbPhone">
-                            手机号</label>
-                        <input  autocomplete="off" datatype="m" errormsg="您输入的手机号码不正确！" id="tbPhone" maxlength="11"
-                                name="phone" nullmsg="                   请输入您的手机号码！" type="text"/>
-                        <input type="button" value="发送验证码" style="width: 10%">
-                        <div class="Validform_checktip" style="position: absolute;left: 740px;"></div>
+                    <div class="form-group has-feedback">
+                        <input type="tel" class="form-control" name="phone"  id="phone" placeholder="请输入手机号" maxlength=15>
+                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                     </div>
-                    <!--                    <div>-->
-                    <!--                        <label>验证码</label><input>-->
-                    <!--                    </div>-->
+                    <div class="row">
+                        <div class="col-xs-6 pull_left">
+                            <div class="form-group">
+                                <input class="form-control" id="msgNum" placeholder="请输入验证码" name="msgNum">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 pull_center">
+                            <div class="form-group">
+                                <input type="button" class="btn btn-block btn-flat" id="verify_refresh" onclick="getMsgNum(this)" value="免费获取验证码">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 pull_center">
+                        <button type="button" class="btn btn-block btn-flat" onclick="validateNum()">验证</button>
+                    </div>
                     <div class="item"><label for="tbCardID">
                         身份证号</label>
                         <input  autocomplete="off" datatype="idcard" errormsg="您输入的身份证号码不对！" id="tbCardID"
@@ -702,6 +710,97 @@
             elem: '#test1' //指定元素
         });
     });
+</script>
+<script>
+    var messageData;
+    var wait = 120; // 短信验证码120秒后才可获取下一个
+
+    /**
+     * 获取验证码
+     * @param that
+     */
+    function getMsgNum(that) {
+        var phone = $('#phone').val();
+        console.log(phone);
+        setButtonStatus(that); // 设置按钮倒计时
+        var obj = {
+            phone: phone
+        };
+        console.log(obj);
+        $.ajax({
+            url: /*[[@{/}]]*/ 'sendMsg/'+phone, // 后台短信发送接口
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            async: false, //false 同步
+            data: JSON.stringify(obj),
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (result) {
+                if(result.code == '200') {
+                    messageData = result.data;
+                }else {
+                    alert("错误码:" + data.code + "  错误信息:" + data.message);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+    }
+    /**
+     * 设置按钮状态
+     */
+    function setButtonStatus(that) {
+        if (wait == 0) {
+            that.removeAttribute("disabled");
+            that.value="免费获取验证码";
+            wait = 60;
+        } else {
+            that.setAttribute("disabled", true);
+            that.value=wait+"秒后可以重新发送";
+            wait--;
+            setTimeout(function() {
+                setButtonStatus(that)
+            }, 1000)
+        }
+    }
+
+    /**
+     * 注册按钮
+     */
+    function validateNum() {
+        var data = {
+            msgNum: msgNum
+        };
+
+        $.ajax({
+            url: '/validateNum/'+msgNum, // 验证接口
+            type: 'POST',
+            dataType: 'json',
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            async: false, //false 同步
+            success:function (data) {
+                if(data.code == 0){
+                    var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                    parent.layer.close(index);//关闭当前弹窗
+                    parent.layer.msg(rs.msg,{icon:6});//重载父页面的表格数据
+                    parent.layui.table.reload('table_reload');
+                }else {
+                    layer.msg(rs.msg,{icon:5});
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+            }
+        });
+    }
 </script>
 </body>
 </html>
