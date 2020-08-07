@@ -21,4 +21,6 @@ public interface DepartmentsService{
     boolean update(Departments departments);
 
     boolean insert(Departments departments);
+
+    List<Departments> findChildDepart();
 }

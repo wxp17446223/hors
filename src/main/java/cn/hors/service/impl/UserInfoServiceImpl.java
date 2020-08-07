@@ -53,5 +53,8 @@ public class UserInfoServiceImpl implements UserInfoService{
         return userinfoMapper.updatePic(userinfo);
     }
 
-
+    @Override
+    public UserInfo findByPhone(String phone) {
+        return userinfoMapper.findByPhone(phone);
+    }
 }

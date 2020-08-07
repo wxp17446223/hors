@@ -20,4 +20,11 @@ public interface UserInfoService{
     UserInfo findByAccId(Integer accountId);
 
     int updatePic(UserInfo userinfo);
+
+    /**
+     * 通过手机号码查询是否有注册患者信息
+     * @param phone
+     * @return
+     */
+    UserInfo findByPhone(String phone);
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hors.mapper.TimelineMapper">
   <resultMap id="BaseResultMap" type="cn.hors.bean.Timeline">
-    <id column="t_id" jdbcType="INTEGER" property="tId" />
+    <id column="t_id" jdbcType="INTEGER" property="tid" />
     <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
     <result column="date" jdbcType="DATE" property="date" />
     <result column="quota" jdbcType="INTEGER" property="quota" />
@@ -15,7 +15,7 @@
   </sql>
   <sql id="Base_Insert_Columns">
     <trim suffixOverrides=",">
-        <if test="tId != null">t_id,</if>
+        <if test="tid != null">t_id,</if>
         <if test="doctorId != null">doctor_id,</if>
         <if test="date != null">date,</if>
         <if test="quota != null">quota,</if>
@@ -26,7 +26,7 @@
   </sql>
   <sql id="Base_Insert_Values">
     <trim suffixOverrides=",">
-        <if test="tId != null">#{tId},</if>
+        <if test="tid != null">#{tid},</if>
         <if test="doctorId != null">#{doctorId},</if>
         <if test="date != null">#{date},</if>
         <if test="quota != null">#{quota},</if>
@@ -37,7 +37,7 @@
   </sql>
   <sql id="Base_Update">
     <trim suffixOverrides=",">
-        <if test="tId != null">t_id=#{tId},</if>
+        <if test="tid != null">t_id=#{tid},</if>
         <if test="doctorId != null">doctor_id=#{doctorId},</if>
         <if test="date != null">date=#{date},</if>
         <if test="quota != null">quota=#{quota},</if>
@@ -47,7 +47,7 @@
     </trim>
   </sql>
   <sql id="Base_Where">
-    <if test="tId!=null"> and t_id=#{tId}</if>
+    <if test="tid!=null"> and t_id=#{tid}</if>
     <if test="doctorId!=null and doctorId!=''">and doctor_id=#{doctorId}</if>
     <if test="date != null">date=#{date}</if>
     <if test="quota != null">and quota=#{quota}</if>
@@ -73,12 +73,12 @@
     <set>
         <include refid="Base_Update"></include>
     </set>
-    where t_id=#{tId,jdbcType=INTEGER}
+    where t_id=#{tid,jdbcType=INTEGER}
   </update>
   <select id="findById" parameterType="Timeline" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
     from timeline
-    where t_id=#{tId,jdbcType=INTEGER}
+    where t_id=#{tid,jdbcType=INTEGER}
   </select>
   <select id="findAll" resultMap="BaseResultMap">
     select <include refid="Base_Column_List"></include>
@@ -100,6 +100,6 @@
   <update id="updateQuota" parameterType="integer">
     update timeline
     set quota=(quota-1)
-    where t_id=#{tId,jdbcType=INTEGER}
+    where t_id=#{tid,jdbcType=INTEGER}
   </update>
 </mapper>

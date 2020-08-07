@@ -25,12 +25,12 @@ public class Order {
     /**
     * 预约了的时段id
     */
-    private Integer tId;
+    private Integer tid;
 
     /**
     * 下单时间
     */
-    private Date addtime;
+    private String addtime;
 
     /**
     * 联系电话
@@ -62,7 +62,5 @@ public class Order {
     private Timeline timeline;
 
     private Doctor doctor;
-
-    private Feedback feedback;
 
 }

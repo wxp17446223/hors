@@ -50,4 +50,10 @@ public interface DepartmentsMapper {
     int update(Departments departments);
 
     int insert(Departments departments);
+
+    /**
+     * 查询所有子科室
+     * @return
+     */
+    List<Departments> findChildDepart();
 }
