@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,11 +33,11 @@ public class Departments {
     */
     private String introduce;
 
-
     /**
     * 成立日期
     */
-    private String  date;
+    private String date;
+
 
     /**
     * 父科室ID默认-1 为最高级科室

@@ -144,5 +144,10 @@
   <update id="updatePic" parameterType="cn.hors.bean.UserInfo">
 update userinfo set picture = #{picture} where user_id=#{userId,jdbcType=INTEGER}
 </update>
-
+<delete id="deleteByIds">
+delete from userinfo where 
+<foreach collection="ids" item="id" open="account_id in (" separator="," close=")">
+#{id}
+</foreach>
+</delete>
 </mapper>

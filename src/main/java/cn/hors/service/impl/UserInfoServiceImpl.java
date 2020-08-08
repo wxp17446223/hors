@@ -53,5 +53,10 @@ public class UserInfoServiceImpl implements UserInfoService{
         return userinfoMapper.updatePic(userinfo);
     }
 
+    @Override
+    public boolean deleteByIds(Integer... ids) {
+        return userinfoMapper.deleteByIds(ids)>0?true:false;
+    }
+
 
 }

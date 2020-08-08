@@ -541,6 +541,7 @@
             <li data-th-each="l:${list}"><a href="ys.html" title="医生姓名" target="_blank" class="img">
                 <img alt="姓名" title="姓名" data-th-src="${l.picture}"
                      src="../static/hors/pic/201603221527067.png" width="120" height="162"/></a>
+
                 <a data-th-href="@{/doctor/timeline?doctorId={doctorId}(doctorId=${l.doctorId})}"  title="医生姓名" target="_blank" class="name"><span data-th-text="${l.name}"></span></a>
                 <a data-th-href="@{/doctor/timeline?doctorId={doctorId}(doctorId=${l.doctorId})}"  title="所在医院" target="_blank" class="office">擅长:<span data-th-text="${l.adept}"></span></a>
                 <a data-th-href="@{/doctor/timeline?doctorId={doctorId}(doctorId=${l.doctorId})}"  title="姓名" target="_blank" class="post"><span data-th-text="${l.position}"></span></a>

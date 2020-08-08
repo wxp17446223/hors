@@ -393,42 +393,25 @@ a.blue{ background:#79a9b8;}
 .quick form input{ width:100%; height:45px; background:#6bcbca; color:#fff; border:none; font-size:14px; cursor:pointer; border-radius:3px; margin-top:17px;}
 .quick form input:hover{ background:#ff7544;}
 .baseRight .generaltitle{ border:none; padding:33px 0px;background:none; color:#6bcbca;}
-.baseRight .generaltitle{border:none;padding:33px 0px;background:none;color:#6bcbca}
-.baseRight .choosetitle{border:none;padding:50px 0px;background:none}
-.general .visitList{width:935px;margin-bottom:5px;padding:0;font-size:14px;color:#666;text-align:center;line-height:43px;border-top:1px #e9e9e9 solid;border-left:1px #e9e9e9 solid}
-#DIVWeekday{position:absolute;top:90px;z-index:99}
-#DIVWeekdayC{position:absolute;top:30px;z-index:99}
-.general{position:relative}
-#DepName{height:133px}
+.general .visitList{ width:930px;margin-bottom:5px; margin-left:5px; padding:0; font-size:14px; color:#666; text-align:center; line-height:43px; border-top:1px #e9e9e9 solid;border-left:1px #e9e9e9 solid;}
+#DIVWeekday{position:absolute; top:90px; }
 
-.general .visitList .title{width:100%;color:#666;height:103px;border-bottom:none;background:#FFF;margin:0;padding:0;font-size:14px}
-.general .visitList .title div{width:132px;height:94px;border-right:1px #e9e9e9 solid;padding-top:9px;line-height:22px;display:inline-block}
-.general .visitList .title .wide{width:127px}
-.general .visitList .title em{display:block;width:100%;padding-bottom:5px;color:#44c5af}
-.general .visitList .title span{height:43px;width:50%;display:inline-block;color:#fff;line-height:43px}
-.general .visitList .title span.green{background:#6bcbca}
-.general .visitList .title span.blue{background:#2c5771}
+.general{ position:relative;}
+#DepName{ height:133px;}
+.general .visitList .title01{ width:100%; line-height:59px; color:#666; height:59px; border-bottom:none;background:#FFF; margin:0; padding:0;font-size:14px;}
+.general .visitList .title01 span{ width:185px;padding:0;border-right:1px #e9e9e9 solid; display:inline-block;}
+.general .visitList .title02{height:43px; line-height:43px; margin:0; border:none;}
+.general .visitList .title02 span{height:43px;  width:92px; padding:0; float:none; border-right:1px #e9e9e9 solid; display:inline-block; color:#fff;}
+.general .visitList .title02 span.green{ background:#6bcbca;}
+.general .visitList .title02 span.blue{ background:#2c5771;}
+.general .visitList .namelist{background:url(../images/biaodan_bg.jpg) repeat;}
+.general .visitList .namelist h3{ background:url(../images/ico_004.png) 12px center no-repeat; text-align:left; padding-left:36px; line-height:42px; border-right:1px #e9e9e9 solid;}
+.general .visitList .namelist .list01{ width:92px; height:auto; border-right:1px #e9e9e9 solid;border-bottom:1px #e9e9e9 solid; display:inline-block; float:left;}
 
-.general .visitList .namelist{background:url(../images/biaodan_bg.jpg) repeat}
-.general .visitList .namelist h3{background:url(../images/ico_004.png) 12px center no-repeat;text-align:left;padding-left:36px;line-height:43px;border-right:1px #e9e9e9 solid}
-.general .visitList .namelist .list01{width:7.142%;height:auto;background:url(../images/test01.jpg) top right repeat-y;border-bottom:1px #e9e9e9 solid;float:left}
-.general .visitList .namelist .list01 a{width:100%;height:43px;display:block;color:#666}
-.general .visitList .namelist .list01 a:hover{background:#ff7544;color:#fff}
-.general .visitList .namelist .list01 a span{display:block;width:1px;height:1px;color:#fff;line-height:43px;overflow:hidden;position:absolute;top:0px;left:0px;transition:all .28s linear;-moz-transition:all .28s linear;-webkit-transition:all .28s linear;-o-transition:all .28s linear}
-.general .visitList .namelist .list01 a.full{position:relative;background:url(../images/ico_full.png) top left no-repeat;cursor:default}
-.general .visitList .namelist .list01 a.full span{background:#ffaa02}
-.general .visitList .namelist .list01 a.stop{position:relative;background:url(../images/ico_stop.png) top left no-repeat;cursor:default}
-.general .visitList .namelist .list01 a.stop span{background:#ff0203}
-.general .visitList .namelist .list01 a.full:hover{background:url(../images/ico_full.png) top left no-repeat;color:#666}
-.general .visitList .namelist .list01 a.stop:hover{background:url(../images/ico_stop.png) top left no-repeat;color:#666}
-.general .visitList a.full:hover span,.general .visitList a.stop:hover span{width:100%;height:100%}
-.general .visitList .namelist .list01 a.current{color:#6bcbca;font-weight:bold}
-.general .visitList .namelist .list01 a.current:hover{color:#fff}
-.general .visitList .namelist .list01.first{background:#eaeaea url(../images/test02.jpg) top right repeat-y}
-.general .visitList .namelist .list01.first a{background:url(../images/test02.jpg) bottom left repeat-x}
-.general .visitList .namelist .list01.first a:hover{background:#ff7544 url(../images/test02.jpg) bottom left repeat-x;color:#fff}
-.general .visitList .namelist em{width:100%;height:43px;display:block}
-.general .visitList .namelist .list01.first em{background:url(../images/test02.jpg) bottom left repeat-x}
+.general .visitList .namelist .list01 a{ width:100%; height:43px; display:block; color:#666;}
+.general .visitList .namelist .list01 a:hover{ background:#ff7544; color:#fff;}
+
+
 
 
 

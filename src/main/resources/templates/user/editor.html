@@ -11,56 +11,6 @@
     </style>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/spark-md5/3.0.0/spark-md5.js"></script>
-    <script>
-        $(function () {
-            $("[name=file]").change(function (e) {
-                var file = this.files[0];
-                //创建文件读取对象
-                var fileReader = new FileReader();
-                //定义缓存
-                var buff = 2<<20;
-                //读取次数
-                var maxCount =  Math.ceil(file.size/buff);
-                //当前读取次数
-                var current = 0;
-                //   得到分片读取文件的函数
-                var slice = File.prototype.slice;
-                //创建md5计算对象
-                var spart = new SparkMD5.ArrayBuffer();
-                //onload
-                fileReader.onload=function (){
-                    //将读取的数据放入md5计算对象
-                    spart.append(this.result);
-                    if(current >= maxCount){
-                        //获得md5
-                        var md5 = spart.end();
-                        console.log(md5);
-                        $("#upload").text("上传").attr("disabled",false);
-                        $.get("/exists",{md5},function (rs) {
-                            if(rs.exists) {
-                                alert("文件秒传完成");
-                            }
-                        },'json')
-                    }else{
-                        readFile();
-                    }
-                }
-                function readFile() {
-                    // file start end
-                    var start = current*buff;
-                    var end = (start+buff)>file.size? file.size:(start+buff);
-                    fileReader.readAsArrayBuffer(slice.call(file,start,end));
-                    current++;
-                    //设置动态下标
-                    $("#progress").val(end);
-                }
-                //开始解析MD5
-                $("#progress").val(0).attr("max",file.size);
-                $("#upload").text("正在校验文件...").attr("disabled",true);
-                readFile();
-            });
-        })
-    </script>
 </head>
 <body data-th-each="user:${user}" data-th-object="${user}">
 <form action="/user/userfileUpload" method="post" enctype="multipart/form-data" style="left: 90px;bottom: 15px;position: relative;">
@@ -105,18 +55,18 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="email" data-th-value="${user?.email}" lay-verify="required"   autocomplete="off" class="layui-input">
+            <input type="text" name="email" data-th-value="${user?.email}" lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">地址</label>
         <div class="layui-input-block">
-            <input type="text" name="address" data-th-value="${user?.address}" lay-verify="required"   autocomplete="off" class="layui-input">
+            <input type="text" name="address" data-th-value="${user?.address}" lay-verify="required" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formSubmit">立即提交</button>
+            <button class="layui-btn" lay-submit lay-filter="formSubmit" onclick="f()">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -128,8 +78,8 @@
         //监听提交
         form.on('submit(formSubmit)', function(data){
             $.ajax({
-                url:/*[[@{/user}]]*/ 'save',
-                type:'put',
+                url:/*[[@{/user/editor}]]*/ 'save',
+                type:'post',
                 data:data.field,
                 dataType:'json',
                 success:function (rs) {
@@ -149,6 +99,68 @@
             elem: '#test1' //指定元素
         });
     });
+</script>
+<script>
+    $(function () {
+        $("[name=file]").change(function (e) {
+            var file = this.files[0];
+            //创建文件读取对象
+            var fileReader = new FileReader();
+            //定义缓存
+            var buff = 2<<20;
+            //读取次数
+            var maxCount =  Math.ceil(file.size/buff);
+            //当前读取次数
+            var current = 0;
+            //   得到分片读取文件的函数
+            var slice = File.prototype.slice;
+            //创建md5计算对象
+            var spart = new SparkMD5.ArrayBuffer();
+            //onload
+            fileReader.onload=function (){
+                //将读取的数据放入md5计算对象
+                spart.append(this.result);
+                if(current >= maxCount){
+                    //获得md5
+                    var md5 = spart.end();
+                    console.log(md5);
+                    $("#upload").text("上传").attr("disabled",false);
+                    $.get("/exists",{md5},function (rs) {
+                        if(rs.exists) {
+                            alert("文件秒传完成");
+                        }
+                    },'json')
+                }else{
+                    readFile();
+                }
+            }
+            function readFile() {
+                // file start end
+                var start = current*buff;
+                var end = (start+buff)>file.size? file.size:(start+buff);
+                fileReader.readAsArrayBuffer(slice.call(file,start,end));
+                current++;
+                //设置动态下标
+                $("#progress").val(end);
+            }
+            //开始解析MD5
+            $("#progress").val(0).attr("max",file.size);
+            $("#upload").text("正在校验文件...").attr("disabled",true);
+            readFile();
+        });
+    })
+</script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+<script>
+    function f() {
+        window.alert("提交成功");
+    }
 </script>
 </body>
 </html>

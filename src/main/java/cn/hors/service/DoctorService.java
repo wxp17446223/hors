@@ -35,6 +35,12 @@ public interface DoctorService{
      */
     List<Doctor> findByName(String name);
 
+
+    /**
+     * 利用预约信息中相关的Id查询数据
+     * @param id
+     * @return
+     */
     Doctor findByOrd(Integer id);
 
     /**

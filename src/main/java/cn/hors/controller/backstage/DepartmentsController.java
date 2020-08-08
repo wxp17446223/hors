@@ -6,6 +6,7 @@ import cn.hors.bean.PResource;
 import cn.hors.service.DepartmentsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,7 @@ public class DepartmentsController implements BaseController {
         return map;
     }
     /**
-     * 新增和修改资源
+     * 新增和修改科室资源
      * @param id 资源id
      * @param pid 父资源id
      * @param map 结果存储
@@ -81,8 +82,15 @@ public class DepartmentsController implements BaseController {
     @PutMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/departments/u')")
-    public Map<String,Object> save(Departments department){
+    public Map<String,Object> save(Departments department,@Param("name") String name){
         Map<String,Object> map = new HashMap<>();
+        Departments d = new Departments();
+        d.setDepartName(department.getDepartName());
+        if(service.findAll(d).size()>0&&!department.getDepartName().equals(name)){
+            map.put("code",1);
+            map.put("msg","科室名称不能重复");
+            return map;
+        }
         if(department.getDepartId() != null && department.getDepartId() !=0){
             if (service.update(department)) {
                 System.out.println(department.getDate());
@@ -112,7 +120,7 @@ public class DepartmentsController implements BaseController {
     }
 
     /**
-     * 删除资源 包括删除父资源
+     * 删除科室资源 包括删除父科室资源
      * @param ids
      * @return
      */

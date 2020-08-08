@@ -14,7 +14,7 @@
 <body>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增资源</button>
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增科室</button>
         <button class="layui-btn layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
     </div>
 </script>
@@ -106,7 +106,7 @@
             }else if(e.event == 'del'){
                 let status = table.checkStatus('reload');
                 if( status.data.length==0){
-                    layer.msg("请选择需要删除的资源");
+                    layer.msg("请选择需要删除的科室");
                 }else{
                     //选中的资源名称(,分割)
                     //[{name:`a`},{name:`b`}]=>"a,b"
@@ -114,7 +114,7 @@
                     //[{id:`1`},{id:`2`}]=>"id=1&id=2"
                     //选中的资源id(&分割)
                     let ids = status.data.map(d=>'id='+d.departId).join("&");
-                    del(`确认是否删除资源:[${departmentsList}]?`,ids);
+                    del(`确认是否删除科室:[${departmentsList}]?`,ids);
                 }
             }
         });
@@ -129,7 +129,7 @@
                     content: '[(@{/departments/edit})]/'+e.data.departId
                 });
             }else if(e.event == 'del'){
-                del(`确认是否删除资源:[${e.data.departName}]?`,`id=${e.data.departId}`);
+                del(`确认是否删除科室:[${e.data.departName}]?`,`id=${e.data.departId}`);
             }else if(e.event == "add"){
                 layer.open({
                     type: 2,

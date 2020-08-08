@@ -65,5 +65,5 @@ public class UserInfo {
     /**
     * 注册时间
     */
-    private String  registerTime;
+    private String registerTime;
 }
