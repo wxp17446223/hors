@@ -7,12 +7,15 @@ import cn.hors.service.PAccountService;
 import cn.hors.service.RoleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -56,7 +59,6 @@ public class AccountController implements BaseController{
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/r')")
     public Map<String,Object> findAll(PAccount account, @RequestParam(defaultValue = "0")int page, @RequestParam(defaultValue = "10") int limit){
-        PageHelper.startPage(page,limit);
         List<PAccount> pAccounts = service.find(account);
         PageInfo<PAccount> pageInfo = new PageInfo<>(pAccounts);
         Map<String,Object> map = new HashMap<>();
@@ -94,8 +96,13 @@ public class AccountController implements BaseController{
     @PutMapping
     @PreAuthorize("hasAuthority('/account/u')")
     @ResponseBody
-    public Map<String,Object> save(PAccount account,@RequestParam("roleIds[]") Integer[] roleIds){
+    public Map<String,Object> save(PAccount account,@RequestParam("roleIds[]") Integer[] roleIds,@Param("name") String name){
         Map<String,Object> map = new HashMap<>();
+        if(service.findByAccount(account.getAccount()) != null&&!name.equals(account.getAccount())){
+            map.put("code",1);
+            map.put("msg","用户名不能重复");
+            return map;
+        }
         if(account.getId() != null && account.getId() !=0){
             if (service.updateAccount(account,roleIds)) {
                 map.put("code",0);
@@ -154,8 +161,17 @@ public class AccountController implements BaseController{
     @DeleteMapping
     @ResponseBody
     @PreAuthorize("hasAuthority('/account/d')")
-    public Map<String,Object> del(@RequestParam("id") Integer[] ids){
+    public Map<String,Object> del(@RequestParam("id") Integer[] ids,HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
+        HttpSession session = request.getSession();
+        PAccount account = (PAccount) session.getAttribute(SystemConst.LOGIN_STATUS);
+        for (Integer id : ids) {
+            if(account.getId()==id){
+                map.put("code",1);
+                map.put("msg","自己不能删除自己");
+                return map;
+            }
+        }
         if(service.deleteAccountById(ids)){
             map.put("code",0);
             map.put("msg","删除成功");

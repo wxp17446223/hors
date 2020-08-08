@@ -107,6 +107,7 @@
         });
 
         form.on("submit(query)",function (e) {
+            console.log(e.field);
             table.reload("reload",{
                where:e.field
             });

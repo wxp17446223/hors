@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        .layui-breadcrumb {
+            line-height: 30px;
+        }
+    </style>
+    <title>排班管理</title>
+</head>
+<body>
+
+<!--开启头工具栏编辑按钮权限-->
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon layui-icon-add-circle-fine"></i>新增医生
+        </button>
+        <button class="layui-btn layui-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i>批量删除</button>
+    </div>
+</script>
+
+<!--开启行工具栏 编辑按钮权限-->
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i
+            class="layui-icon layui-icon-delete"></i>删除</a>
+</script>
+
+<!--对后台传输的性别 1 2 数据进行转变显示-->
+<script type="text/html" id="sexChange">
+    {{#if (d.sex == 1) { }}
+    <span>男</span>
+    {{# }else if(d.sex == 2){ }}
+    <span>女</span>
+    {{# } }}
+</script>
+
+<!--对后台返回的一个时间段是2018-08-24 15:15:55 ，但是我们只需要显示年月日，这里我们就需要截取字符串-->
+<script type="text/html" id="cTime">
+    {{#
+    var fn = function(data){
+    return data.substring(0,10);
+    };
+    }}
+    {{ fn(d.cTime) }}
+</script>
+
+<div class="layui-fluid">
+
+<!--    导航栏 面包屑-->
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <span class="layui-breadcrumb" lay-separator="/">
+              <a data-th-href="@{/backstage}">首页</a>
+              <a href="javascript:;">权限管理</a>
+              <a><cite>排班管理</cite></a>
+            </span>
+        </div>
+    </div>
+
+<!--    头部查询-->
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <form class="layui-form"> <!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
+                <div class="layui-inline">
+                    <label class="layui-form-label">医生工号:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="jobNumber" placeholder="请输入医生工号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <label class="layui-form-label">医生姓名:</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" placeholder="请输入医生姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="query">
+                            <i class="layui-icon layui-icon-search"> </i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<!--数据表格-->
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <table class="layui-hide" id="table_data" lay-filter="table_filter"></table>
+        </div>
+    </div>
+
+</div>
+
+<script data-th-inline="javascript"type="text/javascript">
+    layui.use(["table", "layer", "jquery", "element", "form"], function () {
+        let {table, layer, $, form} = layui; //解构
+        table.render({
+            id: 'reload',
+            elem: '#table_data',
+            url:/*[[@{/timeline}]]*/ 'data/timeline.json',
+            cellMinWidth: 80,
+            toolbar: '#toolbarDemo',//开启头部工具栏，并为其绑定左侧模板
+            page: true,//开启分页
+            cols: [
+                [
+                    {field: 'left', width: 80, type: "checkbox"},
+                    {field: 'doctorId', width: 60, title: 'ID', sort: true}
+                    , {field: 'jobNumber', width: 100, title: '医生工号'}
+                    , {field: 'department?.departName', width: 100,  title: '科室名字',templet:function (rs) {
+                        return rs.department.departName;
+                    }}
+                    , {field: 'name', title: '姓名'}
+                    , {field: 'sex', title: '性别',width: 60,toolbar:'#sexChange'}
+                    , {field: 'picture', title: '医生图像',
+                        align: 'center',
+                        templet: function(d) {
+                             return '<div onclick="show_img(this)" ><img src="'+d.picture+'" ' + 'alt="" width="50px" height="50px"></a></div>';
+                        }
+                    }
+                    , {field: 'birth', title: '生日' ,templet : "<div>{{layui.util.toDateString(d.birth, 'yyyy年-MM月-dd日 ')}}</div>"}
+                    , {field: 'position', title: '职位'}
+                    , {field: 'workExperience', title: '工作经验'}
+                    , {field: 'phone', title: '医生电话'}
+                    , {field: 'adept', title: '擅长'}
+                    , {field: 'introduce', title: '医生介绍'}
+                    , {fixed: 'right', title: '操作', toolbar: '#barDemo', width: 150}
+                ]
+            ]
+        });
+        //头部工具栏 查询监听事件
+        form.on("submit(query)", function (e) {
+            table.reload("reload", {
+                where: e.field
+            });
+            return false;
+        });
+
+
+        //显示图片
+        function show_img(t) {
+            var t = $(t).find("img");
+            //页面层
+            layer.open({
+                type: 1,
+                title: '区域图片',
+                skin: 'layui-layer-rim', //加上边框
+                area: ['80%', '80%'], //宽高 t.width() t.height()
+                shadeClose: true, //开启遮罩关闭
+                end: function (index, layero) {
+                    return false;
+                },
+                content: '<div style="text-align:center"><img src="' + $(t).attr('src') + '" /></div>'
+            });
+        }
+
+        table.on('toolbar(table_filter)', function (e) {
+            if (e.event == 'add') {
+                //iframe层-父子操作
+                layer.open({
+                    type: 2,
+                    area: ['450px', '550px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: /*[[@{/doctors/edit}]]*/''
+                });
+            } else if (e.event == 'del') {
+                let status = table.checkStatus('reload');
+                if (status.data.length == 0) {
+                    layer.msg("请选择需要删除的账号");
+                } else {
+                    //选中的账号名称(,分割)
+                    //[{doctors:`a`},{doctors:`b`}]=>"a,b"
+                    let nameList = status.data.map(d => d.name).join(",");
+                    //[{id:`1`},{id:`2`}]=>"id=1&id=2"
+                    //选中的账号id(&分割)
+                    let ids = status.data.map(d => 'id=' + d.doctorId).join("&");
+                    del(`确认是否删除账号:[${nameList}]?`, ids);
+                }
+            }
+        });
+
+        //监听行工具栏事件
+        table.on('tool(table_filter)', function (e) {
+            if (e.event == "edit") {
+                layer.open({
+                    type: 2,
+                    area: ['450px', '550px'],
+                    fixed: false, //不固定
+                    maxmin: true,
+                    content: '[(@{/doctors/edit})]/' + e.data.doctorId
+                });
+            } else if (e.event == 'del') {
+                del(`确认是否删除医生:[${e.data.name}]?`, `id=${e.data.doctorId}`);
+            }
+        });
+
+        function del(msg, parameter) {
+            layer.confirm(msg, {icon: 3, title: '温馨提示'}, function () {
+                //显示正在加载
+                let index = layer.load(2, {shade: 0.3});
+                $.ajax({
+                    url: '[(@{/doctors})]?' + parameter,
+                    type: 'delete',
+                    dataType: 'json',
+                    success: function (rs) {
+                        //关闭正在加载
+                        layer.close(index);
+                        if (rs.code == 0) {
+                            //重载表格数据
+                            table.reload('reload');
+                            layer.msg(rs.msg, {icon: 6});
+                        } else {
+                            layer.msg(rs.msg, {icon: 5});
+                        }
+                    }
+                });
+            });
+        }
+    });
+    //头工具事件监听
+    //事件名 toolbar
+    //过滤器
+</script>
+</body>
+</html>

@@ -49,11 +49,11 @@ public class NewsController {
     @GetMapping("/notice")
     public String findNoticeAll(Model model, News news, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int limit) {
         PageHelper.startPage(page, limit);
-        List<News> newsAll = newsService.findNoticeAll(news);
-        PageInfo<News> pageInfo = new PageInfo<>(newsAll);
-        model.addAttribute("news", newsAll);
-        model.addAttribute("pageInfo", pageInfo);
-        model.addAttribute("departs", departmentsService.findAllByDid(-1));
+//        List<News> newsAll = newsService.findNoticeAll(news);
+//        PageInfo<News> pageInfo = new PageInfo<>(newsAll);
+//        model.addAttribute("news", newsAll);
+//        model.addAttribute("pageInfo", pageInfo);
+//        model.addAttribute("departs", departmentsService.findAllByDid(-1));
         return "newsNotice";
     }
 

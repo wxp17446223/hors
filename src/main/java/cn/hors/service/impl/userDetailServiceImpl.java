@@ -19,7 +19,7 @@ public class userDetailServiceImpl implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         PAccount pAccount = service.findByAccount(name);
-//        System.out.println(pAccount.getPassword());
+        System.out.println(pAccount.getPassword());
         List<PRole> roles = pAccount.getRoles();
         for (PRole role : roles) {
             pAccount.addRole(role.getCode());

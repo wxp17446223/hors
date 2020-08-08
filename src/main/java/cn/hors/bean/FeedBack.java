@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Feedback {
+public class FeedBack {
 
 
     /**
@@ -46,5 +46,9 @@ public class Feedback {
      * 回复时间
      */
     private String replyTime;
+
+    private UserInfo conUser;
+
+    private Doctor doctor;
 
 }

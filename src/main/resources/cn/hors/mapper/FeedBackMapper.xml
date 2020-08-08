@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hors.mapper.FeedBackMapper">
-  <resultMap id="BaseResultMap" type="cn.hors.bean.Feedback">
+  <resultMap id="BaseResultMap" type="cn.hors.bean.FeedBack">
     <!--@mbg.generated-->
     <!--@Table feedback-->
     <id column="back_id" jdbcType="INTEGER" property="backId" />
@@ -12,91 +12,21 @@
     <result column="reply" jdbcType="VARCHAR" property="reply" />
     <result column="reply_time" jdbcType="DATE" property="replyTime" />
   </resultMap>
+  <resultMap id="conUserDoc" type="cn.hors.bean.FeedBack">
+    <id column="back_id" jdbcType="INTEGER" property="backId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="doctor_id" jdbcType="INTEGER" property="doctorId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="back_time" jdbcType="DATE" property="backTime" />
+    <result column="reply" jdbcType="VARCHAR" property="reply" />
+    <result column="reply_time" jdbcType="DATE" property="replyTime" />
+    <association property="doctor" select="cn.hors.mapper.DoctorMapper.findById" column="doctor_id"/>
+    <association property="conUser" select="cn.hors.mapper.UserInfoMapper.findById" column="user_id"/>
+</resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     back_id, user_id, doctor_id, content, back_time, reply, reply_time
   </sql>
-  <select id="findByUsId" resultMap="BaseResultMap">
-   select <include refid="Base_Column_List" />
-   from feedback where user_id=#{userId,jdbcType=INTEGER}
-</select>
-<insert id="insertFeed" keyColumn="back_id" keyProperty="backId" parameterType="cn.hors.bean.Feedback" useGeneratedKeys="true">
- insert into feedback
- <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="backId != null">
-        back_id,
-      </if>
-      <if test="userId != null and userId != ''">
-        user_id,
-      </if>
-      <if test="doctorId != null and doctorId != ''">
-        doctor_id,
-      </if>
-      <if test="content != null and content != ''">
-        content,
-      </if>
-      <if test="backTime != null and backTime != ''">
-        back_time,
-      </if>
-      <if test="reply != null and reply!=''">
-        reply,
-      </if>
-      <if test="replyTime != null and replyTime!=''">
-        reply_time
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="backId != null">
-        #{backId,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null and userId != ''">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="doctorId != null and doctorId != ''">
-        #{doctorId,jdbcType=INTEGER},
-      </if>
-      <if test="content != null and content != ''">
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="backTime != null and backTime != ''">
-        #{backTime,jdbcType=DATE},
-      </if>
-      <if test="reply != null and reply != ''">
-        #{reply,jdbcType=VARCHAR},
-      </if>
-      <if test="replyTime != null and replyTime != ''">
-        #{replyTime,jdbcType=DATE},
-      </if>
-    </trim>
-</insert>
-    <update id="updateFeed">
-        update feedback
-        <set>
-              <if test="backId != null">
-                back_id = #{backId,jdbcType=INTEGER},
-              </if>
-              <if test="userId != null and userId != ''">
-                user_id = #{userId,jdbcType=INTEGER},
-              </if>
-              <if test="doctorId != null and doctorId != ''">
-                doctor_id = #{doctorId,jdbcType=INTEGER},
-              </if>
-              <if test="content != null and content != ''">
-                content = #{content,jdbcType=VARCHAR},
-              </if>
-              <if test="backTime != null">
-                back_time = now(),
-              </if>
-              <if test="reply != null and reply != ''">
-                reply = #{reply,jdbcType=VARCHAR},
-              </if>
-              <if test="reply != null and reply != ''">
-                reply_time = now(),
-              </if>
-        </set>
-        where back_id = #{backId,jdbcType=INTEGER}
-    </update>
-
 <sql id="BASIC_WHERE">
     <if test="backId != null">
         and back_id = #{backId}
@@ -162,7 +92,7 @@
                 #{content},
     </if>
     <if test="backTime != null">
-                #{backTime},
+                now(),
     </if>
     <if test="reply != null and reply != ''">
                 #{reply},
@@ -199,6 +129,10 @@
     </trim>
 </sql>
 
+    <select id="findByUsId" resultMap="conUserDoc">
+   select <include refid="Base_Column_List"></include>
+   from feedback where user_id=#{userId,jdbcType=INTEGER}
+    </select>
     <select id="findAll" resultMap="BaseResultMap">
         select <include refid="Base_Column_List" />
             from feedback
@@ -225,8 +159,7 @@
     <where>
     <foreach close=")" collection="ids" item="backId" open="back_id in (" separator=",">
     #{backId}
-</foreach>
-</where>
-</delete>
-
+    </foreach>
+    </where>
+    </delete>
 </mapper>
