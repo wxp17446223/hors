@@ -54,4 +54,9 @@ public class DepartmentsServiceImpl implements DepartmentsService{
     public boolean insert(Departments departments) {
         return departmentsMapper.insert(departments)>0?true:false;
     }
+
+    @Override
+    public List<Departments> findChildDepart() {
+        return departmentsMapper.findChildDepart();
+    }
 }

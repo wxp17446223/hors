@@ -54,6 +54,10 @@ public class UserInfoServiceImpl implements UserInfoService{
     }
 
     @Override
+    public UserInfo findByPhone(String phone) {
+        return userinfoMapper.findByPhone(phone);
+    }
+    @Override
     public boolean deleteByIds(Integer... ids) {
         return userinfoMapper.deleteByIds(ids)>0?true:false;
     }

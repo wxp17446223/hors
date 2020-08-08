@@ -1,7 +1,6 @@
 package cn.hors.mapper;
 
 import cn.hors.bean.UserInfo;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer userId);
@@ -20,5 +19,12 @@ public interface UserInfoMapper {
 
     int updatePic(UserInfo userinfo);
 
-    int deleteByIds(@Param("ids") Integer... ids);
+    /**
+     * 通过手机号码查询是否有注册患者信息
+     * @param phone
+     * @return
+     */
+    UserInfo findByPhone(String phone);
+
+    int deleteByIds(Integer... ids);
 }

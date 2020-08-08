@@ -17,17 +17,17 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public boolean insert(Order order) {
-        return orderMapper.insert(order)>0;
+        return orderMapper.insert(order)>0?true:false;
     }
 
     @Override
     public boolean delByIds(Integer... ids) {
-        return orderMapper.delByIds(ids)>0;
+        return orderMapper.delByIds(ids)>0?true:false;
     }
 
     @Override
     public boolean update(Order order) {
-        return orderMapper.update(order)>0;
+        return orderMapper.update(order)>0?true:false;
     }
 
     @Override

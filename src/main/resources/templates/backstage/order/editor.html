@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑界面</title>
+    <script src="../static/layui/layui.js" data-th-src="@{/layui/layui.js}"></script>
+    <link rel="stylesheet" data-th-href="@{/layui/css/layui.css}" href="../static/layui/css/layui.css">
+    <style>
+        body {
+            padding-right: 15px;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<form class="layui-form">
+    <input type="hidden" name="orderId" data-th-value="${order?.orderId}">
+    <input type="hidden" name="userId" id="useId1" data-th-value="${userId}">
+    <div class="layui-form-item">
+        <label class="layui-form-label">患者电话：</label>
+        <div class="layui-input-block">
+            <input type="text" name="userPhone" lay-verify="userPhone" placeholder="请输入" autocomplete="off" class="layui-input"
+                   data-th-value="${order?.userPhone}">
+        </div>
+    </div>
+
+    <!--    二级联动父子科室-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室</label>
+        <div class="layui-input-inline">
+            <select lay-search="" lay-verify="required" autocomplete="off" id="children" name="children"  lay-reqtext="医生科室，岂能为空？" lay-filter="children">
+                <option value="">请选择科室</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">科室医生</label>
+        <div class="layui-input-inline">
+            <select lay-search="" name="doctor" id="doctor" lay-verify="required" autocomplete="off" lay-reqtext="科室医生，岂能为空？" lay-filter="doctor"></select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">排班日期</label>
+        <div class="layui-input-inline">
+            <select lay-search="" name="tid" id="tid" lay-verify="required" autocomplete="off" lay-reqtext="请选择需要预约哪一天" lay-filter="tid"></select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">下单时间：</label>
+        <div class="layui-input-block">
+            <input type="text" id="test30" name="addtime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off"
+                   class="layui-input" data-th-value="${order?.addtime}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约状态：</label>
+        <div class="layui-input-block">
+            <input type="text" name="status" placeholder="1：预约成功0：处理中" lay-verify="status" autocomplete="off" class="layui-input"
+                   data-th-value="${order?.status}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">医生回复：</label>
+        <div class="layui-input-block">
+            <input type="text" name="reply" placeholder="请输入" lay-verify="reply" autocomplete="off" class="layui-input"
+                   data-th-value="${order?.reply}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">预约费用：</label>
+        <div class="layui-input-block">
+            <input type="text" name="cost" placeholder="请输入" lay-verify="cost" autocomplete="off" class="layui-input"
+                   data-th-value="${order?.cost}">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formSubmit">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+<script data-th-inline="javascript">
+    layui.use(['form', 'jquery', 'laydate'], function () {
+        let {form, $, laydate} = layui;
+        //自定义颜色
+        laydate.render({
+            elem: '#test30'
+            , theme: '#393D49'
+        });
+
+        form.verify({
+                //将用户名是否可用作为验证条件  表单提交时触发
+            userPhone:function(value){
+            var datas={phone: value};
+            console.log(datas)
+            var message = '';
+            $.ajax({
+                type:"POST",
+                url:"/order/checkUserPhone",
+                async: false, //改为同步请求
+                contentType:'application/json;charset=UTF-8',
+                data:JSON.stringify(datas),
+                dataType:'json',
+                success:function(data){
+                    if(data){
+                        console.log(data.bool);
+                        console.log(data.userId);
+                        $('#useId1').val(data.userId)
+                    }else{
+                        message ="患者信息不存在，不能增加订单信息，需要通知患者注册完善患者信息！"
+                    }
+                }
+
+            });
+            //需要注意  需要将返回信息写在ajax方法外
+            if (message !== '')
+                return message;
+        }
+            ,jobNumber:function(value){
+                var datas={jobNumber: value,doctorId:$("#doctorId").attr("value")};
+                var message = '';
+                $.ajax({
+                    type:"POST",
+                    url:"/doctors/checkJobNumber",
+                    async: false, //改为同步请求
+                    contentType:'application/json;charset=UTF-8',
+                    data:JSON.stringify(datas),
+                    dataType:'json',
+                    success:function(data){
+                        if(data){
+                            message ="医生工号不存在，请输入正确的医生工号！"
+                        }else{
+
+                        }
+                    }
+                });
+                //需要注意 需要将返回信息写在ajax方法外
+                if (message !== '')
+                    return message;
+            }
+    });
+        $.ajax({
+            url:"/order/getChildKeshi",
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                var departId = [[${order?.doctor?.departId}]];
+                for (var i in d.data){
+                    //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+                    $('#children').append(new Option(d.data[i].departName,d.data[i].departId));//往下拉菜单里添加元素
+                    //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                    $('#children').val(departId);
+                }
+                if(departId!=null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/order/getDoctor",
+                        data: {"departId": departId},
+                        dataType: "json",
+                        success: function (d) {
+                            // layer.alert(1122)
+                            //对应的值传回，拼出html下拉框语句
+                            var tmp = '';
+                             var doctor=[[${doctor}]];
+                            for (var i in d.data) {
+                                if(d.data[i].doctorId==doctor.doctorId){
+                                    tmp += '<option name="doctorId" selected="selected"   value="' + d.data[i].doctorId + '">' + d.data[i].name + '</option>';
+                                        continue;
+                                }
+                                tmp += '<option name="doctorId"   value="' + d.data[i].doctorId + '">' + d.data[i].name + '</option>';
+                            }
+                            $("#doctor").html(tmp);
+                            form.render();
+                        }, error: function () {
+                            layer.msg("请求失败！", {icon: 5});
+                        }
+                    });
+                }
+                form.render(); //更新全部表单内容
+                //form.render('select'); //刷新表单select选择框渲染
+            }
+        });
+
+        $.ajax({
+            url:"/order/getDoctor",
+            dataType:'json',
+            type:'post',
+            success:function(d){
+                var doctorId = [[${order?.doctor?.doctorId}]];
+                for (var i in d.data){
+                    //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+                    $('#doctor').append(new Option(d.data[i].date+d.data[i].startTime+d.data[i].endTime,d.data[i].doctorId));//往下拉菜单里添加元素
+                    //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                    $('#doctor').val(doctorId);
+                }
+                if(doctorId!=null) {
+                    $.ajax({
+                        type: "post",
+                        url: "/order/getTimeline",
+                        data: {"doctorId": doctorId},
+                        dataType: "json",
+                        success: function (d) {
+                            // layer.alert(1122)
+                            //对应的值传回，拼出html下拉框语句
+                            var tmp = '';
+                            // var doctor=[[${doctor}]];
+                            for (var i in d.data) {
+                                tmp += '<option name="tid"  value="' + d.data[i].tid + '">'+d.data[i].date+' '+d.data[i].startTime+'--'+d.data[i].endTime+'</option>';
+                                console.log("id:"+d.data[i].tid);
+                            }
+                            $("#tid").html(tmp);
+                            form.render();
+                        }, error: function () {
+                            layer.msg("请求失败！", {icon: 5});
+                        }
+                    });
+                }
+                form.render(); //更新全部表单内容
+                //form.render('select'); //刷新表单select选择框渲染
+            }
+        });
+
+        //监听到了下拉框选择的选项，传递过来
+        form.on('select(children)',function (data) {
+            //监听到了下拉框选择的选项，传递过来
+            // console.log(data);//在控制台输出信息
+            var departId = data.value;
+            console.log(departId);
+            // console.log(departId);
+            //再利用ajax将数据传到后端，来获取到对应下拉框选项而出现的值
+            $.ajax({
+                type: "post",
+                url: "/order/getDoctor",
+                data: {"departId":departId},
+                dataType: "json",
+                success: function (d) {
+                    // layer.alert(1122)
+                    //对应的值传回，拼出html下拉框语句
+                    console.log(d);
+                    console.log(d.data);
+                    var tmp='';
+                    // var doctor=[[${doctor}]];
+                    tmp+="<option value=''>请选择科室医生</option>";
+                    for (var i in d.data){
+                        // if(d.data[i].doctorId==doctor.doctorId){
+                        //     tmp +='<option name="doctorId" selected="selected"  value="'+d.data[i].doctorId+'">'+d.data[i].name+'</option>';
+                        //         continue;
+                        // }
+                        tmp +='<option name="doctorId"  value="'+d.data[i].doctorId+'">'+d.data[i].name+'</option>';
+                    }
+                    $("#doctor").html(tmp);
+                    form.render();
+                },error:function () {
+                    layer.msg("请求失败！",{icon:5});
+                }
+            });
+        });
+
+        //监听到了下拉框选择的选项，传递过来
+        form.on('select(doctor)',function (data) {
+            //监听到了下拉框选择的选项，传递过来
+            // console.log(data);//在控制台输出信息
+            var doctorId = data.value;
+            console.log(doctorId);
+            // console.log(departId);
+            //再利用ajax将数据传到后端，来获取到对应下拉框选项而出现的值
+            $.ajax({
+                type: "post",
+                url: "/order/getTimeline",
+                data: {"doctorId":doctorId},
+                dataType: "json",
+                success: function (d) {
+                    // layer.alert(1122)
+                    //对应的值传回，拼出html下拉框语句
+                    console.log(d);
+                    console.log(d.data);
+                    var tmp='';
+                    // var doctor=[[${doctor}]];
+                    tmp+="<option value=''>请选择预约时段</option>";
+                    for (var i in d.data){
+
+                        tmp +='<option name="tid"  value="'+d.data[i].tid+'">'+d.data[i].date+' '+d.data[i].startTime+'--'+d.data[i].endTime+'</option>';
+                        console.log("id:"+d.data[i].tid);
+                    }
+                    $("#tid").html(tmp);
+                    form.render();
+                },error:function () {
+                    layer.msg("请求失败！",{icon:5});
+                }
+            });
+        });
+
+        //监听提交
+        form.on('submit(formSubmit)', function (data) {
+            console.log(data.field);
+            // console.log(data.field.tid);
+            var t = document.getElementById("tid");
+            var text = t.options[t.selectedIndex].text; // 选中文本
+            var value = t.options[t.selectedIndex].value; // 选中值
+            console.log(text);
+            console.log(value);
+            var userId = document.getElementById("userId");
+            $.ajax({
+                url: /*[[@{/order}]]*/ '/save',
+                type: 'put',
+                data: {doctorId:data.field.doctor,
+                        orderId:data.field.orderId,
+                        status:data.field.status,
+                        tid:data.field.tid,
+                        userPhone:data.field.userPhone,
+                        cost:data.field.cost,
+                        addtime:data.field.addtime,
+                        userId:data.field.userId
+                },
+                dataType: 'json',
+                success: function (rs) {
+                    if (rs.code == 0) {
+                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        parent.layer.close(index);//关闭当前窗口
+                        parent.layer.msg(rs.msg, {icon: 6});//在父页面弹出提示框
+                        parent.layui.table.reload('reload');//重载父页面的表格数据
+                    } else {
+                        layer.msg(rs.msg, {icon: 5});
+                    }
+                }
+            });
+            return false;
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -16,8 +16,8 @@
   </sql>
   <sql id="Base_Insert_Columns">
     <trim suffixOverrides=",">
-        <if test="tid != null and tid!=''">t_id,</if>
-        <if test="doctorId != null and doctorId !=''">doctor_id,</if>
+        <if test="tid != null">t_id,</if>
+        <if test="doctorId != null">doctor_id,</if>
         <if test="date != null">date,</if>
         <if test="quota != null">quota,</if>
         <if test="startTime != null and startTime != ''">start_time,</if>
@@ -27,8 +27,8 @@
   </sql>
   <sql id="Base_Insert_Values">
     <trim suffixOverrides=",">
-        <if test="tid != null and tid!=''">#{tid},</if>
-        <if test="doctorId != null and doctorId!=''">#{doctorId},</if>
+        <if test="tid != null">#{tid},</if>
+        <if test="doctorId != null">#{doctorId},</if>
         <if test="date != null">#{date},</if>
         <if test="quota != null">#{quota},</if>
         <if test="startTime != null and startTime != ''">#{startTime},</if>
@@ -38,8 +38,8 @@
   </sql>
   <sql id="Base_Update">
     <trim suffixOverrides=",">
-        <if test="tid != null and tid!=''">t_id=#{tid},</if>
-        <if test="doctorId != null and doctorId!=''">doctor_id=#{doctorId},</if>
+        <if test="tid != null">t_id=#{tid},</if>
+        <if test="doctorId != null">doctor_id=#{doctorId},</if>
         <if test="date != null">date=#{date},</if>
         <if test="quota != null">quota=#{quota},</if>
         <if test="startTime != null and startTime != ''">start_time=#{startTime},</if>
@@ -48,7 +48,7 @@
     </trim>
   </sql>
   <sql id="Base_Where">
-    <if test="tid!=null and tid!=''"> and t_id=#{tid}</if>
+    <if test="tid!=null"> and t_id=#{tid}</if>
     <if test="doctorId!=null and doctorId!=''">and doctor_id=#{doctorId}</if>
     <if test="date != null">date=#{date}</if>
     <if test="quota != null">and quota=#{quota}</if>

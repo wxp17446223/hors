@@ -120,4 +120,9 @@ insert into departments(depart_name,introduce,date,phone
 </otherwise>
 </choose>
 </insert>
+<select id="findChildDepart" resultMap="BASIC_RESULT_MAP">
+    select <include refid="Base_Column_List"></include>
+    from departments
+        where d_id != -1
+</select>
 </mapper>
