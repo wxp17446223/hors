@@ -49,4 +49,9 @@ public class Timeline {
         0 否 1允许
     */
     private Integer status;
+
+    /**
+     *关联该时段 的医生信息
+     */
+    private Doctor doctor;
 }

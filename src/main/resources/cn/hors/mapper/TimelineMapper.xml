@@ -9,6 +9,7 @@
     <result column="start_time" jdbcType="VARCHAR" property="startTime" />
     <result column="end_time" jdbcType="VARCHAR" property="endTime" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <association property="doctor" javaType="java.lang.Integer" column="doctor_id" select="cn.hors.mapper.DoctorMapper.findEntityById"/>
   </resultMap>
   <sql id="Base_Column_List">
     t_id, doctor_id, `date`, quota, start_time, end_time, `status`
@@ -42,7 +43,7 @@
         <if test="date != null">date=#{date},</if>
         <if test="quota != null">quota=#{quota},</if>
         <if test="startTime != null and startTime != ''">start_time=#{startTime},</if>
-        <if test="endTime != null and endTime != ''">end_time#{endTime},</if>
+        <if test="endTime != null and endTime != ''">end_time=#{endTime},</if>
         <if test="status != null">status=#{status},</if>
     </trim>
   </sql>
@@ -56,7 +57,7 @@
     <if test="status != null">and status=#{status}</if>
   </sql>
 
-  <insert id="insert" parameterType="Timeline" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="Timeline" useGeneratedKeys="true" keyProperty="tid">
     insert into timeline(<include refid="Base_Insert_Columns"></include>)
     values (<include refid="Base_Insert_Values"></include>)
   </insert>
@@ -102,4 +103,9 @@
     set quota=(quota-1)
     where t_id=#{tid,jdbcType=INTEGER}
   </update>
+  <select id="findByDoctorIdAndDateAndStartTime" resultType="Timeline">
+    select <include refid="Base_Column_List"></include>
+    from timeline
+    where date=#{date} and start_time=#{startTime} and doctor_id=#{doctorId}
+  </select>
 </mapper>

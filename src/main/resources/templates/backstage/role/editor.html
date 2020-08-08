@@ -52,8 +52,7 @@
         form.on('submit(formSubmit)', function (data) {
             $.ajax({
                 url: /*[[@{/role}]]*/ '/save',
-                type: 'pu3' +
-                    't',
+                type: 'put',
                 data: data.field,
                 dataType:'json',
                 success:function (rs) {

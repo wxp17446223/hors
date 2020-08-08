@@ -903,9 +903,9 @@
         </div>
         <div class="emailMain">
             <div class="tabBase">
-                <a href="/find?type=1" id="ASearchAll" class="active">全站内容</a>
-                <a href="/find?type=2" id="ASearchDoctor">医生查询</a>
-                <a href="/find?type=3" id="ASearchNews">新闻动态</a>
+                <a th:href="@{/find(type=1,name=${name})}" id="ASearchAll" class="active">全站内容</a>
+                <a th:href="@{/find(type=2,name=${name})}" id="ASearchDoctor">医生查询</a>
+                <a th:href="@{/find(type=3,name=${name})}"  id="ASearchNews" >新闻动态</a>
             </div>
             <div class="clear"></div>
             <div class="emaillist">
@@ -932,7 +932,7 @@
                     </div>
                     <div class="date">
                         <h3>发布时间</h3>
-                        <h4><span data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd')}"></span></h4>
+                        <h4><span data-th-text="*{newsDate}"></span></h4>
                         <p><span data-th-text="*{source}"></span></p>
                     </div>
                     <div class="listBtn">

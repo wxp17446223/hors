@@ -69,4 +69,10 @@ public interface DoctorMapper {
      * @return
      */
     int deleteByIds(@Param("ids")Integer[] ids );
+
+    /**
+     * 单表查询 只返回所有医生信息
+     * @return
+     */
+    List<Doctor> findEntityAll();
 }

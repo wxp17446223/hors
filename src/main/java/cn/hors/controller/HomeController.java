@@ -221,6 +221,7 @@ public class HomeController {
     @GetMapping("/find")
 //    @PreAuthorize("hasAuthority('/index/find/r')")
     public String find(String name,Integer type,Model map){
+        map.addAttribute("name",name);
         if(type == 1){
             List<Doctor> dlist = doctorService.findByName(name);
             List<News> nlist = newsService.findByTitleOrContent(name);

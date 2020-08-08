@@ -3,6 +3,7 @@ package cn.hors.mapper;
 import cn.hors.bean.Timeline;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Time;
 import java.util.List;
 
 public interface TimelineMapper {
@@ -62,4 +63,13 @@ public interface TimelineMapper {
      * @return
      */
     int updateQuota(Integer tId);
+
+    /**
+     * 通过 日期 开始时间 查询医生排班信息
+     * @param date
+     * @param start0Time
+     * @return
+     */
+    Timeline findByDoctorIdAndDateAndStartTime(@Param("doctorId") Integer doctorId,@Param("date") String date,@Param("startTime") String start0Time);
+
 }
