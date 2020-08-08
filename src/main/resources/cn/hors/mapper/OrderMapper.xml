@@ -33,7 +33,7 @@
   </sql>
   <sql id="Base_Insert_Columns">
     <trim suffixOverrides=",">
-        <if test="orderId != null != null">order_id,</if>
+        <if test="orderId != null ">order_id,</if>
         <if test="userId != null">user_id,</if>
         <if test="tId != null">t_id,</if>
         <if test="addtime != null">addtime,</if>

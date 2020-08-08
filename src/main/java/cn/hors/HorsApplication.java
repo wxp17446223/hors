@@ -12,5 +12,4 @@ public class HorsApplication {
     public static void main(String[] args) {
         SpringApplication.run(HorsApplication.class, args);
     }
-
 }

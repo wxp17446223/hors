@@ -81,7 +81,7 @@ public class DoctorsController implements BaseController {
 
 
     /**
-     * 二级联动 查父科室
+     * 一级联动 页面初始化 查父科室
      * @return
      */
     @PostMapping("/getParent")

@@ -58,4 +58,9 @@ public class DoctorServiceImpl implements DoctorService{
     public boolean deleteByIds(Integer[] ids) {
         return doctorMapper.deleteByIds(ids)>0;
     }
+
+    @Override
+    public List<Doctor> findEntityAll() {
+        return doctorMapper.findEntityAll();
+    }
 }

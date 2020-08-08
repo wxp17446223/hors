@@ -16,7 +16,7 @@ public class Timeline {
     /**
     * 排班ID
     */
-    private Integer tId;
+    private Integer tid;
 
     /**
     * 医生ID
@@ -27,7 +27,7 @@ public class Timeline {
     * 日期
     */
 //    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
-    private Date date;
+    private String date;
 
     /**
     * 允许预约的人数
@@ -49,4 +49,9 @@ public class Timeline {
         0 否 1允许
     */
     private Integer status;
+
+    /**
+     *关联该时段 的医生信息
+     */
+    private Doctor doctor;
 }

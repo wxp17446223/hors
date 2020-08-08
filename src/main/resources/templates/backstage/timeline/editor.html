@@ -23,108 +23,57 @@
 <body>
 
 <form class="layui-form" action="">
-    <input type="hidden" id="doctorId" name="doctorId" lay-verify="doctorId" data-th-value="${doctor?.doctorId}">
-    <div class="layui-form-item">
-        <label class="layui-form-label">医生工号</label>
-        <div class="layui-input-inline">
-            <input type="text" name="jobNumber" lay-verify="jobNumber" data-th-value="${doctor?.jobNumber}" autocomplete="off" lay-reqtext="医生工号，岂能为空？" placeholder="请输入医生工号" class="layui-input">
-        </div>
-    </div>
+    <input type="hidden" id="tid" name="tid"  data-th-value="${timeline?.tid}">
 
-<!--    二级联动父子科室-->
+
     <div class="layui-form-item">
-        <label class="layui-form-label">父科室</label>
+        <label class="layui-form-label">医生名字</label>
         <div class="layui-input-inline">
-            <select lay-search="" lay-verify="required" autocomplete="off" id="parents" name="parents" lay-reqtext="医生的父科室，岂能为空？" lay-filter="parents">
-                <option value="">请选择父科室</option>
+            <select lay-search="" lay-verify="required" autocomplete="off" id="doctors" name="doctorId" lay-reqtext="医生的名字，岂能为空？" >
+                <option value="">请选择医生名字</option>
+<!--                <option data-th-each="doctor:${doctors}" data-th-value="${doctor.doctorId}" data-th-text="${doctor.name}"></option>-->
             </select>
         </div>
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">子科室</label>
-        <div class="layui-input-inline">
-            <select name="departId" id="departId" lay-verify="required" autocomplete="off" lay-reqtext="子科室，岂能为空？"></select>
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">医生姓名</label>
-        <div class="layui-input-inline">
-            <input type="text" name="name" lay-verify="required" lay-reqtext="医生姓名，岂能为空？" data-th-value="${doctor?.name}" placeholder="请输入" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-
-    <div class="layui-form-item">
-        <label class="layui-form-label">性别</label>
-        <div class="layui-input-inline">
-            <input type="radio" name="sex" value="1" title="男"  checked="">
-            <input type="radio" name="sex" value="2" title="女" data-th-checked="${doctor?.sex} eq '2'">
-            <input type="radio" name="sex" value="禁" title="禁用" disabled="">
-        </div>
-    </div>
-
-
-
-    <div class="layui-form-item">
-        <div class="layui-upload">
-
-            <label class="layui-form-label">医生图片</label>
-            <div class="layui-input-inline">
-                <button type="button" class="layui-btn" id="test1">上传</button>
-                <input  id="picture" name="picture" readonly="readonly" data-th-value="${doctor?.picture}">
-                <div class="layui-upload-list">
-                    <img class="layui-upload-img" id="demo1" width="200px" data-th-src="${doctor?.picture}">
-                    <p id="demoText"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">出生日期</label>
+            <label class="layui-form-label">排班日期</label>
             <div class="layui-input-inline">
-                <input type="text" data-th-value="${doctor?.birth}" name="birth" lay-verify="required" lay-reqtext="医生出生，岂能为空？" class="layui-input" id="test30" placeholder="yyyy-MM-dd">
+                <input type="text" data-th-value="${timeline?.date}" name="date" lay-verify="required|date" lay-reqtext="排班日期，岂能为空？" class="layui-input" id="test30" placeholder="yyyy-MM-dd">
             </div>
         </div>
     </div>
 
 
     <div class="layui-form-item">
-        <label class="layui-form-label">医生职位</label>
+        <label class="layui-form-label">可预约数量</label>
         <div class="layui-input-inline">
-            <input type="text" name="position" lay-verify="required" lay-reqtext="医生职位，岂能为空？" placeholder="请输入" data-th-value="${doctor?.position}" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">工作经验</label>
-        <div class="layui-input-inline">
-            <input type="text" name="workExperience"  data-th-value="${doctor?.workExperience}" placeholder="非必填" autocomplete="off" class="layui-input">
+            <input type="text" name="quota" lay-verify="number|Ndouble" lay-reqtext="可预约数量，岂能为空？" placeholder="请输入" data-th-value="${timeline?.quota}" autocomplete="off" class="layui-input">
         </div>
     </div>
 
     <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">输入手机号</label>
-            <div class="layui-input-inline">
-                <input type="tel" name="phone" lay-verify="required|phone" placeholder="必填" data-th-value="${doctor?.phone}" autocomplete="off" class="layui-input">
-            </div>
+        <label class="layui-form-label">时间段</label>
+        <div class="layui-input-inline">
+            <input type="radio" lay-verify="startTime" name="startTime" value="8:00"  title="8：00~9：00"  checked="">
+            <input type="radio" lay-verify="startTime" name="startTime" value="9:00"  title="9：00~10：00" data-th-checked="${timeline?.startTime} eq '9:00'">
+            <input type="radio" lay-verify="startTime" name="startTime" value="10:00" title="10：00~11：00" data-th-checked="${timeline?.startTime} eq '10:00'">
+            <input type="radio" lay-verify="startTime" name="startTime" value="11:00" title="11：00~12：00" data-th-checked="${timeline?.startTime} eq '11:00'">
+            <input type="radio" lay-verify="startTime" name="startTime" value="14:00" title="14：00~15：00" data-th-checked="${timeline?.startTime} eq '14:00'">
+            <input type="radio" lay-verify="startTime" name="startTime" value="15:00" title="15：00~16：00" data-th-checked="${timeline?.startTime} eq '15:00'">
+            <input type="radio" lay-verify="startTime" name="startTime" value="16:00" title="16：00~17：00" data-th-checked="${timeline?.startTime} eq '16:00'">
         </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">擅长</label>
+        <label class="layui-form-label">状态</label>
         <div class="layui-input-inline">
-            <input type="text" name="adept" data-th-value="${doctor?.adept}" placeholder="非必填" autocomplete="off" class="layui-input">
+            <input type="radio" name="status" value="1" title="可预约" checked="" >
+            <input type="radio" name="status" value="0" title="停诊"  data-th-checked="${timeline?.status} eq '0'">
         </div>
     </div>
-    <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">医生介绍</label>
-        <div class="layui-input-inline">
-            <textarea name="introduce" data-th-text="${doctor?.introduce}" placeholder="非必填" class="layui-textarea"></textarea>
-        </div>
-    </div>
+
     <div class="layui-form-item">
         <div class="layui-input-block">
             <button type="submit"class="layui-btn"  lay-submit lay-filter="formSubmit">立即提交</button>
@@ -141,111 +90,64 @@
             ,theme: '#393D49'
         });
 
-        //ajax判断工号唯一
-        form.verify({
-            //将医生工号是否可用作为验证条件 表单提交时触发
-            jobNumber:function(value){
-            var datas={jobNumber: value,doctorId:$("#doctorId").attr("value")};
-            var message = '';
-            $.ajax({
-                type:"POST",
-                url:"/doctors/checkJobNumber",
-                async: false, //改为同步请求
-                contentType:'application/json;charset=UTF-8',
-                data:JSON.stringify(datas),
-                dataType:'json',
-                success:function(data){
-                    if(data){
 
-                    }else{
-                        message ="医生工号已存在，请重新输入！"
-                    }
-                }
-            });
-            //需要注意 需要将返回信息写在ajax方法外
-            if (message !== '')
-                return message;
-            }
-        });
-
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test1'
-            // ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-            ,url: '/doctors/fileImp1'
-            // ,auto: false//选择文件后不自动上传
-            // ,bindAction: '#commit'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-                $("#picture").attr('value',res.picturePath);
-                return layer.msg('上传成功',{icon:6});
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload();
-                });
-            }
-        });
-
-        //动态添加下拉框     同时可以设置默认值
+        //页面加载初始化 编辑时选中 动态添加下拉框     同时可以设置默认值
         $.ajax({
-            url:"/doctors/getParent",
+            url:"/timeline/getDoctors",
             dataType:'json',
             type:'post',
-            success:function(d){
-                var dId = [[${doctor?.department?.dId}]];
-
-                for (var i in d.data){
+            success:function(d) {
+                var doctorId = [[${timeline?.doctorId}]];
+                console.log(doctorId);
+                for (var i in d.data) {
                     //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
-                    $('#parents').append(new Option(d.data[i].departName,d.data[i].departId));//往下拉菜单里添加元素
+                    $('#doctors').append(new Option(d.data[i].name, d.data[i].doctorId));//往下拉菜单里添加元素
                     //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
-                    $('#parents').val(dId);
-                }
-                if (dId!=-1){
-                    $.ajax({
-                        type: "post",
-                        url: "/doctors/getType",
-                        data: {"dId":dId},
-                        dataType: "json",
-                        success: function (d) {
-                            // layer.alert(1122)
-                            //对应的值传回，拼出html下拉框语句
-                            var tmp='';
-                            // var doctor=[[${doctor}]];
-                            for (var i in d.data){
-                                tmp +='<option name="departId" value="'+d.data[i].departId+'">'+d.data[i].departName+'</option>';
-                            }
-                            $("#departId").html(tmp);
-                            form.render();
-                        },error:function () {
-                            layer.msg("请求失败！",{icon:5});
-                        }
-                    });
+                    $('#doctors').val(doctorId);
                 }
                 form.render(); //更新全部表单内容
                 //form.render('select'); //刷新表单select选择框渲染
             }
         });
 
+        //自定义表单验证
+        form.verify({
+            Ndouble:[
+                /^[1-9]\d*$/
+                ,'只能输入整数哦'
+            ],
+            date:function (value,item) {
+                var datas={startTime:  $('input[name="startTime"]:checked').val(),date:value,doctorId: $("#doctors").val(),tid: $("#tid").attr("value")};
+                console.log(datas);
+                var message = '';
+                $.ajax({
+                    type:"POST",
+                    url:"/timeline/checkTimeline",
+                    async: false, //改为同步请求
+                    contentType:'application/json;charset=UTF-8',
+                    data:JSON.stringify(datas),
+                    dataType:'json',
+                    success:function(data){
+                        if(data){
+
+                        }else{
+                            message ="医生排班信息已存在，请重新选择！"
+                        }
+                    }
+                });
+                //需要注意 需要将返回信息写在ajax方法外
+                if (message !== '')
+                    return message;
+            }
+
+        });
+
+
         //监听提交
         form.on('submit(formSubmit)', function (data) {
             console.log(data);
             $.ajax({
-                url: /*[[@{/doctors}]]*/ '/save',
+                url: /*[[@{/timeline}]]*/ '/save',
                 type: 'put',
                 data: data.field,
                 dataType:'json',
@@ -263,37 +165,7 @@
             return false;
         });
 
-        //监听到了下拉框选择的选项，传递过来
-        form.on('select(parents)',function (data) {
-            //监听到了下拉框选择的选项，传递过来
-            // console.log(data);//在控制台输出信息
-            var dId = data.value;
-            // console.log(dId);
-            //再利用ajax将数据传到后端，来获取到对应下拉框选项而出现的值
-            $.ajax({
-                type: "post",
-                url: "/doctors/getType",
-                data: {"dId":dId},
-                dataType: "json",
-                success: function (d) {
-                    // layer.alert(1122)
-                    //对应的值传回，拼出html下拉框语句
-                    console.log(d);
-                    console.log(d.data);
-                    var tmp='';
-                    // var doctor=[[${doctor}]];
-                    tmp+="<option value=''>请选择子科室</option>";
-                    for (var i in d.data){
 
-                        tmp +='<option name="departId" selected="" value="'+d.data[i].departId+'">'+d.data[i].departName+'</option>';
-                    }
-                    $("#departId").html(tmp);
-                    form.render();
-                },error:function () {
-                    layer.msg("请求失败！",{icon:5});
-                }
-            });
-        })
     });
 </script>
 </body>

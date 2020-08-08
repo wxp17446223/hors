@@ -62,4 +62,14 @@ public interface TimelineService{
      * @return
      */
     boolean updateQuota(Integer tId);
+
+    /**
+     * 通过 日期 开始时间 查询医生排班信息
+     * @param date
+     * @param start0Time
+     * @return
+     */
+    Timeline findByDoctorIdAndDateAndStartTime(@Param("doctorId") Integer doctorId,@Param("date") String date,@Param("startTime") String start0Time);
+
+
 }
