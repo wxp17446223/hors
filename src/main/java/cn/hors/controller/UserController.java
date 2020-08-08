@@ -121,7 +121,7 @@ public class UserController {
         account.setRoleId(8);
         account.setPassword(DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
         if (account.getAccountId()!=null){
-            if (accountService.updateByPrimaryKey(account)>0){
+            if (accountService.update(account)){
                 results.put("code",0);
                 results.put("msg","修改成功");
             }else {

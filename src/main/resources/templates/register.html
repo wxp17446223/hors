@@ -463,26 +463,26 @@
 
                         <div class="Validform_checktip" style="position: relative;margin-top: -9%;left: 593px"></div>
                     </div>
-                    <div class="form-group has-feedback">
-                        <input type="tel" class="form-control" name="phone"  id="phone" placeholder="请输入手机号" maxlength=15>
+                    <div class="form-group has-feedback" style="position:relative;left: 93px;">
+                        <input type="tel" class="form-control" name="phone"  id="tbPhone" placeholder="请输入手机号" maxlength=15 style="width: 25%;">
                         <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
                     </div>
-                    <div class="row">
+                    <div class="row" style="position: relative;left: 93px">
                         <div class="col-xs-6 pull_left">
                             <div class="form-group">
-                                <input class="form-control" id="msgNum" placeholder="请输入验证码" name="msgNum">
+                                <input class="form-control" id="msgNum" placeholder="请输入验证码" name="msgNum" style="width: 20%;">
                             </div>
                         </div>
-                        <div class="col-xs-6 pull_center">
+                        <div class="col-xs-6 pull_center" style="position: relative;top: -105px;left: 258px;">
                             <div class="form-group">
-                                <input type="button" class="btn btn-block btn-flat" id="verify_refresh" onclick="getMsgNum(this)" value="免费获取验证码">
+                                <input type="button" class="btn btn-block btn-flat" id="verify_refresh" onclick="getMsgNum(this)" value="免费获取验证码" style="width: 25%;">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 pull_center">
-                        <button type="button" class="btn btn-block btn-flat" onclick="validateNum()">验证</button>
+                    <div class="col-xs-12 pull_center" style="position:relative;left: 301px;top: -102px">
+                        <button type="button" class="btn btn-block btn-flat" onclick="validateNum()" style="width: 15%">验证</button>
                     </div>
-                    <div class="item"><label for="tbCardID">
+                    <div class="item" style="position:relative;margin-top: -104px"><label for="tbCardID">
                         身份证号</label>
                         <input  autocomplete="off" datatype="idcard" errormsg="您输入的身份证号码不对！" id="tbCardID"
                                 maxlength="18" name="identityId" nullmsg="请填写身份证号码！"
@@ -720,13 +720,11 @@
      * @param that
      */
     function getMsgNum(that) {
-        var phone = $('#phone').val();
-        console.log(phone);
+        var phone = $('#tbPhone').val();
         setButtonStatus(that); // 设置按钮倒计时
         var obj = {
             phone: phone
         };
-        console.log(obj);
         $.ajax({
             url: /*[[@{/}]]*/ 'sendMsg/'+phone, // 后台短信发送接口
             type: 'POST',
@@ -738,7 +736,7 @@
                 withCredentials: true
             },
             success: function (result) {
-                if(result.code == '200') {
+                if(result.code == 'OK') {
                     messageData = result.data;
                 }else {
                     alert("错误码:" + data.code + "  错误信息:" + data.message);
@@ -773,10 +771,10 @@
      * 注册按钮
      */
     function validateNum() {
+        var msgNum = $('#msgNum').val();
         var data = {
             msgNum: msgNum
         };
-
         $.ajax({
             url: '/validateNum/'+msgNum, // 验证接口
             type: 'POST',
@@ -785,6 +783,7 @@
             data: JSON.stringify(data),
             async: false, //false 同步
             success:function (data) {
+                console.log(data);
                 if(data.code == 0){
                     var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
                     parent.layer.close(index);//关闭当前弹窗

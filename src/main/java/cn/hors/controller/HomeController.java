@@ -116,27 +116,6 @@ public class HomeController {
     }
 
 
-    @PostMapping("/register")
-    @ResponseBody
-    public Map<String,Object> save(UserInfo user, Account account){
-        Map<String,Object> results = new HashMap<>();
-        if (accountServices.insert(account)){
-            user.setAccountId(account.getAccountId());
-            if(userinfoService.insert(user)){
-                results.put("code",0);
-                results.put("msg","注册成功");
-            }else {
-                results.put("code",1);
-                results.put("msg","注册失败");
-            }
-        }else {
-            results.put("code",1);
-            results.put("msg","注册失败");
-        }
-        return results;
-    }
-
-
     /**
      * 发送验证码
      * @return
@@ -167,7 +146,7 @@ public class HomeController {
                 throw new RuntimeException("发送失败");
             }
         }
-        return null;
+        return sendSmsResponse.getCode();
     }
 
     @PostMapping({"/validateNum","/validateNum/{msgNum}"})
@@ -176,10 +155,7 @@ public class HomeController {
         SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
         Calendar c = Calendar.getInstance();
         String tamp = sf.format(c.getTime());
-        System.out.println(msgNum);
-        System.out.println(randomNum);
-        System.out.println(currentTime);
-        if (tamp.compareTo(currentTime) > 0) {
+        if (currentTime.compareTo(tamp) > 0) {
             if (msgNum.equals(randomNum)){
                 //校验成功
                 map.put("code",0);
