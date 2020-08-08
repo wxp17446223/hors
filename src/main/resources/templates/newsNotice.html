@@ -87,9 +87,9 @@
                             class="style01"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
-                                <li><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/jiuzhen}" href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
                                 <li><a href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
-                                <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
                                 <li><a href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
                             </ul>
                             <ul>
@@ -110,7 +110,7 @@
                             <div class="clear"></div>
                         </div>
                     </li>
-                    <li class="first"><a href="DutyTime.html" class="firstA"><em>出诊安排</em><i
+                    <li class="first"><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" class="firstA"><em>出诊安排</em><i
                             class="style03"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
@@ -176,12 +176,12 @@
                             <div class="navbox BaseMark">
                                 <div class="navMenus">
                                     <ul>
-                                        <li class="first"><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a>
+                                        <li class="first"><a data-th-href="@{/depart/jiuzhen}" href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a>
                                         </li>
 
                                         <li><a href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
 
-                                        <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                        <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
 
 
                                         <li><a href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
@@ -308,7 +308,7 @@
                                     <div class="BottomHidden"></div>
                                     <dl>
                                         <dt class="title01">省医快讯</dt>
-                                        <dd class="url" data-th-each="sigle:${news}" data-th-object="${sigle}"><span data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">2016-12-29</span><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
+                                        <dd class="url" data-th-each="sigle:${news}" data-th-object="${sigle}"><span data-th-text="*{newsDate}">2016-12-29</span><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
                                                                                                                                                                                                          data-th-title="*{title}">互联智慧疼痛医联体全面启动</a>
                                         </dd>
                                     </dl>
@@ -396,7 +396,7 @@
         <div class="title02">
             <a  href="news.html" id="DateAscOrDesc" class="current">发布时间排序</a>
             <a  href="news.html" id="HitAscOrDesc">阅览次数排序</a>
-            <span class="count">共发布文章<em id="EMCount" data-th-text="${pageInfo.total}">1633</em>篇</span>
+            <span class="count">共发布文章<em id="EMCount" data-th-text="${pageInfo?.total}">1633</em>篇</span>
         </div>
         <div class="clear"></div>
         <div class="newList">
@@ -408,7 +408,7 @@
                         <p data-th-text="*{content}">
                             12月24日-25日，“国家临床重点专科?中日医院疼痛医联体”启动仪式、“医院标题互联智慧疼痛医联体”成立仪式暨疼痛诊疗规范化培训班在巩义市人民医院举行。</p>
                     </div>
-                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{#dates.format(newsDate,'yyyy-MM-dd HH:mm:ss')}">
+                    <div class="date"><h3>发布时间</h3><h4 data-th-text="*{newsDate}">
                         2016-12-29 09:55:00</h4>
                         <p>阅览次数<span data-th-text="*{count}">280</span></p></div>
                     <div class="listBtn"><a data-th-href="@{/news/scanCount(newId=*{newId})}" href="newslist.html"
@@ -423,23 +423,23 @@
         <!--         分页 -->
         <div id="anpNews">
             <tr>
-                <td data-th-if="${pageInfo.hasPreviousPage}">
+                <td data-th-if="${pageInfo?.hasPreviousPage}">
                     <a data-th-href="@{?page=1}" href="news.html" style="margin-right:5px;" data-th-text="首页">首页</a>
                 </td>
-                <td data-th-if="${pageInfo.hasPreviousPage}">
+                <td data-th-if="${pageInfo?.hasPreviousPage}">
                     <a data-th-href="@{'?page='+${pageInfo.prePage}}" href="news.html" style="margin-right:5px;"
                        data-th-text="上一页">上一页</a>
                 </td>
-                <td data-th-each="nav:${pageInfo.navigatepageNums}">
+                <td data-th-each="nav:${pageInfo?.navigatepageNums}">
                     <a data-th-href="@{'?page='+${nav}}" href="news.html" style="margin-right:5px;"
-                       data-th-text="${nav}" data-th-if="${nav != pageInfo.pageNum}"><span style="font-weight: bold" data-th-if="${nav == pageInfo.pageNum}" data-th-text="${nav}"></span></a>
+                       data-th-text="${nav}" data-th-if="${nav != pageInfo?.pageNum}"><span style="font-weight: bold" data-th-if="${nav == pageInfo.pageNum}" data-th-text="${nav}"></span></a>
                 </td>
-                <td data-th-if="${pageInfo.hasNextPage}">
-                    <a data-th-href="@{'?page='+${pageInfo.nextPage}}" href="news.html" style="margin-right:5px;"
+                <td data-th-if="${pageInfo?.hasNextPage}">
+                    <a data-th-href="@{'?page='+${pageInfo?.nextPage}}" href="news.html" style="margin-right:5px;"
                        data-th-text="下一页">下一页</a>
                 </td>
-                <td data-th-if="${pageInfo.hasNextPage}">
-                    <a data-th-href="@{'?page='+${pageInfo.pages}}" href="news.html" style="margin-right:5px;"
+                <td data-th-if="${pageInfo?.hasNextPage}">
+                    <a data-th-href="@{'?page='+${pageInfo?.pages}}" href="news.html" style="margin-right:5px;"
                        data-th-text="末页">末页</a>
                 </td>
             </tr>

@@ -68,14 +68,14 @@ public class DoctorController {
     /**
      * 返回排班表的Id 医生ID 知道时间段 最后进行预约
      * @param model
-     * @param tId 排班id
+     * @param tid 排班id
      * @param doctorId 医生Id
      * @return
      */
     @PostMapping({"/order"})
-    public String order(Model model,@RequestParam Integer tId,@RequestParam Integer doctorId){
+    public String order(Model model,@RequestParam Integer tid,@RequestParam Integer doctorId){
         Doctor doctor = doctorService.findById(doctorId);
-        Timeline timeline = timelineService.findById(tId);
+        Timeline timeline = timelineService.findById(tid);
         model.addAttribute("doctor", doctor);
         model.addAttribute("timeline", timeline);
         return "orderInfo";

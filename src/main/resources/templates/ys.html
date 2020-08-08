@@ -88,7 +88,7 @@
                         <tr>
                             <td class="tb_header">时间地点</td>
                             <td colspan="9">
-                                <div>福建省立医院</div>
+                                <div>HORS医院</div>
                             </td>
                         </tr>
                         <tr>
@@ -267,7 +267,13 @@
                 time1 = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate(); //time1表示当前时间
             var date2 = new Date(date1);
             date2.setDate(date1.getDate() + aa);
-            var time2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
+            var month=date2.getMonth()+1;
+            if(month<10){
+                var s = "0"+month;
+                // s.concat(month);
+                month = s ;
+            }
+            var time2 = date2.getFullYear() + "-" +month + "-" + date2.getDate();
             var w = "";
             switch (date2.getDay()) {
                 case 0:
@@ -322,9 +328,11 @@
                     //上午预约的人数
                     var quota = 0;
                     for (let timelineListElement of timelineList) {
-                        var d1 = new Date(timelineListElement.date);
-                        var d2 = new Date(fun_date(k).day);
-                        if (d1 - d2 == 0) {
+                        var d1 = timelineListElement.date;
+                        var d2 = fun_date(k).day;
+                        // console.log(d1);
+                        // console.log(d2);
+                        if (d1===d2) {
                             if (timelineListElement.status == 1) {
                                 //$.inArry(['8:00','9:00','10:00','11:00'],timelineListElement.startTime)>=0 不知道为啥jquery没这方法
                                 //正则表达式判断是否为上午
@@ -346,9 +354,11 @@
                     //下午预约的人数
                     var quota = 0;
                     for (let timelineListElement of timelineList) {
-                        var d1 = new Date(timelineListElement.date);
-                        var d2 = new Date(fun_date(k).day);
-                        if (d1 - d2 == 0) {
+                        var d1 = timelineListElement.date;
+                        var d2 = fun_date(k).day;
+                        // console.log(d1);
+                        // console.log(d2);
+                        if (d1===d2) {
                             if (timelineListElement.status == 1) {
                                 //正则表达式判断是否为下午
                                 if (/^(14:00|15:00|16:00|17:00)$/.test(timelineListElement.startTime)) {
