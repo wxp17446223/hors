@@ -167,9 +167,13 @@
                             // layer.alert(1122)
                             //对应的值传回，拼出html下拉框语句
                             var tmp = '';
-                            // var doctor=[[${doctor}]];
+                             var doctor=[[${doctor}]];
                             for (var i in d.data) {
-                                tmp += '<option name="doctorId"  value="' + d.data[i].doctorId + '">' + d.data[i].name + '</option>';
+                                if(d.data[i].doctorId==doctor.doctorId){
+                                    tmp += '<option name="doctorId" selected="selected"   value="' + d.data[i].doctorId + '">' + d.data[i].name + '</option>';
+                                        continue;
+                                }
+                                tmp += '<option name="doctorId"   value="' + d.data[i].doctorId + '">' + d.data[i].name + '</option>';
                             }
                             $("#doctor").html(tmp);
                             form.render();
@@ -244,7 +248,10 @@
                     // var doctor=[[${doctor}]];
                     tmp+="<option value=''>请选择科室医生</option>";
                     for (var i in d.data){
-
+                        // if(d.data[i].doctorId==doctor.doctorId){
+                        //     tmp +='<option name="doctorId" selected="selected"  value="'+d.data[i].doctorId+'">'+d.data[i].name+'</option>';
+                        //         continue;
+                        // }
                         tmp +='<option name="doctorId"  value="'+d.data[i].doctorId+'">'+d.data[i].name+'</option>';
                     }
                     $("#doctor").html(tmp);

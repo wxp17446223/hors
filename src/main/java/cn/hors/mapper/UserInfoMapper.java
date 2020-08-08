@@ -26,4 +26,5 @@ public interface UserInfoMapper {
      */
     UserInfo findByPhone(String phone);
 
+    int deleteByIds(Integer... ids);
 }
