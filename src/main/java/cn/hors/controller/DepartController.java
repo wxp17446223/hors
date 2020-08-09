@@ -72,6 +72,16 @@ public class DepartController {
     }
 
     /**
+     * 科室简介
+     * @return
+     */
+    @GetMapping("/ksjianjie")
+    public String keshijianjie(Model model,@RequestParam Integer departId){
+        model.addAttribute("keshijj", departmentsService.findAllByDepartId(departId));
+        return "keshijj";
+    }
+
+    /**
      * 到达本医院的路线
      * @return
      */
