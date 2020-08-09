@@ -32,20 +32,26 @@
 </head>
 <body>
 <div class="part">
-    <div class="part01" id="Department1" >
+    <div class="part01" id="Department1">
         <div class="partTitle">
-            <div class="left" >子科室</div>
+            <div class="left">子科室</div>
         </div>
         <ul data-th-each="department:${departs}" data-th-object="${department}">
             <li>
-                <span  data-th-text="*{parent.departName}">部内科临床医学</span>
+                <span data-th-text="*{parent.departName}">部内科临床医学</span>
                 <span class='import1'></span>
                 <h3 data-th-text="*{departName}">呼吸内科</h3>
-                <p data-th-text="*{introduce}">我科始建于上世纪70年代初，目前为卫生部国家重点专科建设项目单位，山西省重点……</p>
+                <p data-th-text="*{introduce}" style="
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;">我科始建于上世纪70年代初，目前为卫生部国家重点专科建设项目单位，山西省重点……</p>
                 <div>
                     <a class="coffee" data-th-href="@{/depart/keshimx(departId=*{departId})}"
-                       href="keshimx.html" data-th-title="*{departName}">查看详细</a>
-                    <a class='green' data-th-href="@{/depart/keshiys(departId=*{departId})}" href='keshiys.html' data-th-title='科室医生'>科室医生</a>
+                       href="keshimx.html" target="_blank" data-th-title="*{departName}">查看详细</a>
+                    <a class='green' data-th-href="@{/depart/keshiys(departId=*{departId})}" href='keshiys.html' target="_blank"
+                       data-th-title='科室医生'>科室医生</a>
                 </div>
             </li>
         </ul>
