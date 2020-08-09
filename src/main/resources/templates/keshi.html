@@ -29,8 +29,10 @@
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
             src="../static/hors/js/Kunyilibrary.js"></script>
     <script>
-        if([[${not empty msg}]]) {
-            alert('${msg}');
+        var msg="[[${msg}]]";
+        console.log(msg);
+        if(msg) {
+            alert(msg);
         }
     </script>
 </head>
