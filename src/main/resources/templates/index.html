@@ -58,12 +58,12 @@
                     <dl class="collapsible_menu" style="position:relative;left: 640px;z-index: 1;" >
                         <dt data-th-each="account:${accounts}" data-th-object="${accounts}">
                             <span name="account_id" hidden="hidden" data-th-text="${account.accountId}"></span>
-                            <span name="userName" data-th-text="${userInfo.name}">黄 博</span>
+                            <span name="userName" data-th-text="${userAcc?.name}">黄 博</span>
                             <span class="red dn" id="noticeDot-1"></span>
                             <i></i>
                         </dt>
-                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userInfo?.accountId})}" href="javascript:;">个人中心</a></dd>
-                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userInfo?.accountId})}">帐号设置</a></dd>
+                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}" href="javascript:;">个人中心</a></dd>
+                        <dd style="display:none;background-color:#ffffff"><a data-th-href="@{/user/index/{accountId}(accountId=${userAcc?.accountId})}">帐号设置</a></dd>
                         <dd class="logout" style="display:none;background-color:#ffffff"><a data-th-href="@{/logout}" rel="nofollow">退出</a></dd>
                     </dl>
                 </li>

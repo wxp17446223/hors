@@ -6,9 +6,9 @@ spring:
     active: pro
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3307/hors?serverTimezone=UTC
+    username: hors
+    password: 123456
+    url: jdbc:mysql://localhost:3306/hors?serverTimezone=UTC
 
 pagehelper:
   helper-dialect: mysql
