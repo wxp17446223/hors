@@ -88,9 +88,9 @@
                             class="style01"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
-                                <li><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/jiuzhen}" href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
-                                <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/luxian}" href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
                             </ul>
                             <ul>
@@ -103,7 +103,7 @@
                     <li class="first"><a data-th-href="@{/depart/keshi/-1}" href="" target="_blank" class="firstA"><em>预约挂号</em><i
                             class="style02"></i><span></span></a>
                     </li>
-                    <li class="first"><a href="chuzhen.html" class="firstA"><em>出诊安排</em><i
+                    <li class="first"><a data-th-href="@{/depart/chuzhen}" href="chuzhen.html" class="firstA"><em>出诊安排</em><i
                             class="style03"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
@@ -169,7 +169,7 @@
                                     <ul>
                                         <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
 
-                                        <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                        <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
 
                                         <li><a data-th-href="@{/depart/luxian}" href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
 
@@ -358,7 +358,7 @@
         <div class="layui-input-block">
             <ul>
                 <li data-th-each="timeline:${timelines}">
-                    <input type="radio" name="tId" checked="checked" value="1" title="8：00" data-th-value="${timeline.tId}" data-th-title="${#dates.format(timeline?.date,'yyyy-MM-dd')+ timeline.startTime}"
+                    <input type="radio" name="tid" checked="checked" value="1" title="8：00" data-th-value="${timeline?.tid}" data-th-title="${timeline?.date+ timeline.startTime}"
                            data-th-if="${#strings.contains(timeline.startTime,'13:00') ||
                            #strings.contains(timeline.startTime,'14:00') ||
                            #strings.contains(timeline.startTime,'15:00') ||

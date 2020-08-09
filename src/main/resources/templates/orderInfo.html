@@ -105,9 +105,9 @@
                             class="style01"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
-                                <li><a href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/jiuzhen}" href="jiuzhen.html" title="就诊流程">就诊流程<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
-                                <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
                                 <li><a data-th-href="@{/depart/luxian}" href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
                             </ul>
                             <ul>
@@ -120,7 +120,7 @@
                     <li class="first"><a data-th-href="@{/depart/keshi/-1}" href="" target="_blank" class="firstA"><em>预约挂号</em><i
                             class="style02"></i><span></span></a>
                     </li>
-                    <li class="first"><a href="chuzhen.html" class="firstA"><em>出诊安排</em><i
+                    <li class="first"><a data-th-href="@{/depart/chuzhen}" href="chuzhen.html" class="firstA"><em>出诊安排</em><i
                             class="style03"></i><span></span></a>
                         <div class="QMSub QMSubMenus">
                             <ul>
@@ -186,7 +186,7 @@
                                     <ul>
                                         <li><a data-th-href="@{/depart/keshi/-1}" href="keshi.html" title="科室导航">科室导航<span>进入</span></a></li>
 
-                                        <li><a href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
+                                        <li><a data-th-href="@{/depart/chuzhen}" href="DutyTime.html" title="出诊安排">出诊安排<span>进入</span></a></li>
 
                                         <li><a data-th-href="@{/depart/luxian}" href="Article-57.html" title="来院路线">来院路线<span>进入</span></a></li>
 
@@ -366,14 +366,14 @@
     <form action="" data-th-action="@{/doctor/orderInfo}" data-th-method="post" method="post" id="form">
     <div class="baseRight">
         <input type="hidden" name="doctorId" data-th-value="${doctor?.doctorId}">
-        <input type="hidden" name="tId" data-th-value="${timeline?.tId}">
+        <input type="hidden" name="tid" data-th-value="${timeline?.tid}">
         <div class="general">
             <div id="DepName"  class="title07 generaltitle" data-th-title="您的预约信息">您的预约信息</div>
             <div id="DIVWeekday" >
                 <div style="margin-left:30px;">
                     <p style="font-size:18px;">您的预约的医生:<span data-th-text="${doctor?.name}"></span></p><br>
                     <p style="font-size:18px;">诊金及挂号费:</p><br>
-                    <p style="font-size:18px;">预约的就诊时间:<span data-th-text="${#dates.format(timeline?.date,'yyyy-MM-dd')}"></span></p>
+                    <p style="font-size:18px;">预约的就诊时间:<span data-th-text="${timeline?.date}"></span></p>
                 </div>
             </div>
             <div class="title07 generaltitle" data-th-title="预约人">预约人</div>

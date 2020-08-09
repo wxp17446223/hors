@@ -225,8 +225,12 @@
                             // layer.alert(1122)
                             //对应的值传回，拼出html下拉框语句
                             var tmp='';
-                            // var doctor=[[${doctor}]];
+                            var doctor=[[${doctor}]];
                             for (var i in d.data){
+                                if(d.data[i].departId==doctor.departId){
+                                    tmp +='<option name="departId" selected="" value="'+d.data[i].departId+'">'+d.data[i].departName+'</option>';
+                                    continue;
+                                }
                                 tmp +='<option name="departId" value="'+d.data[i].departId+'">'+d.data[i].departName+'</option>';
                             }
                             $("#departId").html(tmp);
