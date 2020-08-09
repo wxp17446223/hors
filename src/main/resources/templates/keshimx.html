@@ -54,17 +54,18 @@
     <div class="bannerRight">
         <div class="righttitle">
             <h1 data-th-text="${keshi.departName}">呼吸内科</h1>
-            <div class="btns">
-                <a href="Telephone.html"><em>其他科室电话</em></a>
-                <a href="Distribution.html" class="last"><em>科室地图查看</em></a>
+            <div><p style="font-size: 24px" data-th-text="本科室电话:">本科室电话:</p>
+                <p style="font-size: 24px" data-th-text="${keshi.phone}">18899996666</p>
             </div>
             <div class="clear"></div>
         </div>
         <div class="rightbtn"><a data-th-href="@{/depart/chuzhen}" href="javascript:;" id="AOnDuty" class="green">出诊安排</a>
             <a class="blue" data-th-href="@{/depart/keshi/-1}" href="keshi.html">返回科室导航</a>
         </div>
-        <div class="righttel"><h2 id="H2Tel"></h2>
-            <h3 data-th-text="'本科室电话:'+${keshi.phone}">本科室电话:0738-9999999</h3></div>
+        <div class="righttel">
+            <h2 id="H2Tel"></h2>
+            <h3 data-th-text="'本科室电话:'+${keshi.phone}">本科室电话:0738-9999999</h3>
+        </div>
     </div>
     <div class="clear"></div>
 </section>
@@ -84,8 +85,16 @@
             <h3>科室简介</h3><h4>INTRODUCTION</h4></div>
         <div class="right">
             <h1 id="H1Type">国家临床重点专科</h1>
-            <p id="PDescription" data-th-text="${keshi.introduce}">
+            <p id="PDescription" data-th-text="${keshi.introduce}" style="
+            overflow:hidden;
+            text-overflow:ellipsis;
+            display:-webkit-box;
+            -webkit-line-clamp:3;
+            -webkit-box-orient:vertical;">
                 我科始建于上世纪70年代初，目前为卫生部国家重点专科建设项目单位，山西省重点学科、“山西省呼吸内科医疗质量控制中心”、“山西省呼吸疾病诊疗中心”、“山西省睡眠呼吸障碍诊疗中心”、山西省睡眠呼吸疾病网路中心、“卫生部内镜诊疗技术培训基地”依托单位。成为全省呼吸与危重症医学科的龙头科室。目前开放床位218张，RICU床位31张。拥有独立的山西省睡眠呼吸障碍诊疗中心、呼吸内镜中心，是山西省睡眠技师、无创...</p>
+            <div class="rightbottom">
+                <a data-th-href="@{/depart/ksjianjie(departId=${keshi.departId})}" href="keshijj.html" class="more">MORE</a>
+            </div>
         </div>
     </div>
     <div class="clear"></div>

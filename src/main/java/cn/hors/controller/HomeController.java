@@ -1,6 +1,5 @@
 package cn.hors.controller;
 
-import cn.hors.bean.*;
 import cn.hors.bean.Account;
 import cn.hors.bean.Doctor;
 import cn.hors.bean.News;
@@ -10,7 +9,6 @@ import cn.hors.service.AccountService;
 import cn.hors.service.DoctorService;
 import cn.hors.service.NewsService;
 import cn.hors.service.UserInfoService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import org.springframework.stereotype.Controller;

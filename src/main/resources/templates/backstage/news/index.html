@@ -86,7 +86,7 @@
                     {field: 'newId', width: 60, title: '新闻ID', sort: true}
                     , {field: 'title', width: 100, title: '新闻标题'}
                     , {field: 'content', title: '新闻内容'}
-                    , {field: 'newsDate', title: '发布时间',templet : "<div>{{layui.util.toDateString(d.newsDate, 'yyyy年-MM月-dd日 ')}}</div>"}
+                    , {field: 'newsDate', title: '发布时间', sort: true,templet : "<div>{{layui.util.toDateString(d.newsDate, 'yyyy年-MM月-dd日 ')}}</div>"}
                     , {field: 'source', title: '新闻来源'}
                     , {field: 'count', title: '浏览量'}
                     ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:250}
