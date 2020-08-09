@@ -28,6 +28,11 @@
             src="../static/hors/js/KunyiHTML5.min.js"></script>
     <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyilibrary.js}"
             src="../static/hors/js/Kunyilibrary.js"></script>
+    <script>
+        if([[${not empty msg}]]) {
+            alert('${msg}');
+        }
+    </script>
 </head>
 <body>
 <script language="javascript" type="text/javascript" data-th-src="@{/hors/js/Kunyi.Init.js}"

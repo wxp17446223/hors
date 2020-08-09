@@ -369,19 +369,17 @@
         <input type="hidden" name="tid" data-th-value="${timeline?.tid}">
         <div class="general">
             <div id="DepName"  class="title07 generaltitle" data-th-title="您的预约信息">您的预约信息</div>
-            <div id="DIVWeekday" >
                 <div style="margin-left:30px;">
                     <p style="font-size:18px;">您的预约的医生:<span data-th-text="${doctor?.name}"></span></p><br>
                     <p style="font-size:18px;">诊金及挂号费:</p><br>
                     <p style="font-size:18px;">预约的就诊时间:<span data-th-text="${timeline?.date}"></span></p>
                 </div>
-            </div>
             <div class="title07 generaltitle" data-th-title="预约人">预约人</div>
             <div style="margin-left:30px;">
-                <!--<input type="text" name="userId" data-th-value="${}">-->
+                <input type="text" name="userId" data-th-value="${userInfo?.userId}">
                 <p style="font-size:18px;">预约人：XXX</p><br>
                 <p style="font-size:18px;">联系电话：18899996666</p>
-                <!--<input type="text" name="userPhone" data-th-value="${}">-->
+                <input type="text" name="userPhone" data-th-value="${userInfo?.phone}">
                 <br>
                 <p style="font-size:18px;">证件号码：432522198808245210</p><br>
             </div>
