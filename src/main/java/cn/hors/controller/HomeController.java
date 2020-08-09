@@ -9,6 +9,7 @@ import cn.hors.service.AccountService;
 import cn.hors.service.DoctorService;
 import cn.hors.service.NewsService;
 import cn.hors.service.UserInfoService;
+import cn.hutool.http.server.HttpServerRequest;
 import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -78,12 +81,15 @@ public class HomeController {
     @PostMapping("/login")
 //    @PreAuthorize("hasAuthority('/index/login/r')")
     public String login(@RequestParam String account, @RequestParam String password, Model model,
-                        RedirectAttributes attributes) {
+                        RedirectAttributes attributes,
+                        HttpServletRequest request) {
         Account accounts= accountServices.login(account, password);
         if (accounts != null) {
             model.addAttribute("accounts", accounts);
             UserInfo userAcc = userinfoService.findByAccId(accounts.getAccountId());
-            model.addAttribute("userAcc",userAcc);
+            HttpSession session = request.getSession();
+            session.setAttribute("userAcc",userAcc);
+//            model.addAttribute("userAcc",userAcc);
             return "index";
         } else {
             attributes.addFlashAttribute("message", "用户名或密码错误！");

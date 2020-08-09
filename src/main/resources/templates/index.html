@@ -58,7 +58,7 @@
                     <dl class="collapsible_menu" style="position:relative;left: 640px;z-index: 1;" >
                         <dt data-th-each="account:${accounts}" data-th-object="${accounts}">
                             <span name="account_id" hidden="hidden" data-th-text="${account.accountId}"></span>
-                            <span name="userName" data-th-text="${userAcc.name}">黄 博</span>
+                            <span name="userName" data-th-text="${userAcc?.name}">黄 博</span>
                             <span class="red dn" id="noticeDot-1"></span>
                             <i></i>
                         </dt>

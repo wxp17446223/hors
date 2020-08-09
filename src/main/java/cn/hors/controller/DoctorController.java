@@ -56,11 +56,9 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/order","/order/{doctorId}"})
-    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date,HttpServletRequest request){
+    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
 
-        HttpSession session = request.getSession();
-        UserInfo userAcc =(UserInfo) session.getAttribute("userAcc");
-        System.out.println("userAcc = " + userAcc);
+
 
         Doctor doctor = doctorService.findById(doctorId);
         model.addAttribute("doctor", doctor);
@@ -81,8 +79,11 @@ public class DoctorController {
      * @return
      */
     @PostMapping({"/order"})
-    public String order(Model model, @RequestParam Integer tid, @RequestParam Integer doctorId){
-
+    public String order(Model model, @RequestParam Integer tid, @RequestParam Integer doctorId,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserInfo userAcc =(UserInfo) session.getAttribute("userAcc");
+        System.out.println("userAcc = " + userAcc);
+        model.addAttribute("userAcc", userAcc);
 
         Doctor doctor = doctorService.findById(doctorId);
         Timeline timeline = timelineService.findById(tid);

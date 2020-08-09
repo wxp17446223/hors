@@ -22,7 +22,7 @@
             <td data-th-text="*{orderUser?.name}">预约人</td>
             <td data-th-text="*{doctor?.name}">预约医生</td>
             <td>
-            <p data-th-text="*{#dates.format(timeline?.date,'yyyy-MM-dd')}"></p>
+            <p data-th-text="*{timeline?.date}"></p>
             <p data-th-text="*{timeline?.startTime}+'~'+*{timeline?.endTime}"></p>
             </td>
             <td data-th-text="*{status==0?'预约失败':'预约成功'}">预约状态</td>
