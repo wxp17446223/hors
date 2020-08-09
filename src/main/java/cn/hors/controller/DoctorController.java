@@ -56,9 +56,14 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/order","/order/{doctorId}"})
-    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
+    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date,HttpServletRequest request){
 
-
+        HttpSession session = request.getSession();
+        UserInfo userAcc =(UserInfo) session.getAttribute("userAcc");
+        System.out.println("userAcc = " + userAcc);
+        if (userAcc==null){
+            return "login";
+        }
 
         Doctor doctor = doctorService.findById(doctorId);
         model.addAttribute("doctor", doctor);
