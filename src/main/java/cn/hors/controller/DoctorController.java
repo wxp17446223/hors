@@ -3,6 +3,7 @@ package cn.hors.controller;
 import cn.hors.bean.Doctor;
 import cn.hors.bean.Order;
 import cn.hors.bean.Timeline;
+import cn.hors.bean.UserInfo;
 import cn.hors.service.DoctorService;
 import cn.hors.service.OrderService;
 import cn.hors.service.TimelineService;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -53,7 +56,12 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/order","/order/{doctorId}"})
-    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
+    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date,HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        UserInfo userAcc =(UserInfo) session.getAttribute("userAcc");
+        System.out.println("userAcc = " + userAcc);
+
         Doctor doctor = doctorService.findById(doctorId);
         model.addAttribute("doctor", doctor);
         model.addAttribute("date", date);
@@ -73,7 +81,9 @@ public class DoctorController {
      * @return
      */
     @PostMapping({"/order"})
-    public String order(Model model,@RequestParam Integer tid,@RequestParam Integer doctorId){
+    public String order(Model model, @RequestParam Integer tid, @RequestParam Integer doctorId){
+
+
         Doctor doctor = doctorService.findById(doctorId);
         Timeline timeline = timelineService.findById(tid);
         model.addAttribute("doctor", doctor);
@@ -88,15 +98,15 @@ public class DoctorController {
      */
     @PostMapping("/orderInfo")
     public String order(Model model,Order order){
-//        if (orderService.insert(order)) {
-//            if (timelineService.updateQuota(order.getTId())) {
-//                model.addAttribute("msg","预约成功");
-//            }
-//        }else {
-//            model.addAttribute("msg","预约失败");
-//        }
+        if (orderService.insert(order)) {
+            if (timelineService.updateQuota(order.getTid())) {
+                model.addAttribute("msg","预约成功");
+            }
+        }else {
+            model.addAttribute("msg","预约失败");
+        }
         System.out.println("order = " + order);
-        return "redirect:/depart/keshi";
+        return "keshi";
     }
 
     @GetMapping("/sreach")

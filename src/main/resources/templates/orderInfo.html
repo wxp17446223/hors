@@ -376,12 +376,12 @@
                 </div>
             <div class="title07 generaltitle" data-th-title="预约人">预约人</div>
             <div style="margin-left:30px;">
-                <input type="text" name="userId" data-th-value="${userInfo?.userId}">
-                <p style="font-size:18px;">预约人：XXX</p><br>
-                <p style="font-size:18px;">联系电话：18899996666</p>
-                <input type="text" name="userPhone" data-th-value="${userInfo?.phone}">
+                <input type="text" name="userId" data-th-value="${userAcc?.userId}">
+                <p style="font-size:18px;">预约人：<span data-th-text="${userAcc?.name}">XXX</span></p><br>
+                <p style="font-size:18px;">联系电话：<span data-th-text="${userAcc?.phone}">18899996666</span></p>
+                <input type="text" name="userPhone" data-th-value="${userAcc?.phone}">
                 <br>
-                <p style="font-size:18px;">证件号码：432522198808245210</p><br>
+                <p style="font-size:18px;">证件号码：<span data-th-text="${userAcc?.identityId}">432522198808245210</span></p><br>
             </div>
         </div>
         <div class="notice">
