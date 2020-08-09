@@ -215,7 +215,13 @@ public class HomeController {
 
     }
 
-
+    /**
+     * 全站，医生，新闻查询
+     * @param name 关键字
+     * @param type 1.全站 2.医生 3.新闻查询
+     * @param map
+     * @return 查询的集合
+     */
     @GetMapping("/find")
 //    @PreAuthorize("hasAuthority('/index/find/r')")
     public String find(String name,Integer type,Model map){

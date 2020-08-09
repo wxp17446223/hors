@@ -123,8 +123,8 @@ public class webSecurityConfig extends WebSecurityConfigurerAdapter {
     }
     public void configure(WebSecurity web) throws Exception {
         // 指定可以通过的ur;
-        web.ignoring().antMatchers("/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.js", "/**/*.map", "/**/*.html",
+        web.ignoring().antMatchers("/*.css","/*.js","/**/*.js", "/lang/*.json", "/**/*.css", "/**/*.map", "/**/*.html",
         //"/hors/css/styles.css","/hors/js/jquery-1.7.1.min.js",
-                "/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2","/uacc/**","/register","/user/**","/login","/depart/**","/news/**","/doctor/**/*","/depart/**/*");
+                "/**/*.JPG","/**/*.png", "/**/*.jpg","/**/*.gif","/**/*.svg","/**/*.eot","/**/*.ttf","/**/*.woff","/**/*.woff2","/uacc/**","/register","/user/**","/login","/depart/**","/news/**","/doctor/**/*","/depart/**/*","/find","/logout");
     }
 }
