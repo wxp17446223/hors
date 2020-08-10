@@ -79,7 +79,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">邮箱</label>
         <div class="layui-input-block">
-            <input type="text" name="userInfo.email"  placeholder="请输入出生日期" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.email}" lay-verify="email">
+            <input type="text" name="userInfo.email"  placeholder="请输入邮箱" autocomplete="off" class="layui-input" data-th-value="${patient?.userInfo?.email}" lay-verify="email">
         </div>
     </div>
     <div class="layui-form-item">
@@ -136,12 +136,12 @@
                 }
             }
             ,introduce:function (value) {
-                if(value.length ==null || value.length != 11){
+                if(value ==null || value.length == 0){
                     return '家庭住址不为空';
                 }
             }
             ,password:function (value) {
-                if(value.length ==null || value.length==''){
+                if(value.length ==null || value.length==0){
                     return '密码不能为空';
                 }
             }});

@@ -1,0 +1,9 @@
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (35, 10, 1, '2020-08-09', 18073896478, 1, null, 30, 1);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (36, 10, 9, '2020-08-10', 18073896478, 1, null, 12, 2);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (37, 10, 96, null, 18073896478, 0, null, null, 14);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (38, 10, 94, null, 18073896478, 0, null, null, 14);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (39, 10, 38, null, 18073896478, 0, null, null, 6);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (40, 10, 77, null, 18073896478, 0, null, null, 11);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (41, 10, 77, null, 18073896478, 0, null, null, 11);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (42, 10, 77, null, 18073896478, 0, null, null, 11);
+insert into hors.order (order_id, user_id, t_id, addtime, user_phone, status, reply, cost, doctor_id) values (43, 10, 58, null, 18073896478, 0, null, null, 9);

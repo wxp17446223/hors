@@ -25,7 +25,7 @@
             <p data-th-text="*{timeline?.date}"></p>
             <p data-th-text="*{timeline?.startTime}+'~'+*{timeline?.endTime}"></p>
             </td>
-            <td data-th-text="*{status==0?'预约失败':'预约成功'}">预约状态</td>
+            <td data-th-text="*{status==0?'处理中':'预约成功'}">预约状态</td>
             <td data-th-text="*{userPhone}">联系电话</td>
             <td data-th-text="*{cost}">价钱</td>
             <td><a value="反馈" data-th-href="@{/user/content/{userId}/{doctorId}(userId=${orders?.userId},doctorId=${orders?.doctorId})}"href="/user/content" ><em>反馈信息</em></a></td>

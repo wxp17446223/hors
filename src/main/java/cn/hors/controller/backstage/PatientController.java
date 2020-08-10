@@ -89,6 +89,7 @@ public class PatientController implements BaseController{
                 return map;
             }
             if (accountService.insert(account)){
+                account.getUserInfo().setAccountId(account.getAccountId());
                 if(userinfoService.insert(account.getUserInfo())) {
                     map.put("code", 0);
                     map.put("msg", "新增成功");

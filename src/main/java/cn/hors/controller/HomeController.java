@@ -200,25 +200,17 @@ public class HomeController {
      * @return
      */
     @PostMapping("/register")
-    @ResponseBody
-    public Map<String,Object> save(UserInfo user, Account account){
+    public String  save(UserInfo user, Account account){
         Map<String,Object> results = new HashMap<>();
-        account.setPassword(DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
         if (accountServices.insertSelective(account) > 0) {
             user.setAccountId(account.getAccountId());
             if (userinfoService.insert(user)) {
                 results.put("code", 0);
                 results.put("msg", "注册成功");
-            } else {
-                results.put("code", 1);
-                results.put("msg", "注册失败");
+                return "redirect:/login";
             }
-        } else {
-            results.put("code", 1);
-            results.put("msg", "注册失败");
         }
-        return results;
-
+            return "redirect:/register";
     }
 
     /**

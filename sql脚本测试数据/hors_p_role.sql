@@ -1,0 +1,10 @@
+insert into hors.p_role (id, name, code) values (1, '管理员', 'admin');
+insert into hors.p_role (id, name, code) values (2, '账号管理员', 'account');
+insert into hors.p_role (id, name, code) values (3, '资源管理员', 'resource');
+insert into hors.p_role (id, name, code) values (4, '角色管理员', 'role');
+insert into hors.p_role (id, name, code) values (5, '新闻管理员', 'news');
+insert into hors.p_role (id, name, code) values (6, '排班管理员', 'timeline');
+insert into hors.p_role (id, name, code) values (7, '医生管理员', 'doctors');
+insert into hors.p_role (id, name, code) values (8, '普通患者', 'patet');
+insert into hors.p_role (id, name, code) values (9, '黑名单', 'sss');
+insert into hors.p_role (id, name, code) values (10, '患者管理员', 'pateints');

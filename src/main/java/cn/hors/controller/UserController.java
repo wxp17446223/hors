@@ -76,9 +76,10 @@ public class UserController {
      * @return
      */
     @PostMapping("/editor")
-    @ResponseBody
-    public Map<String,Object> save(UserInfo user){
+    public String  save(UserInfo user){
         Map<String,Object> results = new HashMap<>();
+        Integer id = user.getAccountId();
+        Integer key=user.getUserId();
         if (user.getUserId()!=null){
             if (userservice.update(user)){
                 results.put("code",0);
@@ -86,17 +87,11 @@ public class UserController {
             }else {
                 results.put("code",1);
                 results.put("msg","修改失败");
-            }
+            }return "redirect:/user/info/"+id;
         }else {
-            if(userservice.insertSelective(user)>0){
-                results.put("code",0);
-                results.put("msg","新增成功");
-            }else {
-                results.put("code",1);
-                results.put("msg","新增失败");
-            }
+            return "redirect:/user/editor/"+key;
         }
-        return results;
+
     }
 
     /**
@@ -115,12 +110,12 @@ public class UserController {
     }
 
     @PostMapping("/uacc")
-    @ResponseBody
-    public Map<String,Object> saveAcc(Account account){
+    public String  saveAcc(Account account){
         Map<String,Object> results = new HashMap<>();
         account.setRoleId(8);
-        account.setPassword(DigestUtils.md5DigestAsHex(account.getPassword().getBytes()));
-        if (account.getAccountId()!=null){
+        Integer key = account.getAccountId();
+        System.out.println(key);
+        if (key!=null){
             if (accountService.update(account)){
                 results.put("code",0);
                 results.put("msg","修改成功");
@@ -128,16 +123,11 @@ public class UserController {
                 results.put("code",1);
                 results.put("msg","修改失败");
             }
+            return "redirect:/user/info/"+key;
         }else {
-            if(accountService.insertSelective(account)>0){
-                results.put("code",0);
-                results.put("msg","新增成功");
-            }else {
-                results.put("code",1);
-                results.put("msg","新增失败");
-            }
+            return "redirect:/user/uacc/"+key;
         }
-        return results;
+
     }
 
 

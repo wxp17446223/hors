@@ -11,7 +11,7 @@
     </style>
 </head>
 <body data-th-each="account:${account}" data-th-object="${account}">
-<form class="layui-form" action="" style="width: 40%">
+<form class="layui-form" method="post"  action="/user/uacc" style="width: 40%">
     <input type="hidden" data-th-value="${account?.accountId}" name="accountId">
     <input type="hidden" data-th-value="${account?.account}" name="account">
     <div class="layui-form-item">
@@ -23,7 +23,7 @@
     <input type="hidden" data-th-value="${account?.roleId}" name="roleId">
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="formSubmit" onclick="ti()">修改</button>
+            <input class="layui-btn" type="submit"value="修改" onclick="myFunction()">
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -54,8 +54,14 @@
     });
 </script>
 <script>
-    function ti() {
-        window.alert(修改成功);
+    function myFunction() {
+        var txt;
+        if (confirm("确认提交？")) {
+            txt = "提交成功";
+        } else {
+            txt = "取消提交";
+        }
+        document.getElementById("demo").innerHTML = txt;
     }
 </script>
 </body>

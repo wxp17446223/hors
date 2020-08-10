@@ -5,7 +5,7 @@
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="role_id"  property="roleId"></result>
+    <result column="role_id"  property="roleId"/>
   </resultMap>
   <resultMap id="ResultMap" type="cn.hors.bean.Account">
     <id column="account_id" jdbcType="INTEGER" property="accountId" />
@@ -32,8 +32,8 @@
   </delete>
   <insert id="insert" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into account (account, `password`)
-    values (#{account,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR}))
+     insert into account (account, `password`,role_id)
+    values (#{account,jdbcType=VARCHAR}, MD5(#{password,jdbcType=VARCHAR}),#{roleId})
   </insert>
   <insert id="insertSelective" keyColumn="account_id" keyProperty="accountId" parameterType="cn.hors.bean.Account" useGeneratedKeys="true">
     <!--@mbg.generated-->

@@ -1,9 +1,0 @@
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (1, '新闻', '内容', '2020-08-02', '新闻', 14);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (2, '公告1', '内容1', '2020-08-02', '公告', 19);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (3, '公告2', '内容1', '2020-08-02', '公告', 0);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (4, '公告3', '内容1', '2020-08-02', '公告', 0);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (5, '公告4', '内容1', '2020-08-02', '公告', 1);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (6, '公告5', '内容1', '2020-08-02', '公告', 0);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (7, '公告6', '内容1', '2020-08-02', '公告', 0);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (8, '公告7', '内容1', '2020-08-02', '公告', 0);
-INSERT INTO news (new_id, title, content, news_date, source, count) VALUES (9, '公告8', '内容1', '2020-08-02', '公告', 0);

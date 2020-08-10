@@ -7,6 +7,7 @@ import cn.hors.bean.UserInfo;
 import cn.hors.service.DoctorService;
 import cn.hors.service.OrderService;
 import cn.hors.service.TimelineService;
+import cn.hors.service.UserInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class DoctorController {
     private TimelineService timelineService;
     @Resource
     private OrderService orderService;
+    @Resource
+    private UserInfoService userInfoService;
 
     @GetMapping("/d")
     public String findAllDoctor(Model model,Doctor doctor){
@@ -56,9 +59,13 @@ public class DoctorController {
      * @return
      */
     @GetMapping({"/order","/order/{doctorId}"})
-    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date){
-
-
+    public String order(Model model,@RequestParam Integer doctorId,@RequestParam Integer line,@RequestParam String date,HttpServletRequest request){
+        HttpSession session = request.getSession();
+        UserInfo userAcc =(UserInfo) session.getAttribute("userAcc");
+        System.out.println("userAcc = " + userAcc);
+        if (userAcc == null) {
+            return "login";
+        }
 
         Doctor doctor = doctorService.findById(doctorId);
         model.addAttribute("doctor", doctor);
@@ -99,6 +106,8 @@ public class DoctorController {
      */
     @PostMapping("/orderInfo")
     public String order(Model model,Order order){
+        Integer key=order.getUserId();
+        Integer Idd = userInfoService.findById(key).getAccountId();
         if (orderService.insert(order)) {
             if (timelineService.updateQuota(order.getTid())) {
                 model.addAttribute("msg","预约成功");
@@ -107,7 +116,7 @@ public class DoctorController {
             model.addAttribute("msg","预约失败");
         }
         System.out.println("order = " + order);
-        return "keshi";
+        return "redirect:/user/index/"+Idd;
     }
 
     @GetMapping("/sreach")

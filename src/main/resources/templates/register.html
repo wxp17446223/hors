@@ -460,7 +460,7 @@
             <div class="tabBase"><a data-th-href="@{/login}">用户登录</a><a class="active" data-th-href="@{/register}">用户注册</a></div>
             <div class="clear"></div>
             <div class="userForm" style="position: relative;left: 10%">
-                <form action="/register/save" class="layui-form" id="RegForm" method="post">
+                <form action="/register" class="layui-form"  method="post">
                     <input id="tbHashReg" name="tbHashReg" type="hidden" value="VH5IB4YtEchYDisgbrb0qqPomnTAuKJY8"/>
                     <div class="item uName" style="height: 20%;position: relative">
                         <label for="tbName" style="height: 100%">
@@ -469,7 +469,7 @@
                                id="tbName" maxlength="5" name="name" nullmsg="请输入真实姓名！" type="text" style="width:30%"/>
                         <select id="ddlSex" name="sex" style="position: relative">
                             <option selected="selected" value="1">先生</option>
-                            <option value="0">女士</option>
+                            <option value="2">女士</option>
                         </select>
 
                         <div class="Validform_checktip" style="position: relative;margin-top: -9%;left: 593px"></div>
@@ -490,10 +490,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 pull_center" style="position:relative;left: 301px;top: -102px">
-                        <button type="button" class="btn btn-block btn-flat" onclick="validateNum()" style="width: 15%">验证</button>
-                    </div>
-                    <div class="item" style="position:relative;margin-top: -104px"><label for="tbCardID">
+                    <div class="item" style="position:relative;margin-top: -52px"><label for="tbCardID">
                         身份证号</label>
                         <input  autocomplete="off" datatype="idcard" errormsg="您输入的身份证号码不对！" id="tbCardID"
                                 maxlength="18" name="identityId" nullmsg="请填写身份证号码！"
@@ -513,9 +510,9 @@
                         <div class="Validform_checktip"></div>
                     </div>
                     <div class="item password">
-                        <label for="tbDPassword">确认密码</label>
-                        <input autocomplete="off" datatype="*" errormsg="您两次输入的账号密码不一致！" id="tbDPassword" maxlength="18" name="tbDPassword"
-                               nullmsg="请再输入一次密码！" recheck="tbPassword" tip="test" type="password"/>
+                        <label >确认密码</label>
+                        <input autocomplete="off" datatype="*"   maxlength="18" name="tbDPassword"
+                               nullmsg="请再输入一次密码！" tip="test" type="password"/>
                         <div class="Validform_checktip"></div>
                     </div>
                     <div class="layui-form-item">
@@ -537,7 +534,8 @@
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="formSubmit" style="width: 10%">立即提交</button>
+                            <input name="roleId" value="8" hidden="hidden">
+                            <input class="layui-btn" type="submit" style="width: 10%;color: white" value="注册" onclick="myFunction()">
                             <button type="reset" class="layui-btn layui-btn-primary" style="width: 10%;position: relative;left: 10%;">重置</button>
                         </div>
                     </div>
@@ -697,26 +695,6 @@
         var laydate = layui.laydate;
         var upload = layui.upload;
         let {form,$} = layui;
-        //监听提交
-        form.on('submit(formSubmit)', function(data){
-            $.ajax({
-                url:/*[[@{/register}]]*/ 'save',
-                type:'post',
-                data:data.field,
-                dataType:'json',
-                success:function (rs) {
-                    if(rs.code == 0){
-                        var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
-                        parent.layer.close(index);//关闭当前弹窗
-                        parent.layer.msg(rs.msg,{icon:6});//重载父页面的表格数据
-                        parent.layui.table.reload('table_reload');
-                    }else {
-                        layer.msg(rs.msg,{icon:5});
-                    }
-                }
-            });
-            return false;
-        });
         laydate.render({
             elem: '#test1' //指定元素
         });
@@ -810,6 +788,17 @@
                 console.log(textStatus);
             }
         });
+    }
+</script>
+<script>
+    function myFunction() {
+        var txt;
+        if (confirm("确认提交？")) {
+            txt = "提交成功";
+        } else {
+            txt = "取消提交";
+        }
+        document.getElementById("demo").innerHTML = txt;
     }
 </script>
 </body>
