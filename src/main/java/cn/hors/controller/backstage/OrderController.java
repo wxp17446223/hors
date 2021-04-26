@@ -195,6 +195,6 @@ public class OrderController implements BaseController{
 
     @Override
     public String getModelName() {
-        return "/backstage/order";
+        return "backstage/order";
     }
 }

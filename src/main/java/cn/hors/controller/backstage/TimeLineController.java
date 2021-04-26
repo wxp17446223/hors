@@ -175,6 +175,6 @@ public class TimeLineController implements BaseController{
 
     @Override
     public String getModelName() {
-        return "/backstage/timeline";
+        return "backstage/timeline";
     }
 }

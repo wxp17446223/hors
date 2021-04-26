@@ -246,6 +246,6 @@ public class DoctorsController implements BaseController {
     }
     @Override
     public String getModelName() {
-        return "/backstage/doctor";
+        return "backstage/doctor";
     }
 }

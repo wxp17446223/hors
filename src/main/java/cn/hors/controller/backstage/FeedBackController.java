@@ -114,6 +114,6 @@ public class FeedBackController implements BaseController{
 
     @Override
     public String getModelName() {
-        return "/backstage/feedback";
+        return "backstage/feedback";
     }
 }

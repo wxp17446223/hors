@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
     @ExceptionHandler(Exception.class)
     public String error(){
-        return "/backstage/error/403";
+        return "backstage/error/403";
     }
 }

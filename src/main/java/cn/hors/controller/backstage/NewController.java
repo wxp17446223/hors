@@ -123,6 +123,6 @@ public class NewController implements BaseController {
 
     @Override
     public String getModelName() {
-        return "/backstage/news";
+        return "backstage/news";
     }
 }
